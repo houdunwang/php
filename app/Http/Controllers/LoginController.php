@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,13 +13,13 @@ use Illuminate\Validation\Validator;
 
 class LoginController extends Controller
 {
-    public function __invoke(LoginRequest $request)
+    public function __invoke(LoginRequest $request, UserService $user)
     {
-        $user  = User::where('email', $request->email)->first();
+        $user = User::where($user->fieldName(), $request->account)->first();
 
         if (!$user) {
             throw ValidationException::withMessages([
-                'email' => '用户不存在',
+                'account' => '用户不存在',
             ]);
         }
 

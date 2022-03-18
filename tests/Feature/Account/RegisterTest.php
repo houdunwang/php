@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Account;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -12,47 +12,50 @@ class RegisterTest extends TestCase
 
     protected $data = [
         'account' => '2300071698@qq.com',
-        'password' => 'admin'
+        'password' => 'admin888',
+        'password_confirmation' => 'admin888',
     ];
 
     /**
-     * 用户注册
+     * 用户成功注册
      * @test
      */
-    public function userRegister()
+    public function userRegistrationSuccess()
     {
         $response = $this->post('/api/register', $this->data);
-        $response->assertStatus(201);
+        $response->assertStatus(200);
     }
 
     /**
      * 非法邮箱验证
      * @test
      */
-    public function registerEmailValidate()
+    public function registerAccountValidate()
     {
-        $response = $this->post('/api/register', ['email' => 'hd'] + $this->data);
-        $response->assertSessionHasErrors('email');
+        $response = $this->post('/api/register', ['account' => 'hd'] + $this->data);
+        $response->assertSessionHasErrors('account');
     }
 
     /**
+     * 帐号不唯一
      * @test
      */
-    public function EmailRequiredValidate()
+    public function accountIsNotTheOnly()
     {
         $data = $this->data;
-        unset($data['email']);
+        unset($data['account']);
         $response = $this->post('/api/register', $data);
-        $response->assertSessionHasErrors('email');
+        $response->assertSessionHasErrors('account');
     }
 
     /**
+     * 帐号重复
      * @test
      */
-    public function EmailUniqueValidate()
+    public function repeatAccount()
     {
         $response1 = $this->post('/api/register', $this->data);
         $response2 = $this->post('/api/register', $this->data);
-        $response2->assertSessionHasErrors('email');
+        $response2->assertSessionHasErrors('account');
     }
 }

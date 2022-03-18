@@ -9,17 +9,17 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'account' => ['required', $this->account()],
-            'password' => 'required|min:3'
+            'account' => $this->accountRule(),
+            'password' => 'required|min:3|confirmed'
         ];
     }
 
-    protected function account()
+    protected function accountRule(): array
     {
-        return function ($attribute, $value, $fail) {
-            if (!filter_var($value, FILTER_VALIDATE_EMAIL) && !preg_match('/^\d{11}$/', $value)) {
-                $fail('帐号格式错误');
-            }
-        };
+        if (filter_var(request('account'), FILTER_VALIDATE_EMAIL)) {
+            return ['required', 'email', 'unique:users,email'];
+        }
+
+        return ['required', 'regex:/^\d{11}$/', 'unique:users,mobile'];
     }
 }
