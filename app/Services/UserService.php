@@ -7,7 +7,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 class UserService
 {
     /**
-     * 登录注册的字段名
+     * 登录要使用的字段
      * @return string
      * @throws BindingResolutionException
      */

@@ -13,9 +13,15 @@ use Illuminate\Validation\Validator;
 
 class LoginController extends Controller
 {
-    public function __invoke(LoginRequest $request, UserService $user)
+    /**
+     * 自动执行的函数
+     * @param LoginRequest $request
+     * @return array
+     * @throws ValidationException
+     */
+    public function __invoke(LoginRequest $request, UserService $userService)
     {
-        $user = User::where($user->fieldName(), $request->account)->first();
+        $user = User::where($userService->fieldName(), $request->account)->first();
 
         if (!$user) {
             throw ValidationException::withMessages([

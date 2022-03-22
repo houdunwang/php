@@ -7,16 +7,22 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class UserLoginTest extends TestCase
+class LoginTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected $data = [
+        'account' => '2300071698@qq.com',
+        'password' => 'admin888'
+    ];
 
     /**
      * 登录成功
      * @test
      */
-    public function loginSuccessful()
+    public function userLogin()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $response = $this->post('/api/login', ['account' => $user->email, 'password' => 'admin888']);
 
@@ -24,20 +30,20 @@ class UserLoginTest extends TestCase
     }
 
     /**
-     * 登录帐号错误
+     * 邮箱合法性
      * @test
      */
-    public function loginAccountErrors()
+    public function loginAccountRule()
     {
         $response = $this->post('/api/login', ['account' => 'hd', 'password' => 'admin888']);
         $response->assertSessionHasErrors('account');
     }
 
     /**
-     * 帐号为空
+     * 邮箱不能为空
      * @test
      */
-    public function theAccountIsEmpty()
+    public function accountRequireRule()
     {
         $response = $this->post('/api/login', ['password' => 'admin888']);
         $response->assertSessionHasErrors('account');
@@ -47,7 +53,7 @@ class UserLoginTest extends TestCase
      * 密码输入错误
      * @test
      */
-    public function thePasswordInputError()
+    public function passwordPostWrong()
     {
         $user = User::factory()->create();
         $response = $this->post('/api/login', ['account' => $user->email, 'password' => 'hd888']);
@@ -60,7 +66,19 @@ class UserLoginTest extends TestCase
      */
     public function accountNotExists()
     {
-        $response = $this->post('/api/login', ['account' => 'test@qq.com', 'password' => 'admin888']);
+        $response = $this->post('/api/login', ['account' => '3434@qq.com', 'password' => 'hd888']);
         $response->assertSessionHasErrors('account');
+    }
+
+
+    /**
+     * 手机号登录
+     * @test
+     */
+    public function loginByMobile()
+    {
+        $user = User::factory()->create(['mobile' => '18888888888']);
+        $response = $this->post('/api/login', ['account' => $user->mobile, 'password' => 'admin888']);
+        $response->assertOk();
     }
 }

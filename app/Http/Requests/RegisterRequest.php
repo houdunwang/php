@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidateCodeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -10,16 +11,24 @@ class RegisterRequest extends FormRequest
     {
         return [
             'account' => $this->accountRule(),
-            'password' => 'required|min:3|confirmed'
+            'password' => ['required', 'min:3', 'confirmed'],
+            'code' => ['required', new ValidateCodeRule]
         ];
     }
 
-    protected function accountRule(): array
+    protected function accountRule()
     {
         if (filter_var(request('account'), FILTER_VALIDATE_EMAIL)) {
-            return ['required', 'email', 'unique:users,email'];
+            return 'required|email|unique:users,email';
         }
 
         return ['required', 'regex:/^\d{11}$/', 'unique:users,mobile'];
+    }
+
+    public function messages()
+    {
+        return [
+            'code.required' => '验证码忘记写了吧'
+        ];
     }
 }

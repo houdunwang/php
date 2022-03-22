@@ -33,6 +33,8 @@ return new class extends Migration
             $table->string('wakatime')->nullable()->comment('wakatime');
             $table->timestamp('email_verified_at')->nullable()->comment('邮箱验证时间');
             $table->timestamp('mobile_verified_at')->nullable()->comment('手机验证时间');
+            $table->rememberToken();
+            $table->timestamps();
             $table->unsignedTinyInteger('lock')->nullable()->comment('用户锁定');
             $table->unsignedInteger('credit1')->nullable();
             $table->unsignedInteger('credit2')->nullable();
@@ -42,8 +44,6 @@ return new class extends Migration
             $table->unsignedInteger('credit6')->nullable();
             $table->unsignedInteger('favour_count')->default(0)->comment('点赞数');
             $table->unsignedInteger('favorite_count')->default(0)->comment('收藏数');
-            $table->rememberToken();
-            $table->timestamps();
         });
     }
 
