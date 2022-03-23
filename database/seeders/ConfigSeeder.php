@@ -26,11 +26,11 @@ class ConfigSeeder extends Seeder
                 'author' => ''
             ],
             'aliyun' => [
-                'accessKeyId' => '',
-                'accessKeySecret' => '',
-                'sms' => [
-                    'signName' => ""
-                ]
+                // 'accessKeyId' => '',
+                // 'accessKeySecret' => '',
+                // 'sms' => [
+                //     'signName' => ""
+                // ]
             ]
         ]);
     }

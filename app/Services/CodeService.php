@@ -51,8 +51,13 @@ class CodeService
      * 手机发送验证码
      * @return void
      */
-    protected function mobile()
+    public function mobile(int $phone)
     {
+        app('sms')->send($phone, 'SMS_12840367', [
+            'code' => $code = $this->getCode(),
+            'product' => config('app.name')
+        ]);
+        return $code;
     }
 
     public function check($account,  $code): bool

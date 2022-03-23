@@ -9,6 +9,8 @@ use Tests\TestCase;
 
 class GuestValideCodeTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * 发送邮件验证码
      * @test
@@ -16,7 +18,7 @@ class GuestValideCodeTest extends TestCase
     public function emailVerificationCode()
     {
         $user = User::factory()->make();
-        $this->post('/api/code/guest', [
+        $this->post('/api/code/send', [
             'account' => $user->email
         ])->assertOk();
     }
@@ -27,7 +29,7 @@ class GuestValideCodeTest extends TestCase
      */
     public function emailFormatError()
     {
-        $this->post('/api/code/guest', [
+        $this->post('/api/code/send', [
             'account' => 'hd'
         ])->assertSessionHasErrors('account');
     }
@@ -39,11 +41,11 @@ class GuestValideCodeTest extends TestCase
     public function repeatSendVerificationCode()
     {
         $user = User::factory()->make();
-        $this->post('/api/code/guest', [
+        $this->post('/api/code/send', [
             'account' => $user->email
         ]);
 
-        $this->post('/api/code/guest', [
+        $this->post('/api/code/send', [
             'account' => $user->email
         ])->assertStatus(403);
     }

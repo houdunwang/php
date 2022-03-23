@@ -10,4 +10,6 @@ class Config extends Model
     use HasFactory;
 
     protected $casts = ['site' => 'array', 'aliyun' => 'array'];
+
+    // protected $attributes = ['site' => '{}', 'aliyun' => '{}'];
 }
