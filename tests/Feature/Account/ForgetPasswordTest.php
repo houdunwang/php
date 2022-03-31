@@ -2,58 +2,57 @@
 
 namespace Tests\Feature\Account;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\App;
 use Tests\TestCase;
+use App\Models\User;
 
 class ForgetPasswordTest extends TestCase
 {
     use RefreshDatabase;
-
-    protected function data()
-    {
-        $user = create(User::class);
-        return [
-            'account' => $user->email,
-            'password' => 'admin999',
-            'password_confirmation' => 'admin999',
-        ];
-    }
     /**
-     * 表单输入错误
+     * 验证表单
      * @test
      */
-    public function formInputErrors()
+    public function validateForm()
     {
         $response = $this->post('/api/account/forget-password', []);
 
-        $response->assertSessionHasErrors(['code', 'account', 'password']);
+        $response->assertSessionHasErrors(['account', 'code', 'password']);
     }
 
     /**
-     * 重设密码成功
+     * 帐号不存在
      * @test
      */
-    public function toResetThePasswordSuccessfully()
+    public function accountDoesNotExist()
+    {
+        $user = make(User::class);
+        $response = $this->post('/api/account/forget-password', [
+            'account' => $user->email
+        ]);
+
+        $response->assertSessionHasErrors(['account']);
+    }
+
+    /**
+     * 找回密码
+     * @test
+     */
+    public function retrievePassword()
     {
         $user = create(User::class);
-        $response = $this->post('/api/code/send', [
-            'account' => $user->email,
+        $codeResponse = $this->postJson('/api/code/send', [
+            'account' => $user->email
         ]);
 
-        $response->assertStatus(200);
-        $this->assertEquals($user->email, User::first()->email);
-
-        $response = $this->post('/api/account/forget-password', [
+        $response = $this->postJson('/api/account/forget-password', [
             'account' => $user->email,
-            'password' => 'admin999',
-            'password_confirmation' => 'admin999',
-            'code' => $response->json('code'),
+            'code' => $codeResponse['code'],
+            'password' => 'admin88843983249834',
+            'password_confirmation' => 'admin88843983249834'
         ]);
-
         $response->assertOk();
-        $this->assertTrue(Hash::check('admin999', User::first()->password));
     }
 }

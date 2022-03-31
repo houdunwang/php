@@ -10,10 +10,10 @@ class ForgetPasswordController extends Controller
 {
     public function __invoke(ForgetPasswordRequest $request)
     {
-        $user = User::where('email', $request->account)->first();
+        $user = User::where(app('user')->fieldName(), $request->account)->first();
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return response()->json(['message' => '重设密码成功']);
+        return response(['message' => '密码修改成功']);
     }
 }

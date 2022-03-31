@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Models\User;
 use App\Notifications\EmailValidateCodeNotification;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Foundation\Mix;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Notification;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -22,7 +25,7 @@ class CodeService
     public function send(string|int $account)
     {
         $action = filter_var($account, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
-        if (Cache::get($account)) abort(403, '验证码已经发送');
+        if (!app()->isLocal() && Cache::get($account)) abort(403, '验证码不允许重复发送');
 
         return $this->$action($account);
     }
@@ -35,7 +38,20 @@ class CodeService
     {
         $user = User::factory()->make(['email' => $email]);
         Notification::send($user, new EmailValidateCodeNotification($code = $this->getCode()));
-        Cache::put($email, $code, config('code_expire_time'));
+        Cache::put($email, $code, config('system.code.expire'));
+        return $code;
+    }
+
+    /**
+     * 手机发送验证码
+     * @return void
+     */
+    protected function mobile($phone)
+    {
+        app('sms')->send($phone, 'SMS_12840367', [
+            'code' => $code = $this->getCode(),
+            'product' => config('app.name')
+        ]);
         return $code;
     }
 
@@ -45,20 +61,13 @@ class CodeService
      */
     protected function getCode(): int
     {
-        return mt_rand(1000, 9999);
+        return rand(pow(10, config('system.code.length') - 1), pow(10, config('system.code.length')) - 1);
     }
-    /**
-     * 手机发送验证码
-     * @return void
-     */
-    public function mobile(int $phone)
-    {
-        app('sms')->send($phone, 'SMS_12840367', [
-            'code' => $code = $this->getCode(),
-            'product' => config('app.name')
-        ]);
-        return $code;
-    }
+    //     $a = Collection::times(config('system.code.length'), fn () => mt_rand(1, 9))
+    //         ->implode('');
+    //     dd($a);
+    // }
+
 
     public function check($account,  $code): bool
     {

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class GuestValideCodeTest extends TestCase
+class SendValideCodeTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -20,6 +20,16 @@ class GuestValideCodeTest extends TestCase
         $user = User::factory()->make();
         $this->post('/api/code/send', [
             'account' => $user->email
+        ])->assertOk();
+    }
+
+    /**
+     * 发送手机验证码
+     */
+    public function sendMobilePhoneVerificationCode()
+    {
+        $this->post('/api/code/send', [
+            'account' => config('hd.mobile')
         ])->assertOk();
     }
 

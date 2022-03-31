@@ -24,15 +24,4 @@ class ValidateCodeTest extends TestCase
         $code = app('code')->email($user->email);
         $this->assertEquals(Cache::get($user->email), $code);
     }
-
-    /**
-     * 手机验证码
-     * @test
-     */
-    public function mobilePhoneVerificationCode()
-    {
-        $user = create(User::class);
-        $code = app('code')->mobile(18600276067);
-        $this->assertNotNull($code);
-    }
 }

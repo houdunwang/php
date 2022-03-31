@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Exceptions\InvalidArgumentException;
@@ -27,6 +26,7 @@ class SmsService
     public function send($phone, string $templateCode, array $templateParam)
     {
         $sms = new EasySms($this->config());
+
         return $sms->send($phone, [
             //短信模板
             'template' => $templateCode,
@@ -60,9 +60,9 @@ class SmsService
                     'file' => './easy-sms.log',
                 ],
                 'aliyun' => [
-                    'access_key_id' => config('hd.aliyun.accessKeyId'),
-                    'access_key_secret' => config('hd.aliyun.accessKeySecret'),
-                    'sign_name' => config('hd.aliyun.smsSignName'),
+                    'access_key_id' => config('system.aliyun.access_key_id'),
+                    'access_key_secret' => config('system.aliyun.access_key_secret'),
+                    'sign_name' => config('system.aliyun.sms_sign_name'),
                 ],
             ],
         ];

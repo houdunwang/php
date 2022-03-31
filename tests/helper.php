@@ -1,8 +1,11 @@
 <?php
 
-use App\Models\User;
-
-function create($class, array $attributes = [])
+function create($class, int $num = null, array $attributes = [])
 {
-    return $class::factory()->create($attributes);
+    return $class::factory($num)->create($attributes);
+}
+
+function make($class, int $num = null, array $attributes = [])
+{
+    return $class::factory($num)->make($attributes);
 }

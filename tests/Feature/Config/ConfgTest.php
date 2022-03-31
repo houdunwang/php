@@ -18,12 +18,12 @@ class ConfgTest extends TestCase
      */
     public function updateSiteConfiguration()
     {
-        $this->signIn()->seed();
+        $this->signIn();
         $response = $this->putJson('/api/config/site', [
             'name' => '后盾人',
             'tel' => 'abcdefg'
         ]);
 
-        $response->assertOk();
+        $response->assertSee('abcdefg');
     }
 }
