@@ -33,4 +33,5 @@ Route::apiResource('role', RoleController::class);
 Route::post('role/{role}/permission', [RoleController::class, 'syncPermission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);
-Route::post('follower/follower/{user}', [FollowerController::class, 'follower']);
+Route::post('user/follower/{user}', [UserController::class, 'follower']);
+Route::get('user/fans/{user}', [UserController::class, 'fans']);

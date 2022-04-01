@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,5 +19,16 @@ class UserController extends Controller
     {
         $user->roles()->sync($role->id);
         return $user->roles;
+    }
+
+    public function follower(User $user)
+    {
+        user()->followers()->toggle($user->id);
+        return $user->followers;
+    }
+
+    public function fans(User $user)
+    {
+        return UserResource::collection($user->fans);
     }
 }
