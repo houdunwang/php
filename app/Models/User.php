@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->avatar ?? url('images/avatar.png');
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function fans()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
 }

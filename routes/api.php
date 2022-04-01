@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermissionController;
@@ -32,3 +33,4 @@ Route::apiResource('role', RoleController::class);
 Route::post('role/{role}/permission', [RoleController::class, 'syncPermission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);
+Route::post('follower/follower/{user}', [FollowerController::class, 'follower']);
