@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique()->comment('模块标识');
+            $table->string('module')->unique()->comment('模块标识');
             $table->json('data')->comment('配置项内容');
             $table->timestamps();
         });

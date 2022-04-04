@@ -6,7 +6,13 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
+use InvalidArgumentException;
 
 class RoleController extends Controller
 {
@@ -44,9 +50,19 @@ class RoleController extends Controller
         return response(['message' => '删除成功']);
     }
 
-    public function syncPermission(Role $role, Request $request)
+    /**
+     * 设置角色权限
+     * @param Role $role
+     * @param Request $request
+     * @return Response|ResponseFactory
+     * @throws BindingResolutionException
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws InvalidArgumentException
+     */
+    public function permission(Role $role, Request $request)
     {
         $role->syncPermissions($request->input('permissions'));
-        return response(['message' => '同步成功']);
+        return response(['message' => '权限设置成功']);
     }
 }

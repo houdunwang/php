@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
     ];
 
     /**
@@ -34,6 +35,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'unionid',
+        'openid',
+        'miniapp_openid',
+        'mobile'
     ];
 
     protected $appends = ['avatar_url'];

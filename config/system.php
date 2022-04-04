@@ -2,7 +2,6 @@
 $xj = include __DIR__ . '/xj.php';
 
 return [
-    'mobile' => $xj['mobile'],
     //验证码
     'code' => [
         'expire' => env('CODE_EXPIRE_TIME', 60),

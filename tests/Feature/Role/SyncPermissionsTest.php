@@ -20,9 +20,9 @@ class SyncPermissionsTest extends TestCase
         $role = create(Role::class);
         $permissions = create(\App\Models\Permission::class, 3);
 
-        $response = $this->signIn()->post('/api/role/' . $role->id . '/permission', [
+        $this->signIn()->post('/api/role/' . $role->id . '/permission', [
             'permissions' => $permissions->pluck('id')->toArray()
-        ])->assertSuccessful()->assertJson(['message' => '同步成功']);
+        ])->assertSuccessful()->assertJson(['message' => '权限设置成功']);
 
         $this->assertCount(3, $role->permissions);
     }

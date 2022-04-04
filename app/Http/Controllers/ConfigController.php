@@ -14,12 +14,12 @@ class ConfigController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
-    public function update(Request $request, string $name)
+    public function update(Request $request, string $module)
     {
-        $config = Config::firstOrNew();
-        $config[$name] = $request->input() + ($config[$name] ?: []);
+        $config = Config::where('module', $module)->firstOrFail();
+        $config['data'] = $request->input();
         $config->save();
 
-        return $config[$name];
+        return $config['data'];
     }
 }

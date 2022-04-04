@@ -43,4 +43,8 @@ class UserTest extends TestCase
         $user->fans()->syncWithoutDetaching($fans->pluck('id'));
         $this->assertCount(10, $user->fans);
     }
+
+    public function addUser()
+    {
+    }
 }

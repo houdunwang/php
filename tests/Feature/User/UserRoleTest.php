@@ -13,10 +13,10 @@ class UserRoleTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * 同步角色
+     * 设置用户角色
      * @test
      */
-    public function syncUserRole()
+    public function setUserRole()
     {
         $this->withoutExceptionHandling();
         $user = create(User::class);

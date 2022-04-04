@@ -16,22 +16,8 @@ class ConfigSeeder extends Seeder
     public function run()
     {
         Config::create([
-            'site' => [
-                'name' => '后盾人',
-                'tel' => 'abc',
-                'icp' => '',
-                'keywords' => '',
-                'address' => '',
-                'email' => '',
-                'author' => ''
-            ],
-            'aliyun' => [
-                'accessKeyId' => '',
-                'accessKeySecret' => '',
-                'sms' => [
-                    'signName' => ""
-                ]
-            ]
+            'module' => 'system',
+            'data' => config('system')
         ]);
     }
 }

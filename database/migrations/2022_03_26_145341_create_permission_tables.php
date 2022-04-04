@@ -29,7 +29,7 @@ class CreatePermissionTables extends Migration
             $table->bigIncrements('id');
             $table->string('name')->comment('权限标识');       // For MySQL 8.0 use string('name', 125);
             $table->string('title')->unique()->comment('描述');       // For MySQL 8.0 use string('name', 125);
-            $table->string('group')->nullable()->comment('权限组');       // For MySQL 8.0 use string('name', 125);
+            $table->string('module')->nullable()->comment('模块');       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
 

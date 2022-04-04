@@ -12,7 +12,7 @@ class ConfigMiddleware
     {
         $config = Config::firstOrNew()->toArray();
 
-        config(['system' => $config ?: config('system')]);
+        config(['system' => $config ? $config['data'] : config('system')]);
 
         return $next($request);
     }

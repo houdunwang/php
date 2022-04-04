@@ -12,6 +12,8 @@ class ConfgTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     /**
      * 更新网站配置
      * @test
@@ -19,7 +21,7 @@ class ConfgTest extends TestCase
     public function updateSiteConfiguration()
     {
         $this->signIn();
-        $response = $this->putJson('/api/config/site', [
+        $response = $this->putJson('/api/config/system', [
             'name' => '后盾人',
             'tel' => 'abcdefg'
         ]);
