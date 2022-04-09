@@ -21,8 +21,8 @@ class DestroyPermissionTest extends TestCase
         $this->signIn();
 
         $permission = create(Permission::class);
-        $response = $this->deleteJson("/api/permission/{$permission['id']}");
+        $response = $this->deleteJson("/api/permission/{$permission['id']}")->assertSuccessful();
 
-        $response->assertStatus(200)->assertJson(fn (AssertableJson $json) => $json->has('message'));
+        $response->assertJson(fn (AssertableJson $json) => $json->has('message')->etc());
     }
 }

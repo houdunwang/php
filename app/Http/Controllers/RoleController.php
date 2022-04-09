@@ -24,30 +24,30 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return RoleResource::collection($roles);
+        return $this->success(data: RoleResource::collection($roles));
     }
 
     public function store(StoreRoleRequest $request, Role $role)
     {
         $role->fill($request->input())->save();
-        return new RoleResource($role);
+        return $this->success(data: new RoleResource($role));
     }
 
     public function show(Role $role)
     {
-        return new RoleResource($role);
+        return $this->success(data: new RoleResource($role));
     }
 
     public function update(UpdateRoleRequest $request, Role $role)
     {
         $role->fill($request->input())->save();
-        return new RoleResource($role);
+        return $this->success(data: new RoleResource($role));
     }
 
     public function destroy(Role $role)
     {
         $role->delete();
-        return response(['message' => '删除成功']);
+        return $this->success(message: '删除成功');
     }
 
     /**
@@ -63,6 +63,6 @@ class RoleController extends Controller
     public function permission(Role $role, Request $request)
     {
         $role->syncPermissions($request->input('permissions'));
-        return response(['message' => '权限设置成功']);
+        return $this->success('权限设置成功', data: $role->permissions);
     }
 }

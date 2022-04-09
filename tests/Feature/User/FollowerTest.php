@@ -24,7 +24,7 @@ class FollowerTest extends TestCase
     public function follower()
     {
         $follower = create(User::class);
-        $this->getJson('/api/user/follower/' . $follower->id)->assertStatus(200);
+        $this->getJson('/api/follower/toggle/' . $follower->id)->assertStatus(200);
 
         $this->assertTrue($this->user->followers->contains($follower));
     }
@@ -39,7 +39,7 @@ class FollowerTest extends TestCase
         $this->user->followers()->attach($follower->id);
         $this->assertCount(1, $this->user->followers);
 
-        $this->getJson('/api/user/follower/' . $follower->id)->assertStatus(200);
+        $this->getJson('/api/follower/toggle/' . $follower->id)->assertStatus(200);
 
         $this->assertCount(0, $this->user->fresh()->followers);
     }

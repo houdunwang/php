@@ -78,6 +78,9 @@ class UploadAvatarTest extends TestCase
             'file' => UploadedFile::fake()->image('a.jpeg', 600, 600)
         ]);
 
-        $response->assertStatus(200)->assertJson(['url' => true]);
+        $response->assertStatus(200)->assertJson([
+            'status' => 'success',
+            'data' => ['url' => true]
+        ]);
     }
 }

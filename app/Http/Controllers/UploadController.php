@@ -19,6 +19,6 @@ class UploadController extends Controller
         $user =  Auth::user();
         $user->avatar = $res['url'];
         $user->save();
-        return ['url' => $res['url']];
+        return $this->success(data: ['url' => $res['url']]);
     }
 }

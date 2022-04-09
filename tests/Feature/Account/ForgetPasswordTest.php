@@ -49,10 +49,11 @@ class ForgetPasswordTest extends TestCase
 
         $response = $this->postJson('/api/account/forget-password', [
             'account' => $user->email,
-            'code' => $codeResponse['code'],
-            'password' => 'admin88843983249834',
-            'password_confirmation' => 'admin88843983249834'
+            'code' => $codeResponse['data'],
+            'password' => 'admin999',
+            'password_confirmation' => 'admin999'
         ]);
-        $response->assertOk();
+
+        $response->assertOk()->assertJson(['status' => 'success']);
     }
 }

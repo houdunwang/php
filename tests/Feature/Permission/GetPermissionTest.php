@@ -24,9 +24,11 @@ class GetPermissionTest extends TestCase
      */
     public function accessPermissionsList()
     {
-        $response = $this->getJson('/api/permission');
+        $response = $this->getJson('/api/permission')->assertSuccessful();
 
-        $response->assertJson(fn (AssertableJson $json) => $json->has('data'));
+        $response->assertJson([
+            'status' => 'success',
+        ]);
     }
 
     /**
@@ -37,8 +39,11 @@ class GetPermissionTest extends TestCase
     {
         $permission = Permission::create(['name' => $this->faker()->word(), 'title' => $this->faker()->word()]);
 
-        $response = $this->getJson('/api/permission/' . $permission->id);
+        $response = $this->getJson('/api/permission/' . $permission->id)->assertOk();
 
-        $response->assertOk()->assertJson(fn (AssertableJson $json) => $json->has('data'));
+        $response->assertJson([
+            'status' => 'success',
+            'data' => []
+        ]);
     }
 }
