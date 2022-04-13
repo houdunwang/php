@@ -25,4 +25,5 @@ interface IUser {
     favour_count: number;
     favorite_count: number;
     avatar_url: string;
+    permissions?: string[]
 }

@@ -1,8 +1,8 @@
 import { CacheEnum } from './../enum/cacheEnum'
-import userStore from '@/store/userStroe'
 import util from '@/utils'
 import { RouteLocationNormalized, Router } from 'vue-router'
 import utils from '@/utils'
+import userStroe from '@/store/userStroe'
 
 class Guard {
     constructor(private router: Router) { }
@@ -12,14 +12,15 @@ class Guard {
     }
 
     private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
-        if (this.loginCheck(to) === false) return { name: 'login' }
-        if (this.guestCheck(to) === false) return from
+        if (to.meta.auth && !this.token()) return { name: 'login' }
+        if (to.meta.guest && this.token()) return from
+        // if (this.guestCheck(to) === false) return from
 
-        document.title = import.meta.env.VITE_APPNAME + '-' + (to.meta.title || '管理后台')
+        // document.title = import.meta.env.VITE_APPNAME + '-' + (to.meta.title || '管理后台')
     }
 
     private getUserInfo() {
-        if (this.token()) return userStore().getUserInfo()
+        // if (this.token()) return userStore().getUserInfo()
     }
 
     private token(): string | null {
@@ -32,7 +33,8 @@ class Guard {
     }
 
     //登录用户访问
-    private loginCheck(route: RouteLocationNormalized) {
+    private loginCheck(route: RouteLocationNormalized): boolean {
+        // return Boolean(userStroe().info?.id);
         const state = Boolean(!route.meta.auth || (route.meta.auth && this.token()))
         if (state === false) {
             utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME, route.name)

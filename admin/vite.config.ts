@@ -1,4 +1,4 @@
-import { ConfigEnv, defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
+import { ConfigEnv, defineConfig, loadEnv } from 'vite'
 import alias from './vite/alias'
 import { parseEnv } from './vite/util'
 import setupPlugins from './vite/plugins'
@@ -7,7 +7,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 export default defineConfig(({ command, mode }) => {
     const isBuild = command == 'build'
     const env = parseEnv(loadEnv(mode, process.cwd()))
-    console.log(mode);
+
     return {
         plugins: [...setupPlugins(isBuild, env), visualizer()],
         base: isBuild ? '/dist' : '',

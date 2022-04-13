@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel-lang/lang": "~8.0",
         "laravel/framework": "^9.2",
+        "laravel/horizon": "^5.9",
         "laravel/sanctum": "^2.14.1",
         "laravel/telescope": "^4.8",
         "laravel/tinker": "^2.7",
@@ -20,6 +21,7 @@
         "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
@@ -62,7 +64,8 @@
     "extra": {
         "laravel": {
             "dont-discover": [
-                "laravel/telescope"
+                "laravel/telescope",
+                "barryvdh/laravel-ide-helper"
             ]
         }
     },

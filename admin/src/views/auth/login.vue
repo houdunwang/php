@@ -1,37 +1,47 @@
 <script setup lang="ts">
-import userApi from '@/apis/userApi'
-import { CacheEnum } from '@/enum/cacheEnum'
-import v from '@/plugins/validate'
-import utils from '@/utils'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+import userApi from "@/apis/userApi";
+import { CacheEnum } from "@/enum/cacheEnum";
+import { http } from "@/plugins/axios";
+import v from "@/plugins/validate";
+import utils from "@/utils";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
-const { Form, Field, ErrorMessage } = v
+const { Form, Field, ErrorMessage } = v;
 
 const schema = {
     account: { required: true, regex: /.+@.+|\d{11}/ },
     password: { required: true, min: 3 },
-}
+};
 
 const onSubmit = async (values: any) => {
-    utils.user.login(values)
-}
+    await http.request({ url: `sanctum/csrf-cookie`, method: "get" });
+
+    utils.user.login(values);
+};
 </script>
 
 <script lang="ts">
 export default {
-    route: { name: 'login', meta: { guest: true } }
-}
+    route: { name: "login", meta: { guest: true } },
+};
 </script>
 
 <template>
-    <Form class @submit="onSubmit" :validation-schema="schema" #default="{ errors }">
+    <Form
+        class
+        @submit="onSubmit"
+        :validation-schema="schema"
+        #default="{ errors }"
+    >
         <div
             class="w-[720px] translate-y-32 md:translate-y-0 bg-white md:grid grid-cols-2 rounded-md shadow-md overflow-hidden"
         >
             <div class="p-6 flex flex-col justify-between">
                 <div>
-                    <h2 class="text-center text-gray-700 text-lg mt-3">会员登录</h2>
+                    <h2 class="text-center text-gray-700 text-lg mt-3">
+                        会员登录
+                    </h2>
                     <div class="mt-8">
                         <Field
                             name="account"
@@ -40,7 +50,9 @@ export default {
                             label="帐号"
                             placeholder="请输入邮箱或手机号"
                         />
-                        <div v-if="errors.account" class="hd-error">请输入邮箱或手机号</div>
+                        <div v-if="errors.account" class="hd-error">
+                            请输入邮箱或手机号
+                        </div>
                         <Field
                             name="password"
                             value="admin888"
@@ -49,7 +61,11 @@ export default {
                             type="password"
                             placeholder="请输入登录密码"
                         />
-                        <ErrorMessage name="password" as="div" class="hd-error" />
+                        <ErrorMessage
+                            name="password"
+                            as="div"
+                            class="hd-error"
+                        />
                     </div>
 
                     <HdButton class="w-full" />
@@ -70,7 +86,10 @@ export default {
                 </div>
             </div>
             <div class="hidden md:block relative">
-                <img src="/images/login.jpg" class="absolute h-full w-full object-cover" />
+                <img
+                    src="/images/login.jpg"
+                    class="absolute h-full w-full object-cover"
+                />
             </div>
         </div>
     </Form>

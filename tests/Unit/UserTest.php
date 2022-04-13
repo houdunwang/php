@@ -17,7 +17,7 @@ class UserTest extends TestCase
     public function theUserTheDefaultAvatar()
     {
         $user = create(User::class);
-        $this->assertEquals($user->avatar_url, url('images/avatar.png'));
+        $this->assertEquals($user->avatar_url, url('static/avatar.jpeg'));
     }
 
     /**

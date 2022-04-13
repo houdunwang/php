@@ -6,6 +6,7 @@ use App\Http\Controllers\FansController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', RegisterController::class);
 Route::post('login', LoginController::class);
+Route::get('logout', LogoutController::class);
 Route::post('account/forget-password', ForgetPasswordController::class);
 
 Route::post('code/send', [CodeController::class, 'send']);
