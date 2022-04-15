@@ -30,7 +30,7 @@ export default class Axios {
     this.instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
         config.headers = {
-          'Content-Type': 'application/json',
+          Accept: 'application/json',
           Authorization: `Bearer ${store.get(CacheEnum.TOKEN_NAME)}`,
         }
         return config

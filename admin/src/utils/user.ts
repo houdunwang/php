@@ -1,4 +1,5 @@
-import { ILoginData } from './../apis/userApi'
+import { ILoginForm } from './../apis/types/user'
+import utils from '@/utils'
 import userApi from '@/apis/userApi'
 import { CacheEnum } from '@/enum/cacheEnum'
 import store from './store'
@@ -10,13 +11,12 @@ export function isLogin(): boolean {
   return !!store.get(CacheEnum.TOKEN_NAME)
 }
 
-export async function login(values: ILoginData) {
-  const {
-    data: { user, token },
-  } = await userApi.login(values)
-  store.set(CacheEnum.TOKEN_NAME, token)
+export async function login(values: ILoginForm) {
+  const { data } = await userApi.login(values)
+  console.log(data)
+  store.set(CacheEnum.TOKEN_NAME, data.token)
 
-  userStroe().info = user
+  userStroe().getUserInfo()
 
   const routeName = store.get(CacheEnum.REDIRECT_ROUTE_NAME) ?? 'home'
 
@@ -24,8 +24,9 @@ export async function login(values: ILoginData) {
 }
 
 export async function logout() {
-  console.log(store.get(CacheEnum.TOKEN_NAME))
-  await http.request({ url: 'logout', method: 'get' })
+  if (!utils.env.VITE_MOCK_ENABLE) {
+    await http.request({ url: 'logout', method: 'get' })
+  }
 
   userStroe().info = null
   store.remove(CacheEnum.TOKEN_NAME)

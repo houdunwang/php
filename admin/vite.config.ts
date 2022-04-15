@@ -5,39 +5,35 @@ import setupPlugins from './vite/plugins'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig(({ command, mode }) => {
-    const isBuild = command == 'build'
-    const env = parseEnv(loadEnv(mode, process.cwd()))
+  const isBuild = command == 'build'
+  const env = parseEnv(loadEnv(mode, process.cwd()))
 
-    return {
-        plugins: [...setupPlugins(isBuild, env), visualizer()],
-        base: isBuild ? '/dist' : '',
-        resolve: {
-            alias,
-        },
-        build: {
-            rollupOptions: {
-                emptyOutDir: true,
-                output: {
-                    manualChunks(id: string) {
-                        if (id.includes('node_modules')) {
-                            id = id.toString().slice(id.toString().lastIndexOf('node_modules'))
-                            return id.split('node_modules/')[1].split('/')[0].toString()
-                        }
-                    },
-                },
-            },
-        },
-        server: {
-            proxy: {
-                '/api': {
-                    //将/api访问转换为target
-                    target: 'http://hdcms-php.test/api',
-                    //跨域请求携带cookie
-                    changeOrigin: true,
-                    //url 重写删除`/api`
-                    rewrite: (path: string) => path.replace(/^\/api/, ''),
-                },
+  return {
+    plugins: [...setupPlugins(isBuild, env), visualizer()],
+    base: isBuild ? '/dist' : '',
+    resolve: {
+      alias,
+    },
+    build: {
+      rollupOptions: {
+        emptyOutDir: true,
+        output: {
+          manualChunks(id: string) {
+            if (id.includes('node_modules')) {
+              return id.split('/node_modules/').pop()?.split('/')[0]
             }
-        }
-    }
+          },
+        },
+      },
+    },
+    server: {
+      proxy: {
+        '/api': {
+          target: env.VITE_MOCK_ENABLE ? '/api' : env.VITE_API_URL,
+          changeOrigin: true,
+          rewrite: (path: string) => path.replace(/^\/api/, ''),
+        },
+      },
+    },
+  }
 })

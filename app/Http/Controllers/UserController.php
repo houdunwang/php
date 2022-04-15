@@ -17,11 +17,8 @@ class UserController extends Controller
 
     public function info()
     {
-        return $this->success(data: new UserResource(Auth::user()->makeVisible('mobile')));
-    }
-
-    public function show()
-    {
+        $user = new UserResource(Auth::user()->makeVisible('mobile'));
+        return $this->success(data: $user);
     }
 
     public function role(User $user, Role $role)
