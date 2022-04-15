@@ -5,30 +5,36 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { IEditorConfig, IDomEditor, IToolbarConfig, createToolbar, DomEditor } from '@wangeditor/editor'
 
 interface IProps {
-  modelValue?: string
+  modelValue?: any
 }
 const props = withDefaults(defineProps<IProps>(), {
   modelValue: '',
 })
 
+const emit = defineEmits(['update:modelValue'])
+
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef<IDomEditor>()
 
 // 内容 HTML
-const valueHtml = ref(`<p>${props.modelValue}</p>`)
+const valueHtml = ref(props.modelValue)
 
-watch(
-  () => props.modelValue,
-  (val) => {
-    if (val) {
-      valueHtml.value = `<p>${val}</p>`
-    }
-  },
-)
+// 组件销毁时，也及时销毁编辑器
+onBeforeUnmount(() => {
+  const editor = editorRef.value
+  if (editor == null) return
+  editor.destroy()
+})
+
+const handleCreated = (editor: IDomEditor) => {
+  editorRef.value = editor
+}
+
+watch([valueHtml], (value: any) => {
+  emit('update:modelValue', editorRef.value?.getHtml())
+})
 
 // 创建工具栏
-// 创建工具栏
-
 const mode = ref('default')
 
 const toolbarConfig: Partial<IToolbarConfig> = {
@@ -47,17 +53,6 @@ const editorConfig: Partial<IEditorConfig> = {
       server: '/api/upload/image',
     },
   },
-}
-
-// 组件销毁时，也及时销毁编辑器
-onBeforeUnmount(() => {
-  const editor = editorRef.value
-  if (editor == null) return
-  editor.destroy()
-})
-
-const handleCreated = (editor: IDomEditor) => {
-  editorRef.value = editor
 }
 </script>
 
