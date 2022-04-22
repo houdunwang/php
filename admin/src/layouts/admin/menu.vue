@@ -98,7 +98,7 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
         width: auto;
 
         .logo {
-          @apply justify-center;
+          @apply mr-0 justify-center;
 
           i {
             @apply mr-0;
@@ -107,13 +107,18 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
           span {
             @apply hidden;
             &.i-icon {
-              @apply block;
+              @apply mr-0 block;
             }
           }
         }
 
         .container {
           dl {
+            &:hover {
+              dd {
+                @apply block absolute left-full top-[0px] w-[200px] bg-gray-700 px-2;
+              }
+            }
             dt {
               @apply flex justify-center;
 
@@ -125,7 +130,7 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                 span {
                   @apply hidden;
                   &.i-icon {
-                    @apply block;
+                    @apply mr-0 block;
                   }
                 }
 
@@ -134,10 +139,10 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                 }
               }
             }
-
-            &:hover {
-              dd {
-                @apply block absolute left-full top-[0px] w-[200px] bg-gray-700 px-2;
+            dd {
+              padding: 0 !important;
+              div {
+                @apply m-0 rounded-none;
               }
             }
           }

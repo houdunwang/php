@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Validator;
 
 class LoginController extends Controller
 {
@@ -30,11 +28,8 @@ class LoginController extends Controller
         if (!Hash::check($request->password, $user->password))
             throw ValidationException::withMessages(['password' => '密码输入错误']);
 
-        //session
-        // Auth::guard('web')->login($user, true);
-        //token
         return $this->success(data: [
-            'user' => $user,
+            'user' => new UserResource($user),
             'token' =>  $user->createToken('auth')->plainTextToken
         ]);
     }
