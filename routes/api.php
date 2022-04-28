@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\FansController;
@@ -37,3 +38,5 @@ Route::apiResource('user', UserController::class);
 Route::get('follower/{user}', [FollowerController::class, 'index']);
 Route::get('follower/toggle/{user}', [FollowerController::class, 'toggle']);
 Route::get('fans/{user}', [FansController::class, 'index']);
+
+Route::get('captcha', CaptchaController::class);

@@ -41,7 +41,7 @@ class User extends Authenticatable
         'mobile'
     ];
 
-    protected $appends = ['avatar_url'];
+    protected $appends = [];
 
     /**
      * The attributes that should be cast.
@@ -51,11 +51,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function getAvatarUrlAttribute()
-    {
-        return $this->avatar ?: url('static/avatar.jpeg');
-    }
 
     public function followers()
     {

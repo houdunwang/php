@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class LogoutPasswordTest extends TestCase
+class LogoutTest extends TestCase
 {
     use RefreshDatabase;
     /**

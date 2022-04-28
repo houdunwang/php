@@ -8,8 +8,9 @@ class UserResource extends JsonResource
 {
     public function toArray($request)
     {
-        return parent::toArray($request) + [
+        return  [
+            'avatar' => $this->avatar ?: url('static/avatar.jpeg'),
             'permissions' => $this->getAllPermissions()->pluck('name'),
-        ];
+        ] + parent::toArray($request);
     }
 }
