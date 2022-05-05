@@ -12,16 +12,22 @@ class RegisterRequest extends FormRequest
         return [
             'account' => $this->accountRule(),
             'password' => ['required', 'min:3', 'confirmed'],
-            'code' => ['bail', new ValidateCodeRule]
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->sometimes('code', ['required', new ValidateCodeRule], function ($input) {
+            return app()->environment() == 'production' || request()->has('code');
+        });
     }
 
     protected function accountRule()
     {
         if (filter_var(request('account'), FILTER_VALIDATE_EMAIL))
-            return ['bail', 'required', 'email', 'unique:users,email'];
+            return ['required', 'email', 'unique:users,email'];
 
-        return ['bail', 'required', 'regex:/^\d{11}$/', 'unique:users,mobile'];
+        return ['required', 'regex:/^\d{11}$/', 'unique:users,mobile'];
     }
 
     public function messages()

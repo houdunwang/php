@@ -32,10 +32,13 @@ class CodeService
     {
         $action = filter_var($account, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
 
-        if (!app()->isLocal() && $cache = Cache::get($account)) {
-            $num = (int)config('system.code.expire') - $cache['sendTime']->diffInSeconds(now());
-
-            abort(403, "请勿频繁发送验证码，请{$num}秒后再操作");
+        if ($cache = Cache::get($account)) {
+            $diff = $cache['sendTime']->diffInSeconds(now());
+            $timeout = config('system.code.timeout');
+            if ($diff <= $timeout) {
+                $time = $timeout - $diff;
+                abort(403, "请勿频繁发送验证码，请{$time}秒后再操作");
+            }
         };
 
         return $this->$action($account);
@@ -89,7 +92,7 @@ class CodeService
      */
     protected function cache(string $account, int $code): void
     {
-        Cache::put($account, ['code' => $code, 'sendTime' => now()], config('system.code.expire'));
+        Cache::put($account, ['code' => $code, 'sendTime' => now()], 600);
     }
 
     /**

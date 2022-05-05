@@ -33,12 +33,13 @@ class LoginRequest extends FormRequest
         });
     }
 
-
+    //登录帐号
     protected function fieldName()
     {
         return filter_var(request('account'), FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
     }
 
+    //登录帐号验证规则
     protected function accountRule()
     {
         switch ($this->fieldName()) {

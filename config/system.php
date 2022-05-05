@@ -1,10 +1,9 @@
 <?php
-$xj = include __DIR__ . '/xj.php';
-
 return [
     //验证码
     'code' => [
-        'expire' => env('CODE_EXPIRE_TIME', 60),
+        'expire' => env('CODE_EXPIRE_TIME', 600),
+        'timeout' => env('CODE_TIMEOUT_TIME', 60),
         'length' => env('CODE_LENGTH', 4),
     ],
     'aliyun' => [

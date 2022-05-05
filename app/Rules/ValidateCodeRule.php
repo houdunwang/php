@@ -24,7 +24,7 @@ class ValidateCodeRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return request('account') && app('code')->check(request('account'), $value);
+        return request('account') && $value && app('code')->check(request('account'), $value);
     }
 
     /**
@@ -33,6 +33,6 @@ class ValidateCodeRule implements Rule
      */
     public function message()
     {
-        return '验证码输入错误';
+        return  '验证码输入错误';
     }
 }
