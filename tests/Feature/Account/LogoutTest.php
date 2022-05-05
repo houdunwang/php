@@ -18,6 +18,6 @@ class LogoutTest extends TestCase
         $this->signIn();
         $response = $this->getJson('/api/logout')->assertOk();
 
-        $response->assertStatus(200)->assertSee(['status' => 'success']);
+        $response->assertSee(['status' => 'success']);
     }
 }

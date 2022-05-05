@@ -39,8 +39,8 @@ class RegisterTest extends TestCase
      */
     public function captchaInputErrors()
     {
-        $response = $this->post('/api/register', ['code' => '9999aa'] + $this->data());
-        $response->assertSessionHasErrors('code');
+        $response = $this->postJson('/api/register', ['code' => '9999aa'] + $this->data());
+        $response->assertJsonValidationErrors('code');
     }
 
     /**
@@ -49,19 +49,21 @@ class RegisterTest extends TestCase
      */
     public function registerAccountValidate()
     {
-        $response = $this->post('/api/register', ['account' => 'hd'] + $this->data());
-        $response->assertSessionHasErrors('account');
+        $response = $this->postJson('/api/register', ['account' => 'hd'] + $this->data());
+
+        $response->assertJsonValidationErrors('account');
     }
 
     /**
+     * 帐号不能为空
      * @test
      */
     public function accountRequiredValidate()
     {
         $data = $this->data();
         unset($data['account']);
-        $response = $this->post('/api/register', $data);
-        $response->assertSessionHasErrors('account');
+        $response = $this->postJson('/api/register', $data);
+        $response->assertJsonValidationErrors('account');
     }
 
     /**
@@ -71,9 +73,9 @@ class RegisterTest extends TestCase
     public function accountUniqueValidate()
     {
         $data = $this->data();
-        $response1 = $this->post('/api/register', $data);
-        $response2 = $this->post('/api/register', $data);
-        $response2->assertSessionHasErrors('account');
+        $this->post('/api/register', $data);
+        $response2 = $this->postJson('/api/register', $data);
+        $response2->assertJsonValidationErrors('account');
     }
 
     /**
@@ -82,7 +84,7 @@ class RegisterTest extends TestCase
      */
     public function determineTheErrorOutputPassword()
     {
-        $this->post('/api/register', ['password' => 'abcd'] + $this->data())
-            ->assertSessionHasErrors('password');
+        $this->postJson('/api/register', ['password' => 'abcd'] + $this->data())
+            ->assertJsonValidationErrors('password');
     }
 }

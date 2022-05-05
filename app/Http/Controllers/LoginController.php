@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         return $this->success(data: [
             'user' => new UserResource($user),
-            'token' =>  $user->createToken('auth')->plainTextToken
+            'token' =>  $user->createToken('auth')->plainTextToken,
         ]);
     }
 }

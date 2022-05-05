@@ -22,7 +22,7 @@ class LoginRequest extends FormRequest
                     }
                 },
             ],
-            'captcha_code' => 'required|captcha_api:' . request('captcha_key') . ',math'
+            'captcha_code' => ['sometimes', 'captcha_api:' . request('captcha_key') . ',math']
         ];
     }
 

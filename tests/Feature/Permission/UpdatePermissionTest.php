@@ -53,7 +53,7 @@ class UpdatePermissionTest extends TestCase
      */
     public function updatePermission()
     {
-        $permission1 = create(Permission::class);
+        create(Permission::class);
         $permission2 = create(Permission::class);
 
         $response = $this->putJson("/api/permission/{$permission2['id']}", [

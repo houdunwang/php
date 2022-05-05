@@ -12,23 +12,20 @@ class RegisterRequest extends FormRequest
         return [
             'account' => $this->accountRule(),
             'password' => ['required', 'min:3', 'confirmed'],
-            'code' => ['required', new ValidateCodeRule]
+            'code' => ['bail', new ValidateCodeRule]
         ];
     }
 
     protected function accountRule()
     {
-        if (filter_var(request('account'), FILTER_VALIDATE_EMAIL)) {
-            return 'required|email|unique:users,email';
-        }
+        if (filter_var(request('account'), FILTER_VALIDATE_EMAIL))
+            return ['bail', 'required', 'email', 'unique:users,email'];
 
-        return ['required', 'regex:/^\d{11}$/', 'unique:users,mobile'];
+        return ['bail', 'required', 'regex:/^\d{11}$/', 'unique:users,mobile'];
     }
 
     public function messages()
     {
-        return [
-            'code.required' => '验证码忘记写了吧'
-        ];
+        return ['code.required' => '验证码不能为空'];
     }
 }

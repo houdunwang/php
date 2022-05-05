@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -16,8 +17,10 @@ class UserTest extends TestCase
      */
     public function theUserTheDefaultAvatar()
     {
-        $user = create(User::class);
-        $this->assertEquals($user->avatar_url, url('static/avatar.jpeg'));
+        $this->signIn();
+        $response = $this->getJson('/api/user/info');
+
+        $this->assertEquals($response['data']['avatar'], url('static/avatar.jpeg'));
     }
 
     /**

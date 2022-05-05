@@ -22,6 +22,6 @@ class ValidateCodeTest extends TestCase
     {
         $user = User::factory()->make();
         $code = app('code')->email($user->email);
-        $this->assertEquals(Cache::get($user->email), $code);
+        $this->assertEquals(Cache::get($user->email)['code'], $code);
     }
 }

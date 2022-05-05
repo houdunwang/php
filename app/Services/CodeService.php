@@ -5,54 +5,91 @@ namespace App\Services;
 use App\Models\User;
 use App\Notifications\EmailValidateCodeNotification;
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Foundation\Mix;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Notification;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * 验证码服务
+ * @package App\Services
+ */
 class CodeService
 {
     /**
      * 统一发送接口
      * @param string|int $account
-     * @return void
+     * @return mixed
+     * @throws BindingResolutionException
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
      * @throws HttpException
      * @throws NotFoundHttpException
      */
     public function send(string|int $account)
     {
         $action = filter_var($account, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
-        if (!app()->isLocal() && Cache::get($account)) abort(403, '验证码不允许重复发送');
+
+        if (!app()->isLocal() && $cache = Cache::get($account)) {
+            $num = (int)config('system.code.expire') - $cache['sendTime']->diffInSeconds(now());
+
+            abort(403, "请勿频繁发送验证码，请{$num}秒后再操作");
+        };
 
         return $this->$action($account);
     }
 
     /**
-     * 邮箱验证码
-     * @return void
+     * 发送邮件验证码
+     * @param string $email
+     * @return int
+     * @throws BindingResolutionException
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
      */
     public function email(string $email): int
     {
         $user = User::factory()->make(['email' => $email]);
         Notification::send($user, new EmailValidateCodeNotification($code = $this->getCode()));
-        Cache::put($email, $code, config('system.code.expire'));
+
+        $this->cache($email, $code);
         return $code;
     }
 
     /**
-     * 手机发送验证码
-     * @return void
+     * 发送短信验证码
+     * @param string $phone
+     * @return int
+     * @throws BindingResolutionException
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
      */
-    protected function mobile($phone)
+    protected function mobile(string $phone)
     {
         app('sms')->send($phone, 'SMS_12840367', [
             'code' => $code = $this->getCode(),
             'product' => config('app.name')
         ]);
+
+        $this->cache($phone, $code);
+
         return $code;
+    }
+
+    /**
+     * 缓存验证码
+     * @param string $account
+     * @param int $code
+     * @return void
+     * @throws BindingResolutionException
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     */
+    protected function cache(string $account, int $code): void
+    {
+        Cache::put($account, ['code' => $code, 'sendTime' => now()], config('system.code.expire'));
     }
 
     /**
@@ -63,18 +100,24 @@ class CodeService
     {
         return rand(pow(10, config('system.code.length') - 1), pow(10, config('system.code.length')) - 1);
     }
-    //     $a = Collection::times(config('system.code.length'), fn () => mt_rand(1, 9))
-    //         ->implode('');
-    //     dd($a);
-    // }
 
-
-    public function check($account,  $code): bool
+    /**
+     * 校对验证码
+     * @param string $account
+     * @param string $code
+     * @return bool
+     */
+    public function check(string $account, string $code): bool
     {
-        return Cache::get($account) == $code;
+        return (Cache::get($account)['code'] ?? '') == $code;
     }
 
-    public function clear($account): void
+    /**
+     * 清除验证码
+     * @param string $account
+     * @return void
+     */
+    public function clear(string $account): void
     {
         Cache::forget($account);
     }

@@ -41,6 +41,7 @@ class UpdateRoleTest extends TestCase
             'name' => $role1->name,
             'title' => $role1->title
         ]);
+
         $response->assertStatus(422)->assertJsonValidationErrors(['name', 'title']);
     }
 
@@ -56,6 +57,7 @@ class UpdateRoleTest extends TestCase
             'name' => $this->faker()->word(),
             'title' => $this->faker()->title()
         ]);
+
         $response->assertSuccessful()->assertJson(['data' => true]);
     }
 }
