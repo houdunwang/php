@@ -22,9 +22,17 @@ class LoginRequest extends FormRequest
                     }
                 },
             ],
-            'captcha_code' => ['sometimes', 'captcha_api:' . request('captcha_key') . ',math']
         ];
     }
+
+    public function withValidator($validator)
+    {
+        //本地开发或存在captcha_code字段时，添加验证规则
+        $validator->sometimes('captcha_code', 'required|captcha_api:' . request('captcha_key') . ',math', function ($input) {
+            return app()->environment() == 'production' || request()->has('captcha_code');
+        });
+    }
+
 
     protected function fieldName()
     {

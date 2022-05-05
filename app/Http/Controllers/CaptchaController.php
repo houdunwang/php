@@ -11,6 +11,5 @@ class CaptchaController extends Controller
     public function __invoke(Captcha $captcha, $config = 'default')
     {
         return captcha_img();
-        // return $this->success(data: $captcha->create('default'));
     }
 }
