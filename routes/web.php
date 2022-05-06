@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('test', function () {
-//     return captcha_src();
-// });
-
 Route::fallback(function () {
-    return include public_path('dist/index.html');
+    if (is_file(public_path('dist/index.html'))) {
+        return include public_path('dist/index.html');
+    }
+    return <<<str
+    <h1 style="text-align:left;padding: 50px;font-weight:normal;font-size:35px;color:#333;">
+    <div style="font-size:200px;">:(</div> 前端编译文件未生成
+    </h1>
+str;
 });
