@@ -69,7 +69,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('images') => storage_path('app/images'),
-        public_path('dist') => base_path('admin/dist'),
+        // public_path('dist') => base_path('vue/dist'),
     ],
 
 ];

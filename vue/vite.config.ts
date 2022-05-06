@@ -10,11 +10,12 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     plugins: [...setupPlugins(isBuild, env), visualizer()],
-    // base: isBuild ? '/dist' : '',
+    base: isBuild ? '/dist/' : '/',
     resolve: {
       alias,
     },
     build: {
+      outDir: '../public/dist/',
       rollupOptions: {
         emptyOutDir: true,
         output: {

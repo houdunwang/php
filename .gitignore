@@ -16,3 +16,4 @@ yarn-error.log
 node_modules
 worker.log
 vue/node_modules
+/public/dist
