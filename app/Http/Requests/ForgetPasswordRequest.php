@@ -5,15 +5,25 @@ namespace App\Http\Requests;
 use App\Rules\ValidateCodeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * 找回密码
+ * @package App\Http\Requests
+ */
 class ForgetPasswordRequest extends FormRequest
 {
     public function rules()
     {
         return [
             'account' => $this->accountRule(),
-            'code' => ['required', new ValidateCodeRule],
             'password' => ['required', 'confirmed', 'min:3']
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->sometimes('code', ['required', new ValidateCodeRule], function ($input) {
+            return app()->environment() == 'production' || request()->has('code');
+        });
     }
 
     protected function accountRule()

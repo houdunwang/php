@@ -17,7 +17,7 @@ class ForgetPasswordTest extends TestCase
      */
     public function validateForm()
     {
-        $response = $this->post('/api/account/forget-password', []);
+        $response = $this->post('/api/account/forget-password', ['code' => 23]);
 
         $response->assertSessionHasErrors(['account', 'code', 'password']);
     }

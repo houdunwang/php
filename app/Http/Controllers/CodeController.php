@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CodeRequest;
+use App\Http\Requests\CodeSendToExistUserRequest;
+use App\Http\Requests\CodeSendToNotExistUserRequest;
 use App\Services\CodeService;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -46,5 +48,17 @@ class CodeController extends Controller
     {
         $code = $codeService->send(Auth::user()[$type == 'email' ? 'email' : 'mobile']);
         return $this->success('验证码发送成功',  $code);
+    }
+
+    public function notExistUser(CodeSendToNotExistUserRequest $request, CodeService $codeService)
+    {
+        $code = $codeService->send($request->account);
+        return $this->success('验证码发送成功', $code);
+    }
+
+    public function existUser(CodeSendToExistUserRequest $request, CodeService $codeService)
+    {
+        $code = $codeService->send($request->account);
+        return $this->success('验证码发送成功', $code);
     }
 }
