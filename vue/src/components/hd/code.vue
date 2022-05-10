@@ -25,6 +25,7 @@ onUnmounted(() => clearInterval(timeoutId))
         placeholder="请输入验证码"
         :value="props.code"
         class="mr-1"
+        required
         v-clearError="'code'"
         @input="emit('update:code', ($event.target as HTMLInputElement).value)" />
 

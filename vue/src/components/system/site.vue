@@ -1,0 +1,95 @@
+<script setup lang="ts"></script>
+
+<template>
+  <div class="site">
+    <header>
+      <section>站长: <span>向军大叔</span></section>
+      <section>
+        <icon-config theme="outline" fill="#333" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
+        扩展模块
+      </section>
+    </header>
+    <main>
+      <icon-connection-point theme="filled" :strokeWidth="2" />
+      <span class="truncate w-60 overflow-hidden"> 全球性格簡介 </span>
+    </main>
+    <footer class="">
+      <section class="flex font-bold">
+        #1 创建时间
+        <span class="flex justify-center items-center ml-1">
+          <icon-time theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />2021-01-01
+        </span>
+      </section>
+
+      <section class="footer-menu">
+        <a>
+          <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          访问首页
+        </a>
+        <a>
+          <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          站点配置
+        </a>
+        <a>
+          <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          管理员设置
+        </a>
+        <a>
+          <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          角色管理
+        </a>
+        <a>
+          <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          更新权限表
+        </a>
+        <a>
+          <icon-editor theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          编辑站点
+        </a>
+        <a>
+          <icon-delete theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          删除
+        </a>
+      </section>
+    </footer>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.site {
+  @apply bg-gray-50 shadow-sm border hover:shadow-lg rounded-md duration-300;
+  a:hover {
+    @apply text-sky-700;
+  }
+  header {
+    @apply shadow-sm border-b px-5 py-3 flex items-center justify-between text-gray-600 text-sm font-bold;
+    :first-child {
+      @apply font-bold;
+    }
+    :nth-child(2) {
+      @apply flex items-center;
+    }
+  }
+  main {
+    @apply flex  items-center px-5 py-8 text-gray-600;
+    :first-of-type {
+      @apply mr-1 text-4xl text-gray-600;
+    }
+    span {
+      @apply text-2xl font-light;
+    }
+  }
+  footer {
+    @apply py-3 px-5 font-bold text-xs opacity-90 flex md:flex-row flex-col md:justify-between md:items-center text-gray-600 border-t;
+    :nth-of-type(2) {
+      @apply flex flex-wrap;
+      a {
+        :first-child {
+          @apply mr-[2px];
+        }
+        @apply flex justify-center items-center mr-2 cursor-pointer;
+      }
+    }
+  }
+}
+</style>
