@@ -22,7 +22,7 @@ class ForgetPasswordRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->sometimes('code', ['required', new ValidateCodeRule], function ($input) {
-            return app()->environment() == 'production' || request()->has('code');
+            return app()->environment() == 'production' || request('code');
         });
     }
 

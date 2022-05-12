@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum']);
+    }
+
     /**
      * 当前用户关注或取关某个用户
      * @param User $user

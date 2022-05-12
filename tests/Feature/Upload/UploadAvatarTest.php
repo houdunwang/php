@@ -11,11 +11,6 @@ class UploadAvatarTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     /**
      * 未登录用户不允许上传
      * @test

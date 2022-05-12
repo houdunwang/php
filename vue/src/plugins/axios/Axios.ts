@@ -48,6 +48,14 @@ export default class Axios {
   private interceptorsResponse() {
     this.instance.interceptors.response.use(
       (response) => {
+        if (response.data?.message) {
+          ElMessage({
+            type: 'success',
+            message: response.data.message,
+            grouping: true,
+            duration: 2000,
+          })
+        }
         return response
       },
       (error) => {

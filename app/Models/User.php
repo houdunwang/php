@@ -19,7 +19,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-
     ];
 
     protected $hidden = [
@@ -32,13 +31,20 @@ class User extends Authenticatable
         'avatar'
     ];
 
-    protected $with = ['roles.permissions'];
+    protected $appends = [
+        'is_super_admin'
+    ];
 
+    // protected $with = ['roles.permissions'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
+    public function getIsSuperAdminAttribute()
+    {
+        return $this->id == 1;
+    }
 
     public function followers()
     {
@@ -53,5 +59,10 @@ class User extends Authenticatable
     public function fans()
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id')->withTimestamps();
+    }
+
+    public function site()
+    {
+        return $this->hasMany(Site::class);
     }
 }

@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function success(string $message = '操作成功', $data = null)
+    protected function success(string $message = '', $data = null)
     {
         return [
             'code' => 0,

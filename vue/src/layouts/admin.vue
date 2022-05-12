@@ -4,18 +4,14 @@ import TopMenu from './admin/topMenu.vue'
 </script>
 
 <template>
-  <div class="admin h-auto grid md:grid-rows-[auto_1fr] bg-opacity-20 md:pb-32">
-    <navbarVue />
-    <TopMenu />
-    <div class="relative md:my-5 md:mx-5 mx-3 mb-32">
+  <div class="admin grid md:grid-rows-[auto_1fr] md:pb-32">
+    <div>
+      <navbarVue />
+      <TopMenu />
+    </div>
+    <div class="md:my-5 md:mx-5 mx-3">
       <router-view #default="{ Component, route }">
-        <Transition
-          appear
-          class="animate__animated"
-          :enter-active-class="route.meta.enterClass ?? 'animate__fadeInRight'"
-          :leave-active-class="route.meta.leaveClass ?? 'animate__fadeOutLeft'">
-          <component :is="Component" class="right-0 left-0" />
-        </Transition>
+        <component :is="Component" class="w-full p-5 mb-32 bg-gray-50" />
       </router-view>
     </div>
   </div>
@@ -23,7 +19,14 @@ import TopMenu from './admin/topMenu.vue'
 
 <style lang="scss">
 .admin {
+  min-height: 100vh;
   background-image: url('/images/admin.jpg');
   background-size: cover;
+  //   .animate__fadeInRight {
+  //     animation-duration: 0.3s;
+  //   }
+  //   .animate__fadeOutLeft {
+  //     animation-duration: 1s;
+  //   }
 }
 </style>

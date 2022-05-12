@@ -3,16 +3,21 @@
 namespace Tests\Feature\Config;
 
 use App\Models\Config;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ConfgTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     protected $seed = true;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->signIn();
+    }
 
     /**
      * 更新网站配置
@@ -20,12 +25,11 @@ class ConfgTest extends TestCase
      */
     public function updateSiteConfiguration()
     {
-        $this->signIn();
         $response = $this->putJson('/api/config/system', [
-            'name' => '后盾人',
-            'tel' => 'abcdefg'
+            'name' => $this->faker()->word(),
+            'tel' => $this->faker()->phoneNumber()
         ]);
 
-        $response->assertSee('abcdefg');
+        $response->assertSuccessful();
     }
 }

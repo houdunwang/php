@@ -12,9 +12,9 @@ class ConfigMiddleware
     {
         $config = Config::where('module', 'system')->first();
         if ($config) {
-            collect($config['data'])->each(function ($item, $key) {
-                config(['system.' . $key => $item + config('system.' . $key, [])]);
-            });
+            // collect($config['data'])->each(function ($item, $key) {
+            //     config(['system.' . $key => $item + config('system.' . $key, [])]);
+            // });
         }
 
         return $next($request);

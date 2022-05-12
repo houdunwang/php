@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     protected $data = [
         'account' => '2300071698@qq.com',
@@ -77,8 +77,9 @@ class LoginTest extends TestCase
      */
     public function loginByMobile()
     {
-        $user = User::factory()->create(['mobile' => '18888888888']);
-        $response = $this->post('/api/login', ['account' => $user->mobile, 'password' => 'admin888']);
+        $user = User::factory()->create(['mobile' => '139' . $this->faker()->randomNumber(8)]);
+
+        $response = $this->postJson('/api/login', ['account' => $user->mobile, 'password' => 'admin888']);
         $response->assertOk();
     }
 }

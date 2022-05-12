@@ -11,6 +11,11 @@ abstract class TestCase extends BaseTestCase
 
     protected $user;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+
     protected function signIn(User $user = null)
     {
         $user = $user ?? create(User::class);

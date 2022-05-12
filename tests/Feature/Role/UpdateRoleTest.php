@@ -51,7 +51,7 @@ class UpdateRoleTest extends TestCase
      */
     public function updateRoleSuccess()
     {
-        $role = create(Role::class);
+        $role = create(Role::class, null, ['title' => $this->faker()->word()]);
 
         $response = $this->putJson("/api/role/{$role['id']}", [
             'name' => $this->faker()->word(),

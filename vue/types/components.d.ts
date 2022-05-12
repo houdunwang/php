@@ -8,10 +8,12 @@ declare module 'vue' {
     EditorWangEditor: typeof import('./../src/components/editor/wangEditor.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElImage: typeof import('element-plus/es')['ElImage']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
-    ElTag: typeof import('element-plus/es')['ElTag']
     FormButton: typeof import('./../src/components/form/button.vue')['default']
     FormError: typeof import('./../src/components/form/error.vue')['default']
     FormInput: typeof import('./../src/components/form/input.vue')['default']
@@ -22,7 +24,8 @@ declare module 'vue' {
     HdCode: typeof import('./../src/components/hd/code.vue')['default']
     HdFullscreen: typeof import('./../src/components/hd/fullscreen.vue')['default']
     HdNotification: typeof import('./../src/components/hd/notification.vue')['default']
-    SystemSite: typeof import('./../src/components/system/site.vue')['default']
+    HdTab: typeof import('./../src/components/hd/tab.vue')['default']
+    SiteItem: typeof import('./../src/components/site/item.vue')['default']
     UserDrop: typeof import('./../src/components/user/drop.vue')['default']
   }
 }

@@ -2,15 +2,19 @@ import { RouteRecordRaw } from 'vue-router'
 export default {
   name: 'admin',
   path: '/admin',
-  redirect: '/admin/home',
+  redirect: '/admin/site',
   component: () => import('@/layouts/admin.vue'),
-  meta: { auth: true, menu: { title: 'Dashboard', icon: 'DashboardOne' } },
+  meta: { auth: true },
   children: [
     {
-      name: 'admin.home',
-      path: 'home',
-      component: () => import('@/views/admin/home.vue'),
-      meta: { menu: { title: '工作台' } },
+      name: 'site.index',
+      path: 'site',
+      component: () => import('@/views/site/index.vue'),
+    },
+    {
+      name: 'site.add',
+      path: 'site/add',
+      component: () => import('@/views/site/add.vue'),
     },
   ],
 } as RouteRecordRaw

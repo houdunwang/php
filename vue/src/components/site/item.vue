@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ISite } from '@/apis/site'
+import dayjs from 'dayjs'
+
+const props = defineProps<{ site: ISite }>()
+</script>
 
 <template>
   <div class="site">
@@ -11,13 +16,14 @@
     </header>
     <main>
       <icon-connection-point theme="filled" :strokeWidth="2" />
-      <span class="truncate w-60 overflow-hidden"> 全球性格簡介 </span>
+      <span class="truncate w-60 overflow-hidden"> {{ props.site.title }} </span>
     </main>
     <footer class="">
       <section class="flex font-bold">
         #1 创建时间
         <span class="flex justify-center items-center ml-1">
-          <icon-time theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />2021-01-01
+          <icon-time theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
+          {{ dayjs(props.site.created_at).format('YYYY-MM-DD HH:mm') }}
         </span>
       </section>
 
