@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
@@ -18,7 +17,7 @@ class SiteController extends Controller
 
     public function index()
     {
-        return $this->success('站点列表获取成功', data: SiteResource::collection(Site::all()));
+        return $this->success(data: SiteResource::collection(Site::latest()->get()));
     }
 
     public function store(StoresiteRequest $request, Site $site)
@@ -32,14 +31,14 @@ class SiteController extends Controller
 
     public function show(Site $site)
     {
-        return  $this->success('站点详情', new SiteResource($site));
+        return  $this->success(data: new SiteResource($site));
     }
 
     public function update(UpdateSiteRequest $request, Site $site)
     {
         $site->fill($request->input())->save();
 
-        return $this->success(data: $site->refresh());
+        return $this->success('站点更新成功', data: $site->refresh());
     }
 
     /**

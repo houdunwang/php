@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ISite } from '@/apis/site'
+import { ISite } from '@/apis/apiSite'
 import dayjs from 'dayjs'
-
+const emit = defineEmits(['del'])
 const props = defineProps<{ site: ISite }>()
 </script>
 
@@ -48,13 +48,18 @@ const props = defineProps<{ site: ISite }>()
           <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           更新权限表
         </a>
-        <a>
+        <router-link :to="{ name: 'site.edit', params: { id: site.id } }">
           <icon-editor theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           编辑站点
-        </a>
-        <a>
-          <icon-delete theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-          删除
+        </router-link>
+        <a href="javascript:void(0)">
+          <el-popconfirm title="确定删除站点吗?" @confirm="emit('del', site.id)">
+            <template #reference>
+              <div class="flex items-center justify-center">
+                <icon-delete theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 删除
+              </div>
+            </template>
+          </el-popconfirm>
         </a>
       </section>
     </footer>

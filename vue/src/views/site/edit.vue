@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { apiSiteAdd, ISite } from '@/apis/site'
+import { apiSiteAdd, ISite } from '@/apis/apiSite'
 import _ from 'lodash'
+import Tab from './tab.vue'
 const config = { title: '标题', url: '链接', email: '邮箱', address: '地址' }
 
 const form = reactive<Record<keyof ISite, any>>(_.zipObject(Object.keys(config)) as any)
@@ -16,11 +17,7 @@ const onSubmit = async () => {
 
 <template>
   <div class="">
-    <HdTab
-      :tabs="[
-        { label: '站点列表', route: { name: 'admin' } },
-        { label: '添加站点', route: { name: 'site.add' } },
-      ]" />
+    <Tab />
     <el-card shadow="never">
       <el-form :model="form" label-width="80px" :inline="false" size="large">
         <el-form-item :label="name" v-for="(name, key) of config">

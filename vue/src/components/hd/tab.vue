@@ -1,16 +1,23 @@
 <script setup lang="ts">
 import { TabsPaneContext } from 'element-plus'
+const router = useRouter()
+const route = useRoute()
 
-interface ITabs {
+interface ITab {
   label: string
   active?: boolean
   event?: () => void
   route?: any
+  current?: boolean
 }
-const props = defineProps<{ tabs: ITabs[] }>()
 
-const router = useRouter()
-const route = useRoute()
+const props = defineProps<{ tabs: ITab[] }>()
+
+const tabs = computed(() => {
+  return props.tabs.filter((tab) => {
+    return tab.current ? tab.route?.name == route.name : true
+  })
+})
 
 const change = (pane: TabsPaneContext, ev: Event) => {
   const tab = props.tabs[pane.index as unknown as number]
@@ -24,11 +31,19 @@ const change = (pane: TabsPaneContext, ev: Event) => {
 }
 
 const active = ref('name' + props.tabs.findIndex((tab) => tab.route?.name == route.name))
+
+// const isShow = (tab: ITab) => {
+//   if (tab.current) {
+//     console.log(tab)
+//     console.log(tab.route?.name == route.name)
+//   }
+//   return true
+// }
 </script>
 
 <template>
   <el-tabs type="card" v-model="active" @tab-click="change">
-    <el-tab-pane :label="tab.label" :name="`name${index}`" v-for="(tab, index) of props.tabs" />
+    <el-tab-pane :label="tab.label" :name="`name${index}`" v-for="(tab, index) of tabs" />
   </el-tabs>
 </template>
 
