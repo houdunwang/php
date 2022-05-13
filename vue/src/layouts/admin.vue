@@ -4,16 +4,17 @@ import TopMenu from './admin/topMenu.vue'
 </script>
 
 <template>
-  <div class="admin grid md:grid-rows-[auto_1fr] md:pb-32">
+  <div class="admin grid md:grid-rows-[auto_auto_1fr] md:pb-32">
     <div>
       <navbarVue />
       <TopMenu />
     </div>
-    <div class="md:my-5 md:mx-5 mx-3">
+    <div class="md:my-5 md:mx-5 mx-3 w-full p-5 bg-gray-50">
       <router-view #default="{ Component, route }">
-        <component :is="Component" class="w-full p-5 mb-32 bg-gray-50" />
+        <component :is="Component" />
       </router-view>
     </div>
+    <div class=""></div>
   </div>
 </template>
 

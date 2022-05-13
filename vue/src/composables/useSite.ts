@@ -3,29 +3,34 @@ import { apiSiteIndex, ISite, apiSiteDelete, apiSiteAdd, apiSiteUpdate, apiSiteI
 import _ from 'lodash'
 
 export default () => {
+  //字段配置
   const field = reactive({ title: '标题', url: '链接', email: '邮箱', address: '地址' })
 
-  const sites = ref<ISite[]>()
-  const site = ref<ISite>(_.zipObject(Object.keys(field)) as any)
+  //站点列表
+  const collection = ref<ISite[]>()
+  const model = ref<ISite>(_.zipObject(Object.keys(field)) as any)
 
+  //加载站点列表或单个站点
   const load = async (id?: number) => {
     if (id) {
-      site.value = await apiSiteInfo(id).then((r) => r.data)
+      model.value = await apiSiteInfo(id).then((r) => r.data)
     } else {
       const { data } = await apiSiteIndex()
-      sites.value = data
+      collection.value = data
     }
   }
 
-  const delSite = async (id: number) => {
+  //删除站点
+  const remove = async (id: number) => {
     await apiSiteDelete(id)
     load()
   }
 
+  //添加更新站点
   const store = async () => {
-    site.value.id ? await apiSiteUpdate(site.value) : await apiSiteAdd(site.value)
+    model.value.id ? await apiSiteUpdate(model.value) : await apiSiteAdd(model.value)
     ElMessage.success('站点保存成功')
   }
 
-  return { load, store, delSite, sites, site, field }
+  return { load, store, remove, collection, model, field }
 }
