@@ -32,4 +32,15 @@ class ConfgTest extends TestCase
 
         $response->assertSuccessful();
     }
+
+    /**
+     * 获取配置项
+     * @test
+     */
+    public function accessToConfigurationItems()
+    {
+        $response = $this->getJson('/api/config/system');
+        $response->dd();
+        $response->assertSuccessful();
+    }
 }

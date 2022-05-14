@@ -8,6 +8,7 @@ use App\Services\PermissionService;
 use App\Services\SmsService;
 use App\Services\UploadService;
 use App\Services\UserService;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -42,5 +43,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        JsonResource::withoutWrapping();
     }
 }

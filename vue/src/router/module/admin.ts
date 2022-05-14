@@ -14,12 +14,17 @@ export default {
     {
       name: 'site.add',
       path: 'site/add',
-      component: () => import('@/views/site/post.vue'),
+      component: () => import('@/views/site/add.vue'),
     },
     {
       name: 'site.edit',
       path: 'site/:id',
-      component: () => import('@/views/site/post.vue'),
+      component: () => import('@/views/site/edit.vue'),
+    },
+    {
+      name: 'system.index',
+      path: 'system',
+      component: () => import('@/views/system/index.vue'),
     },
   ],
 } as RouteRecordRaw

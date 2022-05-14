@@ -18,6 +18,7 @@ declare module 'vue' {
     FormButton: typeof import('./../src/components/form/button.vue')['default']
     FormError: typeof import('./../src/components/form/error.vue')['default']
     FormInput: typeof import('./../src/components/form/input.vue')['default']
+    FormPost: typeof import('./../src/components/form/post.vue')['default']
     FormVeeValidateError: typeof import('./../src/components/form/veeValidateError.vue')['default']
     HdAnimateList: typeof import('./../src/components/hd/animateList.vue')['default']
     HdBreadcrumb: typeof import('./../src/components/hd/breadcrumb.vue')['default']

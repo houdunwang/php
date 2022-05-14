@@ -10,7 +10,7 @@ import utils from '@/utils'
         <icon-network-tree theme="filled" :strokeWidth="2" />
         网站管理
       </router-link>
-      <router-link :to="{ name: 'site.index' }">
+      <router-link :to="{ name: 'system.index' }">
         <icon-config theme="filled" :strokeWidth="2" />
         系统设置
       </router-link>

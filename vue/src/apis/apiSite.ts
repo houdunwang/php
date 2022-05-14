@@ -31,13 +31,13 @@ export function apiSiteUpdate(data: Record<string, any>) {
   })
 }
 
-export function apiSiteIndex() {
-  return http.request<ISite[]>({
+export function apiSiteGet<ISite>() {
+  return http.request<ISite[], ResponsePageResult<ISite>>({
     url: '/site',
   })
 }
 
-export function apiSiteInfo(id: number) {
+export function apiSiteFind(id: number) {
   return http.request<ISite>({
     url: `/site/${id}`,
   })

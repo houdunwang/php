@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <HdTab
     :tabs="[
@@ -6,3 +8,5 @@
       { label: '编辑站点', route: { name: 'site.edit' }, current: true },
     ]" />
 </template>
+
+<style lang="scss"></style>

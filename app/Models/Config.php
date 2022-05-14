@@ -9,5 +9,7 @@ class Config extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['module', 'data'];
+
     protected $casts = ['data' => 'array'];
 }

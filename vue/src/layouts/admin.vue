@@ -9,7 +9,7 @@ import TopMenu from './admin/topMenu.vue'
       <navbarVue />
       <TopMenu />
     </div>
-    <div class="md:my-5 md:mx-5 mx-3 w-full p-5 bg-gray-50">
+    <div class="md:my-5 md:mx-5 mx-3 p-5 bg-gray-50 rounded-lg">
       <router-view #default="{ Component, route }">
         <component :is="Component" />
       </router-view>
@@ -23,11 +23,5 @@ import TopMenu from './admin/topMenu.vue'
   min-height: 100vh;
   background-image: url('/images/admin.jpg');
   background-size: cover;
-  //   .animate__fadeInRight {
-  //     animation-duration: 0.3s;
-  //   }
-  //   .animate__fadeOutLeft {
-  //     animation-duration: 1s;
-  //   }
 }
 </style>

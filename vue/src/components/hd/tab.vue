@@ -21,24 +21,17 @@ const tabs = computed(() => {
 
 const change = (pane: TabsPaneContext, ev: Event) => {
   const tab = props.tabs[pane.index as unknown as number]
-  if (tab.event) {
-    tab.event()
-  }
+  if (tab.event) tab.event()
 
   if (tab.route) {
+    // const url = router.getRoutes().find((r) => r.name == tab.route.name)?.path
+    // if (url) location.href = url
+
     router.push(tab.route)
   }
 }
 
 const active = ref('name' + props.tabs.findIndex((tab) => tab.route?.name == route.name))
-
-// const isShow = (tab: ITab) => {
-//   if (tab.current) {
-//     console.log(tab)
-//     console.log(tab.route?.name == route.name)
-//   }
-//   return true
-// }
 </script>
 
 <template>

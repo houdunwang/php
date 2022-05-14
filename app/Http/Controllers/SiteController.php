@@ -17,7 +17,7 @@ class SiteController extends Controller
 
     public function index()
     {
-        return $this->success(data: SiteResource::collection(Site::latest()->get()));
+        return SiteResource::collection(Site::latest()->paginate(1000));
     }
 
     public function store(StoresiteRequest $request, Site $site)
@@ -31,7 +31,7 @@ class SiteController extends Controller
 
     public function show(Site $site)
     {
-        return  $this->success(data: new SiteResource($site));
+        return $this->success(data: new SiteResource($site));
     }
 
     public function update(UpdateSiteRequest $request, Site $site)

@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { ISite } from '@/apis/apiSite'
 import dayjs from 'dayjs'
-const emit = defineEmits(['del'])
+const emit = defineEmits<{
+  (e: 'del', id: number): Promise<boolean>
+}>()
 const props = defineProps<{ site: ISite }>()
 </script>
 
 <template>
   <div class="site">
     <header>
-      <section>站长: <span>向军大叔</span></section>
+      <section>
+        站长: <span>{{ site.user.name }}</span>
+      </section>
       <section>
         <icon-config theme="outline" fill="#333" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
         扩展模块
@@ -95,10 +99,10 @@ const props = defineProps<{ site: ISite }>()
     :nth-of-type(2) {
       @apply flex flex-wrap;
       a {
+        @apply flex justify-center items-center mr-2 cursor-pointer;
         :first-child {
           @apply mr-[2px];
         }
-        @apply flex justify-center items-center mr-2 cursor-pointer;
       }
     }
   }

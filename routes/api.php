@@ -27,6 +27,7 @@ Route::post('code/exist_user', [CodeController::class, 'existUser']);
 Route::post('code/user/{type}', [CodeController::class, 'user']);
 
 Route::put('config/{module}', [ConfigController::class, 'update']);
+Route::get('config/{module}', [ConfigController::class, 'get']);
 
 Route::post('upload/avatar', [UploadController::class, 'avatar']);
 
