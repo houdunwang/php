@@ -5,8 +5,10 @@ import utils from '@/utils'
 import Footer from './footer.vue'
 
 const form = reactive({ account: '2300071698@qq.com', password: 'admin888', captcha_code: '', captcha_key: '' })
+
 const storeError = errorStore()
 const { loadCaptcha } = useCaptcha()
+
 const onSubmit = async () => {
   loadCaptcha()
   await utils.user.login(form)

@@ -23,12 +23,7 @@ const change = (pane: TabsPaneContext, ev: Event) => {
   const tab = props.tabs[pane.index as unknown as number]
   if (tab.event) tab.event()
 
-  if (tab.route) {
-    // const url = router.getRoutes().find((r) => r.name == tab.route.name)?.path
-    // if (url) location.href = url
-
-    router.push(tab.route)
-  }
+  if (tab.route) router.push(tab.route)
 }
 
 const active = ref('name' + props.tabs.findIndex((tab) => tab.route?.name == route.name))
@@ -39,5 +34,3 @@ const active = ref('name' + props.tabs.findIndex((tab) => tab.route?.name == rou
     <el-tab-pane :label="tab.label" :name="`name${index}`" v-for="(tab, index) of tabs" />
   </el-tabs>
 </template>
-
-<style lang="scss"></style>

@@ -9,12 +9,11 @@ import TopMenu from './admin/topMenu.vue'
       <navbarVue />
       <TopMenu />
     </div>
-    <div class="md:my-5 md:mx-5 mx-3 p-5 bg-gray-50 rounded-lg">
-      <router-view #default="{ Component, route }">
-        <component :is="Component" />
+    <div class="md:my-5 md:mx-5 mx-3 p-5 bg-gray-50 rounded-lg relative overflow-hidden">
+      <router-view #default="{ Component }">
+        <component :is="Component" class="left-5 top-5 right-5 bottom-5" />
       </router-view>
     </div>
-    <div class=""></div>
   </div>
 </template>
 

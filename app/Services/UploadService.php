@@ -22,4 +22,14 @@ class UploadService
             'url' => asset($path),
         ];
     }
+
+    public function image(UploadedFile $file)
+    {
+        $path = $file->store("images/avatars" . DIRECTORY_SEPARATOR . date('Ym'));
+
+        return [
+            'path' => $path,
+            'url' => asset($path),
+        ];
+    }
 }

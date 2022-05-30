@@ -1,37 +1,39 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section>
-    <h5>模块管理</h5>
-    <ul>
-      <li>
-        <icon-blocks-and-arrows theme="outline" :strokeWidth="2" />
-        模块列表
-      </li>
-      <li>
-        <icon-graphic-design theme="outline" :strokeWidth="2" />
-        设计模块
-      </li>
-    </ul>
-  </section>
-  <section>
-    <h5>用户相关</h5>
-    <ul>
-      <li>
-        <icon-classroom theme="outline" :strokeWidth="2" />
-        用户列表
-      </li>
-    </ul>
-  </section>
-  <section>
-    <h5>系统配置</h5>
-    <ul>
-      <li>
-        <icon-database-config theme="outline" :strokeWidth="2" />
-        配置定义
-      </li>
-    </ul>
-  </section>
+  <div class="">
+    <section>
+      <h5>模块管理</h5>
+      <ul>
+        <li>
+          <icon-blocks-and-arrows theme="outline" :strokeWidth="2" />
+          模块列表
+        </li>
+        <li>
+          <icon-graphic-design theme="outline" :strokeWidth="2" />
+          设计模块
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h5>用户相关</h5>
+      <ul>
+        <li>
+          <icon-classroom theme="outline" :strokeWidth="2" />
+          用户列表
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h5>系统配置</h5>
+      <ul>
+        <li @click="$router.push({ name: 'config.edit' })">
+          <icon-database-config theme="outline" :strokeWidth="2" />
+          配置定义
+        </li>
+      </ul>
+    </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>

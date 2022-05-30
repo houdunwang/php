@@ -6,19 +6,10 @@ declare module 'vue' {
   export interface GlobalComponents {
     EditorMarkdown: typeof import('./../src/components/editor/markdown.vue')['default']
     EditorWangEditor: typeof import('./../src/components/editor/wangEditor.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElImage: typeof import('element-plus/es')['ElImage']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
-    ElTabPane: typeof import('element-plus/es')['ElTabPane']
-    ElTabs: typeof import('element-plus/es')['ElTabs']
     FormButton: typeof import('./../src/components/form/button.vue')['default']
     FormError: typeof import('./../src/components/form/error.vue')['default']
+    FormFieldList: typeof import('./../src/components/form/fieldList.vue')['default']
     FormInput: typeof import('./../src/components/form/input.vue')['default']
-    FormPost: typeof import('./../src/components/form/post.vue')['default']
     FormVeeValidateError: typeof import('./../src/components/form/veeValidateError.vue')['default']
     HdAnimateList: typeof import('./../src/components/hd/animateList.vue')['default']
     HdBreadcrumb: typeof import('./../src/components/hd/breadcrumb.vue')['default']
@@ -28,6 +19,7 @@ declare module 'vue' {
     HdNotification: typeof import('./../src/components/hd/notification.vue')['default']
     HdTab: typeof import('./../src/components/hd/tab.vue')['default']
     SiteItem: typeof import('./../src/components/site/item.vue')['default']
+    UploadSingleImage: typeof import('./../src/components/upload/singleImage.vue')['default']
     UserDrop: typeof import('./../src/components/user/drop.vue')['default']
   }
 }

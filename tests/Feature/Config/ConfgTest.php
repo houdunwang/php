@@ -40,7 +40,6 @@ class ConfgTest extends TestCase
     public function accessToConfigurationItems()
     {
         $response = $this->getJson('/api/config/system');
-        $response->dd();
         $response->assertSuccessful();
     }
 }

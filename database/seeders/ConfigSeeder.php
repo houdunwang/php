@@ -10,6 +10,9 @@ class ConfigSeeder extends Seeder
 {
     public function run()
     {
-        Config::create(['module' => 'system', 'data' => config('system')]);
+        Config::create([
+            'module' => 'system',
+            'data' => config('system'),
+        ]);
     }
 }

@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import { apiSiteAdd } from '@/apis/apiSite'
+import { apiSiteAdd } from '@/apis/siteApi'
+import router from '@/router'
 import Tab from './components/tab.vue'
 import fields from './fields'
+
+const model = ref<Record<string, any>>({})
+
+const onSubmit = async () => {
+  await apiSiteAdd(model.value)
+  router.push({ name: 'site.index' })
+}
 </script>
-
 <template>
-  <Tab />
-  <FormPost :add-api="apiSiteAdd" :fields="fields" />
+  <el-card shadow="always" :body-style="{ padding: '20px' }">
+    <Tab />
+    <FormFieldList :fields="fields" :model="model" @submit="onSubmit"> </FormFieldList>
+  </el-card>
 </template>
-
-<style lang="scss"></style>

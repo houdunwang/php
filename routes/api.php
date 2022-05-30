@@ -7,6 +7,7 @@ use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\FansController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\InitController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PermissionController;
@@ -26,10 +27,13 @@ Route::post('code/not_exist_user', [CodeController::class, 'notExistUser']);
 Route::post('code/exist_user', [CodeController::class, 'existUser']);
 Route::post('code/user/{type}', [CodeController::class, 'user']);
 
+Route::get('init', InitController::class);
+
 Route::put('config/{module}', [ConfigController::class, 'update']);
 Route::get('config/{module}', [ConfigController::class, 'get']);
 
 Route::post('upload/avatar', [UploadController::class, 'avatar']);
+Route::post('upload/image', [UploadController::class, 'image']);
 
 Route::apiResource('permission', PermissionController::class);
 Route::apiResource('role', RoleController::class);

@@ -24,14 +24,6 @@ class ConfigController extends Controller
 
     public function get(Request $request, string $module)
     {
-        $config = ['data' => []];
-        switch ($module) {
-            case 'system':
-                if (is_super_admin())
-                    $config =  config("system");
-            default:
-                $config = Config::where('module', $module)->firstOrFail();
-        }
-        return $this->success(data: $config['data']);
+        return $this->success(data: config($module));
     }
 }
