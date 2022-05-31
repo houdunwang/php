@@ -1,3 +1,4 @@
+import systemStore from '@/store/systemStore'
 import userStore from '@/store/userStore'
 import { App as AppType, createApp } from 'vue'
 import App from './App.vue'
@@ -26,6 +27,10 @@ class Main {
   //初始应用数据
   private async initData() {
     await userStore().getUserInfo()
+    //加载配置
+    const storeSystem = systemStore()
+    await storeSystem.load()
+    document.title = storeSystem.config.title
   }
 }
 

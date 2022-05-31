@@ -7,17 +7,16 @@ import { http } from '@/plugins/axios'
 const props = defineProps<{
   modelValue: string | null
 }>()
+const imageUrl = ref(props.modelValue)
 
 const emit = defineEmits<{
   (e: 'update:modelValue', url: string): void
 }>()
 
-const imageUrl = ref('')
-
 //上传成功后
 const handleSuccess = (response: any, uploadFile: any) => {
   imageUrl.value = response.data.url
-  emit('update:modelValue', imageUrl.value)
+  emit('update:modelValue', imageUrl.value!)
 }
 
 const request = async (options: ElUploadRequestOptions) => {
@@ -32,17 +31,19 @@ const request = async (options: ElUploadRequestOptions) => {
 </script>
 
 <template>
-  <el-upload
-    action=""
-    class="avatar-uploader"
-    :http-request="request"
-    :show-file-list="false"
-    :on-success="handleSuccess">
-    <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-    <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
-  </el-upload>
+  <div class="">
+    <el-upload
+      action=""
+      class="avatar-uploader"
+      :http-request="request"
+      :show-file-list="false"
+      :on-success="handleSuccess">
+      <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+      <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+    </el-upload>
 
-  <FormError name="file" />
+    <FormError name="file" />
+  </div>
 </template>
 
 <style scoped>

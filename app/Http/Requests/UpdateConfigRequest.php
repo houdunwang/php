@@ -6,25 +6,21 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateConfigRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return false;
+        return is_super_admin();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            //
+            'site.title' => ['required'],
+            'site.logo' => ['required', 'url']
         ];
+    }
+
+    public function attributes()
+    {
+        return ['site.title' => '站点名称', 'site.logo' => '网站标志'];
     }
 }

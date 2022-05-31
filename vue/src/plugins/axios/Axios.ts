@@ -72,6 +72,9 @@ export default class Axios {
           case 422:
             errorStore().setErrors(error.response.data.errors)
             break
+          case 403:
+            ElMessage({ type: 'error', message: '没有操作权限' })
+            break
           default:
             const { message } = data
             if (message) {

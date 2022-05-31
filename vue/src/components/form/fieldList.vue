@@ -3,7 +3,7 @@ import { Ref } from 'vue'
 
 const props = defineProps<{
   model: any
-  fields: { title: string; name: string; type?: 'input' | 'textarea' | 'image' }[]
+  fields: { title: string; name: string; error_name?: string; type?: 'input' | 'textarea' | 'image' }[]
 }>()
 
 const emit = defineEmits<{
@@ -18,18 +18,19 @@ const model = props.model
     <el-form-item :label="f.title" v-for="f of props.fields">
       <template v-if="f.type == 'input' || !f.type">
         <el-input v-model="model![f.name]" />
-        <FormError :name="f.name" />
+        <FormError :name="f.error_name || f.name" />
       </template>
       <template v-if="f.type == 'image'">
-        <UploadSingleImage v-model="model[f.name]" />
-        <!-- <el-input v-model="model![f.name]" /> -->
-        <FormError :name="f.name" />
+        <div class="flex flex-col">
+          <UploadSingleImage v-model="model[f.name]" />
+          <FormError :name="f.error_name || f.name" />
+        </div>
       </template>
     </el-form-item>
-    <!-- <slot>
-      <el-form-item>
+    <el-form-item>
+      <slot name="button">
         <el-button type="primary" @click="emit('submit')"> 保存提交</el-button>
-      </el-form-item>
-    </slot> -->
+      </slot>
+    </el-form-item>
   </el-form>
 </template>

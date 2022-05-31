@@ -9,11 +9,6 @@ class Guard {
   constructor(private router: Router) {}
 
   public async run() {
-    //加载配置
-    const storeSystem = systemStore()
-    await storeSystem.load()
-    document.title = storeSystem.config.title
-
     this.router.beforeEach(this.beforeEach.bind(this))
   }
 

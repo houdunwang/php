@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import systemStore from '@/store/systemStore'
 import utils from '@/utils'
+const storeSystem = systemStore()
 </script>
 
 <template>
   <div class="py-10 md:px-5 md:grid grid-cols-10 items-center">
-    <img src="/images/logo.png" class="col-span-4 hidden md:block" />
+    <img :src="storeSystem.config.logo" class="col-span-4 hidden md:block" />
     <main>
       <router-link :to="{ name: 'site.index' }">
         <icon-network-tree theme="filled" :strokeWidth="2" />
