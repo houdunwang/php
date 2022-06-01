@@ -1,16 +1,17 @@
+import { SystemInitData } from './../apis/commonApi'
 import { systemInit } from '@/apis/commonApi'
 import { defineStore } from 'pinia'
 
 export default defineStore('system', {
   state: () => {
     return {
-      config: {} as { [x: string]: any; title: string; logo: string },
+      data: {} as SystemInitData,
     }
   },
   actions: {
     async load() {
       const { data } = await systemInit()
-      this.config = data.config as any
+      this.data = data
     },
   },
 })

@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { RegisterPostData } from '@/apis/userApi'
 import errorStore from '@/store/errorStore'
 import utils from '@/utils'
 import Footer from './footer.vue'
 
-const form = reactive({
+const form = reactive<RegisterPostData>({
   account: '2300071698@qq.com',
   password: 'admin888',
   password_confirmation: 'admin888',

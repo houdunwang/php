@@ -17,6 +17,7 @@ export default function autoImport(plugins: Plugin[]) {
       dts: 'types/auto-imports.d.ts',
     }),
     Components({
+      extensions: ['vue'],
       resolvers: [
         ElementPlusResolver(),
         // TDesignResolver({

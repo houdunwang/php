@@ -1,24 +1,17 @@
 import { ElMessage } from 'element-plus'
-// import { MessagePlugin } from 'tdesign-vue-next'
-import {
-  ILoginAndRegisterResponse,
-  ILoginForm,
-  IRegisterForm,
-  apiLogin,
-  apiRegister,
-  IForgetPassword,
-  apiForgetPassword,
-} from '@/apis/userApi'
+import {} from '@/apis/userApi'
+
 import { CacheEnum } from '@/enum/CacheEnum'
 import store from './store'
 import router from '@/router'
 import userStore from '@/store/userStore'
+import { apiLogin } from '@/apis/auth'
 
 export function isLogin(): boolean {
   return !!store.get(CacheEnum.TOKEN_NAME)
 }
 
-export async function login(values: ILoginForm) {
+export async function login(values: Record<string, any>) {
   const { data } = await apiLogin(values)
   loginAndRegisterCallback(data)
 }

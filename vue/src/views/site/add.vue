@@ -11,7 +11,10 @@ const onSubmit = async () => {
   router.push({ name: 'site.index' })
 }
 </script>
+
 <template>
   <Tab />
-  <FormFieldList :fields="fields" :model="model" @submit="onSubmit"> </FormFieldList>
+  <el-card shadow="never" :body-style="{ padding: '20px' }">
+    <FormFieldList :fields="fields" :model="model" @submit="onSubmit"> </FormFieldList>
+  </el-card>
 </template>

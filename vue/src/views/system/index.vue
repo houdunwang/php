@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { is_super_admin } from '@/utils/helper'
+</script>
 
 <template>
-  <div class="">
+  <div class="" v-if="is_super_admin()">
     <section>
       <h5>模块管理</h5>
       <ul>
@@ -50,7 +52,7 @@ section {
   ul {
     @apply flex items-center;
     li {
-      @apply w-[120px] p-5 flex flex-col justify-center items-center bg-[#34495e] mr-4 rounded-md text-white cursor-pointer duration-300 opacity-70 hover:opacity-95 hover:shadow-lg;
+      @apply w-[120px] p-5 flex flex-col justify-center items-center bg-[#34495e] mr-4 rounded-md text-white cursor-pointer duration-300 opacity-70 hover:opacity-95 hover:shadow-lg font-sans;
       span {
         @apply text-3xl mb-2;
       }

@@ -14,7 +14,9 @@ const onSubmit = async () => {
 
 <template>
   <Tab />
-  <FormFieldList :fields="fields" :model="model" @submit="onSubmit" />
+  <el-card shadow="never" :body-style="{ padding: '20px' }">
+    <FormFieldList :fields="fields" :model="model" @submit="onSubmit" />
+  </el-card>
 </template>
 
 <style lang="scss"></style>

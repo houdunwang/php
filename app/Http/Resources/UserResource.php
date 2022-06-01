@@ -10,8 +10,6 @@ class UserResource extends JsonResource
     {
         return  [
             'avatar' => $this->avatar ?: url('static/avatar.jpeg'),
-            // 'permissions' => $this->getAllPermissions()->pluck('name'),
-            // 'roles' => $this->roles
         ] + parent::toArray($request);
     }
 }

@@ -3,7 +3,7 @@ import { Ref } from 'vue'
 
 const props = defineProps<{
   model: any
-  fields: { title: string; name: string; error_name?: string; type?: 'input' | 'textarea' | 'image' }[]
+  fields: FieldListComponentFieldsProp[]
 }>()
 
 const emit = defineEmits<{
@@ -17,7 +17,7 @@ const model = props.model
   <el-form :model="model" label-width="80px" :inline="false" size="large">
     <el-form-item :label="f.title" v-for="f of props.fields">
       <template v-if="f.type == 'input' || !f.type">
-        <el-input v-model="model![f.name]" />
+        <el-input v-model="model![f.name]" :placeholder="f.placeholder" />
         <FormError :name="f.error_name || f.name" />
       </template>
       <template v-if="f.type == 'image'">

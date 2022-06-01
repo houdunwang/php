@@ -12,15 +12,16 @@ return [
         'access_key_secret' => env('ALIYUN_ACCESS_KEY_SECRET'),
         'sms_sign_name' => env('ALIYUN_SMS_SING_NAME')
     ],
-    "upload" => [
+    "avatar" => [
         //用户头像尺寸
-        'avatar_crop_width' => env('AVATAR_CROP_WIDTH', 500),
-        'avatar_crop_height' => env('AVATAR_CROP_HEIGHT', 100),
+        'width' => env('AVATAR_CROP_WIDTH', 500),
+        'height' => env('AVATAR_CROP_HEIGHT', 100),
     ],
     //系统令牌
     "site" => [
         "title" => "后盾人",
-        "logo" => null
+        "logo" => null,
+        "copyright" => "后盾人"
     ],
     //文件上传
     "upload" => [

@@ -30,6 +30,7 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     server: {
+      //open: true, //直接打开浏览器
       proxy: {
         '/api': {
           target: env.VITE_MOCK_ENABLE ? '/' : env.VITE_API_URL,

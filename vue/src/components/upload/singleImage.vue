@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import { ElUploadRequestOptions } from 'element-plus/es/components/upload/src/upload.type'
 import { http } from '@/plugins/axios'
+import { uploadImage } from '@/apis/uploadApi'
 
 const props = defineProps<{
   modelValue: string | null
@@ -22,11 +23,8 @@ const handleSuccess = (response: any, uploadFile: any) => {
 const request = async (options: ElUploadRequestOptions) => {
   const form = new FormData()
   form.append('file', options.file)
-  return await http.request<any>({
-    url: 'upload/image',
-    method: 'post',
-    data: form,
-  })
+
+  await uploadImage(form)
 }
 </script>
 
@@ -50,6 +48,7 @@ const request = async (options: ElUploadRequestOptions) => {
 .avatar-uploader .avatar {
   height: 178px;
   display: block;
+  @apply bg-gray-200;
 }
 </style>
 

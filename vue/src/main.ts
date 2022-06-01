@@ -30,7 +30,7 @@ class Main {
     //加载配置
     const storeSystem = systemStore()
     await storeSystem.load()
-    document.title = storeSystem.config.title
+    document.title = storeSystem.data.config.title
   }
 }
 

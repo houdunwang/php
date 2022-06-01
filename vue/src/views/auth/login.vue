@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { apiLogin } from '@/apis/auth'
 import useCaptcha from '@/composables/useCaptcha'
 import errorStore from '@/store/errorStore'
 import utils from '@/utils'
+import { loginAndRegisterCallback } from '@/utils/helper'
 import Footer from './footer.vue'
 
 const form = reactive({ account: '2300071698@qq.com', password: 'admin888', captcha_code: '', captcha_key: '' })
@@ -11,7 +13,8 @@ const { loadCaptcha } = useCaptcha()
 
 const onSubmit = async () => {
   loadCaptcha()
-  await utils.user.login(form)
+  const { data } = await apiLogin(form)
+  loginAndRegisterCallback(data)
 }
 </script>
 
