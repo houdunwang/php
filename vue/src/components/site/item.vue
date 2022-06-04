@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ISite } from '@/apis/apiSite'
 import dayjs from 'dayjs'
 const emit = defineEmits<{
   (e: 'del', id: number): Promise<boolean>
 }>()
-const props = defineProps<{ site: ISite }>()
+const props = defineProps<{ site: SiteModel }>()
 </script>
 
 <template>

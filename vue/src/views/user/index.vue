@@ -1,0 +1,27 @@
+<script setup lang="ts">
+import { getUserList } from '@/apis/user'
+import { tableButtonType, userTableColumns } from '@/config/table'
+const users = ref(await getUserList())
+
+const buttons = [
+  { title: '查看', command: 'show', type: 'success' },
+  { title: '查看', command: 'show', type: 'danger' },
+  { title: '查看', command: 'show' },
+] as tableButtonType[]
+
+const router = useRouter()
+
+const action = (model: any, type: string) => {
+  const user = model as UserModel
+  router.push({ name: 'user.show', params: { id: user.id } })
+}
+</script>
+
+<template>
+  <hd-tab
+    :tabs="[
+      { label: '系统管理', route: { name: 'system.index' } },
+      { label: '用户列表', route: { name: 'user.index' }, current: true },
+    ]" />
+  <hd-table-component v-model="users.data" :columns="userTableColumns" :buttons="buttons" @action="action" />
+</template>

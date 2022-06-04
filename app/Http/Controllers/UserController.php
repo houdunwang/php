@@ -20,6 +20,17 @@ class UserController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
+    public function index()
+    {
+        $users = User::paginate(20);
+        return $this->success(data: UserResource::collection($users));
+    }
+
+    public function show(User $user)
+    {
+        return $this->success(data: new UserResource($user));
+    }
+
     /**
      * 当前用户资料
      * @return array

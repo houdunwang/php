@@ -1,7 +1,7 @@
 import { CacheEnum } from '../enum/CacheEnum'
 import store from '@/utils/store'
 import { defineStore } from 'pinia'
-import { apiInfo } from '@/apis/userApi'
+import { apiInfo } from '@/apis/user'
 
 export default defineStore('userStore', {
   state: () => {

@@ -1,5 +1,5 @@
 import { ElMessage } from 'element-plus'
-import {} from '@/apis/userApi'
+import {} from '@/apis/user'
 
 import { CacheEnum } from '@/enum/CacheEnum'
 import store from './store'

@@ -20,7 +20,7 @@ import { is_super_admin } from '@/utils/helper'
     <section>
       <h5>用户相关</h5>
       <ul>
-        <li>
+        <li @click="$router.push({ name: 'user.index' })">
           <icon-classroom theme="outline" :strokeWidth="2" />
           用户列表
         </li>

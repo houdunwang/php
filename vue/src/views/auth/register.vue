@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RegisterPostData } from '@/apis/userApi'
+import { RegisterPostData } from '@/apis/user'
 import errorStore from '@/store/errorStore'
 import utils from '@/utils'
 import Footer from './footer.vue'

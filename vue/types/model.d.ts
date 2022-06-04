@@ -1,4 +1,4 @@
-type UserModel = {
+interface UserModel {
   avatar: string
   permissions: string[]
   id: number

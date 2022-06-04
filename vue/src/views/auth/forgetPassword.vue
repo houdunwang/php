@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { apiForgetPassword } from '@/apis/userApi'
+import { apiForgetPassword } from '@/apis/user'
 import errorStore from '@/store/errorStore'
 import utils from '@/utils'
 import Footer from './footer.vue'

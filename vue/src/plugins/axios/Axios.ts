@@ -37,7 +37,6 @@ export default class Axios {
           Accept: 'application/json',
           Authorization: `Bearer ${store.get(CacheEnum.TOKEN_NAME)}`,
         }
-
         return config
       },
       (error: any) => {

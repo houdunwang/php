@@ -1,12 +1,3 @@
-//fieldlist组件
-type FieldListComponentFieldsProp = {
-  title: string
-  name: string
-  error_name?: string
-  type?: 'input' | 'textarea' | 'image'
-  placeholder?: string
-}
-
 //请求响应结构
 interface ResponseResult<T> {
   code: number
