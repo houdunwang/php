@@ -22,8 +22,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(20);
-        return $this->success(data: UserResource::collection($users));
+        $users = User::paginate(10);
+        return UserResource::collection($users);
     }
 
     public function show(User $user)
@@ -35,7 +35,7 @@ class UserController extends Controller
      * 当前用户资料
      * @return array
      */
-    public function info()
+    public function currentUser()
     {
         $user = Auth::user()->makeVisible('mobile')->refresh();
 

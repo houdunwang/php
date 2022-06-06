@@ -17,11 +17,12 @@ class SiteController extends Controller
 
     public function index()
     {
-        return SiteResource::collection(Site::latest()->paginate(1000));
+        return Site::latest()->with('master')->paginate(10);
     }
 
     public function store(StoresiteRequest $request, Site $site)
     {
+        sleep(4);
         $site->fill($request->input());
         $site->user_id = Auth::id();
         $site->save();

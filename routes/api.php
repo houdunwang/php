@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CodeController;
@@ -40,7 +41,7 @@ Route::apiResource('role', RoleController::class);
 Route::post('role/{role}/permission', [RoleController::class, 'permission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);
-Route::get('user/info', [UserController::class, 'info']);
+Route::get('user/currentUser', [UserController::class, 'currentUser']);
 Route::apiResource('user', UserController::class);
 
 Route::get('follower/{user}', [FollowerController::class, 'index']);
@@ -50,3 +51,5 @@ Route::get('fans/{user}', [FansController::class, 'index']);
 Route::get('captcha', CaptchaController::class);
 
 Route::apiResource('site', SiteController::class);
+
+Route::apiResource('site.admin', AdminController::class)->only(['index', 'store', 'destroy']);

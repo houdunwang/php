@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { Ref } from 'vue'
+import { formFieldType } from '@/config/form'
 
 const props = defineProps<{
   model: any
-  fields: FieldListComponentFieldsProp[]
+  fields: formFieldType[]
 }>()
 
 const emit = defineEmits<{
-  (e: 'submit'): void
+  (e: 'submit', args: any): void
 }>()
 
 const model = props.model

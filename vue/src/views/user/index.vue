@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { getUserList } from '@/apis/user'
 import { tableButtonType, userTableColumns } from '@/config/table'
-const users = ref(await getUserList())
 
 const buttons = [
   { title: '查看', command: 'show', type: 'success' },
@@ -13,7 +12,11 @@ const router = useRouter()
 
 const action = (model: any, type: string) => {
   const user = model as UserModel
-  router.push({ name: 'user.show', params: { id: user.id } })
+  switch (type) {
+    case 'show':
+      router.push({ name: 'user.show', params: { id: user.id } })
+      break
+  }
 }
 </script>
 
@@ -23,5 +26,5 @@ const action = (model: any, type: string) => {
       { label: '系统管理', route: { name: 'system.index' } },
       { label: '用户列表', route: { name: 'user.index' }, current: true },
     ]" />
-  <hd-table-component v-model="users.data" :columns="userTableColumns" :buttons="buttons" @action="action" />
+  <hd-table-component :api="getUserList" :columns="userTableColumns" :buttons="buttons" @action="action" />
 </template>

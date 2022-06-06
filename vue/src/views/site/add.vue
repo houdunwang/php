@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { apiSiteAdd } from '@/apis/siteApi'
+import { addSite } from '@/apis/site'
 import router from '@/router'
+import { request } from '@/utils/helper'
 import Tab from './components/tab.vue'
 import fields from './fields'
 
 const model = ref<Record<string, any>>({})
 
-const onSubmit = async () => {
-  await apiSiteAdd(model.value)
+const onSubmit = request(async () => {
+  await addSite(model.value)
   router.push({ name: 'site.index' })
-}
+})
 </script>
 
 <template>

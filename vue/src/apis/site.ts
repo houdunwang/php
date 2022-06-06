@@ -1,6 +1,6 @@
 import { http } from '@/plugins/axios'
 
-export function apiSiteAdd(data: Record<string, any>) {
+export function addSite(data: Record<string, any>) {
   return http.request({
     url: '/site',
     method: 'POST',
@@ -8,7 +8,7 @@ export function apiSiteAdd(data: Record<string, any>) {
   })
 }
 
-export function apiSiteUpdate(data: Record<string, any>) {
+export function updateSite(data: Record<string, any>) {
   return http.request({
     url: `/site/${data.id}`,
     method: 'PUT',
@@ -16,19 +16,20 @@ export function apiSiteUpdate(data: Record<string, any>) {
   })
 }
 
-export function apiSiteGet<ISite>() {
+export function getSiteList<ISite>() {
   return http.request<ISite[], ResponsePageResult<ISite>>({
     url: '/site',
   })
 }
 
-export function apiSiteFind(id: string | string[]) {
-  return http.request<SiteModel>({
+export async function getSite(id: string | string[]) {
+  const { data } = await http.request<SiteModel>({
     url: `/site/${id}`,
   })
+  return data
 }
 
-export function apiSiteDelete(id: number) {
+export function deleteSite(id: number) {
   return http.request({
     url: `/site/${id}`,
     method: 'DELETE',

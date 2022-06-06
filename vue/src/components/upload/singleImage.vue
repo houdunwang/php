@@ -2,8 +2,7 @@
 import { ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import { ElUploadRequestOptions } from 'element-plus/es/components/upload/src/upload.type'
-import { http } from '@/plugins/axios'
-import { uploadImage } from '@/apis/uploadApi'
+import { uploadImage } from '@/apis/upload'
 
 const props = defineProps<{
   modelValue: string | null
@@ -14,28 +13,19 @@ const emit = defineEmits<{
   (e: 'update:modelValue', url: string): void
 }>()
 
-//上传成功后
-const handleSuccess = (response: any, uploadFile: any) => {
-  imageUrl.value = response.data.url
-  emit('update:modelValue', imageUrl.value!)
-}
-
 const request = async (options: ElUploadRequestOptions) => {
   const form = new FormData()
   form.append('file', options.file)
 
-  await uploadImage(form)
+  const { data } = await uploadImage(form)
+  imageUrl.value = data.url
+  emit('update:modelValue', imageUrl.value!)
 }
 </script>
 
 <template>
   <div class="">
-    <el-upload
-      action=""
-      class="avatar-uploader"
-      :http-request="request"
-      :show-file-list="false"
-      :on-success="handleSuccess">
+    <el-upload action="" class="avatar-uploader" :http-request="request" :show-file-list="false">
       <img v-if="imageUrl" :src="imageUrl" class="avatar" />
       <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
     </el-upload>

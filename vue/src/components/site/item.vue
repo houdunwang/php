@@ -10,7 +10,7 @@ const props = defineProps<{ site: SiteModel }>()
   <div class="site">
     <header>
       <section>
-        站长: <span>{{ site.user.name }}</span>
+        站长: <span>{{ site.master.name }}</span>
       </section>
       <section>
         <icon-config theme="outline" fill="#333" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
@@ -39,10 +39,10 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           站点配置
         </a>
-        <a>
+        <router-link :to="{ name: 'admin.index', params: { id: site.id } }">
           <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           管理员设置
-        </a>
+        </router-link>
         <a>
           <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           角色管理
@@ -58,9 +58,7 @@ const props = defineProps<{ site: SiteModel }>()
         <a href="javascript:void(0)">
           <el-popconfirm title="确定删除站点吗?" @confirm="emit('del', site.id)">
             <template #reference>
-              <div class="flex items-center justify-center">
-                <icon-delete theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 删除
-              </div>
+              <div class="flex items-center justify-center"><icon-delete theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 删除</div>
             </template>
           </el-popconfirm>
         </a>

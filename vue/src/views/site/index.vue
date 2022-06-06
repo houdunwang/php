@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { apiSiteGet, ISite } from '@/apis/siteApi'
+import { getSiteList } from '@/apis/site'
 import useRequest from '@/composables/useRequest'
 
-const { collection, load, remove } = useRequest<ISite>()
+const { collection, load, remove } = useRequest<SiteModel>()
 
 const del = async (id: number) => {
   await remove(id)
-  await load(apiSiteGet)
+  await load(getSiteList)
 }
-await load(apiSiteGet)
+await load(getSiteList)
 </script>
 
 <template>

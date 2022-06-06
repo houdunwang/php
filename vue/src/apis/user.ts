@@ -1,14 +1,14 @@
 import { http } from '@/plugins/axios'
 
-export function getUserList() {
+export function getUserList(page = 1) {
   return http.request<UserModel[], ResponsePageResult<UserModel>>({
-    url: `user`,
+    url: `user?page=${page}`,
   })
 }
 
-export function apiInfo() {
+export function getCurrentUser() {
   return http.request<UserModel>({
-    url: `user/info`,
+    url: `user/currentUser`,
   })
 }
 

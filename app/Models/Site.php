@@ -19,8 +19,14 @@ class Site extends Model
         'config' => 'array',
     ];
 
-    public function user()
+    //站长
+    public function master()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function admins()
+    {
+        return $this->belongsToMany(User::class, 'admins')->withTimestamps();
     }
 }

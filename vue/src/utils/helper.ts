@@ -25,3 +25,14 @@ export function loginAndRegisterCallback(data: { token: string }) {
 
   ElMessage({ type: 'success', message: '登录成功' })
 }
+
+//限制点击频繁请求
+export function request(fn: () => Promise<void>) {
+  let isSubmit = false
+  return async () => {
+    if (isSubmit) return
+    isSubmit = true
+    await fn()
+    isSubmit = false
+  }
+}
