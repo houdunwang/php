@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CodeController;
-use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\FansController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ForgetPasswordController;
@@ -14,7 +13,9 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SiteConfigController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\SystemController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 
@@ -30,8 +31,9 @@ Route::post('code/user/{type}', [CodeController::class, 'user']);
 
 Route::get('init', InitController::class);
 
-Route::put('config/{module}', [ConfigController::class, 'update']);
-Route::get('config/{module}', [ConfigController::class, 'get']);
+Route::put('system', [SystemController::class, 'update']);
+Route::get('system', [SystemController::class, 'get']);
+Route::get('system/common', [SystemController::class, 'common']);
 
 Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
@@ -53,3 +55,4 @@ Route::get('captcha', CaptchaController::class);
 Route::apiResource('site', SiteController::class);
 
 Route::apiResource('site.admin', AdminController::class)->only(['index', 'store', 'destroy']);
+Route::put('site/{site}/config', [SiteConfigController::class, 'update']);

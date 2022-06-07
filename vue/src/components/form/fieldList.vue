@@ -7,7 +7,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'submit', args: any): void
+  (e: 'submit', args: any): Promise<any>
 }>()
 
 const model = props.model

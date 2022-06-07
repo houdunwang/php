@@ -6,7 +6,7 @@ const store = systemStore()
 
 <template>
   <div class="flex justify-center text-white shadow-sm font-bold mt-3 text-sm">
-    {{ store.data.config.copyright }}
+    {{ store.config.copyright }}
   </div>
 </template>
 

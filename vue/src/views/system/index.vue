@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { is_super_admin } from '@/utils/helper'
+import { isSuperAdmin } from '@/utils/helper'
 </script>
 
 <template>
-  <div class="" v-if="is_super_admin()">
+  <div class="" v-if="isSuperAdmin()">
     <section>
       <h5>模块管理</h5>
       <ul>

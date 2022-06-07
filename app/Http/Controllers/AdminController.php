@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Site;
 use App\Models\Admin;
 use App\Models\User;
+use Illuminate\Support\Facades\Request;
 
 class AdminController extends Controller
 {
@@ -18,7 +19,11 @@ class AdminController extends Controller
 
     public function index(Site $site)
     {
-        return UserResource::collection($site->admins()->paginate());
+        $admins = $site->admins()->when(request('content'), function ($query, $content) {
+            $query->where(request('type'), $content);
+        })->paginate();
+
+        return UserResource::collection($admins);
     }
 
     public function store(Site $site, StoreAdminRequest $request)

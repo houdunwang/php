@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getUser } from '@/apis/user'
-import { userModelField } from '@/config/form'
+import { userField } from '@/config/form'
 
 const route = useRoute()
 const { data } = await getUser(route.params.id)
@@ -15,7 +15,7 @@ const user = ref(data)
       { label: `${user.name}`, route: { name: 'user.show', params: { id: user.id } }, current: true },
     ]" />
 
-  <form-field-list :model="user" :fields="userModelField">
+  <form-field-list :model="user" :fields="userField">
     <template #button>
       <span class=""></span>
     </template>

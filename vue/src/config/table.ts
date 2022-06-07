@@ -26,5 +26,5 @@ export const userTableColumns = [
       ['女', 2],
     ],
   },
-  { prop: 'created_at', label: '创建时间', type: 'date', width: 120 },
+  { prop: 'created_at', label: '注册时间', type: 'date', width: 120 },
 ] as tableColumnsType[]

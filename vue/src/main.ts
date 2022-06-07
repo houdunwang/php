@@ -1,4 +1,3 @@
-import systemStore from '@/store/systemStore'
 import userStore from '@/store/userStore'
 import { App as AppType, createApp } from 'vue'
 import App from './App.vue'
@@ -7,6 +6,7 @@ import { setupPlugins } from './plugins'
 import '@/styles/global.scss'
 import 'animate.css'
 import registerDirective from './directive'
+import systemStore from '@/store/systemStore'
 
 class Main {
   public async bootstrap() {
@@ -26,11 +26,11 @@ class Main {
   }
   //初始应用数据
   private async initData() {
-    await userStore().getUserInfo()
-    //加载配置
     const storeSystem = systemStore()
-    await storeSystem.load()
-    document.title = storeSystem.data.config.title
+
+    await Promise.all([userStore().getUserInfo(), storeSystem.load()])
+
+    document.title = storeSystem.config.title
   }
 }
 

@@ -28,15 +28,19 @@ const onSubmit = async () => {
         <div>
           <h2 class="text-center text-gray-700 text-lg mt-3">找回密码</h2>
           <div class="mt-8">
-            <FormInput v-model="form.account" placeholder="邮箱或手机号" v-clearError="'account'" />
+            <FormInputField v-model="form.account" placeholder="邮箱或手机号" v-clearError="'account'" />
             <FormError name="account" />
 
-            <FormInput v-model="form.password" class="mt-3" type="password" placeholder="请输入新密码" />
+            <FormInputField v-model="form.password" class="mt-3" type="password" placeholder="请输入新密码" />
             <FormError name="password" />
 
-            <FormInput v-model="form.password_confirmation" class="mt-3" type="password" placeholder="再次输入密码" />
+            <FormInputField
+              v-model="form.password_confirmation"
+              class="mt-3"
+              type="password"
+              placeholder="再次输入密码" />
 
-            <HdCode class="mt-2" :account="form.account" v-model:code="form.code" type="exist" />
+            <HdValidateCode class="mt-2" :account="form.account" v-model:code="form.code" type="exist" />
           </div>
 
           <FormButton class="w-full primary mt-2" :disabled="store.hasError">确定修改</FormButton>

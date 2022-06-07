@@ -1,8 +1,12 @@
 import { http } from '@/plugins/axios'
 
-export function getUserList(page = 1) {
+export function getUserList(page = 1, params: Record<any, any> = {}) {
   return http.request<UserModel[], ResponsePageResult<UserModel>>({
-    url: `user?page=${page}`,
+    url:
+      `user?page=${page}&` +
+      Object.entries(params)
+        .map(([k, v]) => `${k}=${v}`)
+        .join('&'),
   })
 }
 

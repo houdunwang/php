@@ -29,4 +29,9 @@ class Site extends Model
     {
         return $this->belongsToMany(User::class, 'admins')->withTimestamps();
     }
+
+    public function config()
+    {
+        return $this->hasOne(SiteConfig::class, 'site_id');
+    }
 }

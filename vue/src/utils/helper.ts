@@ -6,33 +6,48 @@ import useStore from '@/store/userStore'
 import store from './store'
 const storeUser = useStore()
 
-export function is_super_admin() {
+//是否是超级管理员
+export function isSuperAdmin() {
   return Boolean(storeUser.info?.is_super_admin)
+}
+
+/**
+ * 是否登录
+ * @returns boolean
+ */
+export function isLogin(): boolean {
+  return !!store.get(CacheEnum.TOKEN_NAME)
+}
+
+//退出登录
+export async function logout() {
+  userStore().resetInfo()
+
+  store.remove(CacheEnum.TOKEN_NAME)
+  router.push({ name: 'home' })
 }
 
 /**
  * 登录与注册回调
  * @param data
  */
-export function loginAndRegisterCallback(data: { token: string }) {
+export async function loginAndRegisterCallback(data: { token: string }) {
   store.set(CacheEnum.TOKEN_NAME, data.token)
 
-  userStore().getUserInfo()
+  await userStore().getUserInfo()
 
   const routeName = store.get(CacheEnum.REDIRECT_ROUTE_NAME) ?? 'home'
-
   router.push({ name: routeName })
 
   ElMessage({ type: 'success', message: '登录成功' })
 }
 
 //限制点击频繁请求
-export function request(fn: () => Promise<void>) {
+export function request(fn: () => Promise<any>) {
   let isSubmit = false
-  return async () => {
+  return () => {
     if (isSubmit) return
     isSubmit = true
-    await fn()
-    isSubmit = false
+    return fn().finally(() => (isSubmit = false))
   }
 }

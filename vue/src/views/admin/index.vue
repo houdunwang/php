@@ -2,13 +2,13 @@
 import { syncSiteAdmin, getAdminList, removeSiteAdmin } from '@/apis/admin'
 import { getSite } from '@/apis/site'
 import { userTableColumns } from '@/config/table'
-import { ElMessageBox, ElPopconfirm } from 'element-plus'
+import { ElMessageBox } from 'element-plus'
 const route = useRoute()
 
 const site = await getSite(route.params.id)
 
-const getList = async (page: number = 1) => {
-  return await getAdminList(site.id, page)
+const getList = async (page: number = 1, params = {}) => {
+  return await getAdminList(site.id, page, params)
 }
 const tableComponentKey = ref(1)
 
@@ -35,7 +35,13 @@ const action = async (model: any) => {
 
   <UserSelectUser @select="select" class="mb-2" />
 
-  <HdTableComponent :api="getList" :columns="userTableColumns" :key="tableComponentKey" :buttons="[{ title: '移除', command: 'remove' }]" @action="action" />
+  <HdTableComponent
+    :api="getList"
+    :columns="userTableColumns"
+    :key="tableComponentKey"
+    :buttons="[{ title: '移除', command: 'remove' }]"
+    :search-show="false"
+    @action="action" />
 </template>
 
 <style lang="scss"></style>

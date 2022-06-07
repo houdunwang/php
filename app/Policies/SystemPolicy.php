@@ -6,7 +6,7 @@ use App\Models\Config;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ConfigPolicy
+class SystemPolicy
 {
     use HandlesAuthorization;
 

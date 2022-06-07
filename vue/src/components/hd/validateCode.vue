@@ -21,9 +21,9 @@ onUnmounted(() => clearInterval(timeoutId))
 <template>
   <div class="">
     <div class="flex justify-between items-center">
-      <FormInput
+      <FormInputField
         placeholder="请输入验证码"
-        :value="props.code"
+        v-model="props.code"
         class="mr-1"
         required
         v-clearError="'code'"

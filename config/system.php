@@ -18,11 +18,11 @@ return [
         'height' => env('AVATAR_CROP_HEIGHT', 100),
     ],
     //系统令牌
-    "site" => [
-        "title" => "后盾人",
-        "logo" => null,
-        "copyright" => "后盾人"
-    ],
+    // "site" => [
+    //     "title" => "后盾人",
+    //     "logo" => null,
+    //     "copyright" => "后盾人"
+    // ],
     //文件上传
     "upload" => [
         "size" => 2000,

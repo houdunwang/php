@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('configs', function (Blueprint $table) {
+        Schema::create('systems', function (Blueprint $table) {
             $table->id();
-            $table->string('module')->unique()->comment('模块标识');
-            $table->json('data')->nullable()->comment('配置项内容');
+            $table->string('title')->comment('系统名称');
+            $table->string('logo')->comment('logo');
+            $table->string('copyright')->comment('版权信息');
+            $table->json('config')->nullable()->comment('系统配置项');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configs');
+        Schema::dropIfExists('systems');
     }
 };

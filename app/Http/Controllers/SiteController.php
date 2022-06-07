@@ -22,7 +22,6 @@ class SiteController extends Controller
 
     public function store(StoresiteRequest $request, Site $site)
     {
-        sleep(4);
         $site->fill($request->input());
         $site->user_id = Auth::id();
         $site->save();
@@ -42,16 +41,9 @@ class SiteController extends Controller
         return $this->success('站点更新成功', data: $site->refresh());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\site  $site
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Site $site)
     {
         $this->authorize('delete', $site);
-
         $site->delete();
         return $this->success();
     }

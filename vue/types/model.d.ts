@@ -63,28 +63,27 @@ type SiteModel = {
   master: UserModel
 }
 
-type ConfigModel = {
-  site: {
-    logo: string
-    title: string
-    copyright: string
-  }
-  code: {
-    expire: string
-    length: number
-    timeout: number
-  }
-  aliyun: {
-    access_key_id?: any
-    sms_sign_name: string
-    access_key_secret?: any
-  }
-  avatar: {
-    width: string
-    height: string
-  }
-  upload: {
-    size: number
-    mimes: string
-  }
+type SystemModel = {
+  title: string
+  logo: string
+  copyright: string
+  config: {
+    code: {
+      expire: string
+      length: number
+      timeout: number
+    }
+    aliyun: {
+      access_key_id?: any
+      sms_sign_name: string
+      access_key_secret?: any
+    }
+    avatar: {
+      width: string
+      height: string
+    }
+    upload: {
+      size: number
+      mimes: string
+    }
 }

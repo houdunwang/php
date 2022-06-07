@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Config extends Model
+class System extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['module', 'data', 'common'];
+    protected $fillable = ['title', 'logo', 'copyright'];
 
-    protected $casts = ['data' => 'array', 'common' => 'array'];
+    protected $casts = ['config' => 'array'];
 }

@@ -5,7 +5,7 @@ export type ResponseData = {
   token: string
 }
 
-export function apiLogin(data: { account: string; password: string }) {
+export function login(data: { account: string; password: string }) {
   return http.request<ResponseData>({
     url: `login`,
     method: 'post',

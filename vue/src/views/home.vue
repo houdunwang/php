@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import utils from '@/utils'
 import { RouteEnum } from '@/enum/routeEnum'
+import { isLogin } from '@/utils/helper'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import { RouteEnum } from '@/enum/routeEnum'
     <img src="/images/xj.jpg" class="w-40 h-40 object-cover rounded-full border-8 border-white mb-5" />
     <div>
       <FormButton @click="$router.push({ name: 'admin' })" class="danger">后台管理</FormButton>
-      <FormButton v-if="!utils.user.isLogin()" class="primary ml-2" @click="$router.push({ name: RouteEnum.LOGIN })"
+      <FormButton v-if="!isLogin()" class="primary ml-2" @click="$router.push({ name: RouteEnum.LOGIN })"
         >用户登录</FormButton
       >
     </div>

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { apiLogin } from '@/apis/auth'
+import { login } from '@/apis/auth'
 import useCaptcha from '@/composables/useCaptcha'
 import errorStore from '@/store/errorStore'
-import utils from '@/utils'
 import { loginAndRegisterCallback } from '@/utils/helper'
 import Footer from './footer.vue'
 
@@ -13,7 +12,7 @@ const { loadCaptcha } = useCaptcha()
 
 const onSubmit = async () => {
   loadCaptcha()
-  const { data } = await apiLogin(form)
+  const { data } = await login(form)
   loginAndRegisterCallback(data)
 }
 </script>
@@ -26,10 +25,10 @@ const onSubmit = async () => {
         <div>
           <h2 class="text-center text-gray-700 text-lg mt-3">用户登录</h2>
           <div class="mt-8">
-            <FormInput v-model="form.account" placeholder="请输入邮箱或手机号" />
+            <FormInputField v-model="form.account" placeholder="请输入邮箱或手机号" />
             <FormError name="account" />
 
-            <FormInput
+            <FormInputField
               v-model="form.password"
               class="mt-3"
               type="password"
