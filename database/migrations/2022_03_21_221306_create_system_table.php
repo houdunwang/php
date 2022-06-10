@@ -15,9 +15,6 @@ return new class extends Migration
     {
         Schema::create('systems', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->comment('系统名称');
-            $table->string('logo')->comment('logo');
-            $table->string('copyright')->comment('版权信息');
             $table->json('config')->nullable()->comment('系统配置项');
             $table->timestamps();
         });

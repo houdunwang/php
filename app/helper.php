@@ -1,8 +1,8 @@
 <?php
 
+use App\Models\Site;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * 当前用户
@@ -20,4 +20,17 @@ function user(): ?User
 function is_super_admin(): bool
 {
     return user() ? user()->is_super_admin : false;
+}
+
+// function site(Site $site = null): Site | null
+// {
+//     static $cache = null;
+//     if ($site) $cache = $site;
+
+//     return $cache;
+// }
+
+function is_site_master(Site $site): bool
+{
+    return true;
 }

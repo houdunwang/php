@@ -6,7 +6,7 @@ const storeSystem = systemStore()
 
 <template>
   <div class="py-10 md:px-5 md:grid grid-cols-10 items-center">
-    <img :src="storeSystem.config.logo" class="col-span-4 hidden md:block" />
+    <img :src="storeSystem.config.site.logo" class="col-span-4 hidden md:block" />
     <main>
       <router-link :to="{ name: 'site.index' }">
         <icon-network-tree theme="filled" :strokeWidth="2" />

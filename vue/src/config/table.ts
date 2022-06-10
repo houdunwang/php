@@ -7,7 +7,11 @@ export type tableColumnsType = {
   options: any
 }
 
-export type tableButtonType = { title: string; command: string; type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' }
+export type tableButtonType = {
+  title: string
+  command: string
+  type?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
+}
 
 export const userTableColumns = [
   { prop: 'id', label: 'ID', width: 80, align: 'center' },

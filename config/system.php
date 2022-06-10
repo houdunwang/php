@@ -1,5 +1,11 @@
 <?php
 return [
+    //基本信息
+    "site" => [
+        "title" => "后盾人",
+        "logo" => null,
+        "copyright" => "后盾人"
+    ],
     //验证码
     'code' => [
         'expire' => env('CODE_EXPIRE_TIME', 600),
@@ -17,12 +23,6 @@ return [
         'width' => env('AVATAR_CROP_WIDTH', 500),
         'height' => env('AVATAR_CROP_HEIGHT', 100),
     ],
-    //系统令牌
-    // "site" => [
-    //     "title" => "后盾人",
-    //     "logo" => null,
-    //     "copyright" => "后盾人"
-    // ],
     //文件上传
     "upload" => [
         "size" => 2000,

@@ -5,7 +5,6 @@ import { tableButtonType, userTableColumns } from '@/config/table'
 const buttons = [
   { title: '查看', command: 'show', type: 'success' },
   { title: '查看', command: 'show', type: 'danger' },
-  { title: '查看', command: 'show' },
 ] as tableButtonType[]
 
 const router = useRouter()

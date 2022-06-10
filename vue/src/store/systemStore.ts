@@ -1,15 +1,15 @@
-import { getCommon } from '@/apis/system'
+import { getSystem } from '@/apis/system'
 import { defineStore } from 'pinia'
 
 export default defineStore('system', {
   state: () => {
     return {
-      config: {} as Omit<SystemModel, 'config'>,
+      config: {} as SystemModel['config'] | undefined,
     }
   },
   actions: {
     async load() {
-      this.config = await getCommon()
+      this.config = await getSystem()?.then((r) => r.config)
     },
   },
 })

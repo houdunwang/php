@@ -29,7 +29,7 @@ export const userField = [
   { title: '注册时间', name: 'created_at', disabled: true },
 ] as formFieldType[]
 
-//配置
+//系统配置
 export const configField = {
   site: [
     { title: '标题', name: 'title', type: 'input', error_name: 'title' },
@@ -57,12 +57,20 @@ export const configField = {
 } as Record<string, formFieldType[]>
 
 //站点
-export const siteField = {
+export const siteField = [
+  { name: 'title', title: '网站名称', error_name: 'title' },
+  { name: 'url', title: '域名地址', error_name: 'url' },
+] as formFieldType[]
+
+export const siteConfigField = {
   site: [
-    { name: 'title', title: '网站名称', error_name: 'title' },
-    { name: 'url', title: '域名地址', error_name: 'url' },
     { name: 'tel', title: '联系电话', error_name: 'tel' },
     { name: 'email', title: '邮箱', error_name: 'email' },
     { name: 'address', title: '地址', error_name: 'address' },
+  ],
+  aliyun: [
+    { title: 'key', name: 'access_key_id', error_name: 'config.aliyun.access_key_id' },
+    { title: 'secret', name: 'access_key_secret', error_name: 'config.aliyun.access_key_secret' },
+    { title: '短信签名', name: 'sms_sign_name', error_name: 'config.aliyun.sms_sign_name' },
   ],
 } as Record<string, formFieldType[]>

@@ -5,6 +5,7 @@ const props = withDefaults(
   defineProps<{
     api: (page?: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<Record<keyof any, any>>>
     buttons?: tableButtonType[]
+    buttonWidth?: number
     columns: tableColumnsType[]
     searchShow?: boolean
   }>(),
@@ -14,13 +15,12 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: 'action', model: { [x: string]: any }, type: string): void
 }>()
-
-const response = ref(await props.api(1))
+const data = await props.api(1)
+const response = ref(data)
 
 const load = async (page: number = 1) => {
   response.value = await props.api(page)
 }
-load()
 
 const type = ref('name')
 const content = ref('')
@@ -28,6 +28,17 @@ const content = ref('')
 const search = async () => {
   response.value = await props.api(1, { type: type.value, content: content.value })
 }
+
+const btnColumn = ref()
+const butnGroupWidth = ref(0)
+onMounted(() =>
+  nextTick(() => {
+    let w = [...btnColumn.value.$el.querySelectorAll('button')].reduce((w, el) => {
+      return w + parseInt(getComputedStyle(el).width)
+    }, 0)
+    butnGroupWidth.value = w + 30
+  }),
+)
 </script>
 
 <template>
@@ -41,7 +52,7 @@ const search = async () => {
       <el-button type="success" size="default" @click="search">搜索</el-button>
     </div>
 
-    <el-table :data="response.data" border stripe>
+    <el-table :data="response.data" border stripe :fit="true">
       <el-table-column
         v-for="col in props.columns"
         :prop="col.prop"
@@ -67,11 +78,11 @@ const search = async () => {
       </el-table-column>
 
       <el-table-column
-        :width="props.buttons.length == 1 ? 100 : props.buttons.length * 70"
         align="center"
+        :width="props.buttonWidth ?? butnGroupWidth"
         #default="{ row }"
         v-if="props.buttons">
-        <el-button-group>
+        <el-button-group ref="btnColumn">
           <el-button
             :type="item.type || 'default'"
             v-for="(item, key) in props.buttons"
@@ -92,3 +103,12 @@ const search = async () => {
       :hide-on-single-page="true" />
   </div>
 </template>
+
+<style lang="scss">
+td {
+  white-space: nowrap;
+}
+.cell {
+  display: inline-block;
+}
+</style>

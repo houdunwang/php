@@ -22,6 +22,10 @@ class StoreSiteRequest extends FormRequest
 
     public function attributes()
     {
-        return ['title' => '站点名称', 'keyword' => '网站关键字', 'description' => '站点描述'];
+        return [
+            'title' => '站点名称',
+            'keyword' => '网站关键字',
+            'description' => '站点描述'
+        ];
     }
 }

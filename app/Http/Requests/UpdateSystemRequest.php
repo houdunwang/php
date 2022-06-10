@@ -14,8 +14,8 @@ class UpdateSystemRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required'],
-            'logo' => ['required', 'url'],
+            'config.site.title' => ['required'],
+            'config.site.logo' => ['required', 'url'],
             'config.avatar.width' => ['required', 'numeric'],
             'config.avatar.height' => ['required', 'numeric'],
             'config.upload.size' => ['required', 'numeric'],
@@ -29,8 +29,8 @@ class UpdateSystemRequest extends FormRequest
     public function attributes()
     {
         return [
-            'title' => '站点名称',
-            'logo' => '网站标志',
+            'config.site.title' => '站点名称',
+            'config.site.logo' => '网站标志',
             'config.avatar.width' => '头像宽度',
             'config.avatar.height' => '头像高度',
             'config.upload.size' => '上传文件大小',

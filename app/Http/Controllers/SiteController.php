@@ -12,19 +12,17 @@ class SiteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:sanctum']);
+        // $this->middleware(['auth:sanctum']);
     }
 
     public function index()
     {
-        return Site::latest()->with('master')->paginate(10);
+        return SiteResource::collection(Site::latest()->with('master')->paginate(10));
     }
 
-    public function store(StoresiteRequest $request, Site $site)
+    public function store(StoreSiteRequest $request, Site $site)
     {
-        $site->fill($request->input());
-        $site->user_id = Auth::id();
-        $site->save();
+        $site->fill($request->input() + ['user_id' => Auth::id()])->save();
 
         return $this->success('站点添加成功', new SiteResource($site));
     }

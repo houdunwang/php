@@ -64,10 +64,13 @@ type SiteModel = {
 }
 
 type SystemModel = {
-  title: string
-  logo: string
-  copyright: string
+  id: number
   config: {
+    site: {
+      title: string
+      logo: string
+      copyright: string
+    }
     code: {
       expire: string
       length: number
@@ -86,4 +89,5 @@ type SystemModel = {
       size: number
       mimes: string
     }
+  }
 }

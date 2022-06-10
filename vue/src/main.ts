@@ -6,12 +6,10 @@ import { setupPlugins } from './plugins'
 import '@/styles/global.scss'
 import 'animate.css'
 import registerDirective from './directive'
-import systemStore from '@/store/systemStore'
 
 class Main {
   public async bootstrap() {
     const app = this.app()
-    await this.initData()
     await router.isReady()
     app.mount('#app')
   }
@@ -23,14 +21,6 @@ class Main {
 
     registerDirective(app)
     return app
-  }
-  //初始应用数据
-  private async initData() {
-    const storeSystem = systemStore()
-
-    await Promise.all([userStore().getUserInfo(), storeSystem.load()])
-
-    document.title = storeSystem.config.title
   }
 }
 

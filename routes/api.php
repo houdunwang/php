@@ -13,7 +13,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SiteConfigController;
+// use App\Http\Controllers\SiteConfigController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\UploadController;
@@ -55,4 +55,4 @@ Route::get('captcha', CaptchaController::class);
 Route::apiResource('site', SiteController::class);
 
 Route::apiResource('site.admin', AdminController::class)->only(['index', 'store', 'destroy']);
-Route::put('site/{site}/config', [SiteConfigController::class, 'update']);
+// Route::put('site/{site}/config', [SiteConfigController::class, 'update']);

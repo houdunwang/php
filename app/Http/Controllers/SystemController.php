@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateSystemRequest;
+use App\Http\Resources\SystemResource;
 use App\Models\System;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class SystemController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:sanctum'])->except(['common']);
+        $this->middleware(['auth:sanctum']);
     }
 
     /**
@@ -33,7 +34,7 @@ class SystemController extends Controller
      */
     public function get(Request $request)
     {
-        return $this->success(data: System::first());
+        return $this->success(data: new SystemResource(System::firstOrFail()));
     }
 
     /**
@@ -41,10 +42,10 @@ class SystemController extends Controller
      * @param Request $request
      * @param string $module
      */
-    public function common(Request $request)
-    {
-        $system = System::first()->toArray();
-        unset($system['config']);
-        return $this->success(data: $system);
-    }
+    // public function common(Request $request)
+    // {
+    //     $system = System::first()->toArray();
+    //     unset($system['config']);
+    //     return $this->success(data: $system);
+    // }
 }

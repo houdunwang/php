@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Config;
 use App\Models\System;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -21,15 +22,13 @@ class SystemMiddleware
 
     protected function loadConfig()
     {
-        //系统配置
-        $database = System::first();
-        $config = config('system');
-
-        foreach ($config as $name => $value) {
+        $config = System::value('config');
+        foreach (config('system') as $name => $value) {
             foreach ($value as $key => $item) {
-                $config[$name][$key] = $database['data'][$name][$key] ?? $item;
+                $config[$name][$key] = $config[$name][$key] ?? $item;
             }
         }
+        $config['site']['logo'] = $config['site']['logo'] ?? url('static/logo.png');
 
         config(['system' => $config]);
     }

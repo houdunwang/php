@@ -2,6 +2,10 @@
 import navbarVue from './admin/navbar.vue'
 import TopMenu from './admin/topMenu.vue'
 import Copyright from './admin/copyright.vue'
+import systemStore from '@/store/systemStore'
+import userStore from '@/store/userStore'
+
+await Promise.all([userStore().getUserInfo(), systemStore().load()])
 </script>
 
 <template>

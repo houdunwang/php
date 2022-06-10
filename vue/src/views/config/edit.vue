@@ -6,12 +6,13 @@ import systemStore from '@/store/systemStore'
 import { ElMessage } from 'element-plus'
 
 const model = ref(await getSystem())
+
 const store = systemStore()
 const onSubmit = async () => {
   await updateSystem(model.value)
   ElMessage.success('保存成功')
   store.load()
-  document.title = model.value.title
+  document.title = model.value.config.site.logo
   router.push({ name: 'system.index' })
 }
 const tabModel = ref('site')
@@ -25,7 +26,7 @@ const tabModel = ref('site')
     ]" />
   <el-tabs v-model="tabModel" tab-position="top" type="border-card">
     <el-tab-pane label="网站信息" name="site">
-      <FormFieldList :model="model" :fields="configField.site" @submit="onSubmit" />
+      <FormFieldList :model="model.config.site" :fields="configField.site" @submit="onSubmit" />
     </el-tab-pane>
     <el-tab-pane label="验证码" name="code">
       <FormFieldList :model="model.config.code" :fields="configField.code" @submit="onSubmit" />
