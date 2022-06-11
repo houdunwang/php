@@ -22,9 +22,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::when(request('content'), function ($query, $content) {
-            $query->where(request('type'), $content);
-        })->paginate();
+        $users = User::when(request('type'), function ($query, $type) {
+            $query->where($type, request('content'));
+        })->paginate(request('row', 10));
 
         return UserResource::collection($users);
     }

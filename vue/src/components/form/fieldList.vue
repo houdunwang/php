@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { formFieldType } from '@/config/form'
 
-const props = defineProps<{
+const {
+  model,
+  fields,
+  showButton = true,
+} = defineProps<{
   model: any
   fields: formFieldType[]
+  showButton?: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'submit', args: any): Promise<any>
+  (e: 'submit'): void
 }>()
-
-const model = props.model
 </script>
 
 <template>
   <el-form :model="model" label-width="80px" :inline="false" size="large">
-    <el-form-item :label="f.title" v-for="f of props.fields">
+    <el-form-item :label="f.title" v-for="f of fields">
       <template v-if="f.type == 'input' || !f.type">
         <el-input v-model="model![f.name]" :placeholder="f.placeholder" :readonly="f.readonly" :disabled="f.disabled" />
         <FormError :name="f.error_name || f.name" />
@@ -37,9 +40,9 @@ const model = props.model
         </div>
       </template>
     </el-form-item>
-    <el-form-item>
+    <el-form-item v-if="showButton">
       <slot name="button">
-        <el-button type="primary" @click="emit('submit')"> 保存提交</el-button>
+        <el-button type="primary" @click="emit('submit')">保存提交</el-button>
       </slot>
     </el-form-item>
   </el-form>

@@ -33,7 +33,7 @@ const action = async (model: any) => {
       { label: `【${site.title}】管理员列表`, route: { name: 'admin.index' } },
     ]" />
 
-  <UserSelectUser @select="select" class="mb-2" />
+  <UserSelect @select="select" class="mb-2" />
 
   <HdTableComponent
     :api="getList"

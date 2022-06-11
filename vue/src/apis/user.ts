@@ -16,8 +16,10 @@ export function getCurrentUser() {
   })
 }
 
-export function getUser(id: string | string[]) {
-  return http.request<UserModel>({
-    url: `user/${id}`,
-  })
+export function getUser(id: number) {
+  return http
+    .request<UserModel>({
+      url: `user/${id}`,
+    })
+    .then((r) => r.data)
 }

@@ -1,0 +1,27 @@
+<script setup lang="ts">
+import { getUser } from '@/apis/user'
+import { userField } from '@/config/form'
+
+const { id, dialogWidth = '60%' } = defineProps<{
+  id?: number
+  dialogWidth?: string
+}>()
+
+let dialogState = $ref(false)
+let user = $ref<UserModel>()
+
+const loadUser = async () => {
+  user = await getUser(id!)
+  dialogState = true
+}
+</script>
+
+<template>
+  <Teleport to="body">
+    <el-dialog v-model="dialogState" title="用户资料" :width="dialogWidth" top="20px">
+      <form-field-list :model="user" :fields="userField" :show-button="false" />
+    </el-dialog>
+  </Teleport>
+
+  <el-button type="primary" size="default" @click="loadUser">显示</el-button>
+</template>

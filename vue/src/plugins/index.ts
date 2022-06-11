@@ -9,7 +9,7 @@ import setupDayjs from './dayjs'
 
 export function setupPlugins(app: App) {
   setupTailwindcss()
-  setupElementPlus(app)
+  setupElementPlus()
   setupPinia(app)
   setupIconPark(app)
   setupTDesign(app)

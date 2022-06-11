@@ -9,7 +9,7 @@ const props = withDefaults(
     columns: tableColumnsType[]
     searchShow?: boolean
   }>(),
-  { searchShow: true },
+  { searchShow: true, buttonWidth: 100 },
 )
 
 const emit = defineEmits<{
@@ -31,14 +31,17 @@ const search = async () => {
 
 const btnColumn = ref()
 const butnGroupWidth = ref(0)
-onMounted(() =>
+
+onMounted(() => {
   nextTick(() => {
-    let w = [...btnColumn.value.$el.querySelectorAll('button')].reduce((w, el) => {
-      return w + parseInt(getComputedStyle(el).width)
-    }, 0)
-    butnGroupWidth.value = w + 30
-  }),
-)
+    if (props.buttons) {
+      let w = [...btnColumn.value.$el.querySelectorAll('button')].reduce((w, el) => {
+        return w + parseInt(getComputedStyle(el).width)
+      }, 0)
+      butnGroupWidth.value = w + 30
+    }
+  })
+})
 </script>
 
 <template>
@@ -90,6 +93,10 @@ onMounted(() =>
             {{ item.title }}
           </el-button>
         </el-button-group>
+      </el-table-column>
+
+      <el-table-column :width="props.buttonWidth" #default="{ row }">
+        <slot name="button" :user="row" />
       </el-table-column>
     </el-table>
 

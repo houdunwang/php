@@ -19,8 +19,8 @@ class AdminController extends Controller
 
     public function index(Site $site)
     {
-        $admins = $site->admins()->when(request('content'), function ($query, $content) {
-            $query->where(request('type'), $content);
+        $admins = $site->admins()->when(request('type'), function ($query, $type) {
+            $query->where($type, request('content'));
         })->paginate();
 
         return UserResource::collection($admins);
