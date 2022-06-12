@@ -34,3 +34,9 @@ const active = ref('name' + props.tabs.findIndex((tab) => tab.route?.name == rou
     <el-tab-pane :label="tab.label" :name="`name${index}`" v-for="(tab, index) of tabs" />
   </el-tabs>
 </template>
+
+<style lang="scss" scoped>
+:deep(.el-tabs__item) {
+  @apply bg-white;
+}
+</style>

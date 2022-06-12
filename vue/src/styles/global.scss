@@ -1,3 +1,14 @@
 .el-tabs__item {
   border-bottom: solid 1px #ddd !important;
 }
+
+.el-dialog__header {
+  padding-bottom: 0 !important;
+  .el-dialog__title {
+    font-size: 1rem;
+    color: #666;
+  }
+}
+.el-dialog__body {
+  padding-top: 10px !important;
+}

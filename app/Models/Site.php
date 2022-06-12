@@ -13,7 +13,7 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['config'];
+    protected $fillable = ['config', 'title', 'url'];
 
     protected $casts = [
         'config' => 'array',

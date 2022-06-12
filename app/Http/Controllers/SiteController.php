@@ -12,7 +12,7 @@ class SiteController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth:sanctum']);
     }
 
     public function index()
@@ -22,7 +22,9 @@ class SiteController extends Controller
 
     public function store(StoreSiteRequest $request, Site $site)
     {
-        $site->fill($request->input() + ['user_id' => Auth::id()])->save();
+        $site->fill($request->input());
+        $site->user_id = Auth::id();
+        $site->save();
 
         return $this->success('站点添加成功', new SiteResource($site));
     }

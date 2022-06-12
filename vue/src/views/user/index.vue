@@ -11,8 +11,8 @@ const tabs = [
   <hd-tab :tabs="tabs" />
 
   <hd-table-component :api="getUserList" :columns="userTableColumns">
-    <template #button="{ user }">
-      <user-info :id="user.id" />
+    <template #button="{ model }">
+      <user-info :id="model.id" />
     </template>
   </hd-table-component>
 </template>

@@ -1,0 +1,13 @@
+{
+    "name": "Sdf",
+    "alias": "sdf",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Addons\\Sdf\\Providers\\SdfServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

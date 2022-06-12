@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+// include_once "../addons.php";
+// app()->bind('aa', \Addons\Blog\ServiceProvider::class);
+
+Route::get('a', function () {
+    return 'Hello World';
+});
+
 Route::fallback(function () {
     if (is_file(public_path('dist/index.html'))) {
         return file_get_contents(public_path('dist/index.html'));

@@ -28,7 +28,7 @@ export async function logout() {
 }
 
 /**
- * 登录与注册回调
+ * 登录与注册后记录token
  * @param data
  */
 export async function loginAndRegisterCallback(data: { token: string }) {
@@ -43,11 +43,11 @@ export async function loginAndRegisterCallback(data: { token: string }) {
 }
 
 //限制点击频繁请求
-export function request(fn: () => Promise<any>) {
+export function request(fn: (args: any) => Promise<any>) {
   let isSubmit = false
-  return () => {
+  return (args: any) => {
     if (isSubmit) return
     isSubmit = true
-    return fn().finally(() => (isSubmit = false))
+    return fn(args).finally(() => (isSubmit = false))
   }
 }

@@ -21,7 +21,7 @@ const getList = async (page = 1, params = {}) => {
 
 <template>
   <div class="">
-    <el-dialog v-model="dialogTableVisible" title="选择用户" width="95%" top="20px">
+    <el-dialog v-model="dialogTableVisible" width="95%" top="20px" title="选择用户">
       <HdTableComponent
         :api="getList"
         :columns="userTableColumns"
@@ -31,3 +31,9 @@ const getList = async (page = 1, params = {}) => {
     <el-button type="primary" size="default" @click="dialogTableVisible = !dialogTableVisible">选择用户</el-button>
   </div>
 </template>
+
+<style lang="scss" scoped>
+:deep(.el-dialog__header) {
+  //   display: none !important;
+}
+</style>

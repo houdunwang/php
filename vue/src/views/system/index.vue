@@ -7,11 +7,11 @@ import { isSuperAdmin } from '@/utils/helper'
     <section>
       <h5>模块管理</h5>
       <ul>
-        <li>
+        <li @click="$router.push({ name: 'module.index' })">
           <icon-blocks-and-arrows theme="outline" :strokeWidth="2" />
           模块列表
         </li>
-        <li>
+        <li @click="$router.push({ name: 'module.design' })">
           <icon-graphic-design theme="outline" :strokeWidth="2" />
           设计模块
         </li>

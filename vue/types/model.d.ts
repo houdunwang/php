@@ -91,3 +91,12 @@ type SystemModel = {
     }
   }
 }
+
+type ModuleModel = {
+  id: number
+  title: string
+  name: string
+  version: string
+  author: string
+  perview: string
+}

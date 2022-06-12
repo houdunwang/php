@@ -17,6 +17,7 @@
         "laravel/telescope": "^4.8",
         "laravel/tinker": "^2.7",
         "mews/captcha": "^3.2",
+        "nwidart/laravel-modules": "^9.0",
         "overtrue/easy-sms": "^2.1",
         "spatie/image": "^2.2",
         "spatie/laravel-permission": "^5.5"
@@ -43,7 +44,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Addons\\": "addons/"
         }
     },
     "scripts": {

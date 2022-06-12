@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import { tableButtonType, tableColumnsType, userTableColumns } from '@/config/table'
+import { ElMessage } from 'element-plus'
 const props = withDefaults(
   defineProps<{
-    api: (page?: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<Record<keyof any, any>>>
+    api: (page?: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
     buttons?: tableButtonType[]
     buttonWidth?: number
     columns: tableColumnsType[]
@@ -15,6 +16,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: 'action', model: { [x: string]: any }, type: string): void
 }>()
+
 const data = await props.api(1)
 const response = ref(data)
 
@@ -26,6 +28,10 @@ const type = ref('name')
 const content = ref('')
 
 const search = async () => {
+  if (!type.value) {
+    return ElMessage.error('请选择搜索类型')
+  }
+
   response.value = await props.api(1, { type: type.value, content: content.value })
 }
 
@@ -95,8 +101,8 @@ onMounted(() => {
         </el-button-group>
       </el-table-column>
 
-      <el-table-column :width="props.buttonWidth" #default="{ row }">
-        <slot name="button" :user="row" />
+      <el-table-column :width="props.buttonWidth" #default="{ row }" v-if="$slots.button">
+        <slot name="button" :model="row" />
       </el-table-column>
     </el-table>
 

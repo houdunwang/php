@@ -35,10 +35,6 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           访问首页
         </a>
-        <a>
-          <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-          站点配置
-        </a>
         <router-link :to="{ name: 'admin.index', params: { id: site.id } }">
           <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           管理员设置
@@ -51,6 +47,9 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           更新权限表
         </a>
+        <router-link :to="{ name: 'site.config', params: { id: site.id } }">
+          <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 站点配置
+        </router-link>
         <router-link :to="{ name: 'site.edit', params: { id: site.id } }">
           <icon-editor theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           编辑站点
@@ -58,7 +57,9 @@ const props = defineProps<{ site: SiteModel }>()
         <a href="javascript:void(0)">
           <el-popconfirm title="确定删除站点吗?" @confirm="emit('del', site.id)">
             <template #reference>
-              <div class="flex items-center justify-center"><icon-delete theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 删除</div>
+              <div class="flex items-center justify-center">
+                <icon-delete theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 删除
+              </div>
             </template>
           </el-popconfirm>
         </a>

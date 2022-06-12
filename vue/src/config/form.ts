@@ -7,6 +7,7 @@ export type formFieldType = {
   readonly?: boolean
   disabled?: boolean
   placeholder?: string
+  value?: any
 }
 
 export const userField = [
@@ -74,3 +75,10 @@ export const siteConfigField = {
     { title: '短信签名', name: 'sms_sign_name', error_name: 'config.aliyun.sms_sign_name' },
   ],
 } as Record<string, formFieldType[]>
+
+export const moduleForm = [
+  { title: '模块名称', name: 'title', error_name: 'title' },
+  { title: '英文标识', name: 'name', error_name: 'name' },
+  { title: '开发者', name: 'author', error_name: 'author' },
+  { title: '版本号', name: 'version', error_name: 'version', value: '1.0' },
+] as formFieldType[]

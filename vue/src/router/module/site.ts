@@ -25,5 +25,10 @@ export default {
       path: 'admin/:id',
       component: () => import('@/views/admin/index.vue'),
     },
+    {
+      name: 'site.config',
+      path: 'config/:id',
+      component: () => import('@/views/site/config.vue'),
+    },
   ],
 } as RouteRecordRaw

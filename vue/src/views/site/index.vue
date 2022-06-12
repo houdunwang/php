@@ -19,7 +19,9 @@ await load(getSiteList)
     <div class="" v-if="collection?.data.length">
       <SiteItem v-for="site in collection?.data" class="mb-3" :site="site" @del="del" />
     </div>
-    <div class="flex justify-center items-center py-3 text-gray-600 text-base" v-else>
+    <div
+      class="flex justify-center items-center py-3 text-gray-600 text-sm font-bold border-gray-200 border rounded-md bg-white"
+      v-else>
       <icon-info theme="outline" class="mr-2" />
       暂无站点
     </div>

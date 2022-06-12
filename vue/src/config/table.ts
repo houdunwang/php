@@ -32,3 +32,11 @@ export const userTableColumns = [
   },
   { prop: 'created_at', label: '注册时间', type: 'date', width: 120 },
 ] as tableColumnsType[]
+
+export const ModuleTableColumns = [
+  { prop: 'name', label: '标识' },
+  { prop: 'title', label: '模块名称' },
+  { prop: 'preview', label: '预览图', type: 'image' },
+  { prop: 'version', label: '版本号' },
+  { prop: 'author', label: '作者' },
+] as tableColumnsType[]
