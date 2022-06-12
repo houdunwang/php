@@ -8,6 +8,7 @@ import { ElLoading, ElMessage } from 'element-plus'
 
 export default class Axios {
   private instance
+  private loading: any
   constructor(config: AxiosRequestConfig) {
     this.instance = axios.create(config)
     this.interceptors()
@@ -32,6 +33,9 @@ export default class Axios {
   private interceptorsRequest() {
     this.instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
+        this.loading = ElLoading.service({
+          background: 'rgba(255,255,255,0.1)',
+        })
         errorStore().resetError()
         config.headers = {
           Accept: 'application/json',
@@ -47,6 +51,7 @@ export default class Axios {
   private interceptorsResponse() {
     this.instance.interceptors.response.use(
       (response) => {
+        this.loading.close()
         // if (response.data?.message) {
         //   ElMessage({
         //     type: 'success',
@@ -58,6 +63,8 @@ export default class Axios {
         return response
       },
       (error) => {
+        this.loading.close()
+
         const {
           response: { status, data },
         } = error

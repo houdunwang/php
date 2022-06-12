@@ -49,6 +49,7 @@ declare module 'vue' {
     UserDrop: typeof import('./../src/components/user/drop.vue')['default']
     UserInfo: typeof import('./../src/components/user/info.vue')['default']
     UserSelect: typeof import('./../src/components/user/select.vue')['default']
+    UserSelectUser: typeof import('./../src/components/user/selectUser.vue')['default']
   }
 }
 
