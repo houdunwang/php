@@ -41,17 +41,15 @@ class ModuleController extends Controller
     {
     }
 
-    public function update(UpdateModuleRequest $request, Module $module)
-    {
-    }
-
     public function destroy(Module $module)
     {
-        Artisan::call("module:migrate-reset " . $module->name);
+        if (is_dir(base_path('addons/' . $module->name))) {
+            Artisan::call("module:migrate-reset " . $module->name);
+            Storage::disk('addons')->deleteDirectory($module->name);
+        }
 
-        Storage::disk('addons')->deleteDirectory($module->name);
         $module->delete();
 
-        return $this->success();
+        return $this->success('模块删除成功');
     }
 }

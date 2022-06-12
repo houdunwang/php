@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getSite, updateSite } from '@/apis/site'
-import { siteConfigField } from '@/config/form'
+import { siteConfigForm } from '@/config/form'
 import router from '@/router'
 import { request } from '@/utils/helper'
 const route = useRoute()
@@ -21,10 +21,10 @@ const tabModel = ref('site')
     ]" />
   <el-tabs v-model="tabModel" tab-position="top" type="border-card">
     <el-tab-pane label="网站资料" name="site">
-      <FormFieldList :model="model.config.site" :fields="siteConfigField.site" @submit="onSubmit" />
+      <FormFieldList :model="model.config.site" :fields="siteConfigForm.site" @submit="onSubmit" />
     </el-tab-pane>
     <el-tab-pane label="阿里云" name="aliyun">
-      <FormFieldList :model="model.config.aliyun" :fields="siteConfigField.aliyun" @submit="onSubmit" />
+      <FormFieldList :model="model.config.aliyun" :fields="siteConfigForm.aliyun" @submit="onSubmit" />
     </el-tab-pane>
   </el-tabs>
 </template>

@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { isSuperAdmin } from '@/utils/helper'
+</script>
 
 <template>
   <main>
@@ -7,7 +9,7 @@
         <icon-home-two theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         网站首页
       </a>
-      <router-link :to="{ name: 'module.index' }">
+      <router-link :to="{ name: 'module.index' }" v-if="isSuperAdmin()">
         <icon-system theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         模块管理
       </router-link>

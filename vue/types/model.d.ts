@@ -1,3 +1,4 @@
+//用户模型
 interface UserModel {
   avatar: string
   permissions: string[]
@@ -29,6 +30,7 @@ interface UserModel {
   roles: RoleModel[]
 }
 
+//角色模型
 type RoleModel = {
   id: number
   name: string
@@ -39,6 +41,7 @@ type RoleModel = {
   permissions: PermissionModel[]
 }
 
+//权限模型
 type PermissionModel = {
   id: number
   name: string
@@ -49,6 +52,7 @@ type PermissionModel = {
   updated_at: string
 }
 
+//站点模型
 type SiteModel = {
   id: number
   title: string
@@ -63,6 +67,7 @@ type SiteModel = {
   master: UserModel
 }
 
+//系统模型
 type SystemModel = {
   id: number
   config: {
@@ -92,6 +97,7 @@ type SystemModel = {
   }
 }
 
+//模块模型
 type ModuleModel = {
   id: number
   title: string

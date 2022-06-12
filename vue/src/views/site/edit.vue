@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getSite, updateSite } from '@/apis/site'
-import { siteField, siteConfigField } from '@/config/form'
+import { siteForm, siteConfigForm } from '@/config/form'
 import router from '@/router'
 import { request } from '@/utils/helper'
 import { ElMessage } from 'element-plus'
@@ -17,7 +17,7 @@ const onSubmit = request(async () => {
 <template>
   <Tab />
   <el-card shadow="hover">
-    <FormFieldList :model="model" :fields="siteField" @submit="onSubmit" />
+    <FormFieldList :model="model" :fields="siteForm" @submit="onSubmit" />
   </el-card>
 </template>
 

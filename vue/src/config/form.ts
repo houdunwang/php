@@ -1,4 +1,4 @@
-export type formFieldType = {
+export type formType = {
   title: string
   name: string
   error_name?: string
@@ -10,7 +10,7 @@ export type formFieldType = {
   value?: any
 }
 
-export const userField = [
+export const userForm = [
   { title: '昵称', name: 'name' },
   { title: '邮箱', name: 'email' },
   {
@@ -27,10 +27,10 @@ export const userField = [
   { title: '头像', name: 'avatar', type: 'preview' },
   { title: '主页', name: 'home' },
   { title: '注册时间', name: 'created_at' },
-] as formFieldType[]
+] as formType[]
 
 //系统配置
-export const configField = {
+export const configForm = {
   site: [
     { title: '标题', name: 'title', type: 'input', error_name: 'title' },
     { title: '标志', name: 'logo', type: 'image', error_name: 'logo' },
@@ -54,15 +54,15 @@ export const configField = {
     { title: '文件大小', name: 'size', error_name: 'config.upload.size' },
     { title: '文件类型', name: 'mimes', error_name: 'config.upload.mimes' },
   ],
-} as Record<string, formFieldType[]>
+} as Record<string, formType[]>
 
 //站点
-export const siteField = [
+export const siteForm = [
   { name: 'title', title: '网站名称', error_name: 'title' },
   { name: 'url', title: '域名地址', error_name: 'url' },
-] as formFieldType[]
+] as formType[]
 
-export const siteConfigField = {
+export const siteConfigForm = {
   site: [
     { name: 'tel', title: '联系电话', error_name: 'tel' },
     { name: 'email', title: '企业邮箱', error_name: 'email' },
@@ -73,11 +73,12 @@ export const siteConfigField = {
     { title: 'secret', name: 'access_key_secret', error_name: 'config.aliyun.access_key_secret' },
     { title: '短信签名', name: 'sms_sign_name', error_name: 'config.aliyun.sms_sign_name' },
   ],
-} as Record<string, formFieldType[]>
+} as Record<string, formType[]>
 
+//模块
 export const moduleForm = [
   { title: '模块名称', name: 'title', error_name: 'title', placeholder: '请输入中文模块名称' },
   { title: '英文标识', name: 'name', error_name: 'name', placeholder: '模块的英文标识' },
   { title: '开发者', name: 'author', error_name: 'author', placeholder: '开发者名称' },
-  { title: '版本号', name: 'version', error_name: 'version', value: '1.0' },
-] as formFieldType[]
+  { title: '版本号', name: 'version', error_name: 'version', value: '1.0.0' },
+] as formType[]

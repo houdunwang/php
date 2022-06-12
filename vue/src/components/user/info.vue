@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getUser } from '@/apis/user'
-import { userField } from '@/config/form'
+import { userForm } from '@/config/form'
 
 const { id, dialogWidth = '60%' } = defineProps<{
   id?: number
@@ -19,7 +19,7 @@ const loadUser = async () => {
 <template>
   <Teleport to="body">
     <el-dialog v-model="dialogState" title="用户资料" :width="dialogWidth" top="20px">
-      <form-field-list :model="user" :fields="userField" :show-button="false" />
+      <form-field-list :model="user" :fields="userForm" :show-button="false" />
     </el-dialog>
   </Teleport>
 

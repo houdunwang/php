@@ -17,7 +17,11 @@ class UserSeeder extends Seeder
         $user  = User::first();
         $user->name = '向军大叔';
         $user->email = '2300071698@qq.com';
-        $user->mobile = '';
+        $user->save();
+
+        $user  = User::find(2);
+        $user->name = '后盾人';
+        $user->email = 'houdunren@qq.com';
         $user->save();
     }
 }

@@ -17,7 +17,10 @@ class SiteController extends Controller
 
     public function index()
     {
-        return SiteResource::collection(Site::latest()->with('master')->paginate(10));
+        $sites = Site::when(!is_super_admin(), function ($query) {
+            $query->where('user_id', Auth::id());
+        })->latest()->with('master')->paginate(10);
+        return SiteResource::collection($sites);
     }
 
     public function store(StoreSiteRequest $request, Site $site)
