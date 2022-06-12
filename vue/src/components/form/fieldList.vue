@@ -33,14 +33,14 @@ const emit = defineEmits<{
           <FormError :name="f.error_name || f.name" />
         </div>
       </template>
-      <template v-if="f.type == 'radio'">
+      <template v-else-if="f.type == 'radio'">
         <el-radio-group v-model="model[f.name]" class="ml-4" :disabled="f.disabled">
           <el-radio :label="val[1]" size="large" v-for="val in f.options"> {{ val[0] }} </el-radio>
         </el-radio-group>
       </template>
-      <template v-if="f.type == 'preview'">
+      <template v-else-if="f.type == 'preview'">
         <div class="flex flex-col">
-          <el-avatar shape="square" :size="100" fit="cover" :src="model[f.name]" />
+          <HdImageComponent :url="model[f.name]" class="md:w-28 w-full rounded-md" />
         </div>
       </template>
       <template v-else>

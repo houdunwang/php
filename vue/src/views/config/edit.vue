@@ -3,16 +3,14 @@ import { getSystem, updateSystem } from '@/apis/system'
 import { configField } from '@/config/form'
 import router from '@/router'
 import systemStore from '@/store/systemStore'
-import { ElMessage } from 'element-plus'
 
 const model = ref(await getSystem())
 
 const store = systemStore()
 const onSubmit = async () => {
   await updateSystem(model.value)
-  ElMessage.success('保存成功')
-  store.load()
-  document.title = model.value.config.site.logo
+  await store.load()
+  document.title = store.config.site.title
   router.push({ name: 'system.index' })
 }
 const tabModel = ref('site')

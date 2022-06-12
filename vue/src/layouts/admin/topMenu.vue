@@ -5,7 +5,7 @@ const storeSystem = systemStore()
 </script>
 
 <template>
-  <div class="py-10 md:px-5 md:grid grid-cols-10 items-center">
+  <div class="py-5 md:px-5 md:grid grid-cols-10 items-center">
     <img :src="storeSystem.config.site.logo" class="col-span-4 hidden md:block" />
     <main>
       <router-link :to="{ name: 'site.index' }">

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const { url, height = 100 } = defineProps<{
+import { isMobile } from '@/utils/helper'
+
+const { url } = defineProps<{
   url?: string
-  height?: number
 }>()
 
 const dialogState = $ref(false)
@@ -9,7 +10,7 @@ const dialogState = $ref(false)
 
 <template>
   <teleport to="body">
-    <el-dialog title="查看图片" v-model="dialogState" width="35%" top="20px">
+    <el-dialog title="查看图片" v-model="dialogState" custom-class="dialog">
       <el-image :src="url" fit="cover" :lazy="true"></el-image>
     </el-dialog>
   </teleport>
@@ -17,4 +18,8 @@ const dialogState = $ref(false)
   <el-image :src="url" fit="cover" :lazy="true" @click="dialogState = true" v-bind="$attrs" class="cursor-pointer" />
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.dialog {
+  @apply w-11/12 md:w-[600px];
+}
+</style>

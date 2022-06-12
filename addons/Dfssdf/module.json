@@ -1,0 +1,13 @@
+{
+    "name": "Dfssdf",
+    "alias": "dfssdf",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Addons\\Dfssdf\\Providers\\DfssdfServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

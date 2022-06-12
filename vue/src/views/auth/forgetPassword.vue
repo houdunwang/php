@@ -62,7 +62,7 @@ const onSubmit = async () => {
   </form>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 form {
   @apply bg-slate-300 h-screen flex justify-center items-start md:items-center p-5;
 }

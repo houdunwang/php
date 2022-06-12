@@ -44,6 +44,6 @@ class AdminController extends Controller
     {
         $site->admins()->detach($admin);
 
-        return $this->success();
+        return $this->success('管理员删除成功');
     }
 }

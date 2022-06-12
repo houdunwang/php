@@ -24,7 +24,7 @@ class SystemController extends Controller
         $config['config'] = $request->input('config');
         $config->save();
 
-        return $this->success(data: $config['data']);
+        return $this->success('配置项更新成功', data: $config['data']);
     }
 
     /**
@@ -36,16 +36,4 @@ class SystemController extends Controller
     {
         return $this->success(data: new SystemResource(System::firstOrFail()));
     }
-
-    /**
-     * 获取公共配置
-     * @param Request $request
-     * @param string $module
-     */
-    // public function common(Request $request)
-    // {
-    //     $system = System::first()->toArray();
-    //     unset($system['config']);
-    //     return $this->success(data: $system);
-    // }
 }

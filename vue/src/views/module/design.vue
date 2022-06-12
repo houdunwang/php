@@ -6,7 +6,7 @@ const router = useRouter()
 
 const onSubmit = async (module: ModuleModel) => {
   await addModule(module)
-  ElMessage.success('模块创建成功')
+  //   ElMessage.success('模块创建成功')
   router.push({ name: 'module.index' })
 }
 </script>

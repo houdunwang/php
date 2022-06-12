@@ -11,7 +11,6 @@ const model = ref(await getSite(route.params?.id))
 const onSubmit = request(async () => {
   await updateSite(model.value)
   router.push({ name: 'site.index' })
-  ElMessage.success('更新成功')
 })
 </script>
 

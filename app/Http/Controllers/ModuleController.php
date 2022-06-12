@@ -33,6 +33,8 @@ class ModuleController extends Controller
         copy(public_path('static/preview.jpeg'), base_path('addons/' . $request->name . '/preview.jpeg'));
 
         app('module')->syncModule();
+
+        return $this->success('模块创建成功');
     }
 
     public function show(Module $module)

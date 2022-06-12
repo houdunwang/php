@@ -11,23 +11,22 @@ export type formFieldType = {
 }
 
 export const userField = [
-  { title: '昵称', name: 'name', disabled: true },
-  { title: '邮箱', name: 'email', disabled: true },
+  { title: '昵称', name: 'name' },
+  { title: '邮箱', name: 'email' },
   {
     title: '性别',
     name: 'sex',
     type: 'radio',
-    disabled: true,
     options: [
       ['男', 1],
       ['女', 2],
     ],
   },
-  { title: '手机号', name: 'mobile', disabled: true },
-  { title: '真实姓名', name: 'real_name', disabled: true },
-  { title: '头像', name: 'avatar', type: 'preview', disabled: true },
-  { title: '主页', name: 'home', disabled: true },
-  { title: '注册时间', name: 'created_at', disabled: true },
+  { title: '手机号', name: 'mobile' },
+  { title: '真实姓名', name: 'real_name' },
+  { title: '头像', name: 'avatar', type: 'preview' },
+  { title: '主页', name: 'home' },
+  { title: '注册时间', name: 'created_at' },
 ] as formFieldType[]
 
 //系统配置
@@ -66,8 +65,8 @@ export const siteField = [
 export const siteConfigField = {
   site: [
     { name: 'tel', title: '联系电话', error_name: 'tel' },
-    { name: 'email', title: '邮箱', error_name: 'email' },
-    { name: 'address', title: '地址', error_name: 'address' },
+    { name: 'email', title: '企业邮箱', error_name: 'email' },
+    { name: 'address', title: '公司地址', error_name: 'address' },
   ],
   aliyun: [
     { title: 'key', name: 'access_key_id', error_name: 'config.aliyun.access_key_id' },

@@ -3,16 +3,16 @@
 <template>
   <main>
     <section>
-      <a href="" class="flex items-center">
-        <icon-system theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
-        模块管理
+      <a href="/">
+        <icon-home-two theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+        网站首页
       </a>
-      <a href="" class="flex items-center text-gray-200 ml-5">
-        <icon-database-setting theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
+      <router-link :to="{ name: 'module.index' }">
+        <icon-system theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         模块管理
-      </a>
-      <a href="" class="flex items-center text-gray-200 ml-5">
-        <icon-right-user theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
+      </router-link>
+      <a href="">
+        <icon-right-user theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         会员中心
       </a>
     </section>
@@ -27,12 +27,15 @@
 
 <style lang="scss" scoped>
 a {
-  @apply hover:text-white duration-300 text-gray-400;
+  @apply hover:text-white duration-300 text-gray-400 mr-5 flex items-center;
+  span {
+    @apply mr-1;
+  }
 }
 main {
   @apply flex md:justify-between  px-8 py-3 bg-[#333];
 
-  > :first-child {
+  > section:first-child {
     @apply text-[#7ed321] items-center md:flex hidden;
   }
   > :nth-child(2) {

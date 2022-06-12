@@ -6,6 +6,9 @@ import systemStore from '@/store/systemStore'
 import userStore from '@/store/userStore'
 
 await Promise.all([userStore().getUserInfo(), systemStore().load()])
+
+const storeSystem = systemStore()
+window.document.title = storeSystem.config.site.title
 </script>
 
 <template>
@@ -14,7 +17,7 @@ await Promise.all([userStore().getUserInfo(), systemStore().load()])
       <navbarVue />
       <TopMenu />
     </div>
-    <div class="md:my-5 md:mx-5 mx-3 p-5 bg-gray-50 rounded-lg overflow-hidden">
+    <div class="md:mx-5 mx-3 p-5 bg-gray-50 rounded-lg overflow-hidden">
       <router-view #default="{ Component }">
         <component :is="Component" />
       </router-view>

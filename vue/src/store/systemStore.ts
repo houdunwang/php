@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 export default defineStore('system', {
   state: () => {
     return {
-      config: {} as SystemModel['config'] | undefined,
+      config: {} as SystemModel['config'],
     }
   },
   actions: {

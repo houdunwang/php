@@ -52,14 +52,14 @@ export default class Axios {
     this.instance.interceptors.response.use(
       (response) => {
         this.loading.close()
-        // if (response.data?.message) {
-        //   ElMessage({
-        //     type: 'success',
-        //     message: response.data.message,
-        //     grouping: true,
-        //     duration: 2000,
-        //   })
-        // }
+        if (response.data?.message) {
+          ElMessage({
+            type: 'success',
+            message: response.data.message,
+            grouping: true,
+            duration: 2000,
+          })
+        }
         return response
       },
       (error) => {
@@ -68,6 +68,7 @@ export default class Axios {
         const {
           response: { status, data },
         } = error
+        const { message } = data
 
         switch (status) {
           case 401:
@@ -78,12 +79,11 @@ export default class Axios {
             errorStore().setErrors(error.response.data.errors)
             break
           case 403:
-            ElMessage({ type: 'error', message: '没有操作权限' })
+            ElMessage({ type: 'error', message: message ?? '没有权限' })
             break
           default:
-            const { message } = data
             if (message) {
-              ElMessage({ type: 'error', message: message })
+              ElMessage({ type: 'error', message })
             }
         }
         return Promise.reject(error)

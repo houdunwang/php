@@ -15,7 +15,7 @@ class Guard {
     errorStore().resetError()
 
     if (to.meta.auth && !this.token()) {
-      store.set(CacheEnum.REDIRECT_ROUTE_NAME, to.name)
+      store.set(CacheEnum.REDIRECT_ROUTE_NAME, to.fullPath)
       return { name: 'login' }
     }
 

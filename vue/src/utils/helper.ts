@@ -1,3 +1,4 @@
+import { RouteEnum } from './../enum/RouteEnum'
 import { ElMessage } from 'element-plus'
 import { CacheEnum } from '@/enum/CacheEnum'
 import router from '@/router'
@@ -21,10 +22,8 @@ export function isLogin(): boolean {
 
 //退出登录
 export async function logout() {
-  userStore().resetInfo()
-
   store.remove(CacheEnum.TOKEN_NAME)
-  router.push({ name: 'home' })
+  location.href = '/'
 }
 
 /**
@@ -33,13 +32,9 @@ export async function logout() {
  */
 export async function loginAndRegisterCallback(data: { token: string }) {
   store.set(CacheEnum.TOKEN_NAME, data.token)
+  store.remove(CacheEnum.REDIRECT_ROUTE_NAME)
 
-  await userStore().getUserInfo()
-
-  const routeName = store.get(CacheEnum.REDIRECT_ROUTE_NAME) ?? 'home'
-  router.push({ name: routeName })
-
-  ElMessage({ type: 'success', message: '登录成功' })
+  location.href = store.get(CacheEnum.REDIRECT_ROUTE_NAME, '/')
 }
 
 //限制点击频繁请求
@@ -50,4 +45,8 @@ export function request(fn: (args: any) => Promise<any>) {
     isSubmit = true
     return fn(args).finally(() => (isSubmit = false))
   }
+}
+
+export function isMobile() {
+  return document.documentElement.clientWidth < 768
 }

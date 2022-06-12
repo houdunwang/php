@@ -38,6 +38,10 @@ const search = async () => {
     return ElMessage.error('请选择搜索类型')
   }
 
+  if (!content.value) {
+    return ElMessage.error('请输入搜索内容')
+  }
+
   response.value = await api(1, { type: type.value, content: content.value })
 }
 
@@ -46,7 +50,7 @@ const butnGroupWidth = ref(0)
 
 onMounted(() => {
   nextTick(() => {
-    if (buttons) {
+    if (buttons && btnColumn.value) {
       let w = [...btnColumn.value.$el.querySelectorAll('button')].reduce((w, el) => {
         return w + parseInt(getComputedStyle(el).width)
       }, 0)
