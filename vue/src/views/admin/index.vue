@@ -40,7 +40,7 @@ const action = async (model: any) => {
     :columns="userTableColumns"
     :key="tableComponentKey"
     :buttons="[{ title: '移除', command: 'remove' }]"
-    :search-show="false"
+    search-field-name="name"
     @action="action" />
 </template>
 

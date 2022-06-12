@@ -26,6 +26,7 @@ const getList = async (page = 1, params = {}) => {
         :api="getList"
         :columns="userTableColumns"
         :buttons="[{ command: 'select', title: '选择', type: 'primary' }]"
+        search-field-name="name"
         @action="action" />
     </el-dialog>
     <el-button type="primary" size="default" @click="dialogTableVisible = !dialogTableVisible">选择用户</el-button>

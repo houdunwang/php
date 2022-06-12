@@ -2,29 +2,35 @@
 import dayjs from 'dayjs'
 import { tableButtonType, tableColumnsType, userTableColumns } from '@/config/table'
 import { ElMessage } from 'element-plus'
-const props = withDefaults(
-  defineProps<{
-    api: (page?: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
-    buttons?: tableButtonType[]
-    buttonWidth?: number
-    columns: tableColumnsType[]
-    searchShow?: boolean
-  }>(),
-  { searchShow: true, buttonWidth: 100 },
-)
+import fields from '@/views/site/fields'
+const {
+  api,
+  buttons,
+  buttonWidth,
+  columns,
+  searchShow = true,
+  searchFieldName,
+} = defineProps<{
+  api: (page?: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
+  buttons?: tableButtonType[]
+  buttonWidth?: number
+  columns: tableColumnsType[]
+  searchShow?: boolean
+  searchFieldName?: string
+}>()
 
 const emit = defineEmits<{
   (e: 'action', model: { [x: string]: any }, type: string): void
 }>()
 
-const data = await props.api(1)
+const data = await api(1)
 const response = ref(data)
 
 const load = async (page: number = 1) => {
-  response.value = await props.api(page)
+  response.value = await api(page)
 }
 
-const type = ref('name')
+const type = ref(searchFieldName || 'id')
 const content = ref('')
 
 const search = async () => {
@@ -32,7 +38,7 @@ const search = async () => {
     return ElMessage.error('请选择搜索类型')
   }
 
-  response.value = await props.api(1, { type: type.value, content: content.value })
+  response.value = await api(1, { type: type.value, content: content.value })
 }
 
 const btnColumn = ref()
@@ -40,7 +46,7 @@ const butnGroupWidth = ref(0)
 
 onMounted(() => {
   nextTick(() => {
-    if (props.buttons) {
+    if (buttons) {
       let w = [...btnColumn.value.$el.querySelectorAll('button')].reduce((w, el) => {
         return w + parseInt(getComputedStyle(el).width)
       }, 0)
@@ -52,9 +58,9 @@ onMounted(() => {
 
 <template>
   <div class="">
-    <div class="flex items-center bg-white p-2 border rounded-sm mb-2" v-if="props.searchShow">
+    <div class="flex items-center bg-white p-2 border rounded-sm mb-2" v-if="searchShow">
       <el-select v-model="type" value-key="" placeholder="" clearable filterable class="mr-1">
-        <el-option v-for="item in props.columns" :key="item.prop" :label="item.label" :value="item.prop"> </el-option>
+        <el-option v-for="item in columns" :key="item.prop" :label="item.label" :value="item.prop"> </el-option>
       </el-select>
 
       <el-input v-model="content" placeholder="请输入搜索内容" size="default" class="mr-1" @keyup.enter="search" />
@@ -63,7 +69,7 @@ onMounted(() => {
 
     <el-table :data="response.data" border stripe :fit="true">
       <el-table-column
-        v-for="col in props.columns"
+        v-for="col in columns"
         :prop="col.prop"
         :key="col.prop"
         :label="col.label"
@@ -71,7 +77,8 @@ onMounted(() => {
         :align="col.align"
         #default="{ row }">
         <template v-if="col.type === 'image'">
-          <img :src="row[col.prop]" class="rounded-md w-12 self-center block m-auto" />
+          <hd-image-component :url="row[col.prop]" class="rounded-md w-12 self-center block m-auto" />
+          <!-- <img :src="row[col.prop]" class="rounded-md w-12 self-center block m-auto" /> -->
         </template>
         <template v-else-if="col.type === 'radio'">
           <span v-for="c in col.options" v-show="c[1] == row[col.prop]">
@@ -86,22 +93,18 @@ onMounted(() => {
         </template>
       </el-table-column>
 
-      <el-table-column
-        align="center"
-        :width="props.buttonWidth ?? butnGroupWidth"
-        #default="{ row }"
-        v-if="props.buttons">
+      <el-table-column align="center" :width="buttonWidth ?? butnGroupWidth" #default="{ row }" v-if="buttons">
         <el-button-group ref="btnColumn">
           <el-button
             :type="item.type || 'default'"
-            v-for="(item, key) in props.buttons"
+            v-for="(item, key) in buttons"
             @click="emit('action', row, item.command)">
             {{ item.title }}
           </el-button>
         </el-button-group>
       </el-table-column>
 
-      <el-table-column :width="props.buttonWidth" #default="{ row }" v-if="$slots.button">
+      <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center">
         <slot name="button" :model="row" />
       </el-table-column>
     </el-table>

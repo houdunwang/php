@@ -18,7 +18,12 @@ const del = async (module: ModuleModel) => {
       { label: '设计模块', route: { name: 'module.design' } },
     ]" />
 
-  <HdTableComponent :api="getModuleList" :columns="ModuleTableColumns" :key="tableKey">
+  <HdTableComponent
+    :api="getModuleList"
+    :columns="ModuleTableColumns"
+    :key="tableKey"
+    search-field-name="name"
+    :button-width="100">
     <template #button="{ model }">
       <el-button-group>
         <el-button type="danger" size="default" @click="del(model)">删除</el-button>
