@@ -5,6 +5,7 @@ export type tableColumnsType = {
   align?: 'left' | 'center' | 'right'
   type?: 'image' | 'date' | 'input' | 'radio'
   options: any
+  fixed?: boolean
 }
 
 export type tableButtonType = {
@@ -14,7 +15,7 @@ export type tableButtonType = {
 }
 
 export const userTableColumns = [
-  { prop: 'id', label: 'ID', width: 80, align: 'center' },
+  { prop: 'id', label: 'ID', align: 'center', width: 80 },
   { prop: 'name', label: '用户名' },
   { prop: 'avatar', label: '头像', type: 'image', align: 'center', width: 100 },
   { prop: 'email', label: '邮箱', width: 300 },
@@ -23,12 +24,12 @@ export const userTableColumns = [
     prop: 'sex',
     label: '性别',
     align: 'center',
-    width: 80,
     type: 'radio',
     options: [
       ['男', 1],
       ['女', 2],
     ],
+    width: 80,
   },
   { prop: 'created_at', label: '注册时间', type: 'date', width: 120 },
 ] as tableColumnsType[]

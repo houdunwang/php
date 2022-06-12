@@ -15,5 +15,7 @@ const onSubmit = request(async (model: any) => {
 
 <template>
   <Tab />
-  <FormFieldList :fields="siteField" @submit="onSubmit" />
+  <el-card shadow="hover">
+    <FormFieldList :fields="siteField" @submit="onSubmit" />
+  </el-card>
 </template>

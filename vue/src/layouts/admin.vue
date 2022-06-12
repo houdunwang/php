@@ -9,17 +9,17 @@ await Promise.all([userStore().getUserInfo(), systemStore().load()])
 </script>
 
 <template>
-  <div class="admin grid md:grid-rows-[auto_auto_1fr_auto] md:pb-32">
+  <div class="admin grid grid-rows-[auto_auto_1fr] md:pb-32">
     <div>
       <navbarVue />
       <TopMenu />
     </div>
-    <div class="md:my-5 md:mx-5 mx-3 p-5 bg-gray-50 rounded-lg">
+    <div class="md:my-5 md:mx-5 mx-3 p-5 bg-gray-50 rounded-lg overflow-hidden">
       <router-view #default="{ Component }">
         <component :is="Component" />
       </router-view>
     </div>
-    <Copyright />
+    <Copyright class="mb-5" />
   </div>
 </template>
 

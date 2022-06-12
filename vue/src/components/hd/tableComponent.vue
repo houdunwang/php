@@ -67,9 +67,10 @@ onMounted(() => {
       <el-button type="success" size="default" @click="search">搜索</el-button>
     </div>
 
-    <el-table :data="response.data" border stripe :fit="true">
+    <el-table :data="response.data" border stripe :highlight-current-row="true" style="width: 100%">
       <el-table-column
         v-for="col in columns"
+        :fixed="col.fixed || false"
         :prop="col.prop"
         :key="col.prop"
         :label="col.label"
@@ -78,7 +79,6 @@ onMounted(() => {
         #default="{ row }">
         <template v-if="col.type === 'image'">
           <hd-image-component :url="row[col.prop]" class="rounded-md w-12 self-center block m-auto" />
-          <!-- <img :src="row[col.prop]" class="rounded-md w-12 self-center block m-auto" /> -->
         </template>
         <template v-else-if="col.type === 'radio'">
           <span v-for="c in col.options" v-show="c[1] == row[col.prop]">
@@ -93,7 +93,12 @@ onMounted(() => {
         </template>
       </el-table-column>
 
-      <el-table-column align="center" :width="buttonWidth ?? butnGroupWidth" #default="{ row }" v-if="buttons">
+      <el-table-column
+        align="center"
+        :width="buttonWidth ?? butnGroupWidth"
+        #default="{ row }"
+        v-if="buttons"
+        fixed="right">
         <el-button-group ref="btnColumn">
           <el-button
             :type="item.type || 'default'"
@@ -104,7 +109,7 @@ onMounted(() => {
         </el-button-group>
       </el-table-column>
 
-      <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center">
+      <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center" fixed="right">
         <slot name="button" :model="row" />
       </el-table-column>
     </el-table>
@@ -122,9 +127,9 @@ onMounted(() => {
 
 <style lang="scss">
 td {
-  white-space: nowrap;
+  //   white-space: nowrap;
 }
 .cell {
-  display: inline-block;
+  //   display: inline-block;
 }
 </style>
