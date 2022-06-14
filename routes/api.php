@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CacheController;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\FansController;
@@ -41,7 +40,10 @@ Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
 
 Route::apiResource('permission', PermissionController::class);
+Route::get('site/{site}/update_site_permission', [PermissionController::class, 'updateSitePermissions']);
+
 Route::apiResource('site.role', RoleController::class);
+
 Route::post('role/{role}/permission', [RoleController::class, 'permission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);
@@ -59,6 +61,6 @@ Route::apiResource('site', SiteController::class);
 Route::apiResource('site.admin', AdminController::class)->shallow();
 Route::post('admin/{admin}/role', [AdminController::class, 'syncAdminRole']);
 Route::apiResource('module', ModuleController::class);
+Route::get('module/sync/module', [ModuleController::class, 'syncLocalModule']);
 
-Route::get('cache/{site}', [CacheController::class, 'syncSiteData']);
 Route::apiResource("site.module", SiteModuleController::class);

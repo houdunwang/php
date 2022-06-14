@@ -50,4 +50,10 @@ class ModuleController extends Controller
 
         return $this->success('模块删除成功');
     }
+
+    public function syncLocalModule()
+    {
+        app('module')->syncModule();
+        return $this->success('模块数据刷新成功');
+    }
 }

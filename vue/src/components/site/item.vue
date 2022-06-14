@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { syncSiteCache } from '@/apis/cache'
+import { updateSitePermission } from '@/apis/permission'
 import { isSuperAdmin } from '@/utils/helper'
 import dayjs from 'dayjs'
+
 const emit = defineEmits<{
   (e: 'del', id: number): Promise<boolean>
 }>()
@@ -49,9 +50,9 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           角色管理
         </router-link>
-        <a href="javascript:void(0)" @click="syncSiteCache(site.id)">
+        <a href="javascript:void(0)" @click="updateSitePermission(site.id)">
           <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-          更新缓存
+          更新权限表
         </a>
         <router-link :to="{ name: 'site.config', params: { id: site.id } }">
           <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 站点配置

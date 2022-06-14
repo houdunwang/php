@@ -42,4 +42,10 @@ class PermissionController extends Controller
         $permission->delete();
         return $this->success("删除成功");
     }
+
+    public function updateSitePermissions(Site $site)
+    {
+        app('permission')->syncAllModulePermissions($site);
+        return $this->success('站点权限表更新成功');
+    }
 }
