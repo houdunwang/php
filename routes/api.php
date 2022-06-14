@@ -41,7 +41,7 @@ Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
 
 Route::apiResource('permission', PermissionController::class);
-Route::apiResource('site.role', RoleController::class)->shallow();
+Route::apiResource('site.role', RoleController::class);
 Route::post('role/{role}/permission', [RoleController::class, 'permission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);

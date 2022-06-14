@@ -5,11 +5,11 @@ import TabVue from './tab.vue'
 const router = useRouter()
 const { sid, rid } = defineProps<{ sid: any; rid: any }>()
 
-const role = reactive(await roleFind(rid))
+const role = reactive(await roleFind(sid, rid))
 
 const onSubmit = async (model: RoleModel) => {
   try {
-    await updateRole(model)
+    await updateRole(sid, model)
     router.push({ name: 'role.index' })
   } catch (error) {}
 }

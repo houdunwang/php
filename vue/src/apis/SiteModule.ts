@@ -2,7 +2,7 @@ import { http } from '@/plugins/axios'
 
 export function getSiteModuleList(sid: any) {
   return http.request<ModuleModel, ResponsePageResult<ModuleModel>>({
-    url: `site/${sid}}/module`,
+    url: `site/${sid}/module`,
   })
 }
 

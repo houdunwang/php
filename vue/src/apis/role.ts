@@ -26,16 +26,16 @@ export function delRole(id: number) {
   })
 }
 
-export function updateRole(role: RoleModel) {
+export function updateRole(sid: any, role: RoleModel) {
   return http.request({
-    url: `role/${role.id}`,
+    url: `site/${sid}/role/${role.id}`,
     method: 'PUT',
     data: role,
   })
 }
 
-export function roleFind(id: any) {
-  return http.request<RoleModel>({ url: `role/${id}` }).then((r) => r.data)
+export function roleFind(sid: any, rid: any) {
+  return http.request<RoleModel>({ url: `site/${sid}/role/${rid}` }).then((r) => r.data)
 }
 
 //设置角色权限

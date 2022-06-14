@@ -18,7 +18,7 @@ class SiteModulePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return is_super_admin();
     }
 
     /**
@@ -41,7 +41,7 @@ class SiteModulePolicy
      */
     public function create(User $user)
     {
-        //
+        return is_super_admin();
     }
 
     /**
@@ -65,7 +65,7 @@ class SiteModulePolicy
      */
     public function delete(User $user, SiteModule $siteModule)
     {
-        //
+        return is_super_admin();
     }
 
     /**

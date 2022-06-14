@@ -5,9 +5,9 @@ import TabVue from './tab.vue'
 import { roleFind } from '@/apis/role'
 
 const router = useRouter()
-const { rid, sid } = defineProps<{ sid: any; rid: any }>()
-
-const [role, modules] = await Promise.all([roleFind(rid), getSiteModuleList(sid)])
+const { sid, rid } = defineProps<{ sid: any; rid: any }>()
+console.log(sid, rid)
+const [role, modules] = await Promise.all([roleFind(sid, rid), getSiteModuleList(sid)])
 
 let permissions = $ref(role?.permissions?.map((p) => p.name))
 
@@ -20,7 +20,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <TabVue />
+  <TabVue :role="role" />
   <div class="bg-white p-3 border shadow-sm mb-3 rounded-md" v-for="module of modules.data">
     <dl v-for="permission of module.permissions" class="w-full">
       <dt class="text-gray-800 pb-2 border-b mb-3">{{ permission.title }}</dt>

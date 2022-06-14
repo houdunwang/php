@@ -6,6 +6,7 @@ import { ElMessageBox } from 'element-plus'
 const { sid } = defineProps<{ sid: any }>()
 
 const [site] = await Promise.all([siteFind(sid)])
+
 let tableKey = $ref(0)
 const addModule = async (module: any) => {
   await addSiteModule(sid, module.id)
@@ -19,6 +20,10 @@ const del = async (module: any) => {
     tableKey++
   } catch (error) {}
 }
+
+const getModuleList = async () => {
+  return await getSiteModuleList(sid)
+}
 </script>
 
 <template>
@@ -28,7 +33,7 @@ const del = async (module: any) => {
       { label: `【${site.title}】站点模块设置`, route: { name: `site.module` } },
     ]" />
   <ModuleSelectModule @select="addModule" class="mb-2" />
-  <HdTableComponent :columns="moduleTableColumns" :api="getSiteModuleList" :key="tableKey" :button-width="120">
+  <HdTableComponent :columns="moduleTableColumns" :api="getModuleList" :key="tableKey" :button-width="120">
     <template #button="{ model }">
       <el-button type="danger" size="default" @click="del(model)">移除模块</el-button>
     </template>

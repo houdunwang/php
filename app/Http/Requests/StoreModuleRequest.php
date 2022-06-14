@@ -13,7 +13,7 @@ class StoreModuleRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return is_super_admin();
     }
 
     public function rules()

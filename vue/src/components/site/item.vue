@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { syncSiteCache } from '@/apis/cache'
+import { isSuperAdmin } from '@/utils/helper'
 import dayjs from 'dayjs'
 const emit = defineEmits<{
   (e: 'del', id: number): Promise<boolean>
@@ -32,11 +33,11 @@ const props = defineProps<{ site: SiteModel }>()
       </section>
 
       <section class="footer-menu">
-        <a>
+        <a :href="site.url" v-if="site.url" target="_blank">
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           访问首页
         </a>
-        <router-link :to="{ name: 'site.module', params: { sid: site.id } }">
+        <router-link :to="{ name: 'site.module', params: { sid: site.id } }" v-if="isSuperAdmin()">
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           设置模块
         </router-link>

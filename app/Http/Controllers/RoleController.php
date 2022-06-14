@@ -26,29 +26,29 @@ class RoleController extends Controller
 
     public function store(StoreRoleRequest $request, Site $site, Role $role)
     {
-        ModelsRole::create($request->input() + ['site_id' => $site->id]);
+        $role->fill($request->input() + ['site_id' => $site->id, 'guard_name' => 'sanctum'])->save();
 
         return $this->success('角色添加成功');
     }
 
-    public function show(Role $role)
+    public function show(Site $site, Role $role)
     {
         return $this->success(data: new RoleResource($role));
     }
 
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateRoleRequest $request, Site $site, Role $role)
     {
         $role->fill($request->input())->save();
         return $this->success('角色更新成功');
     }
 
-    public function destroy(Role $role)
+    public function destroy(Site $site, Role $role)
     {
         $role->delete();
         return $this->success(message: '删除成功');
     }
 
-    public function permission(Role $role, Request $request)
+    public function permission(Request $request, Role $role)
     {
         $role->syncPermissions($request->input('permissions'));
         return $this->success('权限设置成功', data: $role->permissions);
