@@ -6,6 +6,7 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
+use App\Models\Site;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Http\Response;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Container\ContainerExceptionInterface;
 use InvalidArgumentException;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 class RoleController extends Controller
 {
@@ -21,16 +23,17 @@ class RoleController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
-    public function index()
+    public function index(Site $site)
     {
-        $roles = Role::all();
-        return $this->success(data: RoleResource::collection($roles));
+        $roles = Role::paginate();
+        return RoleResource::collection($roles);
     }
 
-    public function store(StoreRoleRequest $request, Role $role)
+    public function store(StoreRoleRequest $request, Site $site, Role $role)
     {
-        $role->fill($request->input())->save();
-        return $this->success(data: new RoleResource($role));
+        ModelsRole::create($request->input() + ['site_id' => $site->id]);
+
+        return $this->success('角色添加成功');
     }
 
     public function show(Role $role)
@@ -41,7 +44,7 @@ class RoleController extends Controller
     public function update(UpdateRoleRequest $request, Role $role)
     {
         $role->fill($request->input())->save();
-        return $this->success(data: new RoleResource($role));
+        return $this->success('角色更新成功');
     }
 
     public function destroy(Role $role)

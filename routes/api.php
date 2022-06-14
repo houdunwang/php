@@ -39,9 +39,8 @@ Route::get('system/common', [SystemController::class, 'common']);
 Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
 
-Route::get('permission/{site}', [PermissionController::class, 'syncAllModulePermissions']);
 Route::apiResource('permission', PermissionController::class);
-Route::apiResource('role', RoleController::class);
+Route::apiResource('site.role', RoleController::class)->shallow();
 Route::post('role/{role}/permission', [RoleController::class, 'permission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);

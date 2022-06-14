@@ -36,7 +36,7 @@
         "yup": "^0.32.11"
     },
     "devDependencies": {
-        "@types/lodash": "^4.14.181",
+        "@types/lodash": "^4.14.182",
         "@types/mockjs": "^1.0.6",
         "@types/prosemirror-inputrules": "^1.0.4",
         "@vitejs/plugin-vue": "^2.3.1",

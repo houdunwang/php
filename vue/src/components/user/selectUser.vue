@@ -33,8 +33,4 @@ const getList = async (page = 1, params = {}) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-:deep(.el-dialog__header) {
-  //   display: none !important;
-}
-</style>
+<style lang="scss" scoped></style>

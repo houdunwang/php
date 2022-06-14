@@ -40,13 +40,13 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           管理员设置
         </router-link>
-        <a>
+        <router-link :to="{ name: 'role.index', params: { sid: site.id } }">
           <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           角色管理
-        </a>
+        </router-link>
         <a href="javascript:void(0)" @click="syncSiteCache(site.id)">
           <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-          更新权限表
+          更新缓存
         </a>
         <router-link :to="{ name: 'site.config', params: { id: site.id } }">
           <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 站点配置

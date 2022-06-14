@@ -7,7 +7,7 @@ import { isLogin } from '@/utils/helper'
   <div class="h-screen w-screen bg-gray-700 flex flex-col justify-center items-center">
     <img src="/images/xj.jpg" class="w-40 h-40 object-cover rounded-full border-8 border-white mb-5" />
     <div>
-      <FormButton @click="$router.push({ name: 'admin' })" class="danger">后台管理</FormButton>
+      <FormButton @click="$router.push({ name: 'site' })" class="danger">后台管理</FormButton>
       <FormButton v-if="!isLogin()" class="primary ml-2" @click="$router.push({ name: RouteEnum.LOGIN })"
         >用户登录</FormButton
       >

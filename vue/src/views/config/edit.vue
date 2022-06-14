@@ -22,7 +22,7 @@ const tabModel = ref('site')
       { label: '系统管理', route: { name: 'system.index' } },
       { label: '系统配置', route: { name: 'config.edit' } },
     ]" />
-  <el-tabs v-model="tabModel" tab-position="top" type="border-card">
+  <el-tabs v-model="tabModel" class="tabs">
     <el-tab-pane label="网站信息" name="site">
       <FormFieldList :model="model.config.site" :fields="configForm.site" @submit="onSubmit" />
     </el-tab-pane>
@@ -40,3 +40,9 @@ const tabModel = ref('site')
     </el-tab-pane>
   </el-tabs>
 </template>
+
+<style lang="scss" scoped>
+.tabs :deep(.el-tabs__nav-scroll) {
+  @apply bg-white border border-gray-100 px-5;
+}
+</style>

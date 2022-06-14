@@ -15,12 +15,6 @@ class PermissionController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
-    public function syncAllModulePermissions(Site $site)
-    {
-        app('permission')->syncAllModulePermissions($site);
-        return $this->success('权限同步成功');
-    }
-
     public function index()
     {
         return $this->success(data: PermissionResource::collection(Permission::all()));

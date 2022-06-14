@@ -10,7 +10,7 @@ const {
   searchShow = true,
   searchFieldName,
 } = defineProps<{
-  api: (page?: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
+  api: (page: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
   buttons?: tableButtonType[]
   buttonWidth?: number
   columns: tableColumnsType[]
@@ -107,7 +107,7 @@ onMounted(() => {
         </el-button-group>
       </el-table-column>
 
-      <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center" fixed="right">
+      <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center">
         <slot name="button" :model="row" />
       </el-table-column>
     </el-table>

@@ -1,5 +1,4 @@
 import { http } from '@/plugins/axios'
-import { urlToHttpOptions } from 'url'
 
 export function getModuleList(page = 1, params = {}) {
   return http.request<ModuleModel, ResponsePageResult<ModuleModel>>({
@@ -19,7 +18,6 @@ export function delModule(moduleId: number) {
 }
 
 export function addModule(module: ModuleModel) {
-  console.log(module)
   return http.request({
     url: `module`,
     data: module,

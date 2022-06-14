@@ -22,7 +22,7 @@ export function getSiteList<ISite>() {
   })
 }
 
-export async function getSite(id: string | string[]) {
+export async function getSite(id: any) {
   const { data } = await http.request<SiteModel>({
     url: `/site/${id}`,
   })

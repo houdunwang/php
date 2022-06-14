@@ -42,3 +42,9 @@ export const moduleTableColumns = [
   { prop: 'version', label: '版本号' },
   { prop: 'author', label: '作者' },
 ] as tableColumnsType[]
+
+export const roleTableColumns = [
+  { prop: 'id', label: '编号', width: 80, align: 'center' },
+  { prop: 'name', label: '标识' },
+  { prop: 'title', label: '角色名称' },
+] as tableColumnsType[]

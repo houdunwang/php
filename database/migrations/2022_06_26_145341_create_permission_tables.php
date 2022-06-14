@@ -34,7 +34,7 @@ class CreatePermissionTables extends Migration
             $table->string('guard_name');
             $table->timestamps();
 
-            $table->unique(['name', 'guard_name']);
+            $table->unique(['name', 'guard_name', 'site_id', 'module']);
         });
 
         Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
@@ -45,12 +45,13 @@ class CreatePermissionTables extends Migration
             }
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             $table->string('title')->unique()->comment('角色描述');       // For MySQL 8.0 use string('name', 125);
+            $table->foreignId('site_id')->constrained()->comment('站点');
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
             if ($teams || config('permission.testing')) {
-                $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);
+                $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name', 'site_id']);
             } else {
-                $table->unique(['name', 'guard_name']);
+                $table->unique(['name', 'site_id', 'guard_name']);
             }
         });
 

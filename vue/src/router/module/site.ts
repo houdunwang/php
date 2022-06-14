@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 export default {
   name: 'site',
   path: '/site',
+  redirect: { name: 'site.index' },
   component: () => import('@/layouts/admin.vue'),
   meta: { auth: true },
   children: [
@@ -19,11 +20,6 @@ export default {
       name: 'site.edit',
       path: 'site/:id',
       component: () => import('@/views/site/edit.vue'),
-    },
-    {
-      name: 'admin.index',
-      path: 'admin/:id',
-      component: () => import('@/views/admin/index.vue'),
     },
     {
       name: 'site.config',

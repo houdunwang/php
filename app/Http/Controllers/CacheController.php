@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CacheController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum']);
+    }
+
     public function syncSiteData(Site $site)
     {
         app('module')->syncModule();

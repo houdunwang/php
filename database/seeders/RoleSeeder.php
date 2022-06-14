@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\Site;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +13,9 @@ class RoleSeeder extends Seeder
     {
         Role::factory()->create([
             'name' => 'admin',
-            'title' => '管理员'
+            'title' => '管理员',
+            'site_id' => 1,
+            'guard_name' => 'sanctum'
         ]);
     }
 }

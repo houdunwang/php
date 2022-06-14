@@ -82,3 +82,8 @@ export const moduleForm = [
   { title: '开发者', name: 'author', error_name: 'author', placeholder: '开发者名称' },
   { title: '版本号', name: 'version', error_name: 'version', value: '1.0.0' },
 ] as formType[]
+
+export const roleForm = [
+  { title: '角色名称', name: 'title', placeholder: '请输入中文角色名称' },
+  { title: '角色标识', name: 'name', placeholder: '角色的英文标识' },
+] as formType[]

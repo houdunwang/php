@@ -29,11 +29,9 @@ class PermissionService
     {
         collect($permission['items'])->each(function ($item) use ($module) {
             $data = [
-                'title' => $item['title'],
-                'name' => "S" . $this->site->id . '-' . $item['name'],
                 'site_id' => $this->site->id,
                 'module' => $module->getName(),
-            ];
+            ] + $item;
 
             ModelsPermission::updateOrCreate($data);
         });

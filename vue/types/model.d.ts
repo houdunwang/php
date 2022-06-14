@@ -33,8 +33,9 @@ interface UserModel {
 //角色模型
 type RoleModel = {
   id: number
-  name: string
   title: string
+  name: string
+  site_id: number
   guard_name: string
   created_at: string
   updated_at: string
@@ -44,8 +45,9 @@ type RoleModel = {
 //权限模型
 type PermissionModel = {
   id: number
-  name: string
   title: string
+  name: string
+  site_id: number
   module: string
   guard_name: string
   created_at: string
