@@ -13,8 +13,6 @@ class ModuleController extends Controller
 {
     public function index()
     {
-        app('module')->syncModule();
-
         $modules = Module::when(request('type'), function ($query, $type) {
             $query->where($type, 'like', "%" . request('content') . "%");
         })->latest()->paginate();

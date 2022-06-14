@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { syncSiteCache } from '@/apis/cache'
 import dayjs from 'dayjs'
 const emit = defineEmits<{
   (e: 'del', id: number): Promise<boolean>
@@ -43,7 +44,7 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           角色管理
         </a>
-        <a>
+        <a href="javascript:void(0)" @click="syncSiteCache(site.id)">
           <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           更新权限表
         </a>

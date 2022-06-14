@@ -15,7 +15,7 @@
       "@/*": ["./src/*"],
       "#/*": ["./types/*"]
     },
-    "types": ["element-plus/global", "echarts", "lodash", "element-plus", "vue/macros"]
+    "types": ["element-plus/global", "echarts", "lodash"]
   },
   "include": [
     "src/**/*.ts",

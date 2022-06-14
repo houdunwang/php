@@ -4,9 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    EditorMarkdown: typeof import('./../src/components/editor/markdown.vue')['default']
     EditorWangEditor: typeof import('./../src/components/editor/wangEditor.vue')['default']
-    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -38,7 +36,6 @@ declare module 'vue' {
     HdBreadcrumb: typeof import('./../src/components/hd/breadcrumb.vue')['default']
     HdCaptcha: typeof import('./../src/components/hd/captcha.vue')['default']
     HdFullscreen: typeof import('./../src/components/hd/fullscreen.vue')['default']
-    HdImage: typeof import('./../src/components/hd/image.vue')['default']
     HdImageComponent: typeof import('./../src/components/hd/imageComponent.vue')['default']
     HdNotification: typeof import('./../src/components/hd/notification.vue')['default']
     HdTab: typeof import('./../src/components/hd/tab.vue')['default']
@@ -48,7 +45,6 @@ declare module 'vue' {
     UploadSingleImage: typeof import('./../src/components/upload/singleImage.vue')['default']
     UserDrop: typeof import('./../src/components/user/drop.vue')['default']
     UserInfo: typeof import('./../src/components/user/info.vue')['default']
-    UserSelect: typeof import('./../src/components/user/select.vue')['default']
     UserSelectUser: typeof import('./../src/components/user/selectUser.vue')['default']
   }
 }

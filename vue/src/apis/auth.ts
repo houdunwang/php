@@ -20,7 +20,7 @@ export interface RegisterFormData {
   code: string
 }
 
-export function apiRegister(data: RegisterFormData) {
+export function register(data: RegisterFormData) {
   return http.request<ResponseData>({
     url: `register`,
     method: 'post',
@@ -35,7 +35,7 @@ export interface ForgetPasswordFormData {
   code: string
 }
 
-export function apiForgetPassword(data: ForgetPasswordFormData) {
+export function forgetPassword(data: any) {
   return http.request<ResponseData>({
     url: 'account/forget-password',
     method: 'post',

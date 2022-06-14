@@ -1,32 +1,32 @@
 <script setup lang="ts">
 import { TabsPaneContext } from 'element-plus'
+
 const router = useRouter()
 const route = useRoute()
 
-interface ITab {
-  label: string
-  active?: boolean
-  event?: () => void
-  route?: any
-  current?: boolean
-}
+const { tabs: propTabs } = defineProps<{
+  tabs: {
+    label: string
+    active?: boolean
+    event?: () => void
+    route?: any
+    current?: boolean
+  }[]
+}>()
 
-const props = defineProps<{ tabs: ITab[] }>()
-
-const tabs = computed(() => {
-  return props.tabs.filter((tab) => {
+const tabs = $computed(() => {
+  return propTabs.filter((tab) => {
     return tab.current ? tab.route?.name == route.name : true
   })
 })
 
-const change = (pane: TabsPaneContext, ev: Event) => {
-  const tab = props.tabs[pane.index as unknown as number]
-  if (tab.event) tab.event()
+const active = computed(() => 'name' + tabs.findIndex((tab) => tab.route.name == route.name))
 
+const change = (pane: TabsPaneContext) => {
+  const tab = tabs[pane.index as unknown as number]
+  if (tab.event) tab.event()
   if (tab.route) router.push(tab.route)
 }
-
-const active = ref('name' + props.tabs.findIndex((tab) => tab.route?.name == route.name))
 </script>
 
 <template>

@@ -13,7 +13,7 @@
   padding-top: 10px !important;
 }
 
-@media screen and (max-width: 768px) {
+@screen sm {
   .el-message-box {
     width: 350px;
   }

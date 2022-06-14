@@ -6,12 +6,19 @@ use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
 use App\Http\Resources\PermissionResource;
 use App\Models\Permission;
+use App\Models\Site;
 
 class PermissionController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
+    }
+
+    public function syncAllModulePermissions(Site $site)
+    {
+        app('permission')->syncAllModulePermissions($site);
+        return $this->success('权限同步成功');
     }
 
     public function index()

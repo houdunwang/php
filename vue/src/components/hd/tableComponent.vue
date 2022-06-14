@@ -2,7 +2,6 @@
 import dayjs from 'dayjs'
 import { tableButtonType, tableColumnsType, userTableColumns } from '@/config/table'
 import { ElMessage } from 'element-plus'
-import fields from '@/views/site/fields'
 const {
   api,
   buttons,
@@ -24,25 +23,20 @@ const emit = defineEmits<{
 }>()
 
 const data = await api(1)
-const response = ref(data)
+let response = $ref(data)
 
 const load = async (page: number = 1) => {
-  response.value = await api(page)
+  response = await api(page)
 }
 
-const type = ref(searchFieldName || 'id')
-const content = ref('')
+let type = $ref(searchFieldName || 'id')
+let content = $ref('')
 
 const search = async () => {
-  if (!type.value) {
-    return ElMessage.error('请选择搜索类型')
-  }
+  if (!type) return ElMessage.error('请选择搜索类型')
+  if (!content) return ElMessage.error('请输入搜索内容')
 
-  if (!content.value) {
-    return ElMessage.error('请输入搜索内容')
-  }
-
-  response.value = await api(1, { type: type.value, content: content.value })
+  response = await api(1, { type: type, content: content })
 }
 
 const btnColumn = ref()
@@ -129,11 +123,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss">
-td {
-  //   white-space: nowrap;
-}
-.cell {
-  //   display: inline-block;
-}
-</style>
+<style lang="scss"></style>

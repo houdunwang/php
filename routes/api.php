@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CacheController;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\FansController;
@@ -38,6 +39,7 @@ Route::get('system/common', [SystemController::class, 'common']);
 Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
 
+Route::get('permission/{site}', [PermissionController::class, 'syncAllModulePermissions']);
 Route::apiResource('permission', PermissionController::class);
 Route::apiResource('role', RoleController::class);
 Route::post('role/{role}/permission', [RoleController::class, 'permission']);
@@ -56,3 +58,5 @@ Route::apiResource('site', SiteController::class);
 
 Route::apiResource('site.admin', AdminController::class)->only(['index', 'store', 'destroy']);
 Route::apiResource('module', ModuleController::class);
+
+Route::get('cache/{site}', [CacheController::class, 'syncSiteData']);

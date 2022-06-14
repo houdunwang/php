@@ -12,6 +12,7 @@ const resolve = () => {
 </script>
 
 <template>
+  <!-- element-plus多语言组件 -->
   <el-config-provider :locale="zhCn">
     <router-view #default="{ Component }">
       <suspense @resolve="resolve">
