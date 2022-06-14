@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { getSite, updateSite } from '@/apis/site'
+import { siteFind, updateSite } from '@/apis/site'
 import { siteConfigForm } from '@/config/form'
 import router from '@/router'
 import { request } from '@/utils/helper'
 const route = useRoute()
-const model = $ref(await getSite(route.params?.id))
+const model = $ref(await siteFind(route.params?.id))
 
 const onSubmit = request(async () => {
   await updateSite(model)

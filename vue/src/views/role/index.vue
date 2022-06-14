@@ -20,11 +20,8 @@ const del = async (model: RoleModel) => {
 
 <template>
   <tab />
-  <el-button type="primary" size="default" @click="$router.push({ name: 'role.add', params: { sid } })">
-    添加角色
-  </el-button>
 
-  <HdTableComponent :api="getRoles" :columns="roleTableColumns" :button-width="150" :key="tableKey" class="mt-2">
+  <HdTableComponent :api="getRoles" :columns="roleTableColumns" :button-width="250" :key="tableKey" class="mt-2">
     <template #button="{ model }">
       <el-button-group>
         <el-button
@@ -34,6 +31,12 @@ const del = async (model: RoleModel) => {
           编辑
         </el-button>
         <el-button type="danger" size="default" @click="del(model)">删除</el-button>
+        <el-button
+          type="success"
+          size="default"
+          @click="$router.push({ name: 'permission.set', params: { rid: model.id } })"
+          >设置权限</el-button
+        >
       </el-button-group>
     </template>
   </HdTableComponent>

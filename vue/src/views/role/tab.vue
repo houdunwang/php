@@ -8,7 +8,7 @@ const sid = route.params.sid
     :tabs="[
       { label: '站点列表', route: { name: 'site.index' } },
       { label: '角色列表', route: { name: 'role.index', params: { sid } } },
-      { label: '添加角色', route: { name: 'role.add' } },
+      { label: '添加角色', route: { name: 'role.add', params: { sid } } },
       { label: '编辑角色', route: { name: 'role.edit' }, current: true },
     ]" />
 </template>

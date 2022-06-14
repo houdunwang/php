@@ -53,16 +53,6 @@ class RoleController extends Controller
         return $this->success(message: '删除成功');
     }
 
-    /**
-     * 设置角色权限
-     * @param Role $role
-     * @param Request $request
-     * @return Response|ResponseFactory
-     * @throws BindingResolutionException
-     * @throws NotFoundExceptionInterface
-     * @throws ContainerExceptionInterface
-     * @throws InvalidArgumentException
-     */
     public function permission(Role $role, Request $request)
     {
         $role->syncPermissions($request->input('permissions'));

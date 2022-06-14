@@ -13,24 +13,23 @@ class PermissionService
 
     public function syncAllModulePermissions(Site $site)
     {
-        $this->site = $site;
-
-        Module::collections()->each(function ($module) use ($site) {
-            $file = $module->getPath() . '/Config/permissions.php';
+        $site->modules()->each(function ($module) use ($site) {
+            $file = base_path("addons/{$module['name']}/Config/permissions.php");
             if (!is_file($file)) return;
 
-            collect(include $file)->each(function ($permission) use ($module) {
-                $this->syncPermissions($module, $permission);
+            collect(include $file)->each(function ($permission) use ($site, $module) {
+                $this->syncPermissions($site, $module, $permission);
             });
         });
     }
 
-    protected function syncPermissions($module, $permission): void
+    protected function syncPermissions(Site $site, $module, $permission): void
     {
-        collect($permission['items'])->each(function ($item) use ($module) {
+        collect($permission['items'])->each(function ($item) use ($site, $module) {
             $data = [
-                'site_id' => $this->site->id,
-                'module' => $module->getName(),
+                'site_id' => $site->id,
+                'module_id' => $module->id,
+                'name' => $module->name . "_" . $item['name'],
             ] + $item;
 
             ModelsPermission::updateOrCreate($data);

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { syncSiteAdmin, getAdminList, removeSiteAdmin } from '@/apis/admin'
-import { getSite } from '@/apis/site'
+import { siteFind } from '@/apis/site'
 import { userTableColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 const route = useRoute()
 
-const site = await getSite(route.params.id)
+const site = await siteFind(route.params.id)
 
 const getList = async (page: number = 1, params = {}) => {
   return await getAdminList(site.id, page, params)

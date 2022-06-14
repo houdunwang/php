@@ -34,4 +34,14 @@ class Site extends Model
     {
         return $this->hasOne(SiteConfig::class, 'site_id');
     }
+
+    public function modules()
+    {
+        return $this->belongsToMany(Module::class, 'site_modules');
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class);
+    }
 }

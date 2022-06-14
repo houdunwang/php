@@ -29,7 +29,7 @@ class ModuleController extends Controller
         file_put_contents($configFile, "<?php return " . var_export($config, true) . ";");
 
         copy(public_path('static/preview.jpeg'), base_path('addons/' . $request->name . '/preview.jpeg'));
-
+        copy(base_path('data/module/permissions.php'), base_path('addons/' . $request->name . '/Config/permissions.php'));
         app('module')->syncModule();
 
         return $this->success('模块创建成功');

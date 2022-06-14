@@ -18,7 +18,7 @@ const dialogState = $ref(false)
   <el-image :src="url" fit="cover" :lazy="true" @click="dialogState = true" v-bind="$attrs" class="cursor-pointer" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dialog {
   @apply w-11/12 md:w-[600px];
 }

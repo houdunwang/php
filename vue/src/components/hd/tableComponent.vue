@@ -56,13 +56,15 @@ onMounted(() => {
 
 <template>
   <div class="">
-    <div class="flex items-center bg-white p-2 border rounded-sm mb-2" v-if="searchShow">
+    <div class="grid grid-cols-[auto_1fr_auto] items-center bg-white p-2 border rounded-sm mb-2" v-if="searchShow">
       <el-select v-model="type" value-key="" placeholder="" clearable filterable class="mr-1">
         <el-option v-for="item in columns" :key="item.prop" :label="item.label" :value="item.prop"> </el-option>
       </el-select>
-
       <el-input v-model="content" placeholder="请输入搜索内容" size="default" class="mr-1" @keyup.enter="search" />
-      <el-button type="success" size="default" @click="search">搜索</el-button>
+      <el-button-group class="ml-1">
+        <el-button type="success" size="default" @click="search">搜索</el-button>
+        <slot name="search-button" />
+      </el-button-group>
     </div>
 
     <el-table :data="response.data" border stripe :highlight-current-row="true" style="width: 100%">

@@ -22,11 +22,8 @@ export function getSiteList<ISite>() {
   })
 }
 
-export async function getSite(id: any) {
-  const { data } = await http.request<SiteModel>({
-    url: `/site/${id}`,
-  })
-  return data
+export async function siteFind(id: any) {
+  return await http.request<SiteModel>({ url: `/site/${id}` }).then((r) => r.data)
 }
 
 export function deleteSite(id: number) {

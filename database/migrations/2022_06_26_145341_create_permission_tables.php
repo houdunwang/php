@@ -27,14 +27,14 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->unique()->comment('描述');
+            $table->string('title')->comment('描述');
             $table->string('name')->comment('权限标识');
             $table->foreignId('site_id')->constrained()->comment('站点');
-            $table->string('module')->nullable()->comment('模块');
+            $table->foreignId('module_id')->constrained()->comment('模块');
             $table->string('guard_name');
             $table->timestamps();
 
-            $table->unique(['name', 'guard_name', 'site_id', 'module']);
+            // $table->unique(['name', 'guard_name', 'site_id', 'module']);
         });
 
         Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {

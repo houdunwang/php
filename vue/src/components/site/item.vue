@@ -36,6 +36,10 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           访问首页
         </a>
+        <router-link :to="{ name: 'site.module', params: { sid: site.id } }">
+          <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          设置模块
+        </router-link>
         <router-link :to="{ name: 'admin.index', params: { id: site.id } }">
           <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           管理员设置

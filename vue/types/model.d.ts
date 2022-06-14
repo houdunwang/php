@@ -53,6 +53,22 @@ type PermissionModel = {
   created_at: string
   updated_at: string
 }
+//模块模型
+type ModuleModel = {
+  id: number
+  title: string
+  name: string
+  version: string
+  author: string
+  perview: string
+  permissions: {
+    title: string
+    items: {
+      title: string
+      name: string
+    }[]
+  }[]
+}
 
 //站点模型
 type SiteModel = {
@@ -97,14 +113,4 @@ type SystemModel = {
       mimes: string
     }
   }
-}
-
-//模块模型
-type ModuleModel = {
-  id: number
-  title: string
-  name: string
-  version: string
-  author: string
-  perview: string
 }

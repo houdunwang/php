@@ -16,6 +16,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\SiteModuleController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
@@ -59,3 +60,4 @@ Route::apiResource('site.admin', AdminController::class)->only(['index', 'store'
 Route::apiResource('module', ModuleController::class);
 
 Route::get('cache/{site}', [CacheController::class, 'syncSiteData']);
+Route::apiResource("site.module", SiteModuleController::class);

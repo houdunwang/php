@@ -30,6 +30,15 @@ export function updateRole(role: RoleModel) {
   })
 }
 
-export function roleFind(id: number) {
+export function roleFind(id: any) {
   return http.request<RoleModel>({ url: `role/${id}` }).then((r) => r.data)
+}
+
+//设置角色权限
+export function setRolePermissions(rid: any, permissions: any[]) {
+  return http.request({
+    url: `role/${rid}/permission`,
+    method: 'POST',
+    data: { permissions },
+  })
 }
