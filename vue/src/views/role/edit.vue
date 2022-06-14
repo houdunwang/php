@@ -2,13 +2,16 @@
 import { roleFind, updateRole } from '@/apis/role'
 import { roleForm } from '@/config/form'
 import TabVue from './tab.vue'
+const router = useRouter()
+const { sid, rid } = defineProps<{ sid: any; rid: any }>()
 
-const { id } = defineProps<{ id: any }>()
-
-const role = reactive(await roleFind(id))
+const role = reactive(await roleFind(rid))
 
 const onSubmit = async (model: RoleModel) => {
-  await updateRole(model)
+  try {
+    await updateRole(model)
+    router.push({ name: 'role.index' })
+  } catch (error) {}
 }
 </script>
 

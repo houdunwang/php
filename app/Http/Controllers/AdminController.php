@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdminRequest;
-use App\Http\Requests\UpdateAdminRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Site;
-use App\Models\Admin;
 use App\Models\User;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -26,18 +24,15 @@ class AdminController extends Controller
         return UserResource::collection($admins);
     }
 
+    public function show(User $admin)
+    {
+        return $this->success(data: new UserResource($admin->load('roles')));
+    }
+
     public function store(Site $site, StoreAdminRequest $request)
     {
         $site->admins()->syncWithoutDetaching([$request->user_id]);
         return $this->success();
-    }
-
-    public function show(Admin $admin)
-    {
-    }
-
-    public function update(UpdateAdminRequest $request, Admin $admin)
-    {
     }
 
     public function destroy(Site $site, $admin)
@@ -45,5 +40,12 @@ class AdminController extends Controller
         $site->admins()->detach($admin);
 
         return $this->success('管理员删除成功');
+    }
+
+    public function syncAdminRole(Request $request, User $admin)
+    {
+        $admin->assignRole($request->roles);
+
+        return $this->success('角色设置成功');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 /**
  * 站点
@@ -23,6 +24,11 @@ class Site extends Model
     public function master()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class, 'site_id');
     }
 
     public function admins()

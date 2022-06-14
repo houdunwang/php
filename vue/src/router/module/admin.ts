@@ -6,8 +6,15 @@ export default {
   children: [
     {
       name: 'admin.index',
-      path: ':id',
+      path: ':sid',
+      props: true,
       component: () => import('@/views/admin/index.vue'),
+    },
+    {
+      name: 'admin.role',
+      path: ':sid/:id',
+      props: true,
+      component: () => import('@/views/admin/role.vue'),
     },
   ],
 } as RouteRecordRaw

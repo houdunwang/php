@@ -56,7 +56,8 @@ Route::get('captcha', CaptchaController::class);
 
 Route::apiResource('site', SiteController::class);
 
-Route::apiResource('site.admin', AdminController::class)->only(['index', 'store', 'destroy']);
+Route::apiResource('site.admin', AdminController::class)->shallow();
+Route::post('admin/{admin}/role', [AdminController::class, 'syncAdminRole']);
 Route::apiResource('module', ModuleController::class);
 
 Route::get('cache/{site}', [CacheController::class, 'syncSiteData']);

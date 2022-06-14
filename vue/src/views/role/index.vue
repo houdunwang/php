@@ -27,7 +27,7 @@ const del = async (model: RoleModel) => {
         <el-button
           type="primary"
           size="default"
-          @click="$router.push({ name: `role.edit`, params: { sid, id: model.id } })">
+          @click="$router.push({ name: `role.edit`, params: { sid, rid: model.id } })">
           编辑
         </el-button>
         <el-button type="danger" size="default" @click="del(model)">删除</el-button>

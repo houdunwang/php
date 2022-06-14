@@ -17,8 +17,19 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:roles,name'],
-            'title' => ['required', Rule::unique('roles', 'title')],
+            'name' => ['required', $this->unique('name'),],
+            'title' => ['required',  $this->unique('title'),]
         ];
+    }
+
+    protected function unique($field)
+    {
+        return Rule::unique('roles', $field)
+            ->where(function ($query) {
+                $query->where('site_id', request('site.id'))
+                    ->when(request('role.id'), function ($query, $id) {
+                        $query->where('id', '!=', $id);
+                    });
+            });
     }
 }

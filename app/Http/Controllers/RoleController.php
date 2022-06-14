@@ -7,13 +7,8 @@ use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
 use App\Models\Site;
-use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Psr\Container\NotFoundExceptionInterface;
-use Psr\Container\ContainerExceptionInterface;
-use InvalidArgumentException;
 use Spatie\Permission\Models\Role as ModelsRole;
 
 class RoleController extends Controller
@@ -25,7 +20,7 @@ class RoleController extends Controller
 
     public function index(Site $site)
     {
-        $roles = Role::paginate();
+        $roles = $site->roles()->latest()->paginate(100);
         return RoleResource::collection($roles);
     }
 

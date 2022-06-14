@@ -46,6 +46,7 @@ const emit = defineEmits<{
         </template>
         <template v-else>
           <el-input
+            @keyup.enter="emit('submit', model)"
             v-model="model![f.name]"
             :placeholder="f.placeholder"
             :readonly="f.readonly"

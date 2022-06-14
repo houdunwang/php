@@ -19,7 +19,7 @@ export default {
     },
     {
       name: 'role.edit',
-      path: 'role/:sid/:id',
+      path: 'role/:sid/:rid',
       component: () => import('@/views/role/edit.vue'),
       props: true,
     },
