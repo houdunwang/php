@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { syncLocalModule } from '@/apis/module'
 import { isSuperAdmin } from '@/utils/helper'
 </script>
 
 <template>
   <main>
     <section>
-      <a href="/">
-        <icon-home-two theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-        网站首页
-      </a>
       <router-link :to="{ name: 'module.index' }" v-if="isSuperAdmin()">
         <icon-system theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         模块管理
@@ -18,10 +13,9 @@ import { isSuperAdmin } from '@/utils/helper'
         <icon-right-user theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         会员中心
       </a>
-
-      <a href="javascript:void(0)" @click="syncLocalModule">
-        <icon-right-user theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-        同步本地模块
+      <a href="https://www.houdunren.com" target="_blank">
+        <icon-video-two theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+        视频教程
       </a>
     </section>
 

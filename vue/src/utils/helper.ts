@@ -50,3 +50,7 @@ export function request(fn: (args: any) => Promise<any>) {
 export function isMobile() {
   return document.documentElement.clientWidth < 768
 }
+
+export function toUrl(url: string) {
+  return window.open(url)
+}

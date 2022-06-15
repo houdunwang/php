@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $admins = $site->admins()->when(request('type'), function ($query, $type) {
             $query->where($type, "like", "%" . request('content') . "%");
-        })->paginate();
+        })->with('roles')->paginate();
 
         return UserResource::collection($admins);
     }

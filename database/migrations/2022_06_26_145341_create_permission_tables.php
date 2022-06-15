@@ -29,8 +29,8 @@ class CreatePermissionTables extends Migration
             $table->bigIncrements('id');
             $table->string('title')->comment('描述');
             $table->string('name')->comment('权限标识');
-            $table->foreignId('site_id')->constrained()->comment('站点');
-            $table->foreignId('module_id')->constrained()->comment('模块');
+            $table->foreignId('site_id')->constrained()->onDelete('cascade')->comment('站点');
+            $table->foreignId('module_id')->constrained()->onDelete('cascade')->comment('模块');
             $table->string('guard_name');
             $table->timestamps();
 
@@ -45,7 +45,7 @@ class CreatePermissionTables extends Migration
             }
             $table->string('name');
             $table->string('title')->comment('角色描述');       // For MySQL 8.0 use string('name', 125);
-            $table->foreignId('site_id')->constrained()->comment('站点');
+            $table->foreignId('site_id')->constrained()->onDelete('cascade')->comment('站点');
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
             if ($teams || config('permission.testing')) {

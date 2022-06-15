@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { syncLocalModule } from '@/apis/module'
 import { getSiteList } from '@/apis/site'
 import useRequest from '@/composables/useRequest'
-
+import { toUrl } from '@/utils/helper'
 const { collection, load, remove } = useRequest<SiteModel>()
 
 const del = async (id: number) => {
@@ -13,8 +14,11 @@ await load(getSiteList)
 
 <template>
   <div class="">
-    <div class="mb-3">
-      <ElButton type="primary" @click="$router.push({ name: 'site.add' })">添加站点</ElButton>
+    <div class="mb-3 flex justify-between">
+      <el-button-group>
+        <ElButton type="primary" @click="$router.push({ name: 'site.add' })">添加站点</ElButton>
+        <ElButton type="success" @click="syncLocalModule">同步模块数据</ElButton>
+      </el-button-group>
     </div>
     <div class="" v-if="collection?.data.length">
       <SiteItem v-for="site in collection?.data" class="mb-3" :site="site" @del="del" />

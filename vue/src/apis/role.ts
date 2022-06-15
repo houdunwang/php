@@ -19,9 +19,9 @@ export function addRole(siteId: number, data: any) {
   })
 }
 
-export function delRole(id: number) {
+export function delRole(sid: number, rid: number) {
   return http.request({
-    url: `role/${id}`,
+    url: `site/${sid}/role/${rid}`,
     method: 'DELETE',
   })
 }

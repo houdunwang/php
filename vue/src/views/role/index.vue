@@ -4,25 +4,33 @@ import { roleTableColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 import tab from './tab.vue'
 const { sid } = defineProps<{ sid: any }>()
+let roles = $ref(await getRoleList(sid, 1))
 
-const getRoles = async (page: number = 1) => {
-  return await getRoleList(sid, page)
-}
-let tableKey = $ref(0)
 const del = async (model: RoleModel) => {
   try {
     await ElMessageBox.confirm('确认删除该角色吗？')
-    await delRole(model.id)
-    tableKey++
+    await delRole(sid, model.id)
+    roles = await getRoleList(sid)
   } catch (error) {}
 }
 </script>
 
 <template>
   <tab />
-
-  <HdTableComponent :api="getRoles" :columns="roleTableColumns" :button-width="250" :key="tableKey" class="mt-2">
-    <template #button="{ model }">
+  <el-table :data="roles.data" border stripe>
+    <el-table-column
+      v-for="col in roleTableColumns"
+      :prop="col.prop"
+      :key="col.prop"
+      :label="col.label"
+      :width="col.width">
+    </el-table-column>
+    <el-table-column label="权限" #default="{ row: model }" :width="250" align="center">
+      <el-tag type="success" size="small" effect="dark" v-for="p of model.permissions" class="m-1">
+        {{ p.title }}
+      </el-tag>
+    </el-table-column>
+    <el-table-column #default="{ row: model }" :width="250" align="center">
       <el-button-group>
         <el-button
           type="primary"
@@ -38,8 +46,8 @@ const del = async (model: RoleModel) => {
           >设置权限</el-button
         >
       </el-button-group>
-    </template>
-  </HdTableComponent>
+    </el-table-column>
+  </el-table>
 </template>
 
 <style lang="scss"></style>
