@@ -17,11 +17,19 @@ const loadUser = async () => {
 </script>
 
 <template>
-  <Teleport to="body">
-    <el-dialog v-model="dialogState" title="用户资料" :width="dialogWidth" top="20px">
-      <form-field-list :model="user" :fields="userForm" :show-button="false" />
-    </el-dialog>
-  </Teleport>
+  <teleport to="body">
+    <div class="">
+      <el-dialog v-model="dialogState" title="用户资料" custom-class="dialog" top="20px">
+        <form-field-list :model="user" :fields="userForm" :show-button="false" />
+      </el-dialog>
+    </div>
+  </teleport>
 
   <el-button type="primary" size="default" @click="loadUser">显示</el-button>
 </template>
+
+<style lang="scss" scoped>
+:deep(.dialog) {
+  @apply w-11/12 md:w-[1000px];
+}
+</style>

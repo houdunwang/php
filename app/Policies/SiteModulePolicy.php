@@ -51,9 +51,9 @@ class SiteModulePolicy
      * @param  \App\Models\SiteModule  $siteModule
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, SiteModule $siteModule)
+    public function update(User $user)
     {
-        //
+        return is_super_admin();
     }
 
     /**
@@ -63,7 +63,7 @@ class SiteModulePolicy
      * @param  \App\Models\SiteModule  $siteModule
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, SiteModule $siteModule)
+    public function delete(User $user)
     {
         return is_super_admin();
     }

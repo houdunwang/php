@@ -64,3 +64,4 @@ Route::apiResource('module', ModuleController::class);
 Route::get('module/sync/module', [ModuleController::class, 'syncLocalModule']);
 
 Route::apiResource("site.module", SiteModuleController::class);
+Route::get("set_default_module/site/{site}/module/{module}", [SiteModuleController::class, 'setDefaultModule']);

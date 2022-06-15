@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ModuleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum']);
+    }
+
     public function index()
     {
         $modules = Module::when(request('type'), function ($query, $type) {

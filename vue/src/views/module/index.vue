@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { delModule, getModuleList } from '@/apis/module'
-import { moduleTableColumns, tableButtonType } from '@/config/table'
+import { moduleTableColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 let tableKey = $ref(0)
 const del = async (module: ModuleModel) => {

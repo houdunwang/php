@@ -20,3 +20,9 @@ export function removeSiteModule(sid: any, mid: any) {
     method: 'DELETE',
   })
 }
+
+export function setSiteDefaultModule(sid: any, mid: any) {
+  return http.request({
+    url: `set_default_module/site/${sid}/module/${mid}`,
+  })
+}

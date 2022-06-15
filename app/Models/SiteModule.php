@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SiteModule extends Model
 {
-    protected $table = 'modules';
-
     use HasFactory;
+
+    protected $fillable = ['is_default'];
 }

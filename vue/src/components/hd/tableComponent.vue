@@ -109,7 +109,7 @@ onMounted(() => {
         </el-button-group>
       </el-table-column>
 
-      <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center">
+      <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center" fixed="right">
         <slot name="button" :model="row" />
       </el-table-column>
     </el-table>

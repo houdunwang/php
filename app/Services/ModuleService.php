@@ -13,6 +13,9 @@ class ModuleService
 
     public function syncModule()
     {
+        $names = Module::collections()->map(fn ($module) => $module->getName());
+        ModelsModule::whereNotIn('name', $names->toArray())->delete();
+
         Module::collections()->map(function ($module) {
             $config = (include $module->getPath() . "/Config/config.php") + [
                 'preview' => url('addons/' . $module->getName() . '/preview.jpeg'),

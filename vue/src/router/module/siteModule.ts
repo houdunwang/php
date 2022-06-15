@@ -7,8 +7,8 @@ export default {
     {
       name: 'site.module',
       path: 'module',
-      component: () => import('@/views/siteModule/set.vue'),
       props: true,
+      component: () => import('@/views/siteModule/set.vue'),
     },
   ],
 } as RouteRecordRaw

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { siteFind } from '@/apis/site'
-import { addSiteModule, getSiteModuleList, removeSiteModule } from '@/apis/siteModule'
+import { addSiteModule, getSiteModuleList, removeSiteModule, setSiteDefaultModule } from '@/apis/siteModule'
 import { moduleTableColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 const { sid } = defineProps<{ sid: any }>()
@@ -24,6 +24,10 @@ const del = async (module: any) => {
 const getModuleList = async () => {
   return await getSiteModuleList(sid)
 }
+
+const defaultModule = async (module: ModuleModel) => {
+  await setSiteDefaultModule(sid, module.id)
+}
 </script>
 
 <template>
@@ -33,9 +37,12 @@ const getModuleList = async () => {
       { label: `【${site.title}】站点模块设置`, route: { name: `site.module` } },
     ]" />
   <ModuleSelectModule @select="addModule" class="mb-2" />
-  <HdTableComponent :columns="moduleTableColumns" :api="getModuleList" :key="tableKey" :button-width="120">
+  <HdTableComponent :columns="moduleTableColumns" :api="getModuleList" :key="tableKey" :button-width="250">
     <template #button="{ model }">
-      <el-button type="danger" size="default" @click="del(model)">移除模块</el-button>
+      <el-button-group>
+        <el-button type="danger" size="default" @click="del(model)">删除模块</el-button>
+        <el-button type="success" size="default" @click="defaultModule(model)">设置默认模块</el-button>
+      </el-button-group>
     </template>
   </HdTableComponent>
 </template>
