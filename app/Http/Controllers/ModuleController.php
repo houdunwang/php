@@ -56,6 +56,7 @@ class ModuleController extends Controller
         return $this->success('模块删除成功');
     }
 
+    //同步模块到数据表
     public function syncLocalModule()
     {
         app('module')->syncModule();

@@ -17,5 +17,11 @@ class RoleSeeder extends Seeder
             'site_id' => 1,
             'guard_name' => 'sanctum'
         ]);
+        Role::factory()->create([
+            'name' => 'editor',
+            'title' => '操作员',
+            'site_id' => 1,
+            'guard_name' => 'sanctum'
+        ]);
     }
 }

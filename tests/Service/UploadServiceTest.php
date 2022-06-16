@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Service;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
-// use PHPUnit\Framework\TestCase;
-
 class UploadServiceTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * 用户头像上传
      * @test

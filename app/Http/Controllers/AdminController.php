@@ -17,14 +17,12 @@ class AdminController extends Controller
 
     public function index(Site $site)
     {
-        $admins = $site->admins()->when(request('type'), function ($query, $type) {
-            $query->where($type, "like", "%" . request('content') . "%");
-        })->with('roles')->paginate();
+        $admins = $site->admins()->with('roles')->paginate();
 
         return UserResource::collection($admins);
     }
 
-    public function show(User $admin)
+    public function show(Site $site, User $admin)
     {
         return $this->success(data: new UserResource($admin->load('roles')));
     }
@@ -42,9 +40,10 @@ class AdminController extends Controller
         return $this->success('管理员删除成功');
     }
 
+    //设置管理员角色
     public function syncAdminRole(Request $request, User $admin)
     {
-        $admin->assignRole($request->roles);
+        $admin->syncRoles($request->roles);
 
         return $this->success('角色设置成功');
     }

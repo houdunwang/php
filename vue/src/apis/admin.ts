@@ -25,10 +25,10 @@ export async function removeSiteAdmin(siteId: number, userId: number) {
   })
 }
 
-export async function adminFind(id: any) {
+export async function adminFind(sid: any, id: any) {
   return http
     .request<UserModel>({
-      url: `admin/${id}`,
+      url: `site/${sid}/admin/${id}`,
     })
     .then((r) => r.data)
 }

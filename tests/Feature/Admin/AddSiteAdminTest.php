@@ -12,14 +12,8 @@ class AddSiteAdminTest extends TestCase
     use RefreshDatabase;
     protected $site;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->signIn();
-
-        $this->site = create(Site::class, null, ['user_id' => $this->user->id]);
-    }
     /**
+     * 添加站点管理员
      * @test
      */
     public function addSiteAdmin()

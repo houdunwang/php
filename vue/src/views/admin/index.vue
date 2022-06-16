@@ -11,7 +11,7 @@ const site = $ref(await siteFind(sid))
 let admins = $ref(await getAdminList(sid))
 
 const select = async (user: UserModel) => {
-  syncSiteAdmin(site.id, user.id)
+  await syncSiteAdmin(site.id, user.id)
   admins = await getAdminList(sid)
 }
 

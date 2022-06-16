@@ -39,7 +39,7 @@ Route::get('system/common', [SystemController::class, 'common']);
 Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
 
-Route::apiResource('permission', PermissionController::class);
+Route::apiResource('site.permission', PermissionController::class);
 Route::get('site/{site}/update_site_permission', [PermissionController::class, 'updateSitePermissions']);
 
 Route::apiResource('site.role', RoleController::class);
@@ -48,7 +48,7 @@ Route::post('role/{role}/permission', [RoleController::class, 'permission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);
 Route::get('user/currentUser', [UserController::class, 'currentUser']);
-Route::apiResource('user', UserController::class);
+Route::apiResource('user', UserController::class)->except(['store']);
 
 Route::get('follower/{user}', [FollowerController::class, 'index']);
 Route::get('follower/toggle/{user}', [FollowerController::class, 'toggle']);
@@ -58,7 +58,7 @@ Route::get('captcha', CaptchaController::class);
 
 Route::apiResource('site', SiteController::class);
 
-Route::apiResource('site.admin', AdminController::class)->shallow();
+Route::apiResource('site.admin', AdminController::class);
 Route::post('admin/{admin}/role', [AdminController::class, 'syncAdminRole']);
 Route::apiResource('module', ModuleController::class);
 Route::get('module/sync/module', [ModuleController::class, 'syncLocalModule']);

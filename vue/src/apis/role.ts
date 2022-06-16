@@ -3,7 +3,7 @@ import { http } from '@/plugins/axios'
 export function getRoleList(siteId: number, page = 1, params = {}) {
   return http.request<RoleModel, ResponsePageResult<RoleModel>>({
     url:
-      `/site/${siteId}}/role?page=${page}&` +
+      `/site/${siteId}/role?page=${page}&` +
       Object.entries(params)
         .map((e) => e.join('='))
         .join('&'),

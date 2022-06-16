@@ -26,9 +26,10 @@ class RoleController extends Controller
 
     public function store(StoreRoleRequest $request, Site $site, Role $role)
     {
+        // dd($request->input());
         $role->fill($request->input() + ['site_id' => $site->id, 'guard_name' => 'sanctum'])->save();
 
-        return $this->success('角色添加成功');
+        return $this->success('角色添加成功', data: $role);
     }
 
     public function show(Site $site, Role $role)

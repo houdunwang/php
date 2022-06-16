@@ -12,16 +12,6 @@ class UploadAvatarTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * 未登录用户不允许上传
-     * @test
-     */
-    public function notLoginUserIsNotAllowedToUpload()
-    {
-        $response = $this->postJson('/api/upload/avatar', []);
-
-        $response->assertStatus(401);
-    }
-    /**
      * 上传文件不能为空
      * @test
      */

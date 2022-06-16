@@ -22,7 +22,7 @@ class DestroyRoleTest extends TestCase
 
         $role = create(Role::class);
 
-        $response = $this->deleteJson("/api/role/{$role->id}");
+        $response = $this->deleteJson("/api/site/{$this->site->id}/role/{$role->id}");
 
         $response->assertSuccessful()->assertJsonStructure(['message']);
     }

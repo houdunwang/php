@@ -8,8 +8,8 @@ const router = useRouter()
 
 const { sid, id } = defineProps<{ sid: any; id: any }>()
 const site = await siteFind(sid)
-const admin = await adminFind(id)
-
+const admin = await adminFind(sid, id)
+console.log(admin)
 const response = await getRoleList(sid, 1)
 const roles = $ref(admin.roles.map((r) => r.name))
 const onSubmit = async () => {

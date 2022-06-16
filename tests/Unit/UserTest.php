@@ -17,8 +17,7 @@ class UserTest extends TestCase
      */
     public function theUserTheDefaultAvatar()
     {
-        $this->signIn();
-        $response = $this->getJson('/api/user/info');
+        $response = $this->getJson("/api/user/{$this->user->id}");
 
         $this->assertEquals($response['data']['avatar'], url('static/avatar.jpeg'));
     }

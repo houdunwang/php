@@ -3,6 +3,7 @@
 namespace Tests\Feature\Role;
 
 use App\Models\Role;
+use App\Models\Site;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -10,10 +11,14 @@ use Tests\TestCase;
 class GetRoleTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
+
+    protected $site;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->signIn();
+        $this->site = create(Site::class);
     }
 
     /**
@@ -22,7 +27,7 @@ class GetRoleTest extends TestCase
      */
     public function getTheRoleList()
     {
-        $response = $this->get('/api/role');
+        $response = $this->get("/api/site/{$this->site->id}/role");
 
         $response->assertSuccessful()->assertJson(['data' => []]);
     }
@@ -34,7 +39,7 @@ class GetRoleTest extends TestCase
     public function getSingleAcessRole()
     {
         $role = create(Role::class);
-        $response = $this->get("/api/role/{$role['id']}");
+        $response = $this->get("/api/site/{$this->site->id}/role/{$role['id']}");
 
         $response->assertSuccessful()->assertJson(['data' => []]);
     }

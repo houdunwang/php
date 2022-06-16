@@ -19,6 +19,6 @@ class getUserListTest extends TestCase
         $this->signIn();
         $response = $this->getJson('/api/user');
 
-        $response->assertStatus(200)->assertJson(['status' => 'success']);
+        $response->assertStatus(200)->assertJson(['data' => []]);
     }
 }

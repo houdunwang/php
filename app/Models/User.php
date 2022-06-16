@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\PaginateConditionScope;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,6 +47,11 @@ class User extends Authenticatable
         return $this->id == 1;
     }
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new PaginateConditionScope);
+    }
+
     public function followers()
     {
         return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id')->withTimestamps();
@@ -65,4 +71,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Site::class);
     }
+
+    // public function scopeCondition($query)
+    // {
+    //     return $query->when(request('type'), function ($query, $type) {
+    //         $query->where($type, "like", "%" . request('content') . "%");
+    //     });
+    // }
 }

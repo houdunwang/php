@@ -1,5 +1,8 @@
 <?php
 return [
+    "base" => [
+        'mobile' => env('MOBILE')
+    ],
     //基本信息
     "site" => [
         "title" => "后盾人",

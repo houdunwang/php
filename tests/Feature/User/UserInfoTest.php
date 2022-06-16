@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class getCurrentUserInfoTest extends TestCase
+class UserInfoTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -15,10 +15,10 @@ class getCurrentUserInfoTest extends TestCase
      * 获取当前用户资料
      * @test
      */
-    public function getTheCurrentUserInformation()
+    public function currentUserInfo()
     {
         $this->signIn(create(User::class));
-        $response = $this->getJson('/api/user/info')->assertSuccessful();
+        $response = $this->getJson("/api/user/{$this->user->id}")->assertSuccessful();
 
         $this->assertEquals($response['data']['id'], $this->user->id);
     }

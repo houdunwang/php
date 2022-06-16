@@ -22,12 +22,12 @@ class QuerySiteTest extends TestCase
      * 获取站点列表
      * @test
      */
-    public function accessToTheSiteList()
+    public function getSiteList()
     {
         $response = $this->get('/api/site');
 
         $response->assertStatus(200)->assertJson([
-            'status' => 'success'
+            'data' => []
         ]);
     }
 

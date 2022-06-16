@@ -15,34 +15,36 @@ class PermissionController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
-    public function index()
+    public function index(Site $site)
     {
-        return $this->success(data: PermissionResource::collection(Permission::all()));
+        $permissions = $site->permissions()->latest()->paginate(1000);
+        return PermissionResource::collection($permissions);
     }
 
-    public function store(StorePermissionRequest $request)
-    {
-        $permission = Permission::create(['name' => $request->name, 'title' => $request->title]);
-        return $this->success(data: new PermissionResource($permission));
-    }
+    // public function store(StorePermissionRequest $request)
+    // {
+    //     $permission = Permission::create(['name' => $request->name, 'title' => $request->title]);
+    //     return $this->success(data: new PermissionResource($permission));
+    // }
 
-    public function show(Permission $permission)
-    {
-        return $this->success(data: new PermissionResource($permission));
-    }
+    // public function show(Permission $permission)
+    // {
+    //     return $this->success(data: new PermissionResource($permission));
+    // }
 
-    public function update(UpdatePermissionRequest $request, Permission $permission)
-    {
-        $permission->fill($request->input())->save();
-        return $this->success(data: new PermissionResource($permission));
-    }
+    // public function update(UpdatePermissionRequest $request, Permission $permission)
+    // {
+    //     $permission->fill($request->input())->save();
+    //     return $this->success(data: new PermissionResource($permission));
+    // }
 
-    public function destroy(Permission $permission)
-    {
-        $permission->delete();
-        return $this->success("删除成功");
-    }
+    // public function destroy(Permission $permission)
+    // {
+    //     $permission->delete();
+    //     return $this->success("删除成功");
+    // }
 
+    //更新站点权限
     public function updateSitePermissions(Site $site)
     {
         app('permission')->syncAllModulePermissions($site);

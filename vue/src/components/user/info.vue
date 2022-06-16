@@ -2,7 +2,7 @@
 import { getUser } from '@/apis/user'
 import { userForm } from '@/config/form'
 
-const { id, dialogWidth = '60%' } = defineProps<{
+const { id } = defineProps<{
   id?: number
   dialogWidth?: string
 }>()
@@ -12,6 +12,7 @@ let user = $ref<UserModel>()
 
 const loadUser = async () => {
   user = await getUser(id!)
+  console.log(user)
   dialogState = true
 }
 </script>

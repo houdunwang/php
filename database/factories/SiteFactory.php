@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SiteFactory extends Factory
@@ -11,7 +12,8 @@ class SiteFactory extends Factory
         return [
             'title' => $this->faker->word(),
             'url' => null,
-            'config' => config('site')
+            'config' => config('site'),
+            'user_id' => User::pluck('id')->random(),
         ];
     }
 }

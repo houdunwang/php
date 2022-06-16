@@ -7,30 +7,23 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ConfgTest extends TestCase
+class SystemTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     protected $seed = true;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->signIn();
-    }
-
     /**
-     * 更新网站配置
+     * 表单验证
      * @test
      */
-    public function updateSiteConfiguration()
+    public function updateSystemFormValidation()
     {
-        $response = $this->putJson('/api/config/system', [
+        $response = $this->putJson('/api/system', [
             'name' => $this->faker()->word(),
             'tel' => $this->faker()->phoneNumber()
         ]);
-
-        $response->assertSuccessful();
+        $response->assertStatus(422);
     }
 
     /**

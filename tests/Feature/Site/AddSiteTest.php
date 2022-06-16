@@ -59,7 +59,7 @@ class AddSiteTest extends TestCase
             'address' => $this->faker()->sentence(),
             'tel' => $this->faker()->phoneNumber(),
         ]);
-
+        // $response->dd();
         $response->assertSuccessful();
     }
 }
