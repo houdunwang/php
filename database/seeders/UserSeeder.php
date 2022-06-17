@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory(30)->create();
-        User::factory(3)->has(Site::factory(1)->count(1))->create();
+        // User::factory(3)->has(Site::factory(1)->count(1))->create();
 
         $user  = User::first();
         $user->name = '向军大叔';

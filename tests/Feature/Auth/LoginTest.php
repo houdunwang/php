@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Account;
+namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -30,7 +30,7 @@ class LoginTest extends TestCase
     }
 
     /**
-     * 邮箱合法性
+     * 邮箱格式不合法
      * @test
      */
     public function loginAccountRule()
@@ -69,7 +69,6 @@ class LoginTest extends TestCase
         $response = $this->post('/api/login', ['account' => '3434@qq.com', 'password' => 'hd888']);
         $response->assertSessionHasErrors('account');
     }
-
 
     /**
      * 手机号登录

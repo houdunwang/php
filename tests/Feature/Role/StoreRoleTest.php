@@ -11,14 +11,7 @@ use Tests\TestCase;
 class StoreRoleTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
-    protected $site;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->signIn();
-        $this->site = create(Site::class);
-    }
     /**
      * 字段不能为空
      * @test
@@ -46,7 +39,7 @@ class StoreRoleTest extends TestCase
     }
 
     /**
-     * 添加角色
+     * 成功添加角色
      * @test
      */
     public function addRoleSuccess()

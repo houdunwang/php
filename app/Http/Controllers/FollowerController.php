@@ -14,8 +14,14 @@ class FollowerController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
+    // 关注列表
+    public function index(User $user)
+    {
+        return UserResource::collection($user->followers);
+    }
+
     /**
-     * 当前用户关注或取关某个用户
+     * 关注或取关用户
      * @param User $user
      * @return array
      */
@@ -23,10 +29,5 @@ class FollowerController extends Controller
     {
         Auth::user()->followers()->toggle($user->id);
         return $this->success(data: ['isFollower' => Auth::user()->isFollower($user)]);
-    }
-
-    public function index(User $user)
-    {
-        return $this->success(data: UserResource::collection($user->followers));
     }
 }

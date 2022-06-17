@@ -10,24 +10,15 @@ class ModulePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function viewAny(User $user)
+    public function before()
     {
-        //
+        return is_super_admin();
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Module  $module
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+    public function viewAny(User $user)
+    {
+    }
+
     public function view(User $user, Module $module)
     {
         //
@@ -63,21 +54,13 @@ class ModulePolicy
      * @param  \App\Models\Module  $module
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Module $module)
+    public function delete(User $user, ?Module $module)
     {
-        //
+        return is_super_admin();
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Module  $module
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function restore(User $user, Module $module)
     {
-        //
     }
 
     /**

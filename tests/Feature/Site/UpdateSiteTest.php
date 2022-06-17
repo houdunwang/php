@@ -11,15 +11,6 @@ class UpdateSiteTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    protected $site;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->signIn();
-        $this->site = create(Site::class, null, ['title' => $this->faker()->word(), 'user_id' => 1]);
-    }
-
     /**
      * 表单字段验证
      * @test

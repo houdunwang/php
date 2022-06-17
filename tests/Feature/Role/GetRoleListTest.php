@@ -12,15 +12,6 @@ class GetRoleTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    protected $site;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->signIn();
-        $this->site = create(Site::class);
-    }
-
     /**
      * 获取角色列表
      * @test
@@ -28,18 +19,6 @@ class GetRoleTest extends TestCase
     public function getTheRoleList()
     {
         $response = $this->get("/api/site/{$this->site->id}/role");
-
-        $response->assertSuccessful()->assertJson(['data' => []]);
-    }
-
-    /**
-     * 获取角色
-     * @test
-     */
-    public function getSingleAcessRole()
-    {
-        $role = create(Role::class);
-        $response = $this->get("/api/site/{$this->site->id}/role/{$role['id']}");
 
         $response->assertSuccessful()->assertJson(['data' => []]);
     }

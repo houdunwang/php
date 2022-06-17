@@ -48,6 +48,7 @@ class SiteController extends Controller
     {
         $this->authorize('delete', $site);
         $site->delete();
+
         return $this->success('站点删除成功');
     }
 }

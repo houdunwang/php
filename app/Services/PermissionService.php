@@ -37,6 +37,7 @@ class PermissionService
                 'site_id' => $site->id,
                 'module_id' => $module->id,
                 'name' => $name,
+                'guard_name' => 'sanctum'
             ] + $item;
             $this->names[] = $name;
             ModelsPermission::updateOrCreate($data);

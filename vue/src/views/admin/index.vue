@@ -39,7 +39,12 @@ const del = async (model: any) => {
       :align="col.align"
       #default="{ row }">
       <template v-if="col.type == 'image'">
-        <hd-image-component :url="row[col.prop]" class="rounded-md w-12 self-center block m-auto" />
+        <el-image
+          preview-teleported
+          :hide-on-click-modal="true"
+          :preview-src-list="[row[col.prop]!]"
+          :src="row[col.prop]"
+          fit="cover" />
       </template>
       <template v-else-if="col.type == 'date'">
         {{ dayjs(row[col.prop]).format('YYYY-mm-DD') }}

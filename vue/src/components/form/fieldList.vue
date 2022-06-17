@@ -41,7 +41,13 @@ const emit = defineEmits<{
         </template>
         <template v-else-if="f.type == 'preview'">
           <div class="flex flex-col">
-            <HdImageComponent :url="model[f.name]" class="md:w-28 w-full rounded-md" />
+            <el-image
+              preview-teleported
+              :hide-on-click-modal="true"
+              :preview-src-list="[model[f.name]!]"
+              :src="model[f.name]"
+              fit="cover"
+              class="w-[200px] rounded-sm" />
           </div>
         </template>
         <template v-else>

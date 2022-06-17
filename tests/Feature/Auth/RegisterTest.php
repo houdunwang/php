@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Account;
+namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -30,7 +30,7 @@ class RegisterTest extends TestCase
     public function userRegister()
     {
         $response = $this->post('/api/register', $this->data());
-        $response->assertOk();
+        $response->assertSuccessful();
     }
 
     /**
@@ -49,7 +49,7 @@ class RegisterTest extends TestCase
      */
     public function registerAccountValidate()
     {
-        $response = $this->postJson('/api/register', ['account' => 'hd'] + $this->data());
+        $response = $this->postJson('/api/register', ['account' => ''] + $this->data());
 
         $response->assertJsonValidationErrors('account');
     }
@@ -73,7 +73,7 @@ class RegisterTest extends TestCase
     public function accountUniqueValidate()
     {
         $data = $this->data();
-        $this->post('/api/register', $data);
+        $this->postJson('/api/register', $data);
         $response2 = $this->postJson('/api/register', $data);
         $response2->assertJsonValidationErrors('account');
     }
@@ -84,7 +84,7 @@ class RegisterTest extends TestCase
      */
     public function determineTheErrorOutputPassword()
     {
-        $this->postJson('/api/register', ['password' => 'abcd'] + $this->data())
+        $this->postJson('/api/register', ['password' => ''] + $this->data())
             ->assertJsonValidationErrors('password');
     }
 }

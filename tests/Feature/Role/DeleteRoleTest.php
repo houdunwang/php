@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
-class DestroyRoleTest extends TestCase
+class DeleteRoleTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -18,8 +18,6 @@ class DestroyRoleTest extends TestCase
      */
     public function deleteRole()
     {
-        $this->signIn();
-
         $role = create(Role::class);
 
         $response = $this->deleteJson("/api/site/{$this->site->id}/role/{$role->id}");

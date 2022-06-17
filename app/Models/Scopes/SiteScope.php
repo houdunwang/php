@@ -2,21 +2,18 @@
 
 namespace App\Models\Scopes;
 
+use App\Models\Site;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
 class SiteScope implements Scope
 {
-    /**
-     * Apply the scope to a given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return void
-     */
     public function apply(Builder $builder, Model $model)
     {
-        return $builder->where('site_id', request('site'));
+        if ($site = request('site')) {
+            return $builder->where('site_id', $site instanceof Site ? $site->id : $site);
+        }
+        return $builder;
     }
 }

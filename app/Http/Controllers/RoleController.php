@@ -9,7 +9,6 @@ use App\Models\Role;
 use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Spatie\Permission\Models\Role as ModelsRole;
 
 class RoleController extends Controller
 {
@@ -26,7 +25,6 @@ class RoleController extends Controller
 
     public function store(StoreRoleRequest $request, Site $site, Role $role)
     {
-        // dd($request->input());
         $role->fill($request->input() + ['site_id' => $site->id, 'guard_name' => 'sanctum'])->save();
 
         return $this->success('角色添加成功', data: $role);
@@ -49,8 +47,10 @@ class RoleController extends Controller
         return $this->success(message: '删除成功');
     }
 
+    // 同步角色权限
     public function permission(Request $request, Role $role)
     {
+        // dd($request->input('permissions'));
         $role->syncPermissions($request->input('permissions'));
         return $this->success('权限设置成功', data: $role->permissions);
     }

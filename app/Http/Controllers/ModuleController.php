@@ -16,15 +16,17 @@ class ModuleController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
+    // 模块列表
     public function index()
     {
-        $modules = Module::when(request('type'), function ($query, $type) {
-            $query->where($type, 'like', "%" . request('content') . "%");
-        })->latest()->paginate();
+        $this->authorize('viewAny', Module::class);
+
+        $modules = Module::latest()->paginate();
 
         return ModuleResource::collection($modules);
     }
 
+    // 设计模块
     public function store(StoreModuleRequest $request)
     {
         $configFile = base_path('addons/' . $request->name . '/Config/config.php');
@@ -40,18 +42,16 @@ class ModuleController extends Controller
         return $this->success('模块创建成功');
     }
 
-    public function show(Module $module)
+    // 删除模块
+    public function destroy(string $module)
     {
-    }
+        $this->authorize('delete', Module::class);
 
-    public function destroy(Module $module)
-    {
-        if (is_dir(base_path('addons/' . $module->name))) {
-            Artisan::call("module:migrate-reset " . $module->name);
-            Storage::disk('addons')->deleteDirectory($module->name);
+        if (is_dir(base_path('addons/' . $module))) {
+            Artisan::call("module:migrate-reset " . $module);
+            Storage::disk('addons')->deleteDirectory($module);
         }
-
-        $module->delete();
+        Module::where('name', $module)->delete();
 
         return $this->success('模块删除成功');
     }
@@ -59,6 +59,8 @@ class ModuleController extends Controller
     //同步模块到数据表
     public function syncLocalModule()
     {
+        $this->authorize('viewAny', Module::class);
+
         app('module')->syncModule();
         return $this->success('模块数据刷新成功');
     }

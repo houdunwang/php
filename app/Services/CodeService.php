@@ -18,16 +18,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class CodeService
 {
-    /**
-     * 统一发送接口
-     * @param string|int $account
-     * @return mixed
-     * @throws BindingResolutionException
-     * @throws NotFoundExceptionInterface
-     * @throws ContainerExceptionInterface
-     * @throws HttpException
-     * @throws NotFoundHttpException
-     */
+    // 统一发送接口
     public function send(string|int $account)
     {
         $action = filter_var($account, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
@@ -44,14 +35,7 @@ class CodeService
         return $this->$action($account);
     }
 
-    /**
-     * 发送邮件验证码
-     * @param string $email
-     * @return int
-     * @throws BindingResolutionException
-     * @throws NotFoundExceptionInterface
-     * @throws ContainerExceptionInterface
-     */
+    //发送邮件验证码
     public function email(string $email): int
     {
         $user = User::factory()->make(['email' => $email]);
@@ -61,14 +45,7 @@ class CodeService
         return $code;
     }
 
-    /**
-     * 发送短信验证码
-     * @param string $phone
-     * @return int
-     * @throws BindingResolutionException
-     * @throws NotFoundExceptionInterface
-     * @throws ContainerExceptionInterface
-     */
+    //发送短信验证码
     protected function mobile(string $phone)
     {
         app('sms')->send($phone, 'SMS_12840367', [
@@ -81,45 +58,25 @@ class CodeService
         return $code;
     }
 
-    /**
-     * 缓存验证码
-     * @param string $account
-     * @param int $code
-     * @return void
-     * @throws BindingResolutionException
-     * @throws NotFoundExceptionInterface
-     * @throws ContainerExceptionInterface
-     */
+    // 缓存验证码
     protected function cache(string $account, int $code): void
     {
         Cache::put($account, ['code' => $code, 'sendTime' => now()], 600);
     }
 
-    /**
-     * 验证码
-     * @return int
-     */
+    // 验证码
     protected function getCode(): int
     {
         return rand(pow(10, config('system.code.length') - 1), pow(10, config('system.code.length')) - 1);
     }
 
-    /**
-     * 校对验证码
-     * @param string $account
-     * @param string $code
-     * @return bool
-     */
+    // 校对验证码
     public function check(string $account, string $code): bool
     {
         return (Cache::get($account)['code'] ?? '') == $code;
     }
 
-    /**
-     * 清除验证码
-     * @param string $account
-     * @return void
-     */
+    // 清除验证码
     public function clear(string $account): void
     {
         Cache::forget($account);

@@ -6,11 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreModuleRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return is_super_admin();
@@ -22,6 +17,7 @@ class StoreModuleRequest extends FormRequest
             'title' => ['required'],
             'name' => ['required'],
             'author' => ['required'],
+            'version' => ['required'],
         ];
     }
 

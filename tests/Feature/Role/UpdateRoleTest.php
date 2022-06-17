@@ -11,14 +11,7 @@ use Tests\TestCase;
 class UpdateRoleTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
-    protected $site;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->signIn();
-        $this->site = create(Site::class, null, ['user_id' => $this->user->id]);
-    }
     /**
      * 字段不能为空
      * @test

@@ -7,6 +7,7 @@ use App\Http\Resources\SystemResource;
 use App\Models\System;
 use Illuminate\Http\Request;
 
+//系统配置
 class SystemController extends Controller
 {
     public function __construct()
@@ -34,6 +35,8 @@ class SystemController extends Controller
      */
     public function get(Request $request)
     {
-        return $this->success(data: new SystemResource(System::firstOrFail()));
+        $system = System::firstOrFail()->toArray();
+
+        return $this->success(data: new SystemResource($system));
     }
 }

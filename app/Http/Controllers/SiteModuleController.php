@@ -8,7 +8,6 @@ use App\Models\Module;
 use App\Models\Site;
 use App\Models\SiteModule;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 
 class SiteModuleController extends Controller
 {
@@ -28,7 +27,7 @@ class SiteModuleController extends Controller
     {
         $this->authorize('create', SiteModule::class);
 
-        $site->modules()->syncWithoutDetaching([request('mid')]);
+        $site->modules()->syncWithoutDetaching($request->input('mid'));
         app('permission')->syncAllModulePermissions($site);
 
         return $this->success('模块添加成功');

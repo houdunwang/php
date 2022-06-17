@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class FansTest extends TestCase
+class getFansListTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -24,14 +24,10 @@ class FansTest extends TestCase
     public function getFansList()
     {
         $fans = create(User::class, 10);
-
         $this->user->fans()->syncWithoutDetaching($fans->pluck('id'));
 
-        $response = $this->getJson('/api/fans/' . $this->user->id)
-            ->assertSuccessful()
-            ->assertJson([
-                'status' => 'success'
-            ]);
+        $response = $this->getJson('/api/fans/' . $this->user->id);
+        $response->assertSuccessful()->assertJson(['status' => 'success']);
 
         $this->assertCount(10, $this->user->fans);
     }

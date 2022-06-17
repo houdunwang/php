@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { tableButtonType, tableColumnsType, userTableColumns } from '@/config/table'
-import { ElMessage } from 'element-plus'
+import { tableButtonType, tableColumnsType } from '@/config/table'
 const {
   api,
   buttons,
@@ -39,18 +38,12 @@ const search = async () => {
   response = await api(1, { type: type, content: content })
 }
 
-const btnColumn = ref()
-const butnGroupWidth = ref(0)
-
-onMounted(() => {
-  nextTick(() => {
-    if (buttons && btnColumn.value) {
-      let w = [...btnColumn.value.$el.querySelectorAll('button')].reduce((w, el) => {
-        return w + parseInt(getComputedStyle(el).width)
-      }, 0)
-      butnGroupWidth.value = w + 30
-    }
-  })
+let buttonColumnWidth = computed(() => {
+  return (
+    [...buttons!].reduce((width: number, btn: tableButtonType) => {
+      return (width += btn.title.length * 15 + 32)
+    }, 0) + 24
+  )
 })
 </script>
 
@@ -78,7 +71,13 @@ onMounted(() => {
         :align="col.align"
         #default="{ row }">
         <template v-if="col.type === 'image'">
-          <hd-image-component :url="row[col.prop]" class="rounded-md w-12 self-center block m-auto" />
+          <el-image
+            preview-teleported
+            :hide-on-click-modal="true"
+            :preview-src-list="[row[col.prop]!]"
+            :src="row[col.prop]"
+            fit="cover"
+            class="rounded-sm" />
         </template>
         <template v-else-if="col.type === 'radio'">
           <span v-for="c in col.options" v-show="c[1] == row[col.prop]">
@@ -95,11 +94,12 @@ onMounted(() => {
 
       <el-table-column
         align="center"
-        :width="buttonWidth ?? butnGroupWidth"
+        :width="buttonWidth || buttonColumnWidth"
         #default="{ row }"
         v-if="buttons"
-        fixed="right">
-        <el-button-group ref="btnColumn">
+        fixed="right"
+        id="buttonGroup">
+        <el-button-group>
           <el-button
             :type="item.type || 'default'"
             v-for="(item, key) in buttons"
@@ -124,5 +124,3 @@ onMounted(() => {
       :hide-on-single-page="true" />
   </div>
 </template>
-
-<style lang="scss"></style>

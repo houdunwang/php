@@ -9,16 +9,6 @@ use Tests\TestCase;
 
 class AddSiteTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
-
-    protected $site;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->signIn();
-        $this->site = create(Site::class, null, ['title' => $this->faker()->word(), 'user_id' => 1]);
-    }
 
     /**
      * 表单字段验证
@@ -45,7 +35,6 @@ class AddSiteTest extends TestCase
             ->assertJsonValidationErrors(['title']);
     }
 
-
     /**
      * 添加站点
      * @test
@@ -59,7 +48,7 @@ class AddSiteTest extends TestCase
             'address' => $this->faker()->sentence(),
             'tel' => $this->faker()->phoneNumber(),
         ]);
-        // $response->dd();
+
         $response->assertSuccessful();
     }
 }

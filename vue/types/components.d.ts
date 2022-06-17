@@ -5,7 +5,6 @@
 declare module 'vue' {
   export interface GlobalComponents {
     EditorWangEditor: typeof import('./../src/components/editor/wangEditor.vue')['default']
-    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -37,7 +36,6 @@ declare module 'vue' {
     HdBreadcrumb: typeof import('./../src/components/hd/breadcrumb.vue')['default']
     HdCaptcha: typeof import('./../src/components/hd/captcha.vue')['default']
     HdFullscreen: typeof import('./../src/components/hd/fullscreen.vue')['default']
-    HdImageComponent: typeof import('./../src/components/hd/imageComponent.vue')['default']
     HdNotification: typeof import('./../src/components/hd/notification.vue')['default']
     HdTab: typeof import('./../src/components/hd/tab.vue')['default']
     HdTableComponent: typeof import('./../src/components/hd/tableComponent.vue')['default']

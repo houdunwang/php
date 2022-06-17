@@ -7,14 +7,20 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class FollowerTest extends TestCase
+class GetFollowerListTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
+    /**
+     * 获取关注列表
+     * @test
+     */
+    public function getFollowerList()
     {
-        parent::setUp();
-        $this->signIn();
+        $follower = create(User::class);
+        $this->getJson('/api/follower/toggle/' . $follower->id)->assertStatus(200);
+
+        $this->assertTrue($this->user->followers->contains($follower));
     }
 
     /**

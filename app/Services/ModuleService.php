@@ -10,7 +10,7 @@ use Nwidart\Modules\Facades\Module;
  */
 class ModuleService
 {
-
+    //同步本地模块到数据表
     public function syncModule()
     {
         $names = Module::collections()->map(fn ($module) => $module->getName());

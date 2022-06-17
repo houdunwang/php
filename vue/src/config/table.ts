@@ -17,7 +17,7 @@ export type tableButtonType = {
 export const userTableColumns = [
   { prop: 'id', label: 'ID', align: 'center', width: 80 },
   { prop: 'name', label: '用户名' },
-  { prop: 'avatar', label: '头像', type: 'image', align: 'center', width: 100 },
+  { prop: 'avatar', label: '头像', type: 'image', align: 'center', width: 80 },
   { prop: 'email', label: '邮箱', width: 300 },
   { prop: 'mobile', label: '手机号', width: 200 },
   {
@@ -38,7 +38,7 @@ export const moduleTableColumns = [
   { prop: 'id', label: '编号', width: 80, align: 'center' },
   { prop: 'name', label: '标识' },
   { prop: 'title', label: '模块名称' },
-  { prop: 'preview', label: '预览图', type: 'image' },
+  { prop: 'preview', label: '预览图', type: 'image', width: 80, align: 'center' },
   { prop: 'version', label: '版本号' },
   { prop: 'author', label: '作者' },
 ] as tableColumnsType[]

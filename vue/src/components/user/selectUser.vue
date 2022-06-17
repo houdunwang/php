@@ -25,7 +25,11 @@ const getList = async (page = 1, params = {}) => {
       <HdTableComponent
         :api="getList"
         :columns="userTableColumns"
-        :buttons="[{ command: 'select', title: '选择', type: 'primary' }]"
+        :buttons="[
+          { command: 'select', title: '选择', type: 'primary' },
+          { command: 'select', title: '选择', type: 'primary' },
+          { command: 'select', title: '选择', type: 'primary' },
+        ]"
         search-field-name="name"
         @action="action" />
     </el-dialog>

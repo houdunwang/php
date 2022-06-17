@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Account;
+namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -11,6 +11,7 @@ use App\Models\User;
 class ForgetPasswordTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * 验证表单
      * @test
@@ -42,18 +43,17 @@ class ForgetPasswordTest extends TestCase
      */
     public function retrievePassword()
     {
-        $user = create(User::class);
         $codeResponse = $this->postJson('/api/code/send', [
-            'account' => $user->email
+            'account' => $this->user->email
         ]);
 
         $response = $this->postJson('/api/account/forget-password', [
-            'account' => $user->email,
+            'account' => $this->user->email,
             'code' => $codeResponse['data'],
             'password' => 'admin999',
             'password_confirmation' => 'admin999'
         ]);
 
-        $response->assertOk()->assertJson(['status' => 'success']);
+        $response->assertSuccessful()->assertJson(['status' => 'success']);
     }
 }

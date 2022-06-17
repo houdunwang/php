@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\ValidateCode;
+namespace Tests\Feature\Code;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,20 +17,16 @@ class SendValideCodeTest extends TestCase
      */
     public function emailVerificationCode()
     {
-        $user = User::factory()->make();
-        $this->post('/api/code/send', [
-            'account' => $user->email
-        ])->assertOk();
+        $this->post('/api/code/send', ['account' => $this->user->email])->assertSuccessful();
     }
 
     /**
      * 发送手机验证码
+     * test
      */
     public function sendMobilePhoneVerificationCode()
     {
-        $this->post('/api/code/send', [
-            'account' => config('hd.mobile')
-        ])->assertOk();
+        $this->post('/api/code/send', ['account' => $this->user->mobile])->assertSuccessful();
     }
 
     /**
@@ -39,9 +35,9 @@ class SendValideCodeTest extends TestCase
      */
     public function emailFormatError()
     {
-        $this->post('/api/code/send', [
+        $this->postJson('/api/code/send', [
             'account' => 'hd'
-        ])->assertSessionHasErrors('account');
+        ])->assertJsonValidationErrors(['account']);
     }
 
     /**
@@ -50,13 +46,8 @@ class SendValideCodeTest extends TestCase
      */
     public function repeatSendVerificationCode()
     {
-        $user = User::factory()->make();
-        $this->post('/api/code/send', [
-            'account' => $user->email
-        ]);
+        $this->post('/api/code/send', ['account' => $this->user->email]);
 
-        $this->post('/api/code/send', [
-            'account' => $user->email
-        ])->assertStatus(403);
+        $this->post('/api/code/send', ['account' => $this->user->email])->assertStatus(403);
     }
 }
