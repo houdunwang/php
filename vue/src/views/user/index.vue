@@ -10,7 +10,7 @@ const tabs = [
 <template>
   <hd-tab :tabs="tabs" />
 
-  <hd-table-component :api="getUserList" :columns="userTableColumns" search-field-name="name" :button-width="100">
+  <hd-table-component :api="getUserList" :columns="userTableColumns" :button-width="100">
     <template #button="{ model }">
       <user-info :id="model.id" />
     </template>

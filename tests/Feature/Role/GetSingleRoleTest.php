@@ -19,7 +19,7 @@ class GetSingleRoleTest extends TestCase
     public function getSingleRole()
     {
         $role = create(Role::class);
-        $response = $this->get("/api/site/{$this->site->id}/role/{$role['id']}");
+        $response = $this->get("/api/site/{$this->site->id}/role/{$this->site->roles[0]->id}");
 
         $response->assertSuccessful()->assertJson(['data' => []]);
     }

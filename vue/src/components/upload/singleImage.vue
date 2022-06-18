@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
-import { ElUploadRequestOptions } from 'element-plus/es/components/upload/src/upload.type'
 import { uploadImage } from '@/apis/upload'
 
 const props = defineProps<{
@@ -13,7 +12,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', url: string): void
 }>()
 
-const request = async (options: ElUploadRequestOptions) => {
+const request = async (options: any) => {
   const form = new FormData()
   form.append('file', options.file)
 

@@ -19,7 +19,7 @@ class SetAdminRoleTest extends TestCase
         $this->site->admins()->attach($this->user->id);
 
         $response = $this->postJson(
-            "/api/site/{$this->site->id}/admin/{$this->user->id}/sync_admin_role",
+            "/api/site/{$this->site->id}/admin/{$this->user->id}/role",
             ['roles' => $this->site->roles->pluck('id')]
         );
 

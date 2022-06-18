@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getModuleList } from '@/apis/module'
-import { moduleTableColumnsColumns } from '@/config/table'
+import { moduleTableColumns } from '@/config/table'
 
 const emit = defineEmits<{ (e: 'select', module: any): void }>()
 
@@ -14,7 +14,7 @@ const select = (model: any) => {
 <template>
   <div class="">
     <el-dialog title="选择模块" v-model="dialog" custom-class="dialog">
-      <HdTableComponent :columns="moduleTableColumnsColumns" :api="getModuleList">
+      <HdTableComponent :columns="moduleTableColumns" :api="getModuleList">
         <template #button="{ model }">
           <el-button type="primary" size="default" @click="select(model)">选择模块</el-button>
         </template>

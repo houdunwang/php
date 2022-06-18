@@ -12,7 +12,8 @@ class RoleFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'title' => $this->faker->word(),
-            'site_id' => Site::value('id')
+            'site_id' => Site::inRandomOrder()->first()->id,
+            'guard_name' => 'sanctum'
         ];
     }
 }

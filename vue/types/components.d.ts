@@ -5,7 +5,6 @@
 declare module 'vue' {
   export interface GlobalComponents {
     EditorWangEditor: typeof import('./../src/components/editor/wangEditor.vue')['default']
-    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCard: typeof import('element-plus/es')['ElCard']

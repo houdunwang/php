@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { delModule, getModuleList } from '@/apis/module'
-import { moduleTableColumnsColumns } from '@/config/table'
+import { moduleTableColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 let tableKey = $ref(0)
 const del = async (module: ModuleModel) => {
@@ -18,12 +18,7 @@ const del = async (module: ModuleModel) => {
       { label: '设计模块', route: { name: 'module.design' } },
     ]" />
 
-  <HdTableComponent
-    :api="getModuleList"
-    :columns="moduleTableColumnsColumns"
-    :key="tableKey"
-    search-field-name="name"
-    :button-width="100">
+  <HdTableComponent :api="getModuleList" :columns="moduleTableColumns" :key="tableKey" :button-width="100">
     <template #button="{ model }">
       <el-button-group>
         <el-button type="danger" size="default" @click="del(model)">删除</el-button>

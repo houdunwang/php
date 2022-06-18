@@ -32,11 +32,8 @@ class UpdateSiteTest extends TestCase
      */
     public function siteTitleCannotBeRepeated()
     {
-        $site = create(Site::class, null, ['user_id' => $this->user->id]);
-        $site2 = create(Site::class, null, ['user_id' => $this->user->id]);
-
-        $response = $this->putJson('/api/site/' . $site2->id, [
-            'title' => $site->title,
+        $response = $this->putJson('/api/site/' . $this->site->id, [
+            'title' => Site::find(2)->title,
         ])->assertStatus(422);
 
         $response->assertJsonValidationErrors(['title']);

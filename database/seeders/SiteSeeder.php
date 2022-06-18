@@ -11,10 +11,8 @@ class SiteSeeder extends Seeder
 {
     public function run()
     {
-        Site::factory()->count(2)->create();
-
-        app('module')->syncModule();
-        Site::first()->modules()->attach(Module::all());
-        app('permission')->syncAllModulePermissions(Site::first());
+        // app('module')->syncModule();
+        // Site::first()->modules()->attach(Module::all());
+        // app('permission')->syncAllModulePermissions(Site::first());
     }
 }

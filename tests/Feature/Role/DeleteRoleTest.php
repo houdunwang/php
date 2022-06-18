@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 class DeleteRoleTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * 删除角色
      * @test
@@ -20,7 +18,7 @@ class DeleteRoleTest extends TestCase
     {
         $role = create(Role::class);
 
-        $response = $this->deleteJson("/api/site/{$this->site->id}/role/{$role->id}");
+        $response = $this->deleteJson("/api/site/{$this->site->id}/role/{$this->site->roles[0]->id}");
 
         $response->assertSuccessful()->assertJsonStructure(['message']);
     }

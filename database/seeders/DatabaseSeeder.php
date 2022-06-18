@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Module;
+use App\Models\Site;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,5 +18,11 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
         ]);
+
+
+        //同步本地模块
+        app('module')->syncModule();
+        Site::first()->modules()->attach(Module::all());
+        app('permission')->syncAllModulePermissions(Site::first());
     }
 }

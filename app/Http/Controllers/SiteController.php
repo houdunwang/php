@@ -19,13 +19,14 @@ class SiteController extends Controller
     {
         $sites = Site::when(!is_super_admin(), function ($query) {
             $query->where('user_id', Auth::id());
-        })->latest()->with('master')->paginate(10);
+        })->latest()->with('master')->paginate(request('row', 10));
 
         return SiteResource::collection($sites);
     }
 
     public function store(StoreSiteRequest $request, Site $site)
     {
+        $this->authorize('create', Site::class);
         $site->fill($request->input());
         $site->user_id = Auth::id();
         $site->save();
@@ -35,6 +36,7 @@ class SiteController extends Controller
 
     public function show(Site $site)
     {
+        $this->authorize('view', $site);
         return $this->success(data: new SiteResource($site));
     }
 

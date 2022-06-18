@@ -4,7 +4,7 @@ import { isSuperAdmin } from '@/utils/helper'
 import dayjs from 'dayjs'
 
 const emit = defineEmits<{
-  (e: 'del', id: number): Promise<boolean>
+  (e: 'del', id: number): any
 }>()
 const props = defineProps<{ site: SiteModel }>()
 </script>
@@ -22,7 +22,7 @@ const props = defineProps<{ site: SiteModel }>()
     </header>
     <main>
       <icon-connection-point theme="filled" :strokeWidth="2" />
-      <span class="truncate w-60 overflow-hidden"> {{ props.site.title }} </span>
+      <span class="truncate w-full overflow-hidden"> {{ props.site.title }} </span>
     </main>
     <footer class="">
       <section class="flex font-bold">
@@ -42,13 +42,13 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           设置模块
         </router-link>
-        <router-link :to="{ name: 'admin.index', params: { sid: site.id } }">
-          <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-          管理员设置
-        </router-link>
         <router-link :to="{ name: 'role.index', params: { sid: site.id } }">
           <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           角色管理
+        </router-link>
+        <router-link :to="{ name: 'admin.index', params: { sid: site.id } }">
+          <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+          管理员设置
         </router-link>
         <a href="javascript:void(0)" @click="updateSitePermission(site.id)">
           <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />

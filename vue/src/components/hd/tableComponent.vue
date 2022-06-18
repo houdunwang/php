@@ -9,7 +9,6 @@ const {
   buttonType = 'drop',
   columns,
   searchShow = true,
-  searchFieldName = ['id'],
 } = defineProps<{
   api: (page: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
   buttons?: tableButtonType[]
@@ -17,7 +16,6 @@ const {
   buttonType?: 'drop' | 'default'
   columns: tableColumnsType[]
   searchShow?: boolean
-  searchFieldName?: string[]
 }>()
 
 const emit = defineEmits<{

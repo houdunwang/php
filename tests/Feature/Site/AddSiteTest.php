@@ -3,13 +3,13 @@
 namespace Tests\Feature\Site;
 
 use App\Models\Site;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AddSiteTest extends TestCase
 {
-
     /**
      * 表单字段验证
      * @test
@@ -50,5 +50,22 @@ class AddSiteTest extends TestCase
         ]);
 
         $response->assertSuccessful();
+    }
+
+    /**
+     * 普通用户不能添加站点
+     * @test
+     */
+    public function ordinaryUsersCanNotAddSite()
+    {
+        $user = create(User::class);
+        $response = $this->actingAs($user)->postJson('/api/site', [
+            'title' => $this->faker()->word(5),
+            'url' => $this->faker()->url(),
+            'email' => $this->faker()->email(),
+            'address' => $this->faker()->sentence(),
+            'tel' => $this->faker()->phoneNumber(),
+        ]);
+        $response->assertStatus(403);
     }
 }

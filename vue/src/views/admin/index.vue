@@ -50,7 +50,6 @@ const tableAction = async (model: UserModel, command: string) => {
     :columns="userTableColumns"
     :api="load"
     :key="tableKey"
-    search-field-name="name"
     @action="tableAction"
     :buttons="[
       { title: '设置角色', command: 'setRole' },

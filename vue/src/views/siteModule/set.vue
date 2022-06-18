@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { siteFind } from '@/apis/site'
 import { addSiteModule, getSiteModuleList, removeSiteModule, setSiteDefaultModule } from '@/apis/siteModule'
-import { moduleTableColumnsColumns } from '@/config/table'
+import { moduleTableColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 const { sid } = defineProps<{ sid: any }>()
 
@@ -37,7 +37,7 @@ const defaultModule = async (module: ModuleModel) => {
       { label: `【${site.title}】站点模块设置`, route: { name: `site.module` } },
     ]" />
   <ModuleSelectModule @select="addModule" class="mb-2" />
-  <HdTableComponent :columns="moduleTableColumnsColumns" :api="getModuleList" :key="tableKey" :button-width="250">
+  <HdTableComponent :columns="moduleTableColumns" :api="getModuleList" :key="tableKey" :button-width="250">
     <template #button="{ model }">
       <el-button-group>
         <el-button type="danger" size="default" @click="del(model)">删除模块</el-button>

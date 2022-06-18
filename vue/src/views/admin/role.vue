@@ -14,7 +14,7 @@ const response = await getRoleList(sid, 1)
 const roles = $ref(admin.roles.map((r) => r.name))
 const onSubmit = async () => {
   try {
-    await syncAdminRole(id, roles)
+    await syncAdminRole(sid, id, roles)
     router.push({ name: 'admin.index', params: { sid } })
   } catch (error) {}
 }

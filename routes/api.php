@@ -50,7 +50,7 @@ Route::get('fans/{user}', [FansController::class, 'index']);
 
 Route::apiResource('site', SiteController::class);
 Route::apiResource('site.admin', AdminController::class);
-Route::post('site/{site}/admin/{admin}/sync_admin_role', [AdminController::class, 'syncAdminRole']);
+Route::post('site/{site}/admin/{admin}/role', [AdminController::class, 'syncAdminRole']);
 
 Route::apiResource('module', ModuleController::class);
 Route::get('module/sync/module', [ModuleController::class, 'syncLocalModule']);

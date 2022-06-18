@@ -15,7 +15,7 @@ const onSubmit = request(async () => {
 
 <template>
   <Tab />
-  <FormFieldList :model="model" :fields="siteForm" @submit="onSubmit" />
+  <FormFieldList :model="model" :fields="siteForm.base" @submit="onSubmit" />
 </template>
 
 <style lang="scss"></style>

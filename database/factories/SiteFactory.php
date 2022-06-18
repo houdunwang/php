@@ -10,7 +10,7 @@ class SiteFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word(),
+            'title' => $this->faker->sentence(),
             'config' => config('site'),
             'user_id' => User::pluck('id')->random(),
         ];

@@ -63,7 +63,7 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id')->withTimestamps();
     }
 
-    public function site()
+    public function sites()
     {
         return $this->hasMany(Site::class);
     }
