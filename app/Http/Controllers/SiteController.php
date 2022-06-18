@@ -20,6 +20,7 @@ class SiteController extends Controller
         $sites = Site::when(!is_super_admin(), function ($query) {
             $query->where('user_id', Auth::id());
         })->latest()->with('master')->paginate(10);
+
         return SiteResource::collection($sites);
     }
 

@@ -30,11 +30,17 @@ export const userForm = [
 ] as formType[]
 
 //系统配置
-export const configForm = {
-  site: [
+export const systemForm = {
+  base: [
     { title: '标题', name: 'title', type: 'input', error_name: 'title' },
-    { title: '标志', name: 'logo', type: 'image', error_name: 'logo' },
-    { title: '版权信息', name: 'copyright', type: 'input', error_name: 'copyright' },
+    { title: '后台标志', name: 'logo', type: 'image' },
+    { title: '电话', name: 'tel', type: 'input' },
+    { title: '邮箱', name: 'email', type: 'input' },
+    { title: '地址', name: 'address', type: 'input' },
+    { title: '微信', name: 'wechat', type: 'image' },
+    { title: 'QQ', name: 'qq', type: 'input' },
+    { title: '备案号', name: 'icp', type: 'input' },
+    { title: '版权信息', name: 'copyright', type: 'input' },
   ],
   code: [
     { title: '过期时间', name: 'expire', error_name: 'config.code.expire', placeholder: '单位为秒' },
@@ -57,16 +63,22 @@ export const configForm = {
 } as Record<string, formType[]>
 
 //站点
-export const siteForm = [
-  { name: 'title', title: '网站名称', error_name: 'title' },
-  { name: 'url', title: '域名地址', error_name: 'url' },
-] as formType[]
+// export const siteForm = [
+//   { name: 'title', title: '网站名称', error_name: 'title' },
+//   { name: 'url', title: '域名地址', error_name: 'url' },
+// ] as formType[]
 
-export const siteConfigForm = {
-  site: [
-    { name: 'tel', title: '联系电话', error_name: 'tel' },
-    { name: 'email', title: '企业邮箱', error_name: 'email' },
-    { name: 'address', title: '公司地址', error_name: 'address' },
+export const siteForm = {
+  base: [
+    { title: '标题', name: 'title', type: 'input', error_name: 'title' },
+    { title: '后台标志', name: 'logo', type: 'image' },
+    { title: '联系电话', name: 'tel', type: 'input' },
+    { title: '企业邮箱', name: 'email', type: 'input' },
+    { title: '公司地址', name: 'address', type: 'input' },
+    { title: '微信二维码', name: 'wechat', type: 'image' },
+    { title: 'QQ', name: 'qq', type: 'input' },
+    { title: '备案号', name: 'icp', type: 'input' },
+    { title: '版权信息', name: 'copyright', type: 'input' },
   ],
   aliyun: [
     { title: 'key', name: 'access_key_id', error_name: 'config.aliyun.access_key_id' },

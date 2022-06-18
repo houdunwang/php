@@ -4,12 +4,12 @@ import { defineStore } from 'pinia'
 export default defineStore('system', {
   state: () => {
     return {
-      config: {} as SystemModel['config'],
+      data: {} as SystemModel,
     }
   },
   actions: {
     async load() {
-      this.config = await getSystem()?.then((r) => r.config)
+      this.data = await getSystem()
     },
   },
 })

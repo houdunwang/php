@@ -10,9 +10,6 @@ use Tests\TestCase;
 
 class SetAdminRoleTest extends TestCase
 {
-    use RefreshDatabase;
-    protected $site;
-
     /**
      * 设置管理员角色
      * @test
@@ -22,7 +19,7 @@ class SetAdminRoleTest extends TestCase
         $this->site->admins()->attach($this->user->id);
 
         $response = $this->postJson(
-            "/api/admin/{$this->user->id}/role",
+            "/api/site/{$this->site->id}/admin/{$this->user->id}/sync_admin_role",
             ['roles' => $this->site->roles->pluck('id')]
         );
 

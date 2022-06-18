@@ -9,16 +9,12 @@ use Tests\TestCase;
 
 class UploadAvatarTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * 上传文件不能为空
      * @test
      */
     public function uploadFilesCantBeEmpty()
     {
-        $this->signIn();
-
         $response = $this->postJson('/api/upload/avatar', []);
 
         $response->assertStatus(422)->assertJsonValidationErrors('file');
@@ -30,7 +26,6 @@ class UploadAvatarTest extends TestCase
      */
     public function imageMustBeTypeForThePicture()
     {
-        $this->signIn();
         $response = $this->postJson('/api/upload/avatar', [
             'file' => UploadedFile::fake()->create('a.txt', 500)
         ]);
@@ -44,7 +39,6 @@ class UploadAvatarTest extends TestCase
      */
     public function imageSizeLimit()
     {
-        $this->signIn();
         $response = $this->postJson('/api/upload/avatar', [
             'file' => UploadedFile::fake()->image('a.jpeg', 20, 20)
         ]);
@@ -58,7 +52,6 @@ class UploadAvatarTest extends TestCase
      */
     public function uploadImageSuccessfully()
     {
-        $this->signIn();
         $response = $this->postJson('/api/upload/avatar', [
             'file' => UploadedFile::fake()->image('a.jpeg', 600, 600)
         ]);

@@ -9,7 +9,7 @@ class System extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'logo', 'copyright'];
+    protected $fillable = ['title', 'logo', 'tel', 'email', 'address', 'wechat', 'qq', 'icp', 'logo', 'copyright',];
 
     protected $casts = ['config' => 'array'];
 }

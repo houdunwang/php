@@ -14,6 +14,7 @@ class UploadController extends Controller
         $this->middleware(['auth:sanctum']);
     }
 
+    //上传头像
     public function avatar(UploadAvatarRequest $request)
     {
         $res = app('upload')->avatar($request->file);
@@ -23,6 +24,7 @@ class UploadController extends Controller
         return $this->success(data: ['url' => $res['url']]);
     }
 
+    //上传图片
     public function image(UploadImageRequest $request)
     {
         $res = app('upload')->image($request->file);

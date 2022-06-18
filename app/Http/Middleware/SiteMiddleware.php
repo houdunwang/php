@@ -8,22 +8,32 @@ use Illuminate\Http\Request;
 
 class SiteMiddleware
 {
+    protected $site;
+
     public function handle(Request $request, Closure $next)
     {
-        $site = request('site');
-
-        if (is_numeric($site)) $site = Site::findOrFail($site);
-        if ($site instanceof Site) $this->loadConfig($site);
+        $this->getSite();
+        $this->config();
 
         return $next($request);
     }
 
-    protected function loadConfig(Site $site)
+    //获取站点
+    protected function getSite()
     {
-        foreach (config('site') as $name => $value) {
-            foreach ($value as $key => $item) {
-                config(["site.{$name}.{$key}" => $site['config'][$name][$key] ?? $item]);
-            }
-        }
+        $site = request('site');
+
+        if (is_numeric($site)) $site = Site::findOrFail($site);
+        return $this->site = $site;
+    }
+
+    //加载配置
+    protected function config()
+    {
+        if (!$this->site) return;
+
+        foreach (config('site') as $name => $value)
+            foreach ($value as $key => $item)
+                config(["site.{$name}.{$key}" => $this->site['config'][$name][$key] ?? $item]);
     }
 }

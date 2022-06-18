@@ -7,14 +7,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class SystemTest extends TestCase
+class UpdateSystemTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
-
-    protected $seed = true;
-
     /**
-     * 表单验证
+     * 更新系统资料
      * @test
      */
     public function updateSystemFormValidation()
@@ -24,15 +20,5 @@ class SystemTest extends TestCase
             'tel' => $this->faker()->phoneNumber()
         ]);
         $response->assertStatus(422);
-    }
-
-    /**
-     * 获取配置项
-     * @test
-     */
-    public function accessToConfigurationItems()
-    {
-        $response = $this->getJson('/api/config/system');
-        $response->assertSuccessful();
     }
 }

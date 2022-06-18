@@ -76,8 +76,15 @@ type SiteModel = {
   title: string
   url: string
   tel: string
-  address: string
   email: string
+  address: string
+  wechat: string
+  qq: string
+  icp: string
+  copyright: string
+  logo: string
+  description: string
+  keywords: string
   config?: any
   user_id: number
   created_at: string
@@ -88,12 +95,22 @@ type SiteModel = {
 //系统模型
 type SystemModel = {
   id: number
+  title: string
+  url?: any
+  tel?: any
+  email?: any
+  address?: any
+  wechat?: any
+  qq?: any
+  icp?: any
+  copyright?: any
+  logo?: any
+  icon?: any
+  description?: any
+  keywords?: any
+  created_at: string
+  updated_at: string
   config: {
-    site: {
-      title: string
-      logo: string
-      copyright: string
-    }
     code: {
       expire: string
       length: number

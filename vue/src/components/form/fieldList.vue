@@ -26,7 +26,7 @@ const emit = defineEmits<{
 
 <template>
   <el-card shadow="hover" :body-style="{ padding: '20px' }">
-    <el-form :model="model" label-width="80px" :inline="false" size="large">
+    <el-form :model="model" label-width="100px" :inline="false" size="large">
       <el-form-item :label="f.title" v-for="f of fields">
         <template v-if="f.type == 'image'">
           <div class="flex flex-col">

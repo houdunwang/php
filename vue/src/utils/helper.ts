@@ -1,8 +1,4 @@
-import { RouteEnum } from './../enum/RouteEnum'
-import { ElMessage } from 'element-plus'
 import { CacheEnum } from '@/enum/CacheEnum'
-import router from '@/router'
-import userStore from '@/store/userStore'
 import useStore from '@/store/userStore'
 import store from './store'
 const storeUser = useStore()
@@ -12,10 +8,7 @@ export function isSuperAdmin() {
   return Boolean(storeUser.info?.is_super_admin)
 }
 
-/**
- * 是否登录
- * @returns boolean
- */
+//是否登录
 export function isLogin(): boolean {
   return !!store.get(CacheEnum.TOKEN_NAME)
 }
@@ -26,13 +19,9 @@ export async function logout() {
   location.href = '/'
 }
 
-/**
- * 登录与注册后记录token
- * @param data
- */
+//登录与注册后记录token
 export async function loginAndRegisterCallback(data: { token: string }) {
   store.set(CacheEnum.TOKEN_NAME, data.token)
-  //   console.log(store.get(CacheEnum.REDIRECT_ROUTE_NAME, '/'))
   location.href = store.get(CacheEnum.REDIRECT_ROUTE_NAME, '/')
 }
 
@@ -44,12 +33,4 @@ export function request(fn: (args: any) => Promise<any>) {
     isSubmit = true
     return fn(args).finally(() => (isSubmit = false))
   }
-}
-
-export function isMobile() {
-  return document.documentElement.clientWidth < 768
-}
-
-export function toUrl(url: string) {
-  return window.open(url)
 }

@@ -17,7 +17,7 @@ class SetRolePermissionTest extends TestCase
     {
         $role = $this->site->roles->first();
         $response = $this->postJson(
-            "/api/role/{$role->id}/permission",
+            "/api/site/{$this->site->id}/role/{$role->id}/permission",
             ['permissions' => $this->site->permissions->pluck('name')]
         );
 

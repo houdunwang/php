@@ -11,7 +11,6 @@ class SiteFactory extends Factory
     {
         return [
             'title' => $this->faker->word(),
-            'url' => null,
             'config' => config('site'),
             'user_id' => User::pluck('id')->random(),
         ];

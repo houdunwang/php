@@ -22,8 +22,7 @@ class SystemController extends Controller
     public function update(UpdateSystemRequest $request)
     {
         $config = System::firstOrFail();
-        $config['config'] = $request->input('config');
-        $config->save();
+        $config->fill($request->input())->save();
 
         return $this->success('配置项更新成功', data: $config['data']);
     }

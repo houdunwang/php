@@ -48,9 +48,8 @@ class RoleController extends Controller
     }
 
     // 同步角色权限
-    public function permission(Request $request, Role $role)
+    public function permission(Request $request, Site $site, Role $role)
     {
-        // dd($request->input('permissions'));
         $role->syncPermissions($request->input('permissions'));
         return $this->success('权限设置成功', data: $role->permissions);
     }

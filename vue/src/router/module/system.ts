@@ -15,9 +15,9 @@ export default {
       component: () => import('@/views/user/index.vue'),
     },
     {
-      name: 'system.config',
+      name: 'system.edit',
       path: 'edit',
-      component: () => import('@/views/system/config.vue'),
+      component: () => import('@/views/system/edit.vue'),
     },
   ],
 } as RouteRecordRaw

@@ -1,11 +1,5 @@
 <?php
 return [
-    // 系统令牌
-    "site" => [
-        "tel" => "后盾人",
-        "email" => null,
-        "address" => "后盾人"
-    ],
     //阿里云
     'aliyun' => [
         'access_key_id' => env('ALIYUN_ACCESS_KEY_ID'),

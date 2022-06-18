@@ -11,6 +11,7 @@ class SystemSeeder extends Seeder
     public function run()
     {
         System::create([
+            'title' => '后盾人每晚8点直播',
             'config' => config('system'),
         ]);
     }

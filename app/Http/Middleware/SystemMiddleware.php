@@ -2,9 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Config;
 use App\Models\System;
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,20 +14,15 @@ class SystemMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        $this->loadConfig();
+        $this->config();
         return $next($request);
     }
 
-    protected function loadConfig()
+    protected function config()
     {
-        $config = System::value('config');
-        foreach (config('system') as $name => $value) {
-            foreach ($value as $key => $item) {
-                $config[$name][$key] = $config[$name][$key] ?? $item;
-            }
-        }
-        $config['site']['logo'] = $config['site']['logo'] ?? url('static/logo.png');
-
-        config(['system' => $config]);
+        $system = System::find(1);
+        foreach (config('system') as $name => $value)
+            foreach ($value as $key => $item)
+                config(["system.{$name}.{$key}" => $system['config'][$name][$key] ?? $item]);
     }
 }

@@ -8,7 +8,7 @@ import userStore from '@/store/userStore'
 await Promise.all([userStore().getUserInfo(), systemStore().load()])
 
 const storeSystem = systemStore()
-window.document.title = storeSystem.config.site.title
+window.document.title = storeSystem.data.title
 </script>
 
 <template>

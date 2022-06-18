@@ -29,7 +29,7 @@ import { isSuperAdmin } from '@/utils/helper'
     <section>
       <h5>系统配置</h5>
       <ul>
-        <li @click="$router.push({ name: 'system.config' })">
+        <li @click="$router.push({ name: 'system.edit' })">
           <icon-database-config theme="outline" :strokeWidth="2" />
           配置定义
         </li>

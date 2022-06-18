@@ -30,7 +30,6 @@ Route::post('code/current_user/{type}', [CodeController::class, 'currentUser']);
 
 Route::put('system', [SystemController::class, 'update']);
 Route::get('system', [SystemController::class, 'get']);
-Route::get('system/common', [SystemController::class, 'common']);
 
 Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
@@ -39,8 +38,7 @@ Route::apiResource('site.permission', PermissionController::class)->only(['index
 Route::get('site/{site}/update_site_permission', [PermissionController::class, 'updateSitePermissions']);
 
 Route::apiResource('site.role', RoleController::class);
-
-Route::post('role/{role}/permission', [RoleController::class, 'permission']);
+Route::post('site/{site}/role/{role}/permission', [RoleController::class, 'permission']);
 
 Route::post('user/{user}/role/{role}', [UserController::class, 'role']);
 Route::get('user/currentUser', [UserController::class, 'currentUser']);
@@ -52,8 +50,8 @@ Route::get('fans/{user}', [FansController::class, 'index']);
 
 Route::apiResource('site', SiteController::class);
 Route::apiResource('site.admin', AdminController::class);
+Route::post('site/{site}/admin/{admin}/sync_admin_role', [AdminController::class, 'syncAdminRole']);
 
-Route::post('admin/{admin}/role', [AdminController::class, 'syncAdminRole']);
 Route::apiResource('module', ModuleController::class);
 Route::get('module/sync/module', [ModuleController::class, 'syncLocalModule']);
 

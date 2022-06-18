@@ -10,10 +10,10 @@ class SystemResource extends JsonResource
     {
         $data = parent::toArray($request);
 
-        $data['config']['site']['logo'] = $data['config']['site']['logo'] ?: url('static/logo.png');
+        $data['logo'] = $data['logo'] ?: url('static/logo.png');
 
         if (!is_super_admin()) {
-            $system['config'] = ['site' => $data['site']];
+            unset($data['config']);
         }
 
         return $data;

@@ -41,7 +41,7 @@ class AdminController extends Controller
     }
 
     //设置管理员角色
-    public function syncAdminRole(Request $request, User $admin)
+    public function syncAdminRole(Request $request, Site $site, User $admin)
     {
         $admin->syncRoles($request->roles);
 
