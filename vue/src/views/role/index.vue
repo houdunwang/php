@@ -7,7 +7,12 @@ const { sid } = defineProps<{ sid: any }>()
 const router = useRouter()
 
 const load = async (page: number, params: any) => {
-  return await getRoleList(sid, page, params)
+  return getRoleList(sid, page, params).then((response) => {
+    response.data.map((role) => {
+      role.permissions = role.permissions.map((p) => p.title) as any
+    })
+    return response
+  })
 }
 
 let tableKey = $ref(0)

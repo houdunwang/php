@@ -9,7 +9,7 @@ const {
   buttonType = 'drop',
   columns,
   searchShow = true,
-  searchFieldName = 'id',
+  searchFieldName = ['id'],
 } = defineProps<{
   api: (page: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
   buttons?: tableButtonType[]
@@ -17,7 +17,7 @@ const {
   buttonType?: 'drop' | 'default'
   columns: tableColumnsType[]
   searchShow?: boolean
-  searchFieldName?: string
+  searchFieldName?: string[]
 }>()
 
 const emit = defineEmits<{
@@ -31,16 +31,15 @@ const load = async (page: number = 1) => {
 }
 
 //搜索
-let field = $ref(searchFieldName)
-let content = $ref('')
+let searchFields = $ref(columns && columns.filter((item) => item.search == true).map((item) => item.prop))
+let searchContent = $ref('')
 const search = async () => {
-  if (!field) return ElMessage.error('请选择搜索类型')
-  response = await api(1, { field, content: content })
+  if (!searchFields.length) return ElMessage.error('请选择搜索类型')
+  response = await api(1, { searchFields, searchContent })
 }
 
 //按钮事件
 const buttonClientEvent = async (args: any) => {
-  console.log(args)
   emit('action', args.model, args.command)
 }
 
@@ -58,10 +57,21 @@ let buttonColumnWidth = computed(() => {
 <template>
   <div class="">
     <div class="grid grid-cols-[auto_1fr_auto] items-center bg-white p-2 border rounded-sm mb-2" v-if="searchShow">
-      <el-select v-model="field" placeholder="请选择字段" filterable class="mr-1">
-        <el-option v-for="item in columns" :key="item.prop" :label="item.label" :value="item.prop"> </el-option>
+      <el-select v-model="searchFields" collapse-tags placeholder="请选择字段" filterable class="mr-1" multiple>
+        <el-option
+          v-for="item in columns"
+          :key="item.prop"
+          :label="item.label"
+          :value="item.prop"
+          v-show="item.search === true">
+        </el-option>
       </el-select>
-      <el-input v-model="content" placeholder="请输入搜索内容" size="default" class="mr-1" @keyup.enter="search" />
+      <el-input
+        v-model="searchContent"
+        placeholder="请输入搜索内容"
+        size="default"
+        class="mr-1"
+        @keyup.enter="search" />
       <el-button-group class="ml-1">
         <el-button type="success" size="default" @click="search">搜索</el-button>
         <slot name="search-button" />
@@ -91,6 +101,11 @@ let buttonColumnWidth = computed(() => {
           <span v-for="c in col.options" v-show="c[1] == row[col.prop]">
             <el-tag>{{ c[0] }}</el-tag>
           </span>
+        </template>
+        <template v-else-if="col.type === 'alert'">
+          <el-tag type="success" size="small" effect="dark" v-for="(b, key) of row[col.prop]" :key="key" class="m-1">
+            {{ b }}
+          </el-tag>
         </template>
         <template v-else-if="col.type === 'date'">
           {{ dayjs(row[col.prop]).format('YYYY-mm-DD') }}

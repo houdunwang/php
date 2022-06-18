@@ -10,7 +10,7 @@ const {
   model?: any
   showButton?: boolean
 }>()
-// console.log(PropsModel['title'])
+
 const model = $ref(
   PropsModel ||
     _.zipObject(

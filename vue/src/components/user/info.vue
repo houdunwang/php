@@ -12,7 +12,6 @@ let user = $ref<UserModel>()
 
 const loadUser = async () => {
   user = await getUser(id!)
-  console.log(user)
   dialogState = true
 }
 </script>

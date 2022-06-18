@@ -7,21 +7,21 @@ import { updateSitePermission } from '@/apis/permission'
 
 const router = useRouter()
 const { sid, rid } = defineProps<{ sid: any; rid: any }>()
-console.log(sid, rid)
+
 const [role, modules] = await Promise.all([roleFind(sid, rid), getSiteModuleList(sid)])
 
-let permissions = $ref(role?.permissions?.map((p) => p.name))
+let permissions = $ref(role.permissions.map((p) => p.name))
 
 const onSubmit = async () => {
   try {
-    await setRolePermissions(rid, permissions)
+    await setRolePermissions(sid, rid, permissions)
     router.push({ name: 'role.index' })
   } catch (error) {}
 }
 </script>
 
 <template>
-  <TabVue :role="role" />
+  <TabVue :role="role" :sid="sid" />
   <el-button type="warning" size="default" @click="updateSitePermission(sid)"> 更新权限表 </el-button>
   <div class="my-2">
     <el-alert

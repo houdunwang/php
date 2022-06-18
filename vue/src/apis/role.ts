@@ -39,9 +39,9 @@ export function roleFind(sid: any, rid: any) {
 }
 
 //设置角色权限
-export function setRolePermissions(rid: any, permissions: any[]) {
+export function setRolePermissions(sid: number, rid: any, permissions: any[]) {
   return http.request({
-    url: `role/${rid}/permission`,
+    url: `site/${sid}/role/${rid}/permission`,
     method: 'POST',
     data: { permissions },
   })

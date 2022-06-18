@@ -67,11 +67,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Site::class);
     }
-
-    // public function scopeCondition($query)
-    // {
-    //     return $query->when(request('type'), function ($query, $type) {
-    //         $query->where($type, "like", "%" . request('content') . "%");
-    //     });
-    // }
 }

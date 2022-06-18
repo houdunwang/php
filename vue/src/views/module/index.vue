@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { delModule, getModuleList } from '@/apis/module'
-import { moduleTableColumns } from '@/config/table'
+import { moduleTableColumnsColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 let tableKey = $ref(0)
 const del = async (module: ModuleModel) => {
@@ -20,7 +20,7 @@ const del = async (module: ModuleModel) => {
 
   <HdTableComponent
     :api="getModuleList"
-    :columns="moduleTableColumns"
+    :columns="moduleTableColumnsColumns"
     :key="tableKey"
     search-field-name="name"
     :button-width="100">
