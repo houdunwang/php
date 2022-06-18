@@ -12,8 +12,7 @@ class SiteScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         if ($site = request('site')) {
-            return $builder->where('site_id', $site instanceof Site ? $site->id : $site);
+            $builder->where('site_id', $site instanceof Site ? $site->id : $site);
         }
-        return $builder;
     }
 }

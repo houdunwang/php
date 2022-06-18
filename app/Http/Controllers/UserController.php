@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(request('row', 10));
+        $users = User::queryCondition()->paginate(request('row', 10));
 
         return UserResource::collection($users);
     }

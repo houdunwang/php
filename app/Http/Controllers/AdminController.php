@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function index(Site $site)
     {
-        $admins = $site->admins()->with('roles')->paginate();
+        $admins = $site->admins()->queryCondition()->with('roles')->paginate();
 
         return UserResource::collection($admins);
     }

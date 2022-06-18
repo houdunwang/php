@@ -32,8 +32,7 @@ export async function logout() {
  */
 export async function loginAndRegisterCallback(data: { token: string }) {
   store.set(CacheEnum.TOKEN_NAME, data.token)
-  store.remove(CacheEnum.REDIRECT_ROUTE_NAME)
-
+  //   console.log(store.get(CacheEnum.REDIRECT_ROUTE_NAME, '/'))
   location.href = store.get(CacheEnum.REDIRECT_ROUTE_NAME, '/')
 }
 

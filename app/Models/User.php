@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\ScopeTrait;
 use App\Models\Scopes\PaginateConditionScope;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, ScopeTrait;
 
     protected $guard_name = ['sanctum'];
 
@@ -45,11 +46,6 @@ class User extends Authenticatable
     public function getIsSuperAdminAttribute()
     {
         return $this->id == 1;
-    }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new PaginateConditionScope);
     }
 
     public function followers()

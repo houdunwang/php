@@ -1,56 +1,64 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import { tableButtonType, tableColumnsType } from '@/config/table'
+import { ArrowDown } from '@element-plus/icons-vue'
 const {
   api,
   buttons,
   buttonWidth,
+  buttonType = 'drop',
   columns,
   searchShow = true,
-  searchFieldName,
+  searchFieldName = 'id',
 } = defineProps<{
   api: (page: number, params?: Record<keyof any, any>) => Promise<ResponsePageResult<any>>
   buttons?: tableButtonType[]
   buttonWidth?: number
+  buttonType?: 'drop' | 'default'
   columns: tableColumnsType[]
   searchShow?: boolean
   searchFieldName?: string
 }>()
 
 const emit = defineEmits<{
-  (e: 'action', model: { [x: string]: any }, type: string): void
+  (e: 'action', model: any, command: string): void
 }>()
 
-const data = await api(1)
-let response = $ref(data)
-
+// 加载分页数据
+let response = $ref(await api(1))
 const load = async (page: number = 1) => {
   response = await api(page)
 }
 
-let type = $ref(searchFieldName || 'id')
+//搜索
+let field = $ref(searchFieldName)
 let content = $ref('')
-
 const search = async () => {
-  if (!type) return ElMessage.error('请选择搜索类型')
-  if (!content) return ElMessage.error('请输入搜索内容')
+  if (!field) return ElMessage.error('请选择搜索类型')
+  response = await api(1, { field, content: content })
+}
 
-  response = await api(1, { type: type, content: content })
+//按钮事件
+const buttonClientEvent = async (args: any) => {
+  console.log(args)
+  emit('action', args.model, args.command)
 }
 
 let buttonColumnWidth = computed(() => {
-  return (
-    [...buttons!].reduce((width: number, btn: tableButtonType) => {
-      return (width += btn.title.length * 15 + 32)
-    }, 0) + 24
-  )
+  if (!buttonWidth && buttons?.length) {
+    return (
+      [...buttons].reduce((width: number, btn: tableButtonType) => {
+        return (width += btn.title.length * 15 + 32)
+      }, 0) + 24
+    )
+  }
 })
 </script>
 
 <template>
   <div class="">
     <div class="grid grid-cols-[auto_1fr_auto] items-center bg-white p-2 border rounded-sm mb-2" v-if="searchShow">
-      <el-select v-model="type" value-key="" placeholder="" clearable filterable class="mr-1">
+      <el-select v-model="field" placeholder="请选择字段" filterable class="mr-1">
         <el-option v-for="item in columns" :key="item.prop" :label="item.label" :value="item.prop"> </el-option>
       </el-select>
       <el-input v-model="content" placeholder="请输入搜索内容" size="default" class="mr-1" @keyup.enter="search" />
@@ -94,9 +102,34 @@ let buttonColumnWidth = computed(() => {
 
       <el-table-column
         align="center"
+        width="110"
+        #default="{ row }"
+        v-if="buttons && buttonType == 'drop'"
+        fixed="right"
+        id="buttonGroup">
+        <el-dropdown @command="buttonClientEvent">
+          <el-button type="primary">
+            操作
+            <el-icon class="el-icon--right"><arrow-down /></el-icon>
+          </el-button>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item
+                v-for="(item, key) in buttons"
+                :key="key"
+                :command="{ model: row, command: item.command }">
+                {{ item.title }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </el-table-column>
+
+      <el-table-column
+        align="center"
         :width="buttonWidth || buttonColumnWidth"
         #default="{ row }"
-        v-if="buttons"
+        v-if="buttons && buttonType == 'default'"
         fixed="right"
         id="buttonGroup">
         <el-button-group>
@@ -108,7 +141,6 @@ let buttonColumnWidth = computed(() => {
           </el-button>
         </el-button-group>
       </el-table-column>
-
       <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center" fixed="right">
         <slot name="button" :model="row" />
       </el-table-column>
