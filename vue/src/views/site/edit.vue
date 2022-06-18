@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { siteFind, updateSite } from '@/apis/site'
-import { siteForm, siteConfigForm } from '@/config/form'
+import { siteForm } from '@/config/form'
 import router from '@/router'
 import { request } from '@/utils/helper'
-import { ElMessage } from 'element-plus'
 import Tab from './components/tab.vue'
 const route = useRoute()
 const model = ref(await siteFind(route.params?.id))

@@ -37,7 +37,6 @@ export default class Axios {
           background: 'rgba(255,255,255,0.1)',
         })
         errorStore().resetError()
-        console.log(`Bearer ${store.get(CacheEnum.TOKEN_NAME)}`)
         config.headers = {
           Accept: 'application/json',
           Authorization: `Bearer ${store.get(CacheEnum.TOKEN_NAME)}`,

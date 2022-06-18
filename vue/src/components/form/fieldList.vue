@@ -10,7 +10,7 @@ const {
   model?: any
   showButton?: boolean
 }>()
-
+// console.log(PropsModel['title'])
 const model = $ref(
   PropsModel ||
     _.zipObject(
@@ -53,11 +53,10 @@ const emit = defineEmits<{
         <template v-else>
           <el-input
             @keyup.enter="emit('submit', model)"
-            v-model="model![f.name]"
+            v-model="model[f.name]"
             :placeholder="f.placeholder"
             :readonly="f.readonly"
-            :disabled="f.disabled"
-            :value="f.value" />
+            :disabled="f.disabled" />
           <FormError :name="f.error_name || f.name" />
         </template>
       </el-form-item>

@@ -38,7 +38,7 @@ const onSubmit = async () => {
             <HdValidateCode class="mt-2" :account="form.account" v-model:code="form.code" type="notExist" />
           </div>
 
-          <FormButton class="w-full primary mt-2" :disabled="store.hasError">注册</FormButton>
+          <FormButton class="w-full primary mt-2">注册</FormButton>
 
           <div class="flex justify-center mt-3">
             <icon-wechat

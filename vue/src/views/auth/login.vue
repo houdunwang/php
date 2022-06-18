@@ -2,7 +2,7 @@
 import { login } from '@/apis/auth'
 import useCaptcha from '@/composables/useCaptcha'
 import errorStore from '@/store/errorStore'
-import { loginAndRegisterCallback } from '@/utils/helper'
+import { loginAndRegisterCallback, request } from '@/utils/helper'
 import Footer from './footer.vue'
 
 const form = reactive({ account: '2300071698@qq.com', password: 'admin888', captcha_code: '', captcha_key: '' })
@@ -10,11 +10,11 @@ const form = reactive({ account: '2300071698@qq.com', password: 'admin888', capt
 const storeError = errorStore()
 const { loadCaptcha } = useCaptcha()
 
-const onSubmit = async () => {
+const onSubmit = request(async () => {
   loadCaptcha()
   const { data } = await login(form)
   loginAndRegisterCallback(data)
-}
+})
 </script>
 
 <template>
@@ -39,7 +39,7 @@ const onSubmit = async () => {
             <HdCaptcha v-model:captcha_code="form.captcha_code" v-model:captcha_key="form.captcha_key" class="mt-2" />
           </div>
 
-          <FormButton class="w-full mt-3 primary" :disabled="storeError.hasError">登录</FormButton>
+          <FormButton class="w-full mt-3 primary">登录</FormButton>
 
           <div class="flex justify-center mt-3">
             <icon-wechat
