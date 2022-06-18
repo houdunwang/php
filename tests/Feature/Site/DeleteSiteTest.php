@@ -31,4 +31,15 @@ class DeleteSiteTest extends TestCase
     {
         $this->deleteJson('/api/site/' . $this->site->id)->assertStatus(200);
     }
+
+    /**
+     * 普通用户不能删除他人站点
+     * @test
+     */
+    public function ordinaryUsersCantDeleteOthersSites()
+    {
+        $this->signIn(User::find(2));
+
+        $this->deleteJson("/api/site/{$this->site->id}")->assertStatus(403);
+    }
 }

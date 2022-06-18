@@ -3,6 +3,7 @@
 namespace Tests\Feature\Site;
 
 use App\Models\Site;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -24,7 +25,6 @@ class UpdateSiteTest extends TestCase
 
         $response->assertJsonValidationErrors(['title', 'url']);
     }
-
 
     /**
      * 站点标题不能重复
@@ -48,5 +48,15 @@ class UpdateSiteTest extends TestCase
         $this->putJson('/api/site/' . $this->site->id, [
             'title' => $this->faker()->word()
         ])->assertStatus(200);
+    }
+
+    /**
+     * 不能更新别人的站点
+     * @test
+     */
+    public function cantUpdateSiteToOthers()
+    {
+        $this->signIn(User::find(2));
+        $this->putJson('/api/site/1', ['title' => $this->faker()->word()])->assertStatus(403);
     }
 }

@@ -33,6 +33,7 @@ class SitePolicy
 
     public function update(User $user, site $site)
     {
+        return is_super_admin() || $user->id === $site->user_id;
     }
 
     public function delete(User $user, site $site)

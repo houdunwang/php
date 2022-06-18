@@ -42,6 +42,7 @@ class SiteController extends Controller
 
     public function update(UpdateSiteRequest $request, Site $site)
     {
+        $this->authorize("update", $site);
         $site->fill($request->input())->save();
 
         return $this->success('站点更新成功', data: $site->refresh());
