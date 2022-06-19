@@ -37,7 +37,7 @@ class ModuleController extends Controller
 
         copy(public_path('static/preview.jpeg'), base_path('addons/' . $request->name . '/preview.jpeg'));
         copy(base_path('data/module/permissions.php'), base_path('addons/' . $request->name . '/Config/permissions.php'));
-        app('module')->syncModule();
+        app('module')->syncLocalAllModule();
 
         return $this->success('模块创建成功');
     }
@@ -54,14 +54,5 @@ class ModuleController extends Controller
         Module::where('name', $module)->delete();
 
         return $this->success('模块删除成功');
-    }
-
-    //同步模块到数据表
-    public function syncLocalModule()
-    {
-        $this->authorize('viewAny', Module::class);
-
-        app('module')->syncModule();
-        return $this->success('模块数据刷新成功');
     }
 }

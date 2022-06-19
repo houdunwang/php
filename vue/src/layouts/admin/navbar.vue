@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { syncLocalModule } from '@/apis/module'
+import { updateAllSiteInitData } from '@/apis/site'
 import { isSuperAdmin } from '@/utils/helper'
 </script>
 
@@ -18,13 +18,12 @@ import { isSuperAdmin } from '@/utils/helper'
         <icon-video-two theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         视频教程
       </a>
-      <!-- <ElButton v-if="isSuperAdmin()" type="success" size="small" @click="syncLocalModule"> 同步模块数据 </ElButton> -->
     </section>
 
     <section>
       <HdNotification class="mr-5 text-[#7ed321] hidden md:block" />
       <HdFullscreen class="text-[#7ed321] hidden md:flex" />
-      <ElButton v-if="isSuperAdmin()" type="success" size="small" @click="syncLocalModule"> 同步模块数据 </ElButton>
+      <ElButton type="success" size="small" @click="updateAllSiteInitData"> 更新所有站点数据 </ElButton>
       <UserDrop class="text-gray-200 ml-2" />
     </section>
   </main>

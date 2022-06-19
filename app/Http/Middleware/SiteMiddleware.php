@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class SiteMiddleware
 {
-    protected $site;
-
     public function handle(Request $request, Closure $next)
     {
         $this->getSite();
@@ -22,15 +20,15 @@ class SiteMiddleware
     protected function getSite()
     {
         $site = request('site');
-
         if (is_numeric($site)) $site = Site::findOrFail($site);
-        return $this->site = $site;
+
+        site($site);
     }
 
     //加载配置
     protected function config()
     {
-        if (!$this->site) return;
+        if (!site()) return;
 
         foreach (config('site') as $name => $value)
             foreach ($value as $key => $item)

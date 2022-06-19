@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { updateSitePermission } from '@/apis/permission'
 import { isSuperAdmin } from '@/utils/helper'
 import dayjs from 'dayjs'
 
@@ -22,7 +21,7 @@ const props = defineProps<{ site: SiteModel }>()
     </header>
     <main>
       <icon-connection-point theme="filled" :strokeWidth="2" />
-      <span class="truncate w-full overflow-hidden"> {{ props.site.title }} </span>
+      <span class="truncate w-60 overflow-hidden"> {{ props.site.title }} </span>
     </main>
     <footer class="">
       <section class="flex font-bold">
@@ -50,10 +49,7 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           管理员设置
         </router-link>
-        <a href="javascript:void(0)" @click="updateSitePermission(site.id)">
-          <icon-update-rotation theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-          更新权限表
-        </a>
+
         <router-link :to="{ name: 'site.config', params: { id: site.id } }">
           <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 站点配置
         </router-link>

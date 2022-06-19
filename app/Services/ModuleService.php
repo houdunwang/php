@@ -11,7 +11,7 @@ use Nwidart\Modules\Facades\Module;
 class ModuleService
 {
     //同步本地模块到数据表
-    public function syncModule()
+    public function syncLocalAllModule()
     {
         $names = Module::collections()->map(fn ($module) => $module->getName());
         ModelsModule::whereNotIn('name', $names->toArray())->delete();

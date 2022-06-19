@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
 
 
         //同步本地模块
-        app('module')->syncModule();
+        app('module')->syncLocalAllModule();
         Site::first()->modules()->attach(Module::all());
-        app('permission')->syncAllModulePermissions(Site::first());
+        app('permission')->syncAllSitePermissions(Site::first());
     }
 }

@@ -27,7 +27,7 @@ const tableButtonAction = async (model: RoleModel, command: string) => {
       router.push({ name: `role.edit`, params: { sid, rid: model.id } })
       break
     case 'permissions':
-      router.push({ name: 'permission.set', params: { rid: model.id } })
+      router.push({ name: 'role.permission', params: { sid, rid: model.id } })
       break
   }
 }

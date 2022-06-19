@@ -11,8 +11,5 @@ class SiteSeeder extends Seeder
 {
     public function run()
     {
-        // app('module')->syncModule();
-        // Site::first()->modules()->attach(Module::all());
-        // app('permission')->syncAllModulePermissions(Site::first());
     }
 }

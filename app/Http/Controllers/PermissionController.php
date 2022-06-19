@@ -18,11 +18,4 @@ class PermissionController extends Controller
         $permissions = $site->permissions()->latest()->paginate(1000);
         return PermissionResource::collection($permissions);
     }
-
-    //更新站点权限
-    public function updateSitePermissions(Site $site)
-    {
-        app('permission')->syncAllModulePermissions($site);
-        return $this->success('站点权限表更新成功');
-    }
 }

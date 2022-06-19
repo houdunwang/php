@@ -1,11 +1,13 @@
 import { http } from '@/plugins/axios'
 
+//获取站点模块列表
 export function getSiteModuleList(sid: any) {
   return http.request<ModuleModel, ResponsePageResult<ModuleModel>>({
     url: `site/${sid}/module`,
   })
 }
 
+//添加站点模块
 export function addSiteModule(sid: any, mid: any) {
   return http.request({
     url: `site/${sid}/module`,
@@ -14,6 +16,7 @@ export function addSiteModule(sid: any, mid: any) {
   })
 }
 
+//删除站点模块
 export function removeSiteModule(sid: any, mid: any) {
   return http.request({
     url: `site/${sid}/module/${mid}`,
@@ -21,8 +24,9 @@ export function removeSiteModule(sid: any, mid: any) {
   })
 }
 
+// 设置站点默认模块
 export function setSiteDefaultModule(sid: any, mid: any) {
   return http.request({
-    url: `set_default_module/site/${sid}/module/${mid}`,
+    url: `site/${sid}/module/${mid}/set_default`,
   })
 }

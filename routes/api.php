@@ -35,7 +35,6 @@ Route::post('upload/avatar', [UploadController::class, 'avatar']);
 Route::post('upload/image', [UploadController::class, 'image']);
 
 Route::apiResource('site.permission', PermissionController::class)->only(['index']);
-Route::get('site/{site}/update_site_permission', [PermissionController::class, 'updateSitePermissions']);
 
 Route::apiResource('site.role', RoleController::class);
 Route::post('site/{site}/role/{role}/permission', [RoleController::class, 'permission']);
@@ -48,12 +47,12 @@ Route::get('follower/{user}', [FollowerController::class, 'index']);
 Route::get('follower/toggle/{user}', [FollowerController::class, 'toggle']);
 Route::get('fans/{user}', [FansController::class, 'index']);
 
+Route::get('site/update_all_site_data', [SiteController::class, 'updateAllSiteInitData']);
 Route::apiResource('site', SiteController::class);
+
 Route::apiResource('site.admin', AdminController::class);
 Route::post('site/{site}/admin/{admin}/role', [AdminController::class, 'syncAdminRole']);
 
 Route::apiResource('module', ModuleController::class);
-Route::get('module/sync/module', [ModuleController::class, 'syncLocalModule']);
-
 Route::apiResource("site.module", SiteModuleController::class);
-Route::get("set_default_module/site/{site}/module/{module}", [SiteModuleController::class, 'setDefaultModule']);
+Route::get("site/{site}/module/{module}/set_default", [SiteModuleController::class, 'setDefaultModule']);

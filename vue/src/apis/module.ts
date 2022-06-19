@@ -24,9 +24,3 @@ export function addModule(module: ModuleModel) {
     method: 'POST',
   })
 }
-
-export function syncLocalModule() {
-  return http.request({
-    url: `module/sync/module`,
-  })
-}

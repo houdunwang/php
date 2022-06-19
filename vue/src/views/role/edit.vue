@@ -16,7 +16,7 @@ const onSubmit = async (model: RoleModel) => {
 </script>
 
 <template>
-  <TabVue />
+  <TabVue :sid="sid" :role="role" />
   <el-alert title="修改角色标识将影响后台程序逻辑，请慎重操作" type="info" effect="light" show-icon />
 
   <FormFieldList :fields="roleForm" :model="role" @submit="onSubmit" />

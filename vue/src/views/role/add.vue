@@ -13,7 +13,7 @@ const onSubmit = async (model: RoleModel) => {
 </script>
 
 <template>
-  <TabVue />
+  <TabVue :sid="sid" />
   <FormFieldList :fields="roleForm" @submit="onSubmit" />
 </template>
 

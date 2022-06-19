@@ -32,3 +32,9 @@ export function deleteSite(id: number) {
     method: 'DELETE',
   })
 }
+
+export function updateAllSiteInitData() {
+  return http.request({
+    url: `site/update_all_site_data`,
+  })
+}

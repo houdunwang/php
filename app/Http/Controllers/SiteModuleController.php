@@ -28,7 +28,7 @@ class SiteModuleController extends Controller
         $this->authorize('create', SiteModule::class);
 
         $site->modules()->syncWithoutDetaching($request->input('mid'));
-        app('permission')->syncAllModulePermissions($site);
+        app('permission')->syncAllSitePermissions($site);
 
         return $this->success('模块添加成功');
     }
@@ -37,8 +37,8 @@ class SiteModuleController extends Controller
     {
         $this->authorize('delete', SiteModule::class);
 
-        $site->modules()->detach($module->id);
         $site->permissions()->where('module_id', $module->id)->delete();
+        SiteModule::where('site_id', $site->id)->where('module_id', $module->id)->delete();
         return $this->success('模块删除成功');
     }
 

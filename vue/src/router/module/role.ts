@@ -23,5 +23,11 @@ export default {
       component: () => import('@/views/role/edit.vue'),
       props: true,
     },
+    {
+      name: 'role.permission',
+      path: ':rid/permission',
+      component: () => import('@/views/role/permission.vue'),
+      props: true,
+    },
   ],
 } as RouteRecordRaw
