@@ -25,10 +25,11 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
-    FormButton: typeof import('./../src/components/form/button.vue')['default']
+    FormButtonComponent: typeof import('./../src/components/form/button.vue')['default']
+    FormButtonComponentComponent: typeof import('./../src/components/form/buttonComponent.vue')['default']
     FormError: typeof import('./../src/components/form/error.vue')['default']
     FormFieldList: typeof import('./../src/components/form/fieldList.vue')['default']
-    FormInputField: typeof import('./../src/components/form/inputField.vue')['default']
+    FormInputComponent: typeof import('./../src/components/form/inputComponent.vue')['default']
     FormVeeValidateError: typeof import('./../src/components/form/veeValidateError.vue')['default']
     HdAnimateList: typeof import('./../src/components/hd/animateList.vue')['default']
     HdBreadcrumb: typeof import('./../src/components/hd/breadcrumb.vue')['default']
@@ -47,4 +48,4 @@ declare module 'vue' {
   }
 }
 
-export { }
+export {}

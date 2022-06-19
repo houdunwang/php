@@ -25,10 +25,10 @@ const onSubmit = request(async () => {
         <div>
           <h2 class="text-center text-gray-700 text-lg mt-3">用户登录</h2>
           <div class="mt-8">
-            <FormInputField v-model="form.account" placeholder="请输入邮箱或手机号" />
+            <FormInputComponent v-model="form.account" placeholder="请输入邮箱或手机号" />
             <FormError name="account" />
 
-            <FormInputField
+            <FormInputComponent
               v-model="form.password"
               class="mt-3"
               type="password"
@@ -39,7 +39,7 @@ const onSubmit = request(async () => {
             <HdCaptcha v-model:captcha_code="form.captcha_code" v-model:captcha_key="form.captcha_key" class="mt-2" />
           </div>
 
-          <FormButton class="w-full mt-3 primary">登录</FormButton>
+          <FormButtonComponent class="w-full mt-3 primary">登录</FormButtonComponent>
 
           <div class="flex justify-center mt-3">
             <icon-wechat

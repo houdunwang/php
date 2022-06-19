@@ -27,18 +27,22 @@ const onSubmit = async () => {
         <div>
           <h2 class="text-center text-gray-700 text-lg mt-3">会员注册</h2>
           <div class="mt-8">
-            <FormInputField v-model="form.account" placeholder="邮箱或手机号" v-clearError="'account'" />
+            <FormInputComponent v-model="form.account" placeholder="邮箱或手机号" v-clearError="'account'" />
             <FormError name="account" />
 
-            <FormInputField v-model="form.password" class="mt-3" type="password" placeholder="密码" />
+            <FormInputComponent v-model="form.password" class="mt-3" type="password" placeholder="密码" />
             <FormError name="password" />
 
-            <FormInputField v-model="form.password_confirmation" class="mt-3" type="password" placeholder="确认密码" />
+            <FormInputComponent
+              v-model="form.password_confirmation"
+              class="mt-3"
+              type="password"
+              placeholder="确认密码" />
 
             <HdValidateCode class="mt-2" :account="form.account" v-model:code="form.code" type="notExist" />
           </div>
 
-          <FormButton class="w-full primary mt-2">注册</FormButton>
+          <FormButtonComponent class="w-full primary mt-2">注册</FormButtonComponent>
 
           <div class="flex justify-center mt-3">
             <icon-wechat

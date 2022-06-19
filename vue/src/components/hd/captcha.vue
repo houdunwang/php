@@ -25,7 +25,7 @@ loadCaptcha()
 <template>
   <div class="">
     <div class="flex justify-between">
-      <FormInputField placeholder="请输入验证码" v-model="code" v-clearError="'captcha_code'" />
+      <FormInputComponent placeholder="请输入验证码" v-model="code" v-clearError="'captcha_code'" />
       <img :src="captcha?.img" class="rounded-md cursor-pointer ml-1" @click="loadCaptcha" />
     </div>
     <FormError name="captcha_code" />
