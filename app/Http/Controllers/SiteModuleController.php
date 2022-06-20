@@ -20,7 +20,7 @@ class SiteModuleController extends Controller
     public function index(Site $site)
     {
         $this->authorize('viewAny', SiteModule::class);
-        $modules = $site->modules()->latest()->paginate();
+        $modules = $site->modules()->withPivot('is_default')->latest()->paginate();
         return ModuleResource::collection($modules);
     }
 
@@ -47,10 +47,11 @@ class SiteModuleController extends Controller
     public function setDefaultModule(Site $site, Module $module)
     {
         $this->authorize('update', SiteModule::class);
+
         SiteModule::where('site_id', $site->id)->update(['is_default' => false]);
 
         SiteModule::where('site_id', $site->id)->where('module_id', $module->id)->update([
-            'is_default' => true
+            'is_default' => true,
         ]);
 
         return $this->success('默认模块设置成功');

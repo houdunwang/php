@@ -12,7 +12,15 @@ const props = defineProps<{ site: SiteModel }>()
   <div class="site">
     <header>
       <section>
-        站长: <span>{{ site.master.name }}</span>
+        <div class="">
+          站长: <span>{{ site.master.name }}</span>
+        </div>
+        <div
+          class="ml-2 text-gray-600 font-normal cursor-pointer"
+          v-if="site.module"
+          @click="$router.push({ name: 'site.module', params: { sid: props.site.id } })">
+          <el-tag type="success" size="small" effect="dark">{{ site.module.title }}</el-tag>
+        </div>
       </section>
       <section>
         <icon-config theme="outline" fill="#333" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
@@ -80,7 +88,7 @@ const props = defineProps<{ site: SiteModel }>()
   header {
     @apply shadow-sm border-b px-5 py-3 flex items-center justify-between text-gray-600 text-sm font-bold;
     :first-child {
-      @apply font-bold;
+      @apply font-bold flex;
     }
     :nth-child(2) {
       @apply flex items-center;

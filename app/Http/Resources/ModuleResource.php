@@ -8,10 +8,6 @@ class ModuleResource extends JsonResource
 {
     public function toArray($request)
     {
-        $permissionFile = base_path("addons/{$this->name}/Config/permissions.php");
-
-        return parent::toArray($request) + [
-            'permissions' => $this->getPermissions($permissionFile)
-        ];
+        return parent::toArray($request);
     }
 }

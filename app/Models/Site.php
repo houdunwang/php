@@ -20,6 +20,8 @@ class Site extends Model
         'config' => 'array',
     ];
 
+    protected $appends = ['module'];
+
     //站长
     public function master()
     {
@@ -43,7 +45,12 @@ class Site extends Model
 
     public function modules()
     {
-        return $this->belongsToMany(Module::class, 'site_modules');
+        return $this->belongsToMany(Module::class, 'site_modules')->withTimestamps();
+    }
+
+    public function getModuleAttribute()
+    {
+        return $this->modules()->wherePivot('is_default', true)->first();
     }
 
     public function permissions()

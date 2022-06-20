@@ -27,6 +27,7 @@ const getModuleList = async () => {
 
 const defaultModule = async (module: ModuleModel) => {
   await setSiteDefaultModule(sid, module.id)
+  tableKey++
 }
 </script>
 
@@ -41,7 +42,10 @@ const defaultModule = async (module: ModuleModel) => {
     <template #button="{ model }">
       <el-button-group>
         <el-button type="danger" size="default" @click="del(model)">删除模块</el-button>
-        <el-button type="success" size="default" @click="defaultModule(model)">设置默认模块</el-button>
+        <el-button type="success" size="default" @click="defaultModule(model)" v-if="model.pivot.is_default">
+          取消默认模块
+        </el-button>
+        <el-button type="info" size="default" @click="defaultModule(model)" v-else> 设为默认模块</el-button>
       </el-button-group>
     </template>
   </HdTableComponent>

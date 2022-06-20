@@ -68,6 +68,9 @@ type ModuleModel = {
       name: string
     }[]
   }[]
+  pivot: {
+    is_default: boolean
+  }
 }
 
 //站点模型
@@ -90,6 +93,7 @@ type SiteModel = {
   created_at: string
   updated_at: string
   master: UserModel
+  module: ModuleModel
 }
 
 //系统模型
