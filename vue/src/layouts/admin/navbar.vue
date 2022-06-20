@@ -21,7 +21,7 @@ import { isSuperAdmin } from '@/utils/helper'
     </section>
 
     <section>
-      <HdNotification class="mr-5 text-[#7ed321] hidden md:block" />
+      <!-- <HdNotification class="mr-5 text-[#7ed321] hidden md:block" /> -->
       <HdFullscreen class="text-[#7ed321] hidden md:flex" />
       <ElButton type="success" size="small" @click="updateAllSiteInitData"> 更新所有站点数据 </ElButton>
       <UserDrop class="text-gray-200 ml-2" />

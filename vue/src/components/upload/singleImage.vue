@@ -58,8 +58,8 @@ const request = async (options: any) => {
 .el-icon.avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
-  min-width: 178px;
-  height: 178px;
+  min-width: 80px;
+  height: 50px;
   text-align: center;
 }
 </style>

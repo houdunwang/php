@@ -62,7 +62,7 @@ const redirectModule = (module: ModuleModel) => {
 
 <style lang="scss" scoped>
 section {
-  @apply grid grid-cols-6 gap-2;
+  @apply grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2;
   > div {
     @apply border flex flex-col items-center rounded-md hover:shadow-lg duration-300;
     h4 {
