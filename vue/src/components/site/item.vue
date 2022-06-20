@@ -18,11 +18,13 @@ const props = defineProps<{ site: SiteModel }>()
         <div
           class="ml-2 text-gray-600 font-normal cursor-pointer"
           v-if="site.module"
-          @click="$router.push({ name: 'site.module', params: { sid: props.site.id } })">
+          @click="$router.push({ name: 'site.module.index', params: { sid: props.site.id } })">
           <el-tag type="success" size="small" effect="dark">{{ site.module.title }}</el-tag>
         </div>
       </section>
-      <section>
+      <section
+        class="cursor-pointer"
+        @click="$router.push({ name: 'site.module.index', params: { sid: props.site.id } })">
         <icon-config theme="outline" fill="#333" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
         扩展模块
       </section>
@@ -45,10 +47,10 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           访问首页
         </a>
-        <router-link :to="{ name: 'site.module', params: { sid: site.id } }" v-if="isSuperAdmin()">
+        <!-- <router-link :to="{ name: 'site.module.set', params: { sid: site.id } }" v-if="isSuperAdmin()">
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           设置模块
-        </router-link>
+        </router-link> -->
         <router-link :to="{ name: 'role.index', params: { sid: site.id } }">
           <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           角色管理
@@ -57,7 +59,6 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           管理员设置
         </router-link>
-
         <router-link :to="{ name: 'site.config', params: { id: site.id } }">
           <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 站点配置
         </router-link>

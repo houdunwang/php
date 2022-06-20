@@ -4,11 +4,17 @@ export default {
   component: () => import('@/layouts/admin.vue'),
   meta: { auth: true },
   children: [
+    // {
+    //   name: 'site.module.set',
+    //   path: 'site/module',
+    //   props: true,
+    //   component: () => import('@/views/siteModule/set.vue'),
+    // },
     {
-      name: 'site.module',
-      path: 'module',
+      name: 'site.module.index',
+      path: 'site/module/index',
       props: true,
-      component: () => import('@/views/siteModule/set.vue'),
+      component: () => import('@/views/siteModule/index.vue'),
     },
   ],
 } as RouteRecordRaw
