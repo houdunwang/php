@@ -10,9 +10,9 @@ export function getUserList(page = 1, params: Record<any, any> = {}) {
   })
 }
 
-export function getCurrentUser() {
+export function currentUserInfo() {
   return http.request<UserModel>({
-    url: `user/currentUser`,
+    url: `current_user_info`,
   })
 }
 

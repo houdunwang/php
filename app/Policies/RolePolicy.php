@@ -12,7 +12,7 @@ class RolePolicy
 
     public function viewAny(User $user)
     {
-        return is_super_admin() ||
+        // return is_super_admin() || access('')
     }
 
     /**

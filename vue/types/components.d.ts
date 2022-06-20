@@ -13,20 +13,23 @@ declare module 'vue' {
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
-    ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
-    FormButtonComponent: typeof import('./../src/components/form/button.vue')['default']
-    FormButtonComponentComponent: typeof import('./../src/components/form/buttonComponent.vue')['default']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
+    FormButtonComponent: typeof import('./../src/components/form/buttonComponent.vue')['default']
     FormError: typeof import('./../src/components/form/error.vue')['default']
     FormFieldList: typeof import('./../src/components/form/fieldList.vue')['default']
     FormInputComponent: typeof import('./../src/components/form/inputComponent.vue')['default']
@@ -48,4 +51,4 @@ declare module 'vue' {
   }
 }
 
-export {}
+export { }

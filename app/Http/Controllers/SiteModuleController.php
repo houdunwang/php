@@ -9,6 +9,7 @@ use App\Models\Site;
 use App\Models\SiteModule;
 use Illuminate\Http\Request;
 
+//站点模块
 class SiteModuleController extends Controller
 {
     public function __construct()

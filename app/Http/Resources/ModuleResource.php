@@ -14,18 +14,4 @@ class ModuleResource extends JsonResource
             'permissions' => $this->getPermissions($permissionFile)
         ];
     }
-
-    protected function getPermissions($file)
-    {
-        if (!is_file($file)) return [];
-
-        return collect(require $file)->map(function ($permission) {
-            return [
-                "title" => $permission['title'],
-                "items" => collect($permission['items'])->map(function ($item) {
-                    return ['name' => $this->name . "_" . $item['name'], 'title' => $item['title']];
-                })
-            ];
-        });
-    }
 }

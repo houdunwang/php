@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getSiteModuleList } from '@/apis/siteModule'
-import { setRolePermissions } from '@/apis/role'
+import { getSitePermission } from '@/apis/sitePermission'
+import { updateRolePermission } from '@/apis/rolePermission'
 import TabVue from './tab.vue'
 import { roleFind } from '@/apis/role'
 import { updateAllSiteInitData } from '@/apis/site'
@@ -8,13 +8,13 @@ import { updateAllSiteInitData } from '@/apis/site'
 const router = useRouter()
 const { sid, rid } = defineProps<{ sid: any; rid: any }>()
 
-const [role, modules] = await Promise.all([roleFind(sid, rid), getSiteModuleList(sid)])
+const [role, sitePermissionTable] = await Promise.all([roleFind(sid, rid), getSitePermission(sid)])
 
 let permissions = $ref(role.permissions.map((p) => p.name))
 
 const onSubmit = async () => {
   try {
-    await setRolePermissions(sid, rid, permissions)
+    await updateRolePermission(sid, rid, permissions)
     router.push({ name: 'role.index' })
   } catch (error) {}
 }
@@ -32,12 +32,12 @@ const onSubmit = async () => {
   </div>
   <div class="">
     <!-- 模块权限 -->
-    <el-card shadow="hover" :body-style="{ padding: '20px' }" v-for="module of modules.data" class="mb-3">
+    <el-card shadow="hover" :body-style="{ padding: '20px' }" v-for="module of sitePermissionTable.data" class="mb-3">
       <template #header>
         <h5>{{ module['title'] }}</h5>
       </template>
 
-      <dl v-for="permission of module.permissions" class="w-full">
+      <dl v-for="permission of module.permission" class="w-full">
         <dt class="text-gray-600 text-sm font-bold pb-2">{{ permission.title }}</dt>
         <dd class="grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-8 grid-cols-1 text-sm text-gray-600 mb-5">
           <div v-for="p of permission.items" class="flex items-center">
@@ -49,10 +49,9 @@ const onSubmit = async () => {
           </div>
         </dd>
       </dl>
-      <!-- </div> -->
     </el-card>
 
-    <el-button type="primary" size="default" @click="onSubmit" v-if="modules.data.length">保存提交</el-button>
+    <el-button type="primary" size="default" @click="onSubmit">保存提交</el-button>
   </div>
 </template>
 

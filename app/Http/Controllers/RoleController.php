@@ -46,11 +46,4 @@ class RoleController extends Controller
         $role->delete();
         return $this->success(message: '删除成功');
     }
-
-    // 同步角色权限
-    public function permission(Request $request, Site $site, Role $role)
-    {
-        $role->syncPermissions($request->input('permissions'));
-        return $this->success('权限设置成功', data: $role->permissions);
-    }
 }

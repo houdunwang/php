@@ -14,6 +14,8 @@ class Role extends ModelsRole
 
     protected $fillable = ['name', 'title', 'site_id', 'guard_name'];
 
+    protected $with = ['permissions'];
+
     protected static function booted()
     {
         static::addGlobalScope(new SiteScope);

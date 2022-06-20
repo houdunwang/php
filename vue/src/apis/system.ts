@@ -6,5 +6,5 @@ export async function getSystem() {
 }
 
 export function updateSystem(data: SystemModel) {
-  return http.request<SystemModel>({ url: 'system', method: 'PUT', data })
+  return http.request<SystemModel>({ url: 'system/1', method: 'PUT', data })
 }

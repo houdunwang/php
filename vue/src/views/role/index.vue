@@ -27,14 +27,14 @@ const tableButtonAction = async (model: RoleModel, command: string) => {
       router.push({ name: `role.edit`, params: { sid, rid: model.id } })
       break
     case 'permissions':
-      router.push({ name: 'role.permission', params: { sid, rid: model.id } })
+      router.push({ name: 'role.permission.edit', params: { sid, rid: model.id } })
       break
   }
 }
 </script>
 
 <template>
-  <tab />
+  <tab :sid="sid" />
   <hd-table-component
     :key="tableKey"
     :columns="roleTableColumns"

@@ -5,72 +5,52 @@ namespace App\Services;
 use App\Models\Permission;
 use App\Models\Site;
 
-/**
- * 权限管理服务
- */
+//权限管理服务
 class PermissionService
 {
-    protected $names = [];
+    protected $permissionNames = [];
 
-    // 初始化站点模块权限
+    //初始化所有站点权限
     public function syncAllSitePermissions()
     {
         Site::all()->each(function ($site) {
-            $this->addSiteModulePermission($site);
-
-            $this->addSiteSystemPermission($site);
+            $this->addModulePermission($site);
+            $this->addSystemPermission($site);
+            //删除失效的权限
+            Permission::where('site_id', $site->id)->whereNotIn('name', $this->permissionNames)->delete();
         });
     }
 
-    //添加站点系统权限
-    protected function addSiteSystemPermission(Site $site)
+    //更新站点模块权限
+    public function addModulePermission(Site $site)
     {
-        collect(config('sitePermissions'))->each(function ($permission) use ($site) {
-            collect($permission['items'])->each(function ($item) use ($site) {
-                $name = "S" . $site->id . '_SYSTEM_' . $item['name'];
+        $modules = $site->modules->toArray();
+        foreach ($modules as &$module)
+            foreach ($module['permission'] as &$permission) {
+                foreach ($permission['items'] as &$item) {
+                    $item['name'] = "S" . $site->id . '_' . $module['name'] . "_" . $item['name'];
+                    $this->permissionNames[] = $item['name'];
+                    //更新权限表
+                    $data = ['site_id' => $site->id, 'module_id' => $module['id'], 'guard_name' => 'sanctum'] + $item;
+                    Permission::updateOrCreate($data);
+                }
+            }
+        return $modules;
+    }
 
-                $data = [
-                    'site_id' => $site->id,
-                    'module_id' =>  null,
-                    'name' => $name,
-                    'guard_name' => 'sanctum'
-                ] + $item;
-
+    //更新站点系统权限
+    public function addSystemPermission(Site $site)
+    {
+        $permissions = config('sitePermissions');
+        foreach ($permissions as &$permission)
+            foreach ($permission['items'] as &$item) {
+                $item['name'] = "S" . $site->id . '_' . $item['name'];
+                $this->permissionNames[] = $item['name'];
+                //更新权限表
+                $data = ['site_id' => $site->id, 'guard_name' => 'sanctum'] + $item;
                 Permission::updateOrCreate($data);
-            });
-        });
-    }
+            }
 
-    //添加站点拥有的模块的权限
-    protected function addSiteModulePermission(Site $site)
-    {
-        $site->modules()->each(function ($module) use ($site) {
-            $file = base_path("addons/{$module['name']}/Config/permissions.php");
-            if (!is_file($file)) return;
-
-            collect(include $file)->each(function ($permission) use ($site, $module) {
-                $this->addMoulePermissions($site, $permission, $module);
-            });
-        });
-
-        // 删除模块配置中不存在的站点权限
-        Permission::where('site_id', $site->id)->whereNotIn('name', $this->names)->delete();
-    }
-
-    //模块权限入库
-    protected function addMoulePermissions(Site $site, $permission, $module): void
-    {
-        collect($permission['items'])->each(function ($item) use ($site, $module) {
-            $name = "S" . $site->id . '_' . $module->name . "_" . $item['name'];
-
-            $data = [
-                'site_id' => $site->id,
-                'module_id' => $module->id ?? null,
-                'name' => $name,
-                'guard_name' => 'sanctum'
-            ] + $item;
-            $this->names[] = $name;
-            Permission::updateOrCreate($data);
-        });
+        return ['title' => '系统权限', 'permission' => $permissions];
     }
 }

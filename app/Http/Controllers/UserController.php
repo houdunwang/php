@@ -36,7 +36,7 @@ class UserController extends Controller
      * 当前用户资料
      * @return array
      */
-    public function currentUser()
+    public function currentUserInfo()
     {
         $user = Auth::user()->makeVisible('mobile')->refresh();
 

@@ -16,6 +16,18 @@ class SystemController extends Controller
     }
 
     /**
+     * 获取配置
+     * @param Request $request
+     * @param string $module
+     */
+    public function index(Request $request)
+    {
+        $system = System::firstOrFail()->toArray();
+
+        return $this->success(data: new SystemResource($system));
+    }
+
+    /**
      * 更新系统配置
      * @param UpdateSystemRequest $request
      */
@@ -25,17 +37,5 @@ class SystemController extends Controller
         $config->fill($request->input())->save();
 
         return $this->success('配置项更新成功', data: $config['data']);
-    }
-
-    /**
-     * 获取配置
-     * @param Request $request
-     * @param string $module
-     */
-    public function get(Request $request)
-    {
-        $system = System::firstOrFail()->toArray();
-
-        return $this->success(data: new SystemResource($system));
     }
 }
