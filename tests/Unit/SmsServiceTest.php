@@ -11,18 +11,18 @@ class SmsServiceTest extends TestCase
 
     /**
      * 短信发送
-     * test
+     * @test
      */
     public function sendMobileMessage()
     {
-        $response = app('sms')->send($this->user->mobile, 'SMS_12840367', [
-            'code' => '888999',
-            'product' => '后盾人'
-        ]);
+        if (config('system.aliyun.access_key_id')) {
+            $response = app('sms')->send($this->user->mobile, 'SMS_12840367', [
+                'code' => '888999',
+                'product' => '后盾人'
+            ]);
 
-        $this->assertTrue(isset($response['aliyun']));
-
-
+            $this->assertTrue(isset($response['aliyun']));
+        }
         $this->assertTrue(true);
     }
 }
