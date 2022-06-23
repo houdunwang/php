@@ -18,6 +18,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: MailHog
+      run: apk --no-cache add --virtual build-dependencies git && mkdir -p /root/gocode && export GOPATH=/root/gocode && go get github.com/mailhog/MailHog
     - name: Install Dependencies
       run: composer update
     - name: Install Dependencies
