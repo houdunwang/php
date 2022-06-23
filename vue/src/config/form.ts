@@ -63,15 +63,10 @@ export const systemForm = {
 } as Record<string, formType[]>
 
 //站点
-// export const siteForm = [
-//   { name: 'title', title: '网站名称', error_name: 'title' },
-//   { name: 'url', title: '域名地址', error_name: 'url' },
-// ] as formType[]
-
 export const siteForm = {
   base: [
     { title: '标题', name: 'title', type: 'input', error_name: 'title' },
-    { title: '后台标志', name: 'logo', type: 'image' },
+    { title: '网站标志', name: 'logo', type: 'image' },
     { title: '联系电话', name: 'tel', type: 'input' },
     { title: '企业邮箱', name: 'email', type: 'input' },
     { title: '公司地址', name: 'address', type: 'input' },

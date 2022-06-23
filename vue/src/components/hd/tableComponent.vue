@@ -93,7 +93,7 @@ let buttonColumnWidth = computed(() => {
             :preview-src-list="[row[col.prop]!]"
             :src="row[col.prop]"
             fit="cover"
-            class="rounded-sm" />
+            class="rounded-md" />
         </template>
         <template v-else-if="col.type === 'radio'">
           <span v-for="c in col.options" v-show="c[1] == row[col.prop]">

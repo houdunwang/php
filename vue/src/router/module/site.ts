@@ -3,7 +3,7 @@ export default {
   name: 'site',
   path: '/site',
   redirect: { name: 'site.index' },
-  component: () => import('@/layouts/admin.vue'),
+  component: () => import('@/layouts/system.vue'),
   meta: { auth: true },
   children: [
     {

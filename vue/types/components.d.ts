@@ -4,8 +4,8 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    EditorMarkdown: typeof import('./../src/components/editor/markdown.vue')['default']
     EditorWangEditor: typeof import('./../src/components/editor/wangEditor.vue')['default']
-    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCard: typeof import('element-plus/es')['ElCard']

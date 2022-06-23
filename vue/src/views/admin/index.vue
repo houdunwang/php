@@ -2,7 +2,7 @@
 import dayjs from 'dayjs'
 import { syncSiteAdmin, getAdminList, removeSiteAdmin } from '@/apis/admin'
 import { siteFind } from '@/apis/site'
-import { userTableColumns } from '@/config/table'
+import { adminTableColumns } from '@/config/table'
 import { ElMessageBox } from 'element-plus'
 import TabVue from './tab.vue'
 
@@ -12,16 +12,19 @@ const site = $ref(await siteFind(sid))
 let tableKey = $ref(0)
 
 //设置管理员
-// let admins = $ref(await getAdminList(sid))
 const select = async (user: UserModel) => {
   await syncSiteAdmin(site.id, user.id)
-  //   await getAdminList(sid)
   tableKey++
 }
 
 //用户加载API
 const load = async (page: any, params: any) => {
-  return getAdminList(sid, page, params)
+  return getAdminList(sid, page, params).then((response) => {
+    response.data.map((admin) => {
+      admin.roles = admin.roles.map((r) => r.title) as any
+    })
+    return response
+  })
 }
 
 const tableAction = async (model: UserModel, command: string) => {
@@ -47,7 +50,7 @@ const tableAction = async (model: UserModel, command: string) => {
   <UserSelectUser @select="select" class="mb-2" />
 
   <HdTableComponent
-    :columns="userTableColumns"
+    :columns="adminTableColumns"
     :api="load"
     :key="tableKey"
     @action="tableAction"

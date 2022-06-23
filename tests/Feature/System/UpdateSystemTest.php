@@ -15,7 +15,7 @@ class UpdateSystemTest extends TestCase
      */
     public function updateSystemFormValidation()
     {
-        $response = $this->putJson('/api/system', [
+        $response = $this->putJson('/api/system/1', [
             'name' => $this->faker()->word(),
             'tel' => $this->faker()->phoneNumber()
         ]);

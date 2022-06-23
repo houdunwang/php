@@ -10,6 +10,7 @@ const { sid, role } = defineProps<{ sid?: any; role?: any }>()
       { label: '添加角色', route: { name: 'role.add', params: { sid } } },
       { label: `编辑【${role?.title}】角色`, route: { name: 'role.edit' }, current: true },
       { label: `设置【${role?.title}】角色权限`, route: { name: 'role.permission' }, current: true },
+      { label: '管理员列表', route: { name: 'admin.index', params: { sid } } },
     ]" />
 </template>
 

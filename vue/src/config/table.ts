@@ -54,3 +54,8 @@ export const roleTableColumns = [
   { prop: 'created_at', label: '创建时间', type: 'date', width: 120 },
   { prop: 'updated_at', label: '更新时间', type: 'date', width: 120 },
 ] as tableColumnsType[]
+
+export const adminTableColumns = [
+  ...userTableColumns,
+  { prop: 'roles', label: '角色', type: 'alert', alert_field: 'title' },
+] as tableColumnsType[]

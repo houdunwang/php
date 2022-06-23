@@ -30,7 +30,6 @@
         "lodash": "^4.17.21",
         "mockjs": "^1.1.0",
         "pinia": "^2.0.13",
-        "plugin-vue@^2.0.0": "link:vitejs/plugin-vue@^2.0.0",
         "type-fest": "^2.13.1",
         "vee-validate": "^4.5.11",
         "vue": "^3.2.33",
