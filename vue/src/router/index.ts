@@ -1,16 +1,15 @@
 import { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from './routes'
-import autoload from './autoload'
+import register from './register'
 import guard from './guard'
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...routes],
+  routes: [],
 })
 
 export async function setupRouter(app: App) {
-  autoload(router)
+  register(router)
   guard(router)
   app.use(router)
 }

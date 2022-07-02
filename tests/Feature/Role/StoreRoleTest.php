@@ -21,7 +21,7 @@ class StoreRoleTest extends TestCase
     {
         $response = $this->postJson("/api/site/{$this->site->id}/role");
 
-        $response->assertStatus(422)->assertJsonValidationErrors(['name', 'title']);
+        $response->assertStatus(422)->assertJsonValidationErrors(['name', 'description']);
     }
 
     /**
@@ -33,10 +33,9 @@ class StoreRoleTest extends TestCase
         $role = create(Role::class, null, ['site_id' => $this->site->id]);
         $response = $this->postJson("/api/site/{$this->site->id}/role", [
             'name' => $role->name,
-            'title' => $role->title
         ]);
 
-        $response->assertStatus(422)->assertJsonValidationErrors(['name', 'title']);
+        $response->assertStatus(422)->assertJsonValidationErrors(['name']);
     }
 
     /**
@@ -46,8 +45,8 @@ class StoreRoleTest extends TestCase
     public function addRoleSuccess()
     {
         $response = $this->postJson("/api/site/{$this->site->id}/role", [
-            'name' => Str::random(10),
-            'title' => $this->faker()->title()
+            'name' => $this->faker()->title(),
+            'description' => $this->faker()->title()
         ]);
 
         $response->assertSuccessful()->assertJson(['status' => 'success']);

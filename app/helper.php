@@ -58,7 +58,7 @@ function is_site_master(Site $site = null, User $user = null): bool
  * @param User|null $user 用户
  * @return boolean
  */
-function access(string $name, Site $site = null, User $user = null): bool
+function access(string $name, Site $site = null, User $user = null, bool $force = false): bool
 {
     $site = $site ?? request('site');
     $user = $user ?? user();
@@ -67,7 +67,9 @@ function access(string $name, Site $site = null, User $user = null): bool
 
     if ($user->is_super_admin || $site->user_id == $user->id) return true;
 
-    return $user->roles()->whereRelation('permissions', function ($query) use ($site, $name) {
+    $state =  $user->roles()->whereRelation('permissions', function ($query) use ($site, $name) {
         $query->where('name', $name)->where('permissions.site_id', $site->id);
     })->exists();
+
+    return $state === false && $force ? abort(403) : $state;
 }

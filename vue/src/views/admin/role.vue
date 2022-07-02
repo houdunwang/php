@@ -26,7 +26,7 @@ const onSubmit = async () => {
     <section class="">
       <label v-for="r of response.data" class="m-2 text-gray-700 text-sm inline-flex items-center">
         <input type="checkbox" class="mr-1" v-model="roles" :value="r.id" />
-        {{ r.title }}
+        {{ r.name }}
       </label>
     </section>
     <el-button type="primary" size="default" @click="onSubmit">保存提交</el-button>

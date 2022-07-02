@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Admin;
-use App\Models\Site;
 use App\Models\User;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
-class SiteAdminController extends Controller
+class AdminController extends Controller
 {
     public function __construct()
     {
@@ -28,7 +28,7 @@ class SiteAdminController extends Controller
 
     public function show(Site $site, Admin $admin)
     {
-        return $this->success(data: new UserResource($admin->load('roles')));
+        return $this->success(data: new UserResource($admin->user->load('roles')));
     }
 
     public function store(Site $site, StoreAdminRequest $request)
@@ -37,9 +37,9 @@ class SiteAdminController extends Controller
         return $this->success();
     }
 
-    public function destroy(Site $site, $admin)
+    public function destroy(Site $site, Admin $admin)
     {
-        $site->admins()->detach($admin);
+        $site->admins()->detach($admin->user);
 
         return $this->success('管理员删除成功');
     }
@@ -47,7 +47,7 @@ class SiteAdminController extends Controller
     //设置管理员角色
     public function syncAdminRole(Request $request, Site $site, Admin $admin)
     {
-        $admin->syncRoles($request->roles);
+        $admin->user->syncRoles($request->roles);
 
         return $this->success('角色设置成功');
     }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SiteAdminController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\FansController;
 use App\Http\Controllers\FollowerController;
@@ -65,5 +65,5 @@ Route::apiResource('site.role', RoleController::class);
 Route::apiResource('site.role.permission', RolePermissionController::class);
 
 //站点管理员
-Route::apiResource('site.admin', SiteAdminController::class);
-Route::post('site/{site}/admin/{admin}/role', [SiteAdminController::class, 'syncAdminRole']);
+Route::apiResource('site.admin', AdminController::class);
+Route::post('site/{site}/admin/{admin}/role', [AdminController::class, 'syncAdminRole']);

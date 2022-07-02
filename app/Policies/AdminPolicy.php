@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin;
 use App\Models\SiteAdmin;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -18,7 +18,7 @@ class AdminPolicy
 
     public function view(User $user, Admin $admin)
     {
-        return access('admin-add') || access('admin-edit');
+        return access('system-admin-add') || access('system-admin-edit');
     }
 
     public function create(User $user)
@@ -34,13 +34,5 @@ class AdminPolicy
     public function delete(User $user, Admin $admin)
     {
         return access('admin-del');
-    }
-
-    public function restore(User $user, admin $admin)
-    {
-    }
-
-    public function forceDelete(User $user, admin $admin)
-    {
     }
 }

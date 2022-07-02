@@ -23,7 +23,7 @@ class UpdateRoleTest extends TestCase
 
         $response = $this->putJson("/api/site/{$this->site->id}/role/{$role['id']}");
 
-        $response->assertStatus(422)->assertJsonValidationErrors(['name', 'title']);
+        $response->assertStatus(422)->assertJsonValidationErrors(['name', 'description']);
     }
 
     /**
@@ -36,10 +36,10 @@ class UpdateRoleTest extends TestCase
         $role2 = create(Role::class, null, ['site_id' => $this->site->id]);
         $response = $this->putJson("/api/site/{$this->site->id}/role/{$role2['id']}", [
             'name' => $role1->name,
-            'title' => $role1->title
+            'description' => $role1->description
         ]);
 
-        $response->assertStatus(422)->assertJsonValidationErrors(['name', 'title']);
+        $response->assertStatus(422)->assertJsonValidationErrors(['name']);
     }
 
     /**
@@ -49,16 +49,15 @@ class UpdateRoleTest extends TestCase
     public function updateSiteRole()
     {
         $role = create(Role::class, null, [
-            'title' => $this->faker()->words(3),
+            'name' => $this->faker()->title(),
+            'description' => $this->faker()->title(),
             'site_id' => $this->site->id, 'name' => $this->faker()->word()
         ]);
 
         $response = $this->putJson("/api/site/{$this->site['id']}/role/{$role['id']}", [
-            'name' => Str::random(10),
-            'title' => $this->faker()->title()
+            'name' => $this->faker()->title(),
+            'description' => $this->faker()->title(),
         ]);
-
-        $response->dd();
 
         $response->assertSuccessful()->assertJson(['data' => []]);
     }

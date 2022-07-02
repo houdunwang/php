@@ -57,6 +57,11 @@ export const roleTableColumns = [
 ] as tableColumnsType[]
 
 export const adminTableColumns = [
-  ...userTableColumns,
-  { prop: 'roles', label: '角色', type: 'tag', tag_field: 'title' },
+  { prop: 'id', label: 'ID', align: 'center', width: 80 },
+  { prop: 'name', label: '昵称', search: true },
+  { prop: 'roles', label: '角色', type: 'tag', tag_field: 'name' },
+  { prop: 'avatar', label: '头像', type: 'image', align: 'center', width: 80 },
+  { prop: 'email', label: '邮箱', width: 300, search: true },
+  { prop: 'mobile', label: '手机号', width: 200, search: true },
+  { prop: 'created_at', label: '注册时间', type: 'date', width: 120 },
 ] as tableColumnsType[]

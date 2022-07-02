@@ -1,6 +1,5 @@
-import store from '@/utils/store'
 import { CacheEnum } from '../enum/CacheEnum'
-import util from '@/utils'
+import store from '@/utils/store'
 import { RouteLocationNormalized, Router } from 'vue-router'
 import errorStore from '@/store/errorStore'
 
@@ -23,7 +22,7 @@ class Guard {
   }
 
   private token(): string | null {
-    return util.store.get(CacheEnum.TOKEN_NAME)
+    return store.get(CacheEnum.TOKEN_NAME)
   }
 }
 

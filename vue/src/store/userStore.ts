@@ -1,12 +1,10 @@
-import { CacheEnum } from '../enum/CacheEnum'
-import store from '@/utils/store'
 import { defineStore } from 'pinia'
 import { currentUserInfo } from '@/apis/user'
 
 export default defineStore('userStore', {
   state: () => {
     return {
-      info: {} as null | UserModel,
+      info: {} as UserModel,
       permissions: [] as PermissionModel[],
     }
   },
@@ -18,10 +16,6 @@ export default defineStore('userStore', {
         permissions.push(...role.permissions)
         return permissions
       }, [])
-    },
-    resetInfo() {
-      this.info = null
-      this.permissions = []
     },
   },
 })

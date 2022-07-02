@@ -2,7 +2,6 @@
 import { syncSiteAdmin, getAdminList, removeSiteAdmin } from '@/apis/admin'
 import { siteFind } from '@/apis/site'
 import { adminTableColumns } from '@/config/table'
-import { ElMessageBox } from 'element-plus'
 import TabVue from './tab.vue'
 
 const router = useRouter()
