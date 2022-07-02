@@ -9,22 +9,23 @@ use App\Models\Module;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
+//系统模块管理
 class ModuleController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
-        $this->authorizeResource(Module::class);
+        $this->authorizeResource(Module::class, 'module');
     }
 
-    // 模块列表
+    //模块列表
     public function index()
     {
         $modules = Module::latest()->paginate();
         return ModuleResource::collection($modules);
     }
 
-    // 设计模块
+    //设计模块
     public function store(StoreModuleRequest $request)
     {
         $configFile = base_path('addons/' . $request->name . '/Config/config.php');
@@ -37,17 +38,18 @@ class ModuleController extends Controller
         copy(base_path('data/module/permissions.php'), base_path('addons/' . $request->name . '/Config/permissions.php'));
         app('module')->syncLocalAllModule();
 
-        return $this->success('模块创建成功');
+        return $this->success('模块创建成功', data: Module::latest()->first());
     }
 
-    // 删除模块
-    public function destroy(string $module)
+    //删除模块
+    public function destroy(Module $module)
     {
         if (is_dir(base_path('addons/' . $module))) {
             Artisan::call("module:migrate-reset " . $module);
             Storage::disk('addons')->deleteDirectory($module);
         }
-        Module::where('name', $module)->delete();
+
+        $module->delete();
 
         return $this->success('模块删除成功');
     }

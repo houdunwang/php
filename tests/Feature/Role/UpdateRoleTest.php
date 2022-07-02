@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Site;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Str;
 use Tests\TestCase;
 
 class UpdateRoleTest extends TestCase
@@ -42,20 +43,22 @@ class UpdateRoleTest extends TestCase
     }
 
     /**
-     * 添加角色
+     * 更新站点角色
      * @test
      */
     public function updateSiteRole()
     {
         $role = create(Role::class, null, [
-            'title' => $this->faker()->word(),
+            'title' => $this->faker()->words(3),
             'site_id' => $this->site->id, 'name' => $this->faker()->word()
         ]);
 
         $response = $this->putJson("/api/site/{$this->site['id']}/role/{$role['id']}", [
-            'name' => $this->faker()->word(),
+            'name' => Str::random(10),
             'title' => $this->faker()->title()
         ]);
+
+        $response->dd();
 
         $response->assertSuccessful()->assertJson(['data' => []]);
     }

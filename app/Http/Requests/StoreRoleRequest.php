@@ -17,8 +17,8 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required',  $this->unique('title'),],
-            'name' => ['required', 'regex:/^\w+$/i', $this->unique('name')],
+            'name' => ['required',  $this->unique('name')],
+            'description' => ['required'],
         ];
     }
 
@@ -32,8 +32,9 @@ class StoreRoleRequest extends FormRequest
                     });
             });
     }
-    public function messages()
+
+    public function attributes()
     {
-        return ['name.regex' => '角色标识只能是英文字母'];
+        return ['description' => '角色描述', 'name' => '角色描述'];
     }
 }

@@ -54,6 +54,7 @@ const emit = defineEmits<{
           <el-input
             @keyup.enter="emit('submit', model)"
             v-model="model[f.name]"
+            :type="f.type ?? 'input'"
             :placeholder="f.placeholder"
             :readonly="f.readonly"
             :disabled="f.disabled" />

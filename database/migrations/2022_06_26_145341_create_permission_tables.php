@@ -27,8 +27,8 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->comment('描述');
             $table->string('name')->comment('权限标识');
+            $table->string('title')->comment('描述');
             $table->foreignId('site_id')->constrained()->onDelete('cascade')->comment('站点');
             $table->foreignId('module_id')->nullable()->constrained()->onDelete('cascade')->comment('模块');
             $table->string('guard_name');
@@ -43,8 +43,8 @@ class CreatePermissionTables extends Migration
                 $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
                 $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
             }
-            $table->string('name');
-            $table->string('title')->comment('角色描述');       // For MySQL 8.0 use string('name', 125);
+            $table->string('name')->comment('角色名称');
+            $table->string('description')->comment('角色描述');
             $table->foreignId('site_id')->constrained()->onDelete('cascade')->comment('站点');
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();

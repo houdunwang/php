@@ -49,8 +49,8 @@ export const moduleTableColumns = [
 
 export const roleTableColumns = [
   { prop: 'id', label: '编号', width: 80, align: 'center' },
-  { prop: 'title', label: '角色名称', search: true },
-  { prop: 'name', label: '英文标识', search: true },
+  { prop: 'name', label: '角色名称', search: true },
+  { prop: 'description', label: '角色描述', search: true },
   { prop: 'permissions', label: '权限', type: 'tag', tag_field: 'title' },
   { prop: 'created_at', label: '创建时间', type: 'date', width: 120 },
   { prop: 'updated_at', label: '更新时间', type: 'date', width: 120 },

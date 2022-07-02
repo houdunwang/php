@@ -12,7 +12,7 @@ class Role extends ModelsRole
 {
     use HasFactory, ScopeTrait;
 
-    protected $fillable = ['name', 'title', 'site_id', 'guard_name'];
+    protected $fillable = ['name', 'description', 'site_id', 'guard_name'];
 
     protected $with = ['permissions'];
 

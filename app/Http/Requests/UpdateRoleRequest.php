@@ -16,8 +16,8 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', $this->unique('title')],
-            'name' => ['required',  'regex:/^[a-z]+$/i', $this->unique('name')],
+            'description' => ['required', 'max:100'],
+            'name' => ['required',  'max:20', $this->unique('name')],
         ];
     }
 
@@ -30,8 +30,8 @@ class UpdateRoleRequest extends FormRequest
         });
     }
 
-    public function messages()
+    public function attributes()
     {
-        return ['name.regex' => '角色标识只能是英文字母'];
+        return ['description' => '角色描述', 'name' => '角色描述'];
     }
 }

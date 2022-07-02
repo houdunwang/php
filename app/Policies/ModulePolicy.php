@@ -17,7 +17,6 @@ class ModulePolicy
 
     public function view(User $user, Module $module)
     {
-        //
     }
 
     public function create(User $user)
@@ -33,13 +32,5 @@ class ModulePolicy
     public function delete(User $user, ?Module $module)
     {
         return is_super_admin();
-    }
-
-    public function restore(User $user, Module $module)
-    {
-    }
-
-    public function forceDelete(User $user, Module $module)
-    {
     }
 }

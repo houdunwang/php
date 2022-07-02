@@ -22,21 +22,6 @@ class getSingleSiteTest extends TestCase
     }
 
     /**
-     * 普通用户只能获取自己的站点
-     * @test
-     */
-    public function ordinaryUsersCanOnlyAccessYourSite()
-    {
-        $users = User::factory(1)->has(Site::factory())->create();
-
-        $this->actingAs($users[0]);
-
-        $response = $this->getJson('/api/site/' . $this->user->sites[0]->id);
-
-        $response->assertStatus(403);
-    }
-
-    /**
      * 超级管理员可以获取所有站点
      * @test
      */
