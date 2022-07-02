@@ -94,7 +94,7 @@ const props = defineProps<{ site: SiteModel }>()
   main {
     @apply flex  items-center px-5 py-8 text-gray-600;
     :first-of-type {
-      @apply mr-1 text-4xl text-gray-600;
+      @apply mr-1 text-3xl text-gray-600;
     }
     span {
       @apply text-2xl font-light;

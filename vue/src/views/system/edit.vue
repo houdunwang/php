@@ -3,7 +3,6 @@ import { getSystem, updateSystem } from '@/apis/system'
 import { systemForm } from '@/config/form'
 import router from '@/router'
 import systemStore from '@/store/systemStore'
-import { useTitle } from '@vueuse/core'
 
 const model = ref(await getSystem())
 
@@ -12,7 +11,6 @@ const onSubmit = async () => {
   await updateSystem(model.value)
   await store.load()
   router.push({ name: 'system.index' })
-  useTitle(model.value.title)
 }
 
 const tabModel = ref('base')

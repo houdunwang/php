@@ -10,18 +10,17 @@ import { isSuperAdmin } from '@/utils/helper'
         <icon-system theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         模块管理
       </router-link>
-      <!-- <a href="">
-        <icon-right-user theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-        会员中心
-      </a> -->
       <a href="https://www.houdunren.com" target="_blank">
         <icon-video-two theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         视频教程
       </a>
+      <a href="https://doc.houdunren.com" target="_blank">
+        <icon-notes theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
+        在线文档
+      </a>
     </section>
 
     <section>
-      <!-- <HdNotification class="mr-5 text-[#7ed321] hidden md:block" /> -->
       <HdFullscreen class="text-[#7ed321] hidden md:flex" />
       <ElButton type="success" size="small" @click="updateAllSiteInitData"> 更新所有站点数据 </ElButton>
       <UserDrop class="text-gray-200 ml-2" />

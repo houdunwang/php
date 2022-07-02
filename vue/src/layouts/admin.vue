@@ -4,12 +4,10 @@ import TopMenu from './admin/topMenu.vue'
 import Copyright from './admin/copyright.vue'
 import systemStore from '@/store/systemStore'
 import userStore from '@/store/userStore'
-import { useTitle } from '@vueuse/core'
 
 await Promise.all([userStore().getUserInfo(), systemStore().load()])
 
 const storeSystem = systemStore()
-useTitle(storeSystem.data.title)
 </script>
 
 <template>

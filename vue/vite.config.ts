@@ -18,9 +18,9 @@ export default defineConfig(({ command, mode }) => {
     },
     build: {
       //编译文件生成目录
-      outDir: '../public/dist/',
+      outDir: 'dist',
+      emptyOutDir: true,
       rollupOptions: {
-        emptyOutDir: true,
         output: {
           manualChunks(id: string) {
             if (id.includes('node_modules')) {

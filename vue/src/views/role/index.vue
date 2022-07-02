@@ -2,7 +2,7 @@
 import { delRole, getRoleList } from '@/apis/role'
 import { roleTableColumns } from '@/config/table'
 import { access } from '@/utils/helper'
-import { ElMessageBox } from 'element-plus'
+// import { ElMessageBox } from 'element-plus'
 import tab from './tab.vue'
 
 const router = useRouter()

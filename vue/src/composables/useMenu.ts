@@ -2,7 +2,6 @@ import store from '@/utils/store'
 import { RouteLocationNormalized, RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 import { ref } from 'vue'
 import router from '@/router'
-import utils from '@/utils'
 import { CacheEnum } from '@/enum/CacheEnum'
 import { RouteMenu } from '#/router'
 
@@ -21,7 +20,7 @@ class Menu {
     const routes = [] as RouteRecordRaw[]
     router.getRoutes().map((r) => routes.push(...r.children))
 
-    let menus: RouteMenu[] = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+    let menus: RouteMenu[] = store.get(CacheEnum.HISTORY_MENU) ?? []
     return menus.filter((m) => {
       return routes.some((r) => r.name == m.route)
     })
@@ -30,7 +29,7 @@ class Menu {
   removeHistoryMenu(menu: RouteMenu) {
     const index = this.history.value.indexOf(menu)
     this.history.value.splice(index, 1)
-    utils.store.set(CacheEnum.HISTORY_MENU, this.history.value)
+    store.set(CacheEnum.HISTORY_MENU, this.history.value)
   }
 
   addHistoryMenu(route: RouteLocationNormalized) {
@@ -44,7 +43,7 @@ class Menu {
       this.history.value.pop()
     }
 
-    utils.store.set(CacheEnum.HISTORY_MENU, this.history.value)
+    store.set(CacheEnum.HISTORY_MENU, this.history.value)
   }
 
   toggleParentMenu(menu: RouteMenu) {

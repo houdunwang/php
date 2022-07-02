@@ -1,5 +1,5 @@
 import { CacheEnum } from '../enum/CacheEnum'
-import utils from '@/utils'
+import store from '@/utils/store'
 import { RouteLocationNormalized } from 'vue-router'
 import { RouteMenu } from '#/router'
 import { defineStore } from 'pinia'
@@ -14,7 +14,7 @@ export default defineStore('menu', {
   actions: {
     init() {
       this.getMenuByRoute()
-      this.historyMenu = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+      this.historyMenu = store.get(CacheEnum.HISTORY_MENU) ?? []
     },
     removeHistoryMenu(menu: RouteMenu) {
       const index = this.historyMenu.indexOf(menu)
@@ -30,7 +30,7 @@ export default defineStore('menu', {
         this.historyMenu.pop()
       }
 
-      utils.store.set(CacheEnum.HISTORY_MENU, this.historyMenu)
+      store.set(CacheEnum.HISTORY_MENU, this.historyMenu)
     },
     //根据路由获取菜单
     getMenuByRoute() {
