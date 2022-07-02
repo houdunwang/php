@@ -3,10 +3,11 @@ export type tableColumnsType = {
   label: string
   width?: number
   align?: 'left' | 'center' | 'right'
-  type?: 'image' | 'date' | 'input' | 'radio' | 'alert'
+  type?: 'image' | 'date' | 'input' | 'radio' | 'tag'
   options: any
   search?: boolean
   fixed?: boolean
+  tag_field?: string
 }
 
 export type tableButtonType = {
@@ -50,12 +51,12 @@ export const roleTableColumns = [
   { prop: 'id', label: '编号', width: 80, align: 'center' },
   { prop: 'title', label: '角色名称', search: true },
   { prop: 'name', label: '英文标识', search: true },
-  { prop: 'permissions', label: '权限', type: 'alert', alert_field: 'title' },
+  { prop: 'permissions', label: '权限', type: 'tag', tag_field: 'title' },
   { prop: 'created_at', label: '创建时间', type: 'date', width: 120 },
   { prop: 'updated_at', label: '更新时间', type: 'date', width: 120 },
 ] as tableColumnsType[]
 
 export const adminTableColumns = [
   ...userTableColumns,
-  { prop: 'roles', label: '角色', type: 'alert', alert_field: 'title' },
+  { prop: 'roles', label: '角色', type: 'tag', tag_field: 'title' },
 ] as tableColumnsType[]

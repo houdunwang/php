@@ -15,7 +15,7 @@ class SmsServiceTest extends TestCase
      */
     public function sendMobileMessage()
     {
-        if (config('system.aliyun.access_key_id')) {
+        if (env('MOBILE')) {
             $response = app('sms')->send($this->user->mobile, 'SMS_12840367', [
                 'code' => '888999',
                 'product' => '后盾人'

@@ -19,6 +19,7 @@ class RoleController extends Controller
 
     public function index(Site $site)
     {
+        $this->authorize(Role::class);
         $roles = Role::queryCondition()->latest()->paginate(100);
         return RoleResource::collection($roles);
     }

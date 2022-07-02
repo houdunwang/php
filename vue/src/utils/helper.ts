@@ -1,10 +1,10 @@
 import { CacheEnum } from '@/enum/CacheEnum'
 import useStore from '@/store/userStore'
 import store from './store'
-const storeUser = useStore()
 
 //是否是超级管理员
 export function isSuperAdmin() {
+  const storeUser = useStore()
   return Boolean(storeUser.info?.is_super_admin)
 }
 
@@ -33,4 +33,13 @@ export function request(fn: (args: any) => Promise<any>) {
     isSubmit = true
     return fn(args).finally(() => (isSubmit = false))
   }
+}
+
+export function access(name: string, site: SiteModel): boolean {
+  const storeUser = useStore()
+  if (isSuperAdmin() || site.user_id == storeUser.info?.id) {
+    return true
+  }
+
+  return Boolean(storeUser.permissions.find((permission) => permission.name == name))
 }

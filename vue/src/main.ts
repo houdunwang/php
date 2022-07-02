@@ -17,7 +17,6 @@ class Main {
     const app = createApp(App)
     setupPlugins(app)
     setupRouter(app)
-
     registerDirective(app)
     return app
   }

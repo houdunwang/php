@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSiteModuleRequest;
 use App\Http\Resources\ModuleResource;
 use App\Models\Module;
 use App\Models\Site;

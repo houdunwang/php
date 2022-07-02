@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { access } from '@/utils/helper'
 import { TabsPaneContext } from 'element-plus'
 
 const router = useRouter()
@@ -11,12 +12,14 @@ const { tabs: propTabs } = defineProps<{
     event?: () => void
     route?: any
     current?: boolean
+    permission?: { name: string; site: SiteModel }
   }[]
 }>()
 
 const tabs = $computed(() => {
   return propTabs.filter((tab) => {
-    return tab.current ? tab.route?.name == route.name : true
+    const state = tab.current ? tab.route?.name == route.name : true
+    return state && tab.permission ? access(tab.permission.name, tab.permission.site) : state
   })
 })
 

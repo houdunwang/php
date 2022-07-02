@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Permission;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ function is_site_master(Site $site = null, User $user = null): bool
     $site = $site ?? config('site');
     $user = $user ?? user();
 
-    return $user && $site ?  is_super_admin() || $site->user->id == $user->id : false;
+    return $user && $site ?  is_super_admin($site, $user) || $site->user->id == $user->id : false;
 }
 
 /**
@@ -59,10 +60,14 @@ function is_site_master(Site $site = null, User $user = null): bool
  */
 function access(string $name, Site $site = null, User $user = null): bool
 {
-    $site = $site ?? site();
+    $site = $site ?? request('site');
     $user = $user ?? user();
 
-    if (is_site_master($site, $user)) return true;
+    if (!$site || !$user) abort(403);
 
-    return $site && $user ? $user->can($name) : false;
+    if ($user->is_super_admin || $site->user_id == $user->id) return true;
+
+    return $user->roles()->whereRelation('permissions', function ($query) use ($site, $name) {
+        $query->where('name', $name)->where('permissions.site_id', $site->id);
+    })->exists();
 }

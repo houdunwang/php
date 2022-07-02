@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc237a099921d4410db59c571fee4cd4",
+    "content-hash": "6da754ffc2506e85570e8061439bc753",
     "packages": [
         {
             "name": "brick/math",
@@ -6393,6 +6393,156 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
             "time": "2021-03-09T10:59:23+00:00"
+        },
+        {
+            "name": "yansongda/pay",
+            "version": "v3.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yansongda/pay.git",
+                "reference": "b493c936c682ebf32a619903670ac2639e52f56d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yansongda/pay/zipball/b493c936c682ebf32a619903670ac2639e52f56d",
+                "reference": "b493c936c682ebf32a619903670ac2639e52f56d",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-openssl": "*",
+                "ext-simplexml": "*",
+                "php": ">=7.4",
+                "psr/container": "^1.1 | ^2.0",
+                "psr/event-dispatcher": "^1.0",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/log": "^1.1 | ^2.0 | ^3.0",
+                "yansongda/supports": "~3.2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "guzzlehttp/guzzle": "^7.0",
+                "mockery/mockery": "^1.4",
+                "monolog/monolog": "^2.2",
+                "phpstan/phpstan": "^1.0.0",
+                "phpunit/phpunit": "^9.0",
+                "symfony/event-dispatcher": "^5.2.0",
+                "symfony/http-foundation": "^5.2.0",
+                "symfony/psr-http-message-bridge": "^2.1",
+                "symfony/var-dumper": "^5.1"
+            },
+            "suggest": {
+                "hyperf/utils": "Hyperf 框架下使用 SDK，请安装",
+                "illuminate/container": "Laravel 框架下使用 SDK，请安装",
+                "php-di/php-di": "其它/无框架下使用 SDK，请安装"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Functions.php"
+                ],
+                "psr-4": {
+                    "Yansongda\\Pay\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "yansongda",
+                    "email": "me@yansongda.cn"
+                }
+            ],
+            "description": "可能是我用过的最优雅的 Alipay 和 WeChat 的支付 SDK 扩展包了",
+            "keywords": [
+                "alipay",
+                "pay",
+                "wechat"
+            ],
+            "support": {
+                "homepage": "https://pay.yansongda.cn",
+                "issues": "https://github.com/yansongda/pay/issues",
+                "source": "https://github.com/yansongda/pay"
+            },
+            "time": "2022-05-25T14:37:15+00:00"
+        },
+        {
+            "name": "yansongda/supports",
+            "version": "v3.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yansongda/supports.git",
+                "reference": "c3f736efe169696cef94730976e604a61c345b5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yansongda/supports/zipball/c3f736efe169696cef94730976e604a61c345b5c",
+                "reference": "c3f736efe169696cef94730976e604a61c345b5c",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mockery/mockery": "^1.4",
+                "monolog/monolog": "^2.0",
+                "phpstan/phpstan": "^1.1.0",
+                "phpunit/phpunit": "^9.0",
+                "symfony/console": "^5.1"
+            },
+            "suggest": {
+                "monolog/monolog": "Use logger",
+                "symfony/console": "Use stdout logger"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Functions.php"
+                ],
+                "psr-4": {
+                    "Yansongda\\Supports\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "yansongda",
+                    "email": "me@yansongda.cn"
+                }
+            ],
+            "description": "common components",
+            "keywords": [
+                "array",
+                "collection",
+                "config",
+                "support"
+            ],
+            "support": {
+                "issues": "https://github.com/yansongda/supports/issues",
+                "source": "https://github.com/yansongda/supports"
+            },
+            "time": "2022-03-28T10:25:04+00:00"
         }
     ],
     "packages-dev": [

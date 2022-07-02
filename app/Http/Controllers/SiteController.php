@@ -17,11 +17,12 @@ class SiteController extends Controller
 
     public function index()
     {
-        $sites = Site::when(!is_super_admin(), function ($query) {
-            $query->where('user_id', Auth::id());
-        })->latest()->with('master')->paginate(request('row', 10));
+        $sites = Site::latest()->with('master');
+        if (!is_super_admin())
+            $sites->where('user_id', Auth::id())
+                ->orWhereRelation('admins', 'user_id', Auth::id());
 
-        return SiteResource::collection($sites);
+        return SiteResource::collection($sites->paginate(request('row', 10)));
     }
 
     public function store(StoreSiteRequest $request, Site $site)
@@ -36,7 +37,6 @@ class SiteController extends Controller
 
     public function show(Site $site)
     {
-        $this->authorize('view', $site);
         return $this->success(data: new SiteResource($site));
     }
 

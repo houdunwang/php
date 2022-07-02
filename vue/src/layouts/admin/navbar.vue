@@ -10,10 +10,10 @@ import { isSuperAdmin } from '@/utils/helper'
         <icon-system theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         模块管理
       </router-link>
-      <a href="">
+      <!-- <a href="">
         <icon-right-user theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         会员中心
-      </a>
+      </a> -->
       <a href="https://www.houdunren.com" target="_blank">
         <icon-video-two theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
         视频教程

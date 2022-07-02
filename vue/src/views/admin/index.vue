@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
 import { syncSiteAdmin, getAdminList, removeSiteAdmin } from '@/apis/admin'
 import { siteFind } from '@/apis/site'
 import { adminTableColumns } from '@/config/table'
@@ -19,12 +18,7 @@ const select = async (user: UserModel) => {
 
 //用户加载API
 const load = async (page: any, params: any) => {
-  return getAdminList(sid, page, params).then((response) => {
-    response.data.map((admin) => {
-      admin.roles = admin.roles.map((r) => r.title) as any
-    })
-    return response
-  })
+  return getAdminList(sid, page, params)
 }
 
 const tableAction = async (model: UserModel, command: string) => {

@@ -2,22 +2,14 @@
   "0 debug pnpm:scope": {
     "selected": 1
   },
-  "1 info pnpm": {
-    "err": {
-      "name": "Error",
-      "message": "not found: build",
-      "code": "ENOENT",
-      "stack": "Error: not found: build\n    at getNotFoundError (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:41759:51)\n    at Function.whichSync [as sync] (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:41836:13)\n    at getCommandAbsolutePathSync (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:43401:44)\n    at default_1 (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:43410:32)\n    at /Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:178873:39"
-    }
-  },
-  "2 error pnpm": {
-    "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
-    "prefix": "/Users/hd/code/hdcms-php",
+  "1 error pnpm": {
+    "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+    "hint": "Available dependencies: pnpm, ts-node, typescript",
     "err": {
       "name": "pnpm",
-      "message": "not found: build",
-      "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
-      "stack": "Error: not found: build\n    at getNotFoundError (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:41759:51)\n    at Function.whichSync [as sync] (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:41836:13)\n    at getCommandAbsolutePathSync (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:43401:44)\n    at default_1 (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:43410:32)\n    at /Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:178873:39"
+      "message": "Cannot remove 'houdunren-vue': no such dependency found in 'dependencies'",
+      "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+      "stack": "pnpm: Cannot remove 'houdunren-vue': no such dependency found in 'dependencies'\n    at Object.handler (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.3.0/node_modules/pnpm/dist/pnpm.cjs:124309:15)\n    at async /Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.3.0/node_modules/pnpm/dist/pnpm.cjs:187855:21\n    at async run (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.3.0/node_modules/pnpm/dist/pnpm.cjs:187829:34)\n    at async runPnpm (/Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.3.0/node_modules/pnpm/dist/pnpm.cjs:188047:5)\n    at async /Users/hd/Library/pnpm/global/5/.pnpm/pnpm@7.3.0/node_modules/pnpm/dist/pnpm.cjs:188039:7"
     }
   }
 }

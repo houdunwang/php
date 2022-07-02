@@ -8,7 +8,7 @@ use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class SiteAdminController extends Controller
 {
     public function __construct()
     {
@@ -17,7 +17,9 @@ class AdminController extends Controller
 
     public function index(Site $site)
     {
-        $admins = $site->admins()->queryCondition()->with('roles')->paginate();
+        $admins = $site->admins()->queryCondition()->with(['roles' => function ($query) use ($site) {
+            $query->where('site_id', $site->id);
+        }])->paginate();
 
         return UserResource::collection($admins);
     }

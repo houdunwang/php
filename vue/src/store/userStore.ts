@@ -7,16 +7,21 @@ export default defineStore('userStore', {
   state: () => {
     return {
       info: {} as null | UserModel,
+      permissions: [] as PermissionModel[],
     }
   },
   actions: {
     async getUserInfo() {
-      if (store.get(CacheEnum.TOKEN_NAME)) {
-        this.info = await currentUserInfo().then((r) => r.data)
-      }
+      this.info = await currentUserInfo()
+
+      this.permissions = this.info.roles.reduce((permissions: PermissionModel[], role: RoleModel) => {
+        permissions.push(...role.permissions)
+        return permissions
+      }, [])
     },
     resetInfo() {
       this.info = null
+      this.permissions = []
     },
   },
 })

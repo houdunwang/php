@@ -48,7 +48,6 @@ class getSiteListTest extends TestCase
         User::factory(5)->has(Site::factory())->create();
 
         $response = $this->getJson('/api/site?row=1000');
-
         $this->assertCount(Site::count(), $response['data']);
     }
 }

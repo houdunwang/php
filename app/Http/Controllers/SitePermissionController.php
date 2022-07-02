@@ -15,6 +15,9 @@ class SitePermissionController extends Controller
     //获取站点所有权限信息，包括模块与系统权限
     public function index(Site $site)
     {
-        return $this->success(data: [app('permission')->addSystemPermission($site)] + app('permission')->addModulePermission($site));
+        return $this->success(
+            data: [app('permission')->addSystemPermission($site)]
+                + app('permission')->addModulePermission($site)
+        );
     }
 }

@@ -2,11 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
-// include_once "../addons.php";
-// app()->bind('aa', \Addons\Blog\ServiceProvider::class);
+Route::get('test', function () {
+    $order = [
+        'out_trade_no' => time(),
+        'total_amount' => '1',
+        'subject' => 'test subject - 测试',
+    ];
 
-Route::get('a', function () {
-    return 'Hello World';
+    return app('alipay')->web([
+        "app_secret_cert" => env('ALIPAY_APP_SECRET_CERT')
+    ], [
+        'out_trade_no' => '' . time(),
+        'total_amount' => '0.01',
+        'subject' => 'yansongda 测试 - 1',
+    ], $order);
 });
 
 Route::fallback(function () {

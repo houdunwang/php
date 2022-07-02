@@ -11,9 +11,11 @@ export function getUserList(page = 1, params: Record<any, any> = {}) {
 }
 
 export function currentUserInfo() {
-  return http.request<UserModel>({
-    url: `current_user_info`,
-  })
+  return http
+    .request<UserModel>({
+      url: `current_user_info`,
+    })
+    .then((r) => r.data)
 }
 
 export function getUser(id: number) {

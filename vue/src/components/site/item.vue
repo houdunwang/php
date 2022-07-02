@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isSuperAdmin } from '@/utils/helper'
+import { isSuperAdmin, access } from '@/utils/helper'
 import dayjs from 'dayjs'
 
 const emit = defineEmits<{
@@ -35,7 +35,7 @@ const props = defineProps<{ site: SiteModel }>()
     </main>
     <footer class="">
       <section class="flex font-bold">
-        #1 创建时间
+        #{{ props.site.id }} 创建时间
         <span class="flex justify-center items-center ml-1">
           <icon-time theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" class="mr-1" />
           {{ dayjs(props.site.created_at).format('YYYY-MM-DD HH:mm') }}
@@ -47,26 +47,22 @@ const props = defineProps<{ site: SiteModel }>()
           <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           访问首页
         </a>
-        <!-- <router-link :to="{ name: 'site.module.set', params: { sid: site.id } }" v-if="isSuperAdmin()">
-          <icon-home theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
-          设置模块
-        </router-link> -->
-        <router-link :to="{ name: 'role.index', params: { sid: site.id } }">
+        <router-link :to="{ name: 'role.index', params: { sid: site.id } }" v-access:role-list="site">
           <icon-permissions theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           角色管理
         </router-link>
-        <router-link :to="{ name: 'admin.index', params: { sid: site.id } }">
+        <router-link :to="{ name: 'admin.index', params: { sid: site.id } }" v-access:admin-list="site">
           <icon-avatar theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           管理员设置
         </router-link>
-        <router-link :to="{ name: 'site.config', params: { id: site.id } }">
+        <router-link :to="{ name: 'site.config', params: { id: site.id } }" v-access:site-config="site">
           <icon-config theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" /> 站点配置
         </router-link>
-        <router-link :to="{ name: 'site.edit', params: { id: site.id } }">
+        <router-link :to="{ name: 'site.edit', params: { id: site.id } }" v-access:site-edit="site">
           <icon-editor theme="outline" strokeLinejoin="bevel" strokeLinecap="butt" />
           编辑站点
         </router-link>
-        <a href="javascript:void(0)">
+        <a href="javascript:void(0)" v-if="isSuperAdmin()">
           <el-popconfirm title="确定删除站点吗?" @confirm="emit('del', site.id)">
             <template #reference>
               <div class="flex items-center justify-center">

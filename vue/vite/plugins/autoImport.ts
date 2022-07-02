@@ -8,12 +8,12 @@ export default function autoImport(plugins: Plugin[]) {
     AutoImport({
       resolvers: [ElementPlusResolver()],
       imports: ['vue', 'vue-router'],
-      //为true时在项目根目录自动创建
+      dirs: ['src/composables'],
       dts: 'types/auto-imports.d.ts',
     }),
     Components({
-      extensions: ['vue'],
       resolvers: [ElementPlusResolver()],
+      extensions: ['vue'],
       dirs: ['src/components'],
       //组件名称包含目录，防止同名组件冲突
       directoryAsNamespace: true,

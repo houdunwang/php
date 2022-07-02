@@ -33,7 +33,7 @@ export async function adminFind(sid: any, id: any) {
     .then((r) => r.data)
 }
 
-export async function syncAdminRole(sid: number, aid: number, roles: string[]) {
+export async function syncAdminRole(sid: number, aid: number, roles: number[]) {
   return http.request({
     url: `site/${sid}/admin/${aid}/role`,
     method: 'POST',

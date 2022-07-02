@@ -34,11 +34,11 @@ export default defineConfig(({ command, mode }) => {
       //open: true, //直接打开浏览器
       proxy: {
         '/api': {
-          target: env.VITE_MOCK_ENABLE ? '/' : env.VITE_API_URL,
+          target: env.VITE_API_URL,
           changeOrigin: true,
         },
         '/captcha/api/math': {
-          target: env.VITE_MOCK_ENABLE ? '/' : env.VITE_API_URL,
+          target: env.VITE_API_URL,
           changeOrigin: true,
         },
       },

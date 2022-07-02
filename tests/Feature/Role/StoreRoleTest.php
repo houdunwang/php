@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Site;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Str;
 use Tests\TestCase;
 
 class StoreRoleTest extends TestCase
@@ -45,9 +46,10 @@ class StoreRoleTest extends TestCase
     public function addRoleSuccess()
     {
         $response = $this->postJson("/api/site/{$this->site->id}/role", [
-            'name' => $this->faker()->word(),
+            'name' => Str::random(10),
             'title' => $this->faker()->title()
         ]);
+
         $response->assertSuccessful()->assertJson(['status' => 'success']);
     }
 }

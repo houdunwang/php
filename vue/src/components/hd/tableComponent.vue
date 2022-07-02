@@ -100,9 +100,9 @@ let buttonColumnWidth = computed(() => {
             <el-tag>{{ c[0] }}</el-tag>
           </span>
         </template>
-        <template v-else-if="col.type === 'alert'">
+        <template v-else-if="col.type === 'tag'">
           <el-tag type="success" size="small" effect="dark" v-for="(b, key) of row[col.prop]" :key="key" class="m-1">
-            {{ b }}
+            {{ b[col.tag_field!] }}
           </el-tag>
         </template>
         <template v-else-if="col.type === 'date'">

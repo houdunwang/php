@@ -5,11 +5,13 @@ import _ from 'lodash'
 import setupPinia from './pinia'
 import setupIconPark from './iconpark'
 import setupDayjs from './dayjs'
+import setupMarkdown from './markdown'
 
 export function setupPlugins(app: App) {
-  setupTailwindcss()
-  setupElementPlus()
   setupPinia(app)
+  setupTailwindcss()
+  setupElementPlus(app)
   setupIconPark(app)
   setupDayjs()
+  setupMarkdown(app)
 }

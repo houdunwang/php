@@ -18,7 +18,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'title' => ['required',  $this->unique('title'),],
-            'name' => ['required', 'regex:/^[a-z_]+$/i', $this->unique('name')],
+            'name' => ['required', 'regex:/^\w+$/i', $this->unique('name')],
         ];
     }
 
