@@ -60,7 +60,7 @@ type ModuleModel = {
   name: string
   version: string
   author: string
-  perview: string
+  preview: string
   permissions: {
     title: string
     items: {

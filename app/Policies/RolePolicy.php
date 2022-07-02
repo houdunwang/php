@@ -17,18 +17,22 @@ class RolePolicy
 
     public function view(User $user, Role $role)
     {
+        return true;
     }
 
     public function create(User $user)
     {
+        return access('role-add');
     }
 
     public function update(User $user, Role $role)
     {
+        return access('role-edit');
     }
 
     public function delete(User $user, Role $role)
     {
+        return access('role-del');
     }
 
     public function restore(User $user, Role $role)

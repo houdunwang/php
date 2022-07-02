@@ -14,15 +14,13 @@ class ModuleController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
+        $this->authorizeResource(Module::class);
     }
 
     // 模块列表
     public function index()
     {
-        $this->authorize('viewAny', Module::class);
-
         $modules = Module::latest()->paginate();
-
         return ModuleResource::collection($modules);
     }
 
@@ -45,8 +43,6 @@ class ModuleController extends Controller
     // 删除模块
     public function destroy(string $module)
     {
-        $this->authorize('delete', Module::class);
-
         if (is_dir(base_path('addons/' . $module))) {
             Artisan::call("module:migrate-reset " . $module);
             Storage::disk('addons')->deleteDirectory($module);

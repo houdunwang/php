@@ -13,11 +13,12 @@ class SitePolicy
 
     public function viewAny(User $user)
     {
+        return true;
     }
 
     public function view(User $user, site $site)
     {
-        return is_super_admin() || $user->id === $site->user_id;
+        return true;
     }
 
     public function create(User $user)
@@ -32,7 +33,7 @@ class SitePolicy
 
     public function delete(User $user, site $site)
     {
-        return $user->is_super_admin || $user->id === $site->user_id;
+        return access('site-del');
     }
 
     public function restore(User $user, site $site)

@@ -1,5 +1,6 @@
 import { siteFind } from '@/apis/site'
 import useSite from '@/composables/useSite'
+import router from '@/router'
 import errorStore from '@/store/errorStore'
 import { access } from '@/utils/helper'
 import { App } from 'vue'
@@ -23,7 +24,7 @@ export default function registerDirective(app: App) {
       } else if (typeof binding.value === 'number') {
         site = await siteFind(binding.value)
       } else {
-        site = (await useSite()).site.value
+        site = (await useSite()).site
       }
 
       const state = access(binding.arg as string, site)

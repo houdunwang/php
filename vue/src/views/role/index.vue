@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { delRole, getRoleList } from '@/apis/role'
 import { roleTableColumns } from '@/config/table'
+import { access } from '@/utils/helper'
 import { ElMessageBox } from 'element-plus'
 import tab from './tab.vue'
 
+const router = useRouter()
 let tableKey = $ref(0)
-
 const { sid } = defineProps<{ sid: any }>()
 const { site } = await useSite()
-const router = useRouter()
 
 const load = async (page: number = 1, params: any) => {
   return getRoleList(sid, page, params)
@@ -40,17 +40,17 @@ const tableButtonAction = async (model: RoleModel, command: string) => {
     @action="tableButtonAction"
     :button-width="160">
     <template #button="{ model }">
-      <el-button-group>
+      <div class="flex gap-1">
         <el-button
           type="primary"
           size="default"
+          v-if="access('role-edit', site)"
           @click="$router.push({ name: `role.edit`, params: { sid, rid: model.id } })">
           编辑
         </el-button>
-        <site-permission :sid="sid" :rid="model.id" @submit="tableKey++" />
-      </el-button-group>
+
+        <site-permission :site="site" :role="model" @submit="tableKey++" v-access:role-permission-set="site" />
+      </div>
     </template>
   </hd-table-component>
 </template>
-
-<style lang="scss"></style>

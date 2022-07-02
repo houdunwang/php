@@ -22,8 +22,8 @@ class SystemController extends Controller
      */
     public function index(Request $request)
     {
-        $system = System::firstOrFail()->toArray();
-
+        $system = System::firstOrFail();
+        if (is_super_admin()) $system->makeVisible('config');
         return $this->success(data: new SystemResource($system));
     }
 
@@ -33,6 +33,7 @@ class SystemController extends Controller
      */
     public function update(UpdateSystemRequest $request)
     {
+        $this->authorize('update', System::class);
         $config = System::firstOrFail();
         $config->fill($request->input())->save();
 

@@ -7,12 +7,12 @@ const { site, role } = defineProps<{ site: SiteModel; role?: any }>()
     :tabs="[
       { label: '站点列表', route: { name: 'site.index' } },
       {
-        label: '角色列表',
+        label: `【${site?.title}】角色列表`,
         route: { name: 'role.index', params: { sid: site.id } },
         permission: { name: 'role-list', site },
       },
       {
-        label: '添加角色',
+        label: `添加角色`,
         route: { name: 'role.add', params: { sid: site.id } },
         permission: { name: 'role-add', site },
       },
@@ -29,7 +29,7 @@ const { site, role } = defineProps<{ site: SiteModel; role?: any }>()
         permission: { name: 'role-permission-set', site },
       },
       {
-        label: '管理员列表',
+        label: `管理员列表`,
         route: { name: 'admin.index', params: { sid: site.id } },
         permission: { name: 'admin-list', site },
       },

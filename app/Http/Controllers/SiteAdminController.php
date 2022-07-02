@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Admin;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class SiteAdminController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
+        $this->authorizeResource(Admin::class, 'admin');
     }
 
     public function index(Site $site)
@@ -24,7 +26,7 @@ class SiteAdminController extends Controller
         return UserResource::collection($admins);
     }
 
-    public function show(Site $site, User $admin)
+    public function show(Site $site, Admin $admin)
     {
         return $this->success(data: new UserResource($admin->load('roles')));
     }
@@ -43,7 +45,7 @@ class SiteAdminController extends Controller
     }
 
     //设置管理员角色
-    public function syncAdminRole(Request $request, Site $site, User $admin)
+    public function syncAdminRole(Request $request, Site $site, Admin $admin)
     {
         $admin->syncRoles($request->roles);
 

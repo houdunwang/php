@@ -2,9 +2,10 @@
 import { siteFind } from '@/apis/site'
 import { addSiteModule, getSiteModuleList, removeSiteModule, setSiteDefaultModule } from '@/apis/siteModule'
 import { ElMessageBox } from 'element-plus'
-const { sid } = defineProps<{ sid: any }>()
-const [site] = await Promise.all([siteFind(sid)])
+import { isSuperAdmin, access } from '@/utils/helper'
 
+const { sid } = defineProps<{ sid: any }>()
+const { site } = await useSite()
 const response = ref(await getSiteModuleList(sid))
 
 const loadModules = async () => {
@@ -38,9 +39,9 @@ const redirectModule = (module: ModuleModel) => {
   <HdTab
     :tabs="[
       { label: '站点列表', route: { name: 'site.index' } },
-      { label: `【${site.title}】站点模块设置`, route: { name: `site.module` } },
+      { label: `【${site.title}】站点模块设置`, route: { name: `site.module.index` } },
     ]" />
-  <ModuleSelectModule @select="addModule" class="mb-2" />
+  <ModuleSelectModule @select="addModule" class="mb-2" v-if="isSuperAdmin()" />
 
   <section>
     <div v-for="module of response.data" :key="module.id">
@@ -49,11 +50,13 @@ const redirectModule = (module: ModuleModel) => {
       <div class="py-2 bg-gray-200 border-t mt-3 w-full flex justify-center">
         <el-button-group>
           <el-button type="primary" size="small" @click="redirectModule(module)">进入模块</el-button>
-          <el-button type="danger" size="small" @click="del(module)">删除模块</el-button>
-          <el-button type="success" size="small" @click="defaultModule(module)" v-if="module.pivot.is_default">
-            取消默认模块
-          </el-button>
-          <el-button type="info" size="small" @click="defaultModule(module)" v-else> 设为默认模块</el-button>
+          <el-button type="danger" size="small" @click="del(module)" v-if="isSuperAdmin()">删除模块</el-button>
+          <template v-if="access('system-module-set-default', site)">
+            <el-button type="success" size="small" @click="defaultModule(module)" v-if="module.pivot.is_default">
+              取消默认模块
+            </el-button>
+            <el-button type="info" size="small" @click="defaultModule(module)" v-else> 设为默认模块</el-button>
+          </template>
         </el-button-group>
       </div>
     </div>

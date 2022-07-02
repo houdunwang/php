@@ -15,17 +15,18 @@ class RoleController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
+        $this->authorizeResource(Role::class, 'role');
     }
 
     public function index(Site $site)
     {
-        $this->authorize(Role::class);
         $roles = Role::queryCondition()->latest()->paginate(100);
         return RoleResource::collection($roles);
     }
 
     public function store(StoreRoleRequest $request, Site $site, Role $role)
     {
+        $this->authorize('create', Role::class);
         $role->fill($request->input() + ['site_id' => $site->id, 'guard_name' => 'sanctum'])->save();
 
         return $this->success('角色添加成功', data: $role);
@@ -38,12 +39,14 @@ class RoleController extends Controller
 
     public function update(UpdateRoleRequest $request, Site $site, Role $role)
     {
+        $this->authorize('update', $role);
         $role->fill($request->input())->save();
         return $this->success('角色更新成功');
     }
 
     public function destroy(Site $site, Role $role)
     {
+        $this->authorize('delete', $role);
         $role->delete();
         return $this->success(message: '删除成功');
     }

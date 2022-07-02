@@ -155,7 +155,7 @@ let buttonColumnWidth = computed(() => {
         </el-button-group>
       </el-table-column>
       <el-table-column :width="buttonWidth" #default="{ row }" v-if="$slots.button" align="center" fixed="right">
-        <slot name="button" :model="row" />
+        <slot name="button" :model="row" v-if="row.id" />
       </el-table-column>
     </el-table>
 

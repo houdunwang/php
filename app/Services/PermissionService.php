@@ -28,6 +28,7 @@ class PermissionService
         foreach ($modules as &$module)
             foreach ($module['permission'] as &$permission) {
                 foreach ($permission['items'] as &$item) {
+                    $item['name'] = $module['name'] . '-' . $item['name'];
                     $this->permissionNames[] = $item['name'];
                     //更新权限表
                     $data = ['site_id' => $site->id, 'module_id' => $module['id'], 'guard_name' => 'sanctum'] + $item;
@@ -43,7 +44,7 @@ class PermissionService
         $permissions = config('sitePermissions');
         foreach ($permissions as &$permission)
             foreach ($permission['items'] as &$item) {
-                $item['name'] = $item['name'];
+                $item['name'] = 'system-' . $item['name'];
                 $this->permissionNames[] = $item['name'];
                 //更新权限表
                 $data = ['site_id' => $site->id, 'guard_name' => 'sanctum'] + $item;

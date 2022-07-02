@@ -22,7 +22,6 @@ const load = async (page: any, params: any) => {
 }
 
 const tableAction = async (model: UserModel, command: string) => {
-  console.log(command)
   switch (command) {
     case 'setRole':
       router.push({ name: `admin.role`, params: { sid, id: model.id } })
@@ -41,7 +40,7 @@ const tableAction = async (model: UserModel, command: string) => {
 <template>
   <TabVue :site="site" />
 
-  <UserSelectUser @select="select" class="mb-2" />
+  <UserSelectUser @select="select" class="mb-2" v-access:admin-add="site" />
 
   <HdTableComponent
     :columns="adminTableColumns"
