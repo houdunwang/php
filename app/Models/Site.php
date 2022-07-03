@@ -14,13 +14,13 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['config', 'title', 'url'];
+    protected $fillable = ['config', 'title', 'url', 'module_id'];
 
     protected $casts = [
         'config' => 'array',
     ];
 
-    protected $appends = ['module'];
+    protected $withs = ['module'];
 
     //站长
     public function master()
@@ -48,9 +48,10 @@ class Site extends Model
         return $this->belongsToMany(Module::class, 'site_modules')->withTimestamps();
     }
 
-    public function getModuleAttribute()
+    //默认模块
+    public function module()
     {
-        return $this->modules()->wherePivot('is_default', true)->first();
+        return $this->belongsTo(Module::class);
     }
 
     public function permissions()

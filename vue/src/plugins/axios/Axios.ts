@@ -4,6 +4,7 @@ import store from '@/utils/store'
 import router from '@/router'
 import axios, { AxiosRequestConfig } from 'axios'
 import errorStore from '@/store/errorStore'
+import { ElLoading, ElMessage } from 'element-plus'
 
 export default class Axios {
   private instance

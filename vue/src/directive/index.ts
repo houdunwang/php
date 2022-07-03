@@ -24,7 +24,9 @@ export default function registerDirective(app: App) {
       } else if (typeof binding.value === 'number') {
         site = await siteFind(binding.value)
       } else {
-        site = (await useSite()).site
+        const { site: siteModel, getSiteByParams } = useSite()
+        await getSiteByParams()
+        site = siteModel.value
       }
 
       const state = access(binding.arg as string, site)

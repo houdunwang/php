@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('logo')->nullable()->comment('logo');
             $table->string('description')->nullable()->comment('描述');
             $table->string('keywords')->nullable()->comment('关键字');
+            $table->bigInteger('module_id')->nullable()->comment('站点模块');
             $table->json('config')->nullable()->comment('配置');
             $table->foreignId('user_id')->constrained()->comment('用户ID');
             $table->timestamps();

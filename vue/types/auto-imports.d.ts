@@ -2,9 +2,6 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
-  const ElLoading: typeof import('element-plus/es')['ElLoading']
-  const ElMessage: typeof import('element-plus/es')['ElMessage']
-  const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -53,10 +50,10 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useMenu: typeof import('../src/composables/useMenu')['default']
-  const useRequest: typeof import('../src/composables/useRequest')['default']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSite: typeof import('../src/composables/useSite')['default']
+  const useSiteModule: typeof import('../src/composables/useSiteModule')['default']
   const useSlots: typeof import('vue')['useSlots']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']

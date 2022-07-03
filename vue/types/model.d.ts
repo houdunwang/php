@@ -92,6 +92,7 @@ type SiteModel = {
   user_id: number
   created_at: string
   updated_at: string
+  module_id: number
   master: UserModel
   module: ModuleModel
 }

@@ -2,13 +2,14 @@
 import { delRole, getRoleList } from '@/apis/role'
 import { roleTableColumns } from '@/config/table'
 import { access } from '@/utils/helper'
-// import { ElMessageBox } from 'element-plus'
+import { ElMessageBox } from 'element-plus'
 import tab from './tab.vue'
 
 const router = useRouter()
 let tableKey = $ref(0)
 const { sid } = defineProps<{ sid: any }>()
-const { site } = await useSite()
+const { site, getSiteByParams } = useSite()
+await getSiteByParams()
 
 const load = async (page: number = 1, params: any) => {
   return getRoleList(sid, page, params)
@@ -18,7 +19,7 @@ const tableButtonAction = async (model: RoleModel, command: string) => {
   switch (command) {
     case 'del':
       await ElMessageBox.confirm('确认删除该角色吗？')
-      await delRole(site.id, model.id)
+      await delRole(site.value.id, model.id)
       tableKey++
       break
     case 'edit':

@@ -9,5 +9,5 @@ class SiteModule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['is_default'];
+    protected $fillable = [];
 }

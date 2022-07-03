@@ -2,9 +2,7 @@
 import { isSuperAdmin, access } from '@/utils/helper'
 import dayjs from 'dayjs'
 
-const emit = defineEmits<{
-  (e: 'del', id: number): any
-}>()
+const emit = defineEmits(['del'])
 const props = defineProps<{ site: SiteModel }>()
 </script>
 

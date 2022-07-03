@@ -1,37 +1,15 @@
 <script setup lang="ts">
-import { siteFind } from '@/apis/site'
-import { addSiteModule, getSiteModuleList, removeSiteModule, setSiteDefaultModule } from '@/apis/siteModule'
-import { ElMessageBox } from 'element-plus'
 import { isSuperAdmin, access } from '@/utils/helper'
-
 const { sid } = defineProps<{ sid: any }>()
-const { site } = await useSite()
-const response = ref(await getSiteModuleList(sid))
 
-const loadModules = async () => {
-  response.value = await getSiteModuleList(sid)
-}
-
-const addModule = async (module: any) => {
-  await addSiteModule(sid, module.id)
-  loadModules()
-}
-
-const del = async (module: any) => {
-  try {
-    await ElMessageBox.confirm('确定删除吗？删除模块将删除模块的所有数据，请谨慎操作！')
-    await removeSiteModule(sid, module.id)
-    loadModules()
-  } catch (error) {}
-}
+const { loadModuleList, addModule, redirectModuleAdmin, setDefaultModule, delModule, modules } = useSiteModule()
+const { getSiteByParams, site } = useSite()
+await getSiteByParams()
+await loadModuleList(sid)
 
 const defaultModule = async (module: ModuleModel) => {
-  await setSiteDefaultModule(sid, module.id)
-  loadModules()
-}
-
-const redirectModule = (module: ModuleModel) => {
-  window.open(`/${module.name}/admin`)
+  await setDefaultModule(sid, module)
+  getSiteByParams()
 }
 </script>
 
@@ -39,23 +17,25 @@ const redirectModule = (module: ModuleModel) => {
   <HdTab
     :tabs="[
       { label: '站点列表', route: { name: 'site.index' } },
-      { label: `【${site.title}】站点模块设置`, route: { name: `site.module.index` } },
+      { label: `【${site}】站点模块设置`, route: { name: `site.module.index` } },
     ]" />
-  <ModuleSelectModule @select="addModule" class="mb-2" v-if="isSuperAdmin()" />
+  <ModuleSelectModule @select="addModule(sid, $event)" class="mb-2" v-if="isSuperAdmin()" />
 
   <section>
-    <div v-for="module of response.data" :key="module.id">
+    <div v-for="module of modules.data" :key="module.id">
       <img :src="module.preview" class="rounded-full h-[60px] object-cover my-3" />
       <h4>{{ module.title }}</h4>
       <div class="py-2 bg-gray-200 border-t mt-3 w-full flex justify-center">
         <el-button-group>
-          <el-button type="primary" size="small" @click="redirectModule(module)">进入模块</el-button>
-          <el-button type="danger" size="small" @click="del(module)" v-if="isSuperAdmin()">删除模块</el-button>
+          <el-button type="primary" size="small" @click="redirectModuleAdmin(module)">进入模块</el-button>
+          <el-button type="danger" size="small" @click="delModule(site.id, module)" v-if="isSuperAdmin()">
+            删除模块
+          </el-button>
           <template v-if="access('system-module-set-default', site)">
-            <el-button type="success" size="small" @click="defaultModule(module)" v-if="module.pivot.is_default">
+            <el-button type="success" size="small" @click="defaultModule(module)" v-if="module.id == site.module_id">
               取消默认模块
             </el-button>
-            <el-button type="info" size="small" @click="defaultModule(module)" v-else> 设为默认模块</el-button>
+            <el-button type="info" size="small" @click="defaultModule(module)" v-else> 设为默认模块 </el-button>
           </template>
         </el-button-group>
       </div>

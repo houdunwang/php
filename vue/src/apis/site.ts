@@ -16,8 +16,8 @@ export function updateSite(data: Record<string, any>) {
   })
 }
 
-export function getSiteList<ISite>() {
-  return http.request<ISite[], ResponsePageResult<ISite>>({
+export function getSiteList() {
+  return http.request<SiteModel[], ResponsePageResult<SiteModel>>({
     url: '/site',
   })
 }
