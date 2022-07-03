@@ -13,6 +13,7 @@ class SystemController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
+        $this->authorizeResource(System::class, 'system');
     }
 
     /**
@@ -31,12 +32,10 @@ class SystemController extends Controller
      * 更新系统配置
      * @param UpdateSystemRequest $request
      */
-    public function update(UpdateSystemRequest $request)
+    public function update(UpdateSystemRequest $request, System $system)
     {
-        $this->authorize('update', System::class);
-        $config = System::firstOrFail();
-        $config->fill($request->input())->save();
+        $system->fill($request->input())->save();
 
-        return $this->success('配置项更新成功', data: $config['data']);
+        return $this->success('配置项更新成功');
     }
 }

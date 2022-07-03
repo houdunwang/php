@@ -17,9 +17,9 @@ export default {
       meta: { guest: true },
     },
     {
-      path: '/forget-password',
-      name: 'forget-password',
-      component: () => import('@/views/auth/forgetPassword.vue'),
+      path: '/password',
+      name: 'password',
+      component: () => import('@/views/auth/password.vue'),
       meta: { guest: true },
     },
   ],

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <AuthLogin />
+  <AuthPassword />
 </template>
 
 <style lang="scss"></style>

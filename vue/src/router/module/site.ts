@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 export default {
   name: 'site',
-  path: '/site',
+  path: '/system/site',
   redirect: { name: 'site.index' },
   component: () => import('@/layouts/system.vue'),
   meta: { auth: true },

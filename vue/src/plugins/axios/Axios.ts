@@ -1,10 +1,9 @@
-import { RouteEnum } from '../../enum/RouteEnum'
-import { CacheEnum } from '../../enum/CacheEnum'
+import { RouteEnum } from '@/enum/RouteEnum'
+import { CacheEnum } from '@/enum/CacheEnum'
 import store from '@/utils/store'
 import router from '@/router'
 import axios, { AxiosRequestConfig } from 'axios'
 import errorStore from '@/store/errorStore'
-import { ElLoading, ElMessage } from 'element-plus'
 
 export default class Axios {
   private instance
@@ -64,7 +63,6 @@ export default class Axios {
       },
       (error) => {
         this.loading.close()
-
         const {
           response: { status, data },
         } = error

@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 export default {
-  path: '/site/:sid/role/:rid',
+  path: '/system/site/:sid/role/:rid',
   component: () => import('@/layouts/system.vue'),
   meta: { auth: true },
   children: [

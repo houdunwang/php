@@ -10,6 +10,9 @@ class Main {
   public async bootstrap() {
     const app = this.app()
     await router.isReady()
+    const meta = document.createElement('meta')
+    meta.name = 'naive-ui-style'
+    document.head.appendChild(meta)
     app.mount('#app')
   }
   //初始应用

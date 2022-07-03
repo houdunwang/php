@@ -12,6 +12,7 @@ class SystemPolicy
 
     public function viewAny(User $user)
     {
+        return true;
     }
 
     public function view(User $user, System $config)
@@ -29,30 +30,5 @@ class SystemPolicy
 
     public function delete(User $user, System $config)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\System  $config
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, System $config)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\System  $config
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, System $config)
-    {
-        //
     }
 }

@@ -8,7 +8,7 @@ export default function autoImport(plugins: Plugin[]) {
     AutoImport({
       resolvers: [ElementPlusResolver()],
       //定义element-plus api按需加载
-      imports: ['vue', 'vue-router', { 'element-plus': ['ElLoading', 'ElMessage', 'ElMessageBox'] }],
+      imports: ['vue', 'vue-router'],
       //composables目录文件按需加载
       dirs: ['src/composables'],
       dts: 'types/auto-imports.d.ts',
