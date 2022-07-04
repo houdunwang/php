@@ -10,7 +10,7 @@ class UpdateSiteRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:50', 'min:2', Rule::unique('sites')->ignore(request('id'))],
+            'title' => ['required', 'max:100', 'min:2', Rule::unique('sites')->ignore(request('id'))],
             'url' => ['nullable', 'url'],
         ];
     }

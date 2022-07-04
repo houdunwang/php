@@ -12,7 +12,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [vue({ reactivityTransform: true }), ...setupPlugins(isBuild, env), visualizer()],
     //静态文件 url 前缀
-    base: isBuild ? '/dist/' : '/',
+    base: isBuild ? '/system/' : '/',
     resolve: {
       alias,
     },
@@ -31,7 +31,6 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     server: {
-      //open: true, //直接打开浏览器
       proxy: {
         '/api': {
           target: env.VITE_API_URL,

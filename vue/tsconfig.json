@@ -8,12 +8,14 @@
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "#/*": ["./types/*"]
+      "#/*": ["./types/*"],
+      "@@/*": ["./core/*"]
     },
     "types": ["element-plus/global", "echarts", "lodash", "web-bluetooth"]
   },
@@ -21,11 +23,14 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.vue",
+    "core/**/*.ts",
+    "core/**/*.d.ts",
+    "core/**/*.vue",
     "vite.config.ts",
     "vite/**/*.ts",
     "mock/**/*.ts",
-    "types/**/*.d.ts",
-    "types/**/*.ts"
+    "core/types/**/*.d.ts",
+    "core/types/**/*.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

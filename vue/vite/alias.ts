@@ -4,6 +4,7 @@ import { AliasOptions } from 'vite'
 const alias = {
   '@': path.resolve(__dirname, '../src'),
   '#': path.resolve(__dirname, '../types'),
+  '@@': path.resolve(__dirname, '../core'),
 } as AliasOptions
 
 export default alias

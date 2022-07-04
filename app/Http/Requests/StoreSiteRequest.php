@@ -15,7 +15,7 @@ class StoreSiteRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:20', 'min:2', 'unique:sites'],
+            'title' => ['required', 'max:100', 'min:2', 'unique:sites'],
             'url' => ['nullable', 'url'],
         ];
     }
