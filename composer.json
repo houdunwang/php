@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "houdunwang/php",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "基于模块的系统平台",
     "keywords": [
-        "framework",
-        "laravel"
+        "后盾人",
+        "向军大叔",
+        "模块化"
     ],
     "license": "MIT",
     "require": {
