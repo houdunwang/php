@@ -21,7 +21,7 @@ const defaultModule = async (module: ModuleModel) => {
     ]" />
   <CoreModuleSelectModule @select="addModule(sid, $event)" class="mb-2" v-if="isSuperAdmin()" />
 
-  <section>
+  <section v-if="modules.data.length">
     <div v-for="module of modules.data" :key="module.id">
       <img :src="module.preview" class="rounded-full h-[60px] object-cover my-3" />
       <h4>{{ module.title }}</h4>
@@ -41,6 +41,9 @@ const defaultModule = async (module: ModuleModel) => {
       </div>
     </div>
   </section>
+  <div class="border p-5 rounded-sm bg-white flex justify-center items-center text-gray-600 text-xs font-bold">
+    <icon-info theme="outline" fill="#333" class="mr-1" /> 你还没有安装任何模块，请联系管理员
+  </div>
 </template>
 
 <style lang="scss" scoped>

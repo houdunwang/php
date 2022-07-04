@@ -16,6 +16,9 @@ yarn-error.log
 node_modules
 worker.log
 vue/node_modules
-/public/dist
 /addons/*
 !/addons/.gitkeep
+/public/core
+/public/images
+/public/storage
+/public/addons

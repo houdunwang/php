@@ -33,7 +33,6 @@ declare module '@vue/runtime-core' {
     CoreUserInfo: typeof import('./../core/components/core/user/info.vue')['default']
     CoreUserNotification: typeof import('./../core/components/core/user/notification.vue')['default']
     CoreUserSelectUser: typeof import('./../core/components/core/user/selectUser.vue')['default']
-    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCard: typeof import('element-plus/es')['ElCard']
