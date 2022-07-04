@@ -3,7 +3,7 @@ import { RouteLocationNormalized, RouteLocationNormalizedLoaded, RouteRecordRaw 
 import { ref } from 'vue'
 import router from '@@/router'
 import { CacheEnum } from '@@/enum/CacheEnum'
-import { RouteMenu } from '#/router'
+import { RouteMenu } from '@@/types/router'
 
 class Menu {
   public menus = ref<RouteMenu[]>([])

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { formType } from '@@/config/form'
 import _ from 'lodash'
 const {
   fields,
   model: PropsModel,
   showButton = true,
 } = defineProps<{
-  fields: formType[]
+  fields: FormFieldType[]
   model?: any
   showButton?: boolean
 }>()

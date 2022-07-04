@@ -12,7 +12,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [vue({ reactivityTransform: true }), ...setupPlugins(isBuild, env), visualizer()],
     //静态文件 url 前缀
-    base: isBuild ? '/system/' : '/',
+    base: isBuild ? '/core/' : '/',
     resolve: {
       alias,
     },

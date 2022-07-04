@@ -1,7 +1,7 @@
 import { CacheEnum } from '../enum/CacheEnum'
 import store from '@@/utils/store'
 import { RouteLocationNormalized } from 'vue-router'
-import { RouteMenu } from '#/router'
+import { RouteMenu } from '@@/types/router'
 import { defineStore } from 'pinia'
 import router from '@@/router'
 export default defineStore('menu', {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Follower;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import userStore from '@@/store/userStore'
-import { RouteEnum } from '@@/enum/RouteEnum'
 import { logout } from '@@/utils/helper'
 const user = userStore()
 </script>

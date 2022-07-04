@@ -23,14 +23,15 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.vue",
+
     "core/**/*.ts",
     "core/**/*.d.ts",
     "core/**/*.vue",
     "vite.config.ts",
     "vite/**/*.ts",
     "mock/**/*.ts",
-    "core/types/**/*.d.ts",
-    "core/types/**/*.ts"
+    "types/*.d.ts",
+    "types/*.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

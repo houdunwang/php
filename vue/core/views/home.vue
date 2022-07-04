@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouteEnum } from '@@/enum/routeEnum'
+import { RouteEnum } from '@@/enum/RouteEnum'
 import { isLogin } from '@@/utils/helper'
 </script>
 

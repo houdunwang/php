@@ -19,8 +19,8 @@ Route::get('test', function () {
 });
 
 Route::fallback(function () {
-    if (is_file(public_path('system/index.html'))) {
-        return file_get_contents(public_path('system/index.html'));
+    if (is_file(public_path('core/index.html'))) {
+        return file_get_contents(public_path('core/index.html'));
     }
     return <<<str
         <h1 style="text-align:left;padding: 50px;font-weight:normal;font-size:35px;color:#333;">

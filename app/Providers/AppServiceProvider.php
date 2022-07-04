@@ -47,6 +47,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $config = include base_path('config.php');
+        config(['app' => $config['app'] + config('app')]);
+        config(['database.connections.mysql' => $config['database'] + config('database.connections.mysql')]);
         JsonResource::withoutWrapping();
     }
 }
