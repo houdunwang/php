@@ -6,6 +6,9 @@ const routes = router
   .getRoutes()
   .filter((r) => r.children.length)
   .filter((r) => r.meta.menu)
+  .sort((a, b) => {
+    return (a.meta.order ?? 100) - (b.meta.order ?? 100)
+  })
 const show = ref(true)
 
 const history = ref<RouteRecordRaw[]>([])

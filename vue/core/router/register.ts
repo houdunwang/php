@@ -3,10 +3,11 @@ import userStore from '@@/store/userStore'
 
 function autoloadModuleRoutes(): RouteRecordNormalized[] {
   const coreModules = import.meta.globEager('./module/**/*.ts')
+  const adminModules = import.meta.globEager('./admin/**/*.ts')
   const appModules = import.meta.globEager('../../src/router/*.ts')
   const routes = [] as RouteRecordNormalized[]
 
-  ;[coreModules, appModules].map((modules) =>
+  ;[coreModules, appModules, adminModules].map((modules) =>
     Object.keys(modules).forEach((key) => {
       routes.push(modules[key].default)
     }),

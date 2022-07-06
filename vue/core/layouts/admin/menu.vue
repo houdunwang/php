@@ -13,7 +13,7 @@ onMounted(() => {
   <div class="admin-menu">
     <div class="menu" :class="{ hidden: !show }">
       <div class="logo cursor-pointer">
-        <icon-home
+        <icon-application-one
           theme="outline"
           size="18"
           fill="#dcdcdc"
@@ -26,7 +26,7 @@ onMounted(() => {
         <dl v-for="(route, index) of routes" :key="index">
           <dt>
             <section>
-              <component :is="route.meta.menu?.icon" size="18" fill="#dcdcdc" class="mr-2" />
+              <component :is="route.meta.menu?.icon" size="15" fill="#dcdcdc" class="mr-2" />
               <span class="text-md">{{ route.meta.menu?.title }}</span>
             </section>
           </dt>

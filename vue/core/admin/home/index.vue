@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
 import { echart1, echart2 } from './echart'
-import * as echarts from 'echarts'
 interface ICard {
   title: string
   price: number
@@ -45,6 +44,7 @@ const cards = ref<ICard[]>([
   },
 ])
 
+const echarts = window.echarts
 nextTick(() => {
   echarts.init(document.getElementById('echart1') as HTMLDivElement).setOption(echart1)
   echarts.init(document.getElementById('echart2') as HTMLDivElement).setOption(echart1)

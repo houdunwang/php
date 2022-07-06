@@ -14,6 +14,7 @@ export type RouteMenu = {
 declare module 'vue-router' {
   interface RouteMeta {
     title?: string
+    order?: number
     auth?: boolean
     guest?: boolean
     menu?: RouteMenu
