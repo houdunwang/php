@@ -57,6 +57,7 @@ const emit = defineEmits<{
             :placeholder="f.placeholder"
             :readonly="f.readonly"
             :disabled="f.disabled" />
+
           <CoreFormError :name="f.error_name || f.name" />
         </template>
       </el-form-item>

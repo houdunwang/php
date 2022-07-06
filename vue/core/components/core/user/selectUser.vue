@@ -1,35 +1,32 @@
 <script setup lang="ts">
-import { getUserList } from '@@/apis/user'
 import { userTableColumns } from '@@/config/table'
-
-const emit = defineEmits<{
-  (e: 'select', user: UserModel): void
-}>()
-
+const { load, users } = useUser()
+const emit = defineEmits(['select'])
+await load()
 //模态框状态
-const dialogTableVisible = ref(false)
+const dialog = ref(false)
 
-const action = (model: any, type: string) => {
-  emit('select', model as UserModel)
-  dialogTableVisible.value = false
-}
-
-const getList = async (page = 1, params = {}) => {
-  return await getUserList(page, params)
+const onSelect = (model: UserModel) => {
+  emit('select', model)
+  dialog.value = false
 }
 </script>
 
 <template>
-  <div class="">
-    <el-dialog v-model="dialogTableVisible" width="95%" top="20px" title="选择用户">
+  <div>
+    <el-dialog v-model="dialog" width="95%" top="20px" title="选择用户">
       <CoreHdTableComponent
-        :api="getList"
+        :data="users?.data"
         :columns="userTableColumns"
         :buttons="[{ command: 'select', title: '选择', type: 'primary' }]"
         button-type="default"
-        @action="action" />
+        :button-width="90">
+        <template #button="{ model }">
+          <el-button type="primary" size="default" @click="onSelect(model)">选择</el-button>
+        </template>
+      </CoreHdTableComponent>
     </el-dialog>
-    <el-button type="primary" size="default" @click="dialogTableVisible = !dialogTableVisible">选择用户</el-button>
+    <el-button type="primary" size="default" @click="dialog = !dialog"> 选择用户 </el-button>
   </div>
 </template>
 

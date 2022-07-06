@@ -23,8 +23,8 @@ export default (app: App) => {
       } else if (typeof binding.value === 'number') {
         site = await siteFind(binding.value)
       } else {
-        const { site: siteModel, getSiteByParams } = useSite()
-        await getSiteByParams()
+        const { site: siteModel, TableButton } = useSite()
+        await TableButton()
         site = siteModel.value
       }
 

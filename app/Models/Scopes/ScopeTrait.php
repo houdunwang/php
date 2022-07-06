@@ -4,6 +4,7 @@ namespace App\Models\Scopes;
 
 trait ScopeTrait
 {
+    //全局搜索
     public function scopeQueryCondition($query)
     {
         return $query->when(request()->query('searchFields'), function ($query, $searchFields) {

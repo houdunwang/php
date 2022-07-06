@@ -1,27 +1,29 @@
 <script setup lang="ts">
-import { siteFind, updateSite } from '@@/apis/site'
-import { systemForm } from '@@/config/form'
-import router from '@@/router'
+import { siteForm } from '@@/config/form'
 import { request } from '@@/utils/helper'
-const route = useRoute()
-const model = $ref(await siteFind(route.params?.id))
+import router from '@@/router'
+
+const { getBySid, site, update } = useSite()
+await getBySid()
 
 const onSubmit = request(async () => {
-  await updateSite(model)
+  await update(site.value!)
   router.push({ name: 'site.index' })
 })
-const tabModel = ref('aliyun')
+
+const tabsite = ref('aliyun')
 </script>
 
 <template>
   <CoreHdTab
     :tabs="[
       { label: '站点列表', route: { name: 'admin' } },
-      { label: `站点【${model.title}】配置`, route: { name: 'site.config' } },
+      { label: `站点【${site?.title}】配置`, route: { name: 'site.config' } },
     ]" />
-  <el-tabs v-model="tabModel" tab-position="top" class="tabs">
+
+  <el-tabs v-model="tabsite" tab-position="top" class="tabs">
     <el-tab-pane label="阿里云" name="aliyun">
-      <CoreFormFieldList :model="model.config.aliyun" :fields="systemForm.aliyun" @submit="onSubmit" />
+      <CoreFormFieldList :site="site?.config.aliyun" :fields="siteForm.aliyun" @submit="onSubmit" />
     </el-tab-pane>
   </el-tabs>
 </template>

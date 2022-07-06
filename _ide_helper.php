@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.3.1.
+ * Generated for Laravel 9.19.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1633,16 +1633,6 @@
             /**
      * 
      *
-     * @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingId(mixed $id, bool $remember = false)
-     * @method static \Symfony\Component\HttpFoundation\Response|null onceBasic(string $field = 'email',array $extraConditions = [])
-     * @method static bool attempt(array $credentials = [], bool $remember = false)
-     * @method static bool once(array $credentials = [])
-     * @method static bool onceUsingId(mixed $id)
-     * @method static bool viaRemember()
-     * @method static bool|null logoutOtherDevices(string $password, string $attribute = 'password')
-     * @method static void login(\Illuminate\Contracts\Auth\Authenticatable $user, bool $remember = false)
-     * @method static void logout()
-     * @method static void logoutCurrentDevice()
      * @see \Illuminate\Auth\AuthManager
      * @see \Illuminate\Contracts\Auth\Factory
      * @see \Illuminate\Contracts\Auth\Guard
@@ -1850,8 +1840,43 @@
          */ 
         public static function user()
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->user();
+        }
+                    /**
+         * Get the ID for the currently authenticated user.
+         *
+         * @return int|string|null 
+         * @static 
+         */ 
+        public static function id()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->id();
+        }
+                    /**
+         * Log a user into the application without sessions or cookies.
+         *
+         * @param array $credentials
+         * @return bool 
+         * @static 
+         */ 
+        public static function once($credentials = [])
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->once($credentials);
+        }
+                    /**
+         * Log the given user ID into the application without sessions or cookies.
+         *
+         * @param mixed $id
+         * @return \App\Models\User|false 
+         * @static 
+         */ 
+        public static function onceUsingId($id)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->onceUsingId($id);
         }
                     /**
          * Validate a user's credentials.
@@ -1862,19 +1887,300 @@
          */ 
         public static function validate($credentials = [])
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->validate($credentials);
+        }
+                    /**
+         * Attempt to authenticate using HTTP Basic Auth.
+         *
+         * @param string $field
+         * @param array $extraConditions
+         * @return \Symfony\Component\HttpFoundation\Response|null 
+         * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
+         * @static 
+         */ 
+        public static function basic($field = 'email', $extraConditions = [])
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->basic($field, $extraConditions);
+        }
+                    /**
+         * Perform a stateless HTTP Basic login attempt.
+         *
+         * @param string $field
+         * @param array $extraConditions
+         * @return \Symfony\Component\HttpFoundation\Response|null 
+         * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
+         * @static 
+         */ 
+        public static function onceBasic($field = 'email', $extraConditions = [])
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->onceBasic($field, $extraConditions);
+        }
+                    /**
+         * Attempt to authenticate a user using the given credentials.
+         *
+         * @param array $credentials
+         * @param bool $remember
+         * @return bool 
+         * @static 
+         */ 
+        public static function attempt($credentials = [], $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->attempt($credentials, $remember);
+        }
+                    /**
+         * Attempt to authenticate a user with credentials and additional callbacks.
+         *
+         * @param array $credentials
+         * @param array|callable $callbacks
+         * @param bool $remember
+         * @return bool 
+         * @static 
+         */ 
+        public static function attemptWhen($credentials = [], $callbacks = null, $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->attemptWhen($credentials, $callbacks, $remember);
+        }
+                    /**
+         * Log the given user ID into the application.
+         *
+         * @param mixed $id
+         * @param bool $remember
+         * @return \App\Models\User|false 
+         * @static 
+         */ 
+        public static function loginUsingId($id, $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->loginUsingId($id, $remember);
+        }
+                    /**
+         * Log a user into the application.
+         *
+         * @param \Illuminate\Contracts\Auth\Authenticatable $user
+         * @param bool $remember
+         * @return void 
+         * @static 
+         */ 
+        public static function login($user, $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->login($user, $remember);
+        }
+                    /**
+         * Log the user out of the application.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function logout()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->logout();
+        }
+                    /**
+         * Log the user out of the application on their current device only.
+         * 
+         * This method does not cycle the "remember" token.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function logoutCurrentDevice()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->logoutCurrentDevice();
+        }
+                    /**
+         * Invalidate other sessions for the current user.
+         * 
+         * The application must be using the AuthenticateSession middleware.
+         *
+         * @param string $password
+         * @param string $attribute
+         * @return \App\Models\User|null 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */ 
+        public static function logoutOtherDevices($password, $attribute = 'password')
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->logoutOtherDevices($password, $attribute);
+        }
+                    /**
+         * Register an authentication attempt event listener.
+         *
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function attempting($callback)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->attempting($callback);
+        }
+                    /**
+         * Get the last user we attempted to authenticate.
+         *
+         * @return \App\Models\User 
+         * @static 
+         */ 
+        public static function getLastAttempted()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getLastAttempted();
+        }
+                    /**
+         * Get a unique identifier for the auth session value.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getName()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getName();
+        }
+                    /**
+         * Get the name of the cookie used to store the "recaller".
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getRecallerName()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getRecallerName();
+        }
+                    /**
+         * Determine if the user was authenticated via "remember me" cookie.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function viaRemember()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->viaRemember();
+        }
+                    /**
+         * Set the number of minutes the remember me cookie should be valid for.
+         *
+         * @param int $minutes
+         * @return \Illuminate\Auth\SessionGuard 
+         * @static 
+         */ 
+        public static function setRememberDuration($minutes)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->setRememberDuration($minutes);
+        }
+                    /**
+         * Get the cookie creator instance used by the guard.
+         *
+         * @return \Illuminate\Contracts\Cookie\QueueingFactory 
+         * @throws \RuntimeException
+         * @static 
+         */ 
+        public static function getCookieJar()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getCookieJar();
+        }
+                    /**
+         * Set the cookie creator instance used by the guard.
+         *
+         * @param \Illuminate\Contracts\Cookie\QueueingFactory $cookie
+         * @return void 
+         * @static 
+         */ 
+        public static function setCookieJar($cookie)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->setCookieJar($cookie);
+        }
+                    /**
+         * Get the event dispatcher instance.
+         *
+         * @return \Illuminate\Contracts\Events\Dispatcher 
+         * @static 
+         */ 
+        public static function getDispatcher()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getDispatcher();
+        }
+                    /**
+         * Set the event dispatcher instance.
+         *
+         * @param \Illuminate\Contracts\Events\Dispatcher $events
+         * @return void 
+         * @static 
+         */ 
+        public static function setDispatcher($events)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->setDispatcher($events);
+        }
+                    /**
+         * Get the session store used by the guard.
+         *
+         * @return \Illuminate\Contracts\Session\Session 
+         * @static 
+         */ 
+        public static function getSession()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getSession();
+        }
+                    /**
+         * Return the currently cached user.
+         *
+         * @return \App\Models\User|null 
+         * @static 
+         */ 
+        public static function getUser()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getUser();
+        }
+                    /**
+         * Set the current user.
+         *
+         * @param \Illuminate\Contracts\Auth\Authenticatable $user
+         * @return \Illuminate\Auth\SessionGuard 
+         * @static 
+         */ 
+        public static function setUser($user)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->setUser($user);
+        }
+                    /**
+         * Get the current request instance.
+         *
+         * @return \Symfony\Component\HttpFoundation\Request 
+         * @static 
+         */ 
+        public static function getRequest()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getRequest();
         }
                     /**
          * Set the current request instance.
          *
-         * @param \Illuminate\Http\Request $request
-         * @return \Illuminate\Auth\RequestGuard 
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @return \Illuminate\Auth\SessionGuard 
          * @static 
          */ 
         public static function setRequest($request)
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->setRequest($request);
         }
                     /**
@@ -1886,7 +2192,7 @@
          */ 
         public static function authenticate()
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->authenticate();
         }
                     /**
@@ -1897,7 +2203,7 @@
          */ 
         public static function hasUser()
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->hasUser();
         }
                     /**
@@ -1908,7 +2214,7 @@
          */ 
         public static function check()
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->check();
         }
                     /**
@@ -1919,31 +2225,8 @@
          */ 
         public static function guest()
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->guest();
-        }
-                    /**
-         * Get the ID for the currently authenticated user.
-         *
-         * @return int|string|null 
-         * @static 
-         */ 
-        public static function id()
-        {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
-                        return $instance->id();
-        }
-                    /**
-         * Set the current user.
-         *
-         * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @return \Illuminate\Auth\RequestGuard 
-         * @static 
-         */ 
-        public static function setUser($user)
-        {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
-                        return $instance->setUser($user);
         }
                     /**
          * Get the user provider used by the guard.
@@ -1953,7 +2236,7 @@
          */ 
         public static function getProvider()
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->getProvider();
         }
                     /**
@@ -1965,7 +2248,7 @@
          */ 
         public static function setProvider($provider)
         {
-                        /** @var \Illuminate\Auth\RequestGuard $instance */
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
                         $instance->setProvider($provider);
         }
                     /**
@@ -1978,7 +2261,7 @@
          */ 
         public static function macro($name, $macro)
         {
-                        \Illuminate\Auth\RequestGuard::macro($name, $macro);
+                        \Illuminate\Auth\SessionGuard::macro($name, $macro);
         }
                     /**
          * Mix another object into the class.
@@ -1991,7 +2274,7 @@
          */ 
         public static function mixin($mixin, $replace = true)
         {
-                        \Illuminate\Auth\RequestGuard::mixin($mixin, $replace);
+                        \Illuminate\Auth\SessionGuard::mixin($mixin, $replace);
         }
                     /**
          * Checks if macro is registered.
@@ -2002,7 +2285,7 @@
          */ 
         public static function hasMacro($name)
         {
-                        return \Illuminate\Auth\RequestGuard::hasMacro($name);
+                        return \Illuminate\Auth\SessionGuard::hasMacro($name);
         }
                     /**
          * Flush the existing macros.
@@ -2012,7 +2295,7 @@
          */ 
         public static function flushMacros()
         {
-                        \Illuminate\Auth\RequestGuard::flushMacros();
+                        \Illuminate\Auth\SessionGuard::flushMacros();
         }
          
     }
@@ -2193,6 +2476,19 @@
                         return $instance->getClassComponentAliases();
         }
                     /**
+         * Register an anonymous component namespace.
+         *
+         * @param string $directory
+         * @param string|null $prefix
+         * @return void 
+         * @static 
+         */ 
+        public static function anonymousComponentNamespace($directory, $prefix = null)
+        {
+                        /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
+                        $instance->anonymousComponentNamespace($directory, $prefix);
+        }
+                    /**
          * Register a class-based component namespace.
          *
          * @param string $namespace
@@ -2204,6 +2500,17 @@
         {
                         /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
                         $instance->componentNamespace($namespace, $prefix);
+        }
+                    /**
+         * Get the registered anonymous component namespaces.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAnonymousComponentNamespaces()
+        {
+                        /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
+                        return $instance->getAnonymousComponentNamespaces();
         }
                     /**
          * Get the registered class component namespaces.
@@ -2463,11 +2770,12 @@
      *
      * @method static \Illuminate\Broadcasting\Broadcasters\Broadcaster channel(string $channel, callable|string  $callback, array $options = [])
      * @method static mixed auth(\Illuminate\Http\Request $request)
+     * @method static void resolveAuthenticatedUserUsing(Closure $callback)
      * @see \Illuminate\Contracts\Broadcasting\Factory
      */ 
         class Broadcast {
                     /**
-         * Register the routes for handling broadcast authentication and sockets.
+         * Register the routes for handling broadcast channel authentication and sockets.
          *
          * @param array|null $attributes
          * @return void 
@@ -2477,6 +2785,32 @@
         {
                         /** @var \Illuminate\Broadcasting\BroadcastManager $instance */
                         $instance->routes($attributes);
+        }
+                    /**
+         * Register the routes for handling broadcast user authentication.
+         *
+         * @param array|null $attributes
+         * @return void 
+         * @static 
+         */ 
+        public static function userRoutes($attributes = null)
+        {
+                        /** @var \Illuminate\Broadcasting\BroadcastManager $instance */
+                        $instance->userRoutes($attributes);
+        }
+                    /**
+         * Register the routes for handling broadcast authentication and sockets.
+         * 
+         * Alias of "routes" method.
+         *
+         * @param array|null $attributes
+         * @return void 
+         * @static 
+         */ 
+        public static function channelRoutes($attributes = null)
+        {
+                        /** @var \Illuminate\Broadcasting\BroadcastManager $instance */
+                        $instance->channelRoutes($attributes);
         }
                     /**
          * Get the socket ID for the given request.
@@ -4214,23 +4548,23 @@
      * @method static \Illuminate\Support\Carbon createFromTimestampMs($timestamp, $tz = null)
      * @method static \Illuminate\Support\Carbon createFromTimestampUTC($timestamp)
      * @method static \Illuminate\Support\Carbon createMidnightDate($year = null, $month = null, $day = null, $tz = null)
-     * @method static \Illuminate\Support\Carbon disableHumanDiffOption($humanDiffOption)
-     * @method static \Illuminate\Support\Carbon enableHumanDiffOption($humanDiffOption)
+     * @method static void disableHumanDiffOption($humanDiffOption)
+     * @method static void enableHumanDiffOption($humanDiffOption)
      * @method static \Illuminate\Support\Carbon fromSerialized($value)
-     * @method static \Illuminate\Support\Carbon getLastErrors()
-     * @method static \Illuminate\Support\Carbon getTestNow()
+     * @method static array getLastErrors()
+     * @method static \Illuminate\Support\Carbon|null getTestNow()
      * @method static \Illuminate\Support\Carbon instance($date)
-     * @method static \Illuminate\Support\Carbon isMutable()
+     * @method static bool isMutable()
      * @method static \Illuminate\Support\Carbon maxValue()
      * @method static \Illuminate\Support\Carbon minValue()
      * @method static \Illuminate\Support\Carbon now($tz = null)
      * @method static \Illuminate\Support\Carbon parse($time = null, $tz = null)
-     * @method static \Illuminate\Support\Carbon setHumanDiffOptions($humanDiffOptions)
+     * @method static void setHumanDiffOptions($humanDiffOptions)
      * @method static void setTestNow($testNow = null)
-     * @method static \Illuminate\Support\Carbon setUtf8($utf8)
+     * @method static void setUtf8($utf8)
      * @method static \Illuminate\Support\Carbon today($tz = null)
      * @method static \Illuminate\Support\Carbon tomorrow($tz = null)
-     * @method static \Illuminate\Support\Carbon useStrictMode($strictModeEnabled = true)
+     * @method static void useStrictMode($strictModeEnabled = true)
      * @method static \Illuminate\Support\Carbon yesterday($tz = null)
      * @method static \Illuminate\Support\Carbon|false createFromFormat($format, $time, $tz = null)
      * @method static \Illuminate\Support\Carbon|false createSafe($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $tz = null)
@@ -4446,7 +4780,7 @@
                     /**
          * Get all of the support drivers.
          *
-         * @return array 
+         * @return string[] 
          * @static 
          */ 
         public static function supportedDrivers()
@@ -4457,7 +4791,7 @@
                     /**
          * Get all of the drivers that are actually available.
          *
-         * @return array 
+         * @return string[] 
          * @static 
          */ 
         public static function availableDrivers()
@@ -4493,7 +4827,7 @@
                     /**
          * Return all of the created connections.
          *
-         * @return array 
+         * @return \Illuminate\Database\array<string, \Illuminate\Database\Connection>
          * @static 
          */ 
         public static function getConnections()
@@ -4524,6 +4858,66 @@
         {
                         /** @var \Illuminate\Database\DatabaseManager $instance */
                         return $instance->setApplication($app);
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \Illuminate\Database\DatabaseManager::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \Illuminate\Database\DatabaseManager::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \Illuminate\Database\DatabaseManager::hasMacro($name);
+        }
+                    /**
+         * Flush the existing macros.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushMacros()
+        {
+                        \Illuminate\Database\DatabaseManager::flushMacros();
+        }
+                    /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */ 
+        public static function macroCall($method, $parameters)
+        {
+                        /** @var \Illuminate\Database\DatabaseManager $instance */
+                        return $instance->macroCall($method, $parameters);
         }
                     /**
          * Determine if the connected database is a MariaDB database.
@@ -4630,6 +5024,21 @@
         {            //Method inherited from \Illuminate\Database\Connection         
                         /** @var \Illuminate\Database\MySqlConnection $instance */
                         return $instance->selectOne($query, $bindings, $useReadPdo);
+        }
+                    /**
+         * Run a select statement and return the first column of the first row.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return mixed 
+         * @throws \Illuminate\Database\MultipleColumnsSelectedException
+         * @static 
+         */ 
+        public static function scalar($query, $bindings = [], $useReadPdo = true)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        return $instance->scalar($query, $bindings, $useReadPdo);
         }
                     /**
          * Run a select statement against the database.
@@ -4799,6 +5208,52 @@
         {            //Method inherited from \Illuminate\Database\Connection         
                         /** @var \Illuminate\Database\MySqlConnection $instance */
                         $instance->logQuery($query, $bindings, $time);
+        }
+                    /**
+         * Register a callback to be invoked when the connection queries for longer than a given amount of time.
+         *
+         * @param \DateTimeInterface|\Carbon\CarbonInterval|float|int $threshold
+         * @param callable $handler
+         * @return void 
+         * @static 
+         */ 
+        public static function whenQueryingForLongerThan($threshold, $handler)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        $instance->whenQueryingForLongerThan($threshold, $handler);
+        }
+                    /**
+         * Allow all the query duration handlers to run again, even if they have already run.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function allowQueryDurationHandlersToRunAgain()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        $instance->allowQueryDurationHandlersToRunAgain();
+        }
+                    /**
+         * Get the duration of all run queries in milliseconds.
+         *
+         * @return float 
+         * @static 
+         */ 
+        public static function totalQueryDuration()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        return $instance->totalQueryDuration();
+        }
+                    /**
+         * Reset the duration of all run queries.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function resetTotalQueryDuration()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        $instance->resetTotalQueryDuration();
         }
                     /**
          * Register a hook to be run just before a database query is executed.
@@ -5462,7 +5917,7 @@
          * Register an event and payload to be fired later.
          *
          * @param string $event
-         * @param array $payload
+         * @param object|array $payload
          * @return void 
          * @static 
          */ 
@@ -5656,7 +6111,7 @@
          * Assert if an event has a listener attached to it.
          *
          * @param string $expectedEvent
-         * @param string $expectedListener
+         * @param string|array $expectedListener
          * @return void 
          * @static 
          */ 
@@ -6118,6 +6573,19 @@
                         return $instance->isDirectory($directory);
         }
                     /**
+         * Determine if the given path is a directory that does not contain any other files or directories.
+         *
+         * @param string $directory
+         * @param bool $ignoreDotFiles
+         * @return bool 
+         * @static 
+         */ 
+        public static function isEmptyDirectory($directory, $ignoreDotFiles = false)
+        {
+                        /** @var \Illuminate\Filesystem\Filesystem $instance */
+                        return $instance->isEmptyDirectory($directory, $ignoreDotFiles);
+        }
+                    /**
          * Determine if the given path is readable.
          *
          * @param string $path
@@ -6140,6 +6608,19 @@
         {
                         /** @var \Illuminate\Filesystem\Filesystem $instance */
                         return $instance->isWritable($path);
+        }
+                    /**
+         * Determine if two files are the same by comparing their hashes.
+         *
+         * @param string $firstFile
+         * @param string $secondFile
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasSameHash($firstFile, $secondFile)
+        {
+                        /** @var \Illuminate\Filesystem\Filesystem $instance */
+                        return $instance->hasSameHash($firstFile, $secondFile);
         }
                     /**
          * Determine if the given path is a file.
@@ -6400,7 +6881,7 @@
          * Define a new ability.
          *
          * @param string $ability
-         * @param callable|string $callback
+         * @param callable|array|string $callback
          * @return \Illuminate\Auth\Access\Gate 
          * @throws \InvalidArgumentException
          * @static 
@@ -6840,10 +7321,12 @@
      * @method static \Illuminate\Http\Client\PendingRequest baseUrl(string $url)
      * @method static \Illuminate\Http\Client\PendingRequest beforeSending(callable $callback)
      * @method static \Illuminate\Http\Client\PendingRequest bodyFormat(string $format)
+     * @method static \Illuminate\Http\Client\PendingRequest connectTimeout(int $seconds)
      * @method static \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
      * @method static \Illuminate\Http\Client\PendingRequest dd()
      * @method static \Illuminate\Http\Client\PendingRequest dump()
-     * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleep = 0, ?callable $when = null, bool $throw = true)
+     * @method static \Illuminate\Http\Client\PendingRequest maxRedirects(int $max)
+     * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
      * @method static \Illuminate\Http\Client\PendingRequest sink(string|resource $to)
      * @method static \Illuminate\Http\Client\PendingRequest stub(callable $callback)
      * @method static \Illuminate\Http\Client\PendingRequest timeout(int $seconds)
@@ -6858,6 +7341,9 @@
      * @method static \Illuminate\Http\Client\PendingRequest withUserAgent(string $userAgent)
      * @method static \Illuminate\Http\Client\PendingRequest withoutRedirecting()
      * @method static \Illuminate\Http\Client\PendingRequest withoutVerifying()
+     * @method static \Illuminate\Http\Client\PendingRequest throw(callable $callback = null)
+     * @method static \Illuminate\Http\Client\PendingRequest throwIf($condition)
+     * @method \Illuminate\Http\Client\PendingRequest throwUnless($condition)
      * @method static array pool(callable $callback)
      * @method static \Illuminate\Http\Client\Response delete(string $url, array $data = [])
      * @method static \Illuminate\Http\Client\Response get(string $url, array|string|null $query = null)
@@ -6872,7 +7358,7 @@
                     /**
          * Create a new response instance for use during stubbing.
          *
-         * @param array|string $body
+         * @param array|string|null $body
          * @param int $status
          * @param array $headers
          * @return \GuzzleHttp\Promise\PromiseInterface 
@@ -6930,6 +7416,29 @@
         {
                         /** @var \Illuminate\Http\Client\Factory $instance */
                         return $instance->stubUrl($url, $callback);
+        }
+                    /**
+         * Indicate that an exception should not be thrown if any request is not faked.
+         *
+         * @param bool $prevent
+         * @return \Illuminate\Http\Client\Factory 
+         * @static 
+         */ 
+        public static function preventStrayRequests($prevent = true)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->preventStrayRequests($prevent);
+        }
+                    /**
+         * Indicate that an exception should not be thrown if any request is not faked.
+         *
+         * @return \Illuminate\Http\Client\Factory 
+         * @static 
+         */ 
+        public static function allowStrayRequests()
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->allowStrayRequests();
         }
                     /**
          * Record a request response pair.
@@ -7228,6 +7737,18 @@
                         return $instance->parseKey($key);
         }
                     /**
+         * Specify a callback that should be invoked to determined the applicable locale array.
+         *
+         * @param callable $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function determineLocalesUsing($callback)
+        {
+                        /** @var \Illuminate\Translation\Translator $instance */
+                        $instance->determineLocalesUsing($callback);
+        }
+                    /**
          * Get the message selector instance.
          *
          * @return \Illuminate\Translation\MessageSelector 
@@ -7461,6 +7982,40 @@
         {
                         /** @var \Illuminate\Log\LogManager $instance */
                         return $instance->driver($driver);
+        }
+                    /**
+         * Share context across channels and stacks.
+         *
+         * @param array $context
+         * @return \Illuminate\Log\LogManager 
+         * @static 
+         */ 
+        public static function shareContext($context)
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->shareContext($context);
+        }
+                    /**
+         * The context shared across channels and stacks.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function sharedContext()
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->sharedContext();
+        }
+                    /**
+         * Flush the shared context.
+         *
+         * @return \Illuminate\Log\LogManager 
+         * @static 
+         */ 
+        public static function flushSharedContext()
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->flushSharedContext();
         }
                     /**
          * Get the default log driver name.
@@ -8296,6 +8851,18 @@
                         $instance->assertSentTimes($notification, $expectedCount);
         }
                     /**
+         * Assert the total count of notification that were sent.
+         *
+         * @param int $expectedCount
+         * @return void 
+         * @static 
+         */ 
+        public static function assertCount($expectedCount)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\NotificationFake $instance */
+                        $instance->assertCount($expectedCount);
+        }
+                    /**
          * Assert the total amount of times a notification was sent.
          *
          * @param int $expectedCount
@@ -8751,6 +9318,18 @@
                         return $instance->push($job, $data, $queue);
         }
                     /**
+         * Determine if a job should be faked or actually dispatched.
+         *
+         * @param object $job
+         * @return bool 
+         * @static 
+         */ 
+        public static function shouldFakeJob($job)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
+                        return $instance->shouldFakeJob($job);
+        }
+                    /**
          * Push a raw payload onto the queue.
          *
          * @param string $payload
@@ -9099,6 +9678,7 @@
          *
          * @param int $status
          * @return \Illuminate\Http\RedirectResponse 
+         * @deprecated Will be removed in a future Laravel version.
          * @static 
          */ 
         public static function home($status = 302)
@@ -9151,7 +9731,7 @@
                     /**
          * Create a new redirect response to the previously intended location.
          *
-         * @param string $default
+         * @param mixed $default
          * @param int $status
          * @param array $headers
          * @param bool|null $secure
@@ -9530,6 +10110,39 @@
                         return $instance->fullUrlIs(...$patterns);
         }
                     /**
+         * Get the host name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function host()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->host();
+        }
+                    /**
+         * Get the HTTP host being requested.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function httpHost()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->httpHost();
+        }
+                    /**
+         * Get the scheme and HTTP host.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function schemeAndHttpHost()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->schemeAndHttpHost();
+        }
+                    /**
          * Determine if the request is the result of an AJAX call.
          *
          * @return bool 
@@ -9728,6 +10341,7 @@
                     /**
          * Gets the Session.
          *
+         * @throws SessionNotFoundException When session is not set properly
          * @static 
          */ 
         public static function getSession()
@@ -10865,7 +11479,7 @@
          * Retrieve an old input item.
          *
          * @param string|null $key
-         * @param string|array|null $default
+         * @param \Illuminate\Database\Eloquent\Model|string|array|null $default
          * @return string|array|null 
          * @static 
          */ 
@@ -11116,6 +11730,32 @@
         {
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->input($key, $default);
+        }
+                    /**
+         * Retrieve input from the request as a Stringable instance.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Illuminate\Support\Stringable 
+         * @static 
+         */ 
+        public static function str($key, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->str($key, $default);
+        }
+                    /**
+         * Retrieve input from the request as a Stringable instance.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Illuminate\Support\Stringable 
+         * @static 
+         */ 
+        public static function string($key, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->string($key, $default);
         }
                     /**
          * Retrieve input as a boolean value.
@@ -11670,6 +12310,7 @@
      * @method static \Illuminate\Routing\RouteRegistrar prefix(string $prefix)
      * @method static \Illuminate\Routing\RouteRegistrar scopeBindings()
      * @method static \Illuminate\Routing\RouteRegistrar where(array $where)
+     * @method static \Illuminate\Routing\RouteRegistrar withoutMiddleware(array|string $middleware)
      * @see \Illuminate\Routing\Router
      */ 
         class Route {
@@ -12325,7 +12966,7 @@
                     /**
          * Check if a route with the given name exists.
          *
-         * @param string $name
+         * @param string|array $name
          * @return bool 
          * @static 
          */ 
@@ -12716,6 +13357,34 @@
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                         return $instance->hasColumns($table, $columns);
+        }
+                    /**
+         * Execute a table builder callback if the given table has a given column.
+         *
+         * @param string $table
+         * @param string $column
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function whenTableHasColumn($table, $column, $callback)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        $instance->whenTableHasColumn($table, $column, $callback);
+        }
+                    /**
+         * Execute a table builder callback if the given table doesn't have a given column.
+         *
+         * @param string $table
+         * @param string $column
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function whenTableDoesntHaveColumn($table, $column, $callback)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        $instance->whenTableDoesntHaveColumn($table, $column, $callback);
         }
                     /**
          * Get the data type for the given column name.
@@ -13746,6 +14415,18 @@
                         return $instance->assertMissing($path);
         }
                     /**
+         * Assert that the given directory is empty.
+         *
+         * @param string $path
+         * @return \Illuminate\Filesystem\FilesystemAdapter 
+         * @static 
+         */ 
+        public static function assertDirectoryEmpty($path)
+        {
+                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                        return $instance->assertDirectoryEmpty($path);
+        }
+                    /**
          * Determine if a file or directory exists.
          *
          * @param string $path
@@ -13875,7 +14556,7 @@
          * @param string $path
          * @param \Psr\Http\Message\StreamInterface|\Illuminate\Http\File|\Illuminate\Http\UploadedFile|string|resource $contents
          * @param mixed $options
-         * @return bool 
+         * @return string|bool 
          * @static 
          */ 
         public static function put($path, $contents, $options = [])
@@ -14315,6 +14996,18 @@
         {
                         /** @var \Illuminate\Routing\UrlGenerator $instance */
                         return $instance->previous($fallback);
+        }
+                    /**
+         * Get the previous path info for the request.
+         *
+         * @param mixed $fallback
+         * @return string 
+         * @static 
+         */ 
+        public static function previousPath($fallback = false)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        return $instance->previousPath($fallback);
         }
                     /**
          * Generate an absolute URL to the given path.
@@ -14949,7 +15642,7 @@
                     /**
          * Get the container instance used by the validation factory.
          *
-         * @return \Illuminate\Contracts\Container\Container 
+         * @return \Illuminate\Contracts\Container\Container|null 
          * @static 
          */ 
         public static function getContainer()
@@ -15959,6 +16652,600 @@
      
 }
 
+    namespace Mews\Captcha\Facades { 
+            /**
+     * 
+     *
+     * @see \Mews\Captcha\Captcha
+     */ 
+        class Captcha {
+                    /**
+         * Create captcha image
+         *
+         * @param string $config
+         * @param bool $api
+         * @return array|mixed 
+         * @throws Exception
+         * @static 
+         */ 
+        public static function create($config = 'default', $api = false)
+        {
+                        /** @var \Mews\Captcha\Captcha $instance */
+                        return $instance->create($config, $api);
+        }
+                    /**
+         * Captcha check
+         *
+         * @param string $value
+         * @return bool 
+         * @static 
+         */ 
+        public static function check($value)
+        {
+                        /** @var \Mews\Captcha\Captcha $instance */
+                        return $instance->check($value);
+        }
+                    /**
+         * Captcha check
+         *
+         * @param string $value
+         * @param string $key
+         * @param string $config
+         * @return bool 
+         * @static 
+         */ 
+        public static function check_api($value, $key, $config = 'default')
+        {
+                        /** @var \Mews\Captcha\Captcha $instance */
+                        return $instance->check_api($value, $key, $config);
+        }
+                    /**
+         * Generate captcha image source
+         *
+         * @param string $config
+         * @return string 
+         * @static 
+         */ 
+        public static function src($config = 'default')
+        {
+                        /** @var \Mews\Captcha\Captcha $instance */
+                        return $instance->src($config);
+        }
+                    /**
+         * Generate captcha image html tag
+         *
+         * @param string $config
+         * @param array $attrs $attrs -> HTML attributes supplied to the image tag where key is the attribute and the value is the attribute value
+         * @return string 
+         * @static 
+         */ 
+        public static function img($config = 'default', $attrs = [])
+        {
+                        /** @var \Mews\Captcha\Captcha $instance */
+                        return $instance->img($config, $attrs);
+        }
+         
+    }
+     
+}
+
+    namespace Nwidart\Modules\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Module {
+                    /**
+         * Add other module location.
+         *
+         * @param string $path
+         * @return \Nwidart\Modules\Laravel\LaravelFileRepository 
+         * @static 
+         */ 
+        public static function addLocation($path)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->addLocation($path);
+        }
+                    /**
+         * Get all additional paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getPaths()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getPaths();
+        }
+                    /**
+         * Get scanned modules paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getScanPaths()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getScanPaths();
+        }
+                    /**
+         * Get & scan all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function scan()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->scan();
+        }
+                    /**
+         * Get all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function all()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->all();
+        }
+                    /**
+         * Get cached modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCached()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getCached();
+        }
+                    /**
+         * Get all modules as collection instance.
+         *
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function toCollection()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->toCollection();
+        }
+                    /**
+         * Get modules by status.
+         *
+         * @param $status
+         * @return array 
+         * @static 
+         */ 
+        public static function getByStatus($status)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getByStatus($status);
+        }
+                    /**
+         * Determine whether the given module exist.
+         *
+         * @param $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function has($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->has($name);
+        }
+                    /**
+         * Get list of enabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allEnabled()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->allEnabled();
+        }
+                    /**
+         * Get list of disabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allDisabled()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->allDisabled();
+        }
+                    /**
+         * Get count from all modules.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function count()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->count();
+        }
+                    /**
+         * Get all ordered modules.
+         *
+         * @param string $direction
+         * @return array 
+         * @static 
+         */ 
+        public static function getOrdered($direction = 'asc')
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getOrdered($direction);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function getPath()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getPath();
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function register()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->register();
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function boot()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->boot();
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function find($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->find($name);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function findByAlias($alias)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->findByAlias($alias);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function findRequirements($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->findRequirements($name);
+        }
+                    /**
+         * Find a specific module, if there return that, otherwise throw exception.
+         *
+         * @param $name
+         * @return \Module 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function findOrFail($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->findOrFail($name);
+        }
+                    /**
+         * Get all modules as laravel collection instance.
+         *
+         * @param $status
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function collections($status = 1)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->collections($status);
+        }
+                    /**
+         * Get module path for a specific module.
+         *
+         * @param $module
+         * @return string 
+         * @static 
+         */ 
+        public static function getModulePath($module)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getModulePath($module);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function assetPath($module)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->assetPath($module);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function config($key, $default = null)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->config($key, $default);
+        }
+                    /**
+         * Get storage path for module used.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getUsedStoragePath()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getUsedStoragePath();
+        }
+                    /**
+         * Set module used for cli session.
+         *
+         * @param $name
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function setUsed($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->setUsed($name);
+        }
+                    /**
+         * Forget the module used for cli session.
+         *
+         * @static 
+         */ 
+        public static function forgetUsed()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->forgetUsed();
+        }
+                    /**
+         * Get module used for cli session.
+         *
+         * @return string 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function getUsedNow()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getUsedNow();
+        }
+                    /**
+         * Get laravel filesystem instance.
+         *
+         * @return \Nwidart\Modules\Filesystem 
+         * @static 
+         */ 
+        public static function getFiles()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getFiles();
+        }
+                    /**
+         * Get module assets path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAssetsPath()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getAssetsPath();
+        }
+                    /**
+         * Get asset url from a specific module.
+         *
+         * @param string $asset
+         * @return string 
+         * @throws InvalidAssetPath
+         * @static 
+         */ 
+        public static function asset($asset)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->asset($asset);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function isEnabled($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->isEnabled($name);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function isDisabled($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->isDisabled($name);
+        }
+                    /**
+         * Enabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function enable($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        $instance->enable($name);
+        }
+                    /**
+         * Disabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function disable($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        $instance->disable($name);
+        }
+                    /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */ 
+        public static function delete($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->delete($name);
+        }
+                    /**
+         * Update dependencies for the specified module.
+         *
+         * @param string $module
+         * @static 
+         */ 
+        public static function update($module)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->update($module);
+        }
+                    /**
+         * Install the specified module.
+         *
+         * @param string $name
+         * @param string $version
+         * @param string $type
+         * @param bool $subtree
+         * @return \Symfony\Component\Process\Process 
+         * @static 
+         */ 
+        public static function install($name, $version = 'dev-master', $type = 'composer', $subtree = false)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->install($name, $version, $type, $subtree);
+        }
+                    /**
+         * Get stub path.
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getStubPath()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->getStubPath();
+        }
+                    /**
+         * Set stub path.
+         *
+         * @param string $stubPath
+         * @return \Nwidart\Modules\Laravel\LaravelFileRepository 
+         * @static 
+         */ 
+        public static function setStubPath($stubPath)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        /** @var \Nwidart\Modules\Laravel\LaravelFileRepository $instance */
+                        return $instance->setStubPath($stubPath);
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        \Nwidart\Modules\Laravel\LaravelFileRepository::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        \Nwidart\Modules\Laravel\LaravelFileRepository::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        return \Nwidart\Modules\Laravel\LaravelFileRepository::hasMacro($name);
+        }
+                    /**
+         * Flush the existing macros.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushMacros()
+        {            //Method inherited from \Nwidart\Modules\FileRepository         
+                        \Nwidart\Modules\Laravel\LaravelFileRepository::flushMacros();
+        }
+         
+    }
+     
+}
+
     namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
@@ -16199,10 +17486,10 @@
          *
          * @static 
          */ 
-        public static function report($throwable, $callback = null)
+        public static function report($throwable, $callback = null, $report = null)
         {
                         /** @var \Spatie\FlareClient\Flare $instance */
-                        return $instance->report($throwable, $callback);
+                        return $instance->report($throwable, $callback, $report);
         }
                     /**
          * 
@@ -16594,30 +17881,34 @@ namespace  {
             }
              
                 /**
-             * Add a "where not" clause to the query.
+             * Add a basic "where not" clause to the query.
              *
-             * @param \Closure $callback
+             * @param \Closure|string|array|\Illuminate\Database\Query\Expression $column
+             * @param mixed $operator
+             * @param mixed $value
              * @param string $boolean
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
-            public static function whereNot($callback, $boolean = 'and')
+            public static function whereNot($column, $operator = null, $value = null, $boolean = 'and')
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
-                                return $instance->whereNot($callback, $boolean);
+                                return $instance->whereNot($column, $operator, $value, $boolean);
             }
              
                 /**
              * Add an "or where not" clause to the query.
              *
-             * @param \Closure $callback
+             * @param \Closure|array|string|\Illuminate\Database\Query\Expression $column
+             * @param mixed $operator
+             * @param mixed $value
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
-            public static function orWhereNot($callback)
+            public static function orWhereNot($column, $operator = null, $value = null)
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
-                                return $instance->orWhereNot($callback);
+                                return $instance->orWhereNot($column, $operator, $value);
             }
              
                 /**
@@ -16677,7 +17968,7 @@ namespace  {
              * Find a model by its primary key.
              *
              * @param mixed $id
-             * @param array $columns
+             * @param array|string $columns
              * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|null 
              * @static 
              */ 
@@ -16691,7 +17982,7 @@ namespace  {
              * Find multiple models by their primary keys.
              *
              * @param \Illuminate\Contracts\Support\Arrayable|array $ids
-             * @param array $columns
+             * @param array|string $columns
              * @return \Illuminate\Database\Eloquent\Collection 
              * @static 
              */ 
@@ -16705,7 +17996,7 @@ namespace  {
              * Find a model by its primary key or throw an exception.
              *
              * @param mixed $id
-             * @param array $columns
+             * @param array|string $columns
              * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[] 
              * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
              * @static 
@@ -16720,7 +18011,7 @@ namespace  {
              * Find a model by its primary key or return fresh model instance.
              *
              * @param mixed $id
-             * @param array $columns
+             * @param array|string $columns
              * @return \Illuminate\Database\Eloquent\Model|static 
              * @static 
              */ 
@@ -16728,6 +18019,21 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->findOrNew($id, $columns);
+            }
+             
+                /**
+             * Find a model by its primary key or call a callback.
+             *
+             * @param mixed $id
+             * @param \Closure|array|string $columns
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|mixed 
+             * @static 
+             */ 
+            public static function findOr($id, $columns = [], $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->findOr($id, $columns, $callback);
             }
              
                 /**
@@ -16775,7 +18081,7 @@ namespace  {
                 /**
              * Execute the query and get the first result or throw an exception.
              *
-             * @param array $columns
+             * @param array|string $columns
              * @return \Illuminate\Database\Eloquent\Model|static 
              * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
              * @static 
@@ -16789,7 +18095,7 @@ namespace  {
                 /**
              * Execute the query and get the first result or call a callback.
              *
-             * @param \Closure|array $columns
+             * @param \Closure|array|string $columns
              * @param \Closure|null $callback
              * @return \Illuminate\Database\Eloquent\Model|static|mixed 
              * @static 
@@ -16826,6 +18132,21 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->value($column);
+            }
+             
+                /**
+             * Get a single column's value from the first result of a query if it's the sole matching record.
+             *
+             * @param string|\Illuminate\Database\Query\Expression $column
+             * @return mixed 
+             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+             * @throws \Illuminate\Database\MultipleRecordsFoundException
+             * @static 
+             */ 
+            public static function soleValue($column)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->soleValue($column);
             }
              
                 /**
@@ -16910,8 +18231,8 @@ namespace  {
                 /**
              * Paginate the given query.
              *
-             * @param int|null $perPage
-             * @param array $columns
+             * @param int|null|\Closure $perPage
+             * @param array|string $columns
              * @param string $pageName
              * @param int|null $page
              * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator 
@@ -16928,7 +18249,7 @@ namespace  {
              * Paginate the given query into a simple paginator.
              *
              * @param int|null $perPage
-             * @param array $columns
+             * @param array|string $columns
              * @param string $pageName
              * @param int|null $page
              * @return \Illuminate\Contracts\Pagination\Paginator 
@@ -16944,7 +18265,7 @@ namespace  {
              * Paginate the given query into a cursor paginator.
              *
              * @param int|null $perPage
-             * @param array $columns
+             * @param array|string $columns
              * @param string $cursorName
              * @param \Illuminate\Pagination\Cursor|string|null $cursor
              * @return \Illuminate\Contracts\Pagination\CursorPaginator 
@@ -17147,6 +18468,31 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->setEagerLoads($eagerLoad);
+            }
+             
+                /**
+             * Indicate that the given relationships should not be eagerly loaded.
+             *
+             * @param array $relations
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function withoutEagerLoad($relations)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->withoutEagerLoad($relations);
+            }
+             
+                /**
+             * Flush the relationships being eagerly loaded.
+             *
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function withoutEagerLoads()
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->withoutEagerLoads();
             }
              
                 /**
@@ -17510,6 +18856,24 @@ namespace  {
             }
              
                 /**
+             * Add a relationship count / exists condition to the query with where clauses.
+             * 
+             * Also load the relationship with same condition.
+             *
+             * @param string $relation
+             * @param \Closure|null $callback
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function withWhereHas($relation, $callback = null, $operator = '>=', $count = 1)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->withWhereHas($relation, $callback, $operator, $count);
+            }
+             
+                /**
              * Add a relationship count / exists condition to the query with where clauses and an "or".
              *
              * @param string $relation
@@ -17762,6 +19126,20 @@ namespace  {
             }
              
                 /**
+             * Add a not morph-to relationship condition to the query.
+             *
+             * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+             * @param \Illuminate\Database\Eloquent\Model|string $model
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function whereNotMorphedTo($relation, $model, $boolean = 'and')
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->whereNotMorphedTo($relation, $model, $boolean);
+            }
+             
+                /**
              * Add a morph-to relationship condition to the query with an "or where" clause.
              *
              * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
@@ -17776,9 +19154,23 @@ namespace  {
             }
              
                 /**
+             * Add a not morph-to relationship condition to the query with an "or where" clause.
+             *
+             * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
+             * @param \Illuminate\Database\Eloquent\Model|string $model
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereNotMorphedTo($relation, $model)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orWhereNotMorphedTo($relation, $model);
+            }
+             
+                /**
              * Add a "belongs to" relationship where clause to the query.
              *
-             * @param \Illuminate\Database\Eloquent\Model $related
+             * @param \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection<\Illuminate\Database\Eloquent\Model> $related
              * @param string|null $relationshipName
              * @param string $boolean
              * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -18214,13 +19606,13 @@ namespace  {
              *
              * @param array $wheres
              * @param array $bindings
-             * @return void 
+             * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
             public static function mergeWheres($wheres, $bindings)
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                $instance->mergeWheres($wheres, $bindings);
+                                return $instance->mergeWheres($wheres, $bindings);
             }
              
                 /**
@@ -18948,6 +20340,61 @@ namespace  {
             }
              
                 /**
+             * Add a clause that determines if a JSON path exists to the query.
+             *
+             * @param string $column
+             * @param string $boolean
+             * @param bool $not
+             * @return \Illuminate\Database\Query\Builder 
+             * @static 
+             */ 
+            public static function whereJsonContainsKey($column, $boolean = 'and', $not = false)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->whereJsonContainsKey($column, $boolean, $not);
+            }
+             
+                /**
+             * Add an "or" clause that determines if a JSON path exists to the query.
+             *
+             * @param string $column
+             * @return \Illuminate\Database\Query\Builder 
+             * @static 
+             */ 
+            public static function orWhereJsonContainsKey($column)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->orWhereJsonContainsKey($column);
+            }
+             
+                /**
+             * Add a clause that determines if a JSON path does not exist to the query.
+             *
+             * @param string $column
+             * @param string $boolean
+             * @return \Illuminate\Database\Query\Builder 
+             * @static 
+             */ 
+            public static function whereJsonDoesntContainKey($column, $boolean = 'and')
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->whereJsonDoesntContainKey($column, $boolean);
+            }
+             
+                /**
+             * Add an "or" clause that determines if a JSON path does not exist to the query.
+             *
+             * @param string $column
+             * @return \Illuminate\Database\Query\Builder 
+             * @static 
+             */ 
+            public static function orWhereJsonDoesntContainKey($column)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->orWhereJsonDoesntContainKey($column);
+            }
+             
+                /**
              * Add a "where JSON length" clause to the query.
              *
              * @param string $column
@@ -19052,8 +20499,8 @@ namespace  {
              * Add a "having" clause to the query.
              *
              * @param \Closure|string $column
-             * @param string|null $operator
-             * @param string|null $value
+             * @param string|int|float|null $operator
+             * @param string|int|float|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -19068,8 +20515,8 @@ namespace  {
              * Add an "or having" clause to the query.
              *
              * @param \Closure|string $column
-             * @param string|null $operator
-             * @param string|null $value
+             * @param string|int|float|null $operator
+             * @param string|int|float|null $value
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -19210,7 +20657,7 @@ namespace  {
                 /**
              * Add an "order by" clause to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Expression|string $column
              * @param string $direction
              * @return \Illuminate\Database\Query\Builder 
              * @throws \InvalidArgumentException
@@ -19225,7 +20672,7 @@ namespace  {
                 /**
              * Add a descending "order by" clause to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20032,6 +21479,8 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Image extends \Intervention\Image\Facades\Image {}
             class Horizon extends \Laravel\Horizon\Horizon {}
+            class Captcha extends \Mews\Captcha\Facades\Captcha {}
+            class Module extends \Nwidart\Modules\Facades\Module {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }

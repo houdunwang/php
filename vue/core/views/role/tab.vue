@@ -1,9 +1,10 @@
 <script setup lang="ts">
-const { site, role } = defineProps<{ site: SiteModel; role?: RoleModel }>()
+const { site, role } = defineProps<{ site?: SiteModel; role?: RoleModel }>()
 </script>
 
 <template>
   <CoreHdTab
+    v-if="site"
     :tabs="[
       { label: '站点列表', route: { name: 'site.index' } },
       {
@@ -30,10 +31,8 @@ const { site, role } = defineProps<{ site: SiteModel; role?: RoleModel }>()
       },
       {
         label: `管理员列表`,
-        route: { name: 'admin.index', params: { sid: site.id } },
+        route: { name: 'site.admin.index', params: { sid: site.id } },
         permission: { name: 'admin-list', site },
       },
     ]" />
 </template>
-
-<style lang="scss"></style>

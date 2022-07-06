@@ -14,7 +14,7 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['config', 'title', 'url', 'module_id'];
+    protected $fillable = ['config', 'title', 'url', 'module_id', 'tel', 'email', 'address', 'wechat', 'qq', 'icp', 'copyright', 'logo', 'description', 'keywords'];
 
     protected $casts = [
         'config' => 'array',
