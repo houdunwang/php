@@ -24,3 +24,4 @@ worker.log
 /public/addons
 /vue/dist
 /vue/node_modules
+/vue/stats.html
