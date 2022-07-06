@@ -15,7 +15,6 @@ yarn-error.log
 /.vscode
 node_modules
 worker.log
-vue/node_modules
 /addons
 /config.php
 !/addons/.gitkeep
@@ -24,3 +23,4 @@ vue/node_modules
 /public/storage
 /public/addons
 /vue/dist
+/vue/node_modules

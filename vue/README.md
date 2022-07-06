@@ -4,15 +4,13 @@
 
 ## 项目预览
 
-![image-20220424180043074](./core/assets/image-20220424180043074.png)
+![image-20220424180043074](./core/assets/image-20220424180043075.jpg)
 
-![image-20220706223510626](./core/assets/image-20220706223510626.png)
+![image-20220706223510626](./core/assets/image-20220706223510625.jpg)
 
-![image-20220424193919149](./core/assets/image-20220706223604418.png)
+![image-20220424193919149](./core/assets/image-20220706223604418.jpg)
 
-![image-20220706223650063](./core/assets/image-20220706223650063.png)
-
-
+![image-20220706223650063](./core/assets/image-20220706223650063.jpg)
 
 ## 安装项目
 
@@ -37,9 +35,7 @@ npm install -g houdunren-vue
 ? 请输入目录名 (houdunren-vue)
 ```
 
-
-
-**Git下载**
+**Git 下载**
 
 使用 git 下载项目也是可以的
 
@@ -64,8 +60,6 @@ yarn
 pnpm install
 ```
 
-
-
 ## 每晚直播
 
 向军大叔会在每晚八点进行直播，与大家交流技术与生活。
@@ -76,4 +70,4 @@ pnpm install
 
 | 抖音                                                 | Bilibili                                              |
 | ---------------------------------------------------- | ----------------------------------------------------- |
-| ![image-20210216220804022](./core/assets/douyin.png) | ![image-20210216220804022](./core/assets/bilibli.jpg) |
+| ![image-20210216220804022](./core/assets/douyin.jpg) | ![image-20210216220804022](./core/assets/bilibli.jpg) |
