@@ -147,20 +147,32 @@ export default [
       }
     },
   },
+
+  {
+    url: '/api/site/1/admin',
+    method: 'POST',
+    response: () => {
+      return {
+        message: '管理员添加成功',
+      }
+    },
+  },
+  {
+    url: '/api/site/1/admin/1',
+    method: 'delete',
+    response: () => {
+      return {
+        message: '管理员删除成功',
+      }
+    },
+  },
   {
     url: '/api/site/1/admin/1/role',
     method: 'POST',
     response: () => {
       return {
-        success: '保存成功',
+        message: '角色设置成功',
       }
-    },
-  },
-  {
-    url: '/api/site/1/role/1',
-    method: 'delete',
-    response: () => {
-      return {}
     },
   },
 ] as MockMethod[]

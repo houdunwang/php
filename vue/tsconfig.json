@@ -15,23 +15,27 @@
     "paths": {
       "@/*": ["./src/*"],
       "#/*": ["./types/*"],
-      "@@/*": ["./core/*"]
+      "@@/*": ["./core/*"],
+      "##/*": ["./core/types/*"]
     },
     "types": ["element-plus/global", "echarts", "lodash", "web-bluetooth"]
   },
   "include": [
+    "core/vite/**/*.ts",
+
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.vue",
 
+    "types/*.d.ts",
+    "types/*.ts",
+    "vite.config.ts",
+
     "core/**/*.ts",
     "core/**/*.d.ts",
     "core/**/*.vue",
-    "vite.config.ts",
-    "vite/**/*.ts",
-    "mock/**/*.ts",
-    "types/*.d.ts",
-    "types/*.ts"
+    "core/types/*.ts",
+    "core/types/*.d.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

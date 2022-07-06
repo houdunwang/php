@@ -3,7 +3,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
 
-export default function autoImport(plugins: Plugin[]) {
+//自动导入插件
+export default (plugins: Plugin[]) => {
   plugins.push(
     AutoImport({
       resolvers: [ElementPlusResolver()],
@@ -25,7 +26,7 @@ export default function autoImport(plugins: Plugin[]) {
           }
         },
       ],
-      extensions: ['vue'],
+      extensions: ['vue', 'tsx'],
       dirs: ['src/components', 'core/components'],
       //组件名称包含目录，防止同名组件冲突
       directoryAsNamespace: true,

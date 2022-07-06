@@ -45,7 +45,6 @@ class Menu {
 
     store.set(CacheEnum.HISTORY_MENU, this.history.value)
   }
-
   toggleParentMenu(menu: RouteMenu) {
     this.menus.value.forEach((m) => {
       m.isClick = false

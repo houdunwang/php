@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import env from '@@/utils/env'
 import { isSuperAdmin, access } from '@@/utils/helper'
 const { sid } = defineProps<{ sid: any }>()
 
-const { loadModuleList, addModule, redirectModuleAdmin, setDefaultModule, delModule, modules } = useSiteModule()
+const { loadModuleList, addModule, setDefaultModule, delModule, modules } = useSiteModule()
 const { getSiteByParams, site } = useSite()
 await getSiteByParams()
 await loadModuleList(sid)
@@ -10,6 +11,11 @@ await loadModuleList(sid)
 const defaultModule = async (module: ModuleModel) => {
   await setDefaultModule(sid, module)
   getSiteByParams()
+}
+
+//跳转到模块后台
+const redirectModuleAdmin = (module: ModuleModel) => {
+  window.open(env.VITE_MOCK_ENABLE ? '/admin' : `/${module.name}/admin`)
 }
 </script>
 
@@ -23,7 +29,7 @@ const defaultModule = async (module: ModuleModel) => {
 
   <section v-if="modules.data.length">
     <div v-for="module of modules.data" :key="module.id">
-      <img :src="module.preview" class="rounded-full h-[60px] object-cover my-3" />
+      <img :src="module.preview" class="rounded-full h-[60px] w-[60px] object-cover my-3" />
       <h4>{{ module.title }}</h4>
       <div class="py-2 bg-gray-200 border-t mt-3 w-full flex justify-center">
         <el-button-group>
@@ -41,7 +47,7 @@ const defaultModule = async (module: ModuleModel) => {
       </div>
     </div>
   </section>
-  <div class="border p-5 rounded-sm bg-white flex justify-center items-center text-gray-600 text-xs font-bold">
+  <div class="border p-5 rounded-sm bg-white flex justify-center items-center text-gray-600 text-xs font-bold" v-else>
     <icon-info theme="outline" fill="#333" class="mr-1" /> 你还没有安装任何模块，请联系管理员
   </div>
 </template>

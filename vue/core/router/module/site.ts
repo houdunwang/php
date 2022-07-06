@@ -7,11 +7,6 @@ export default {
   meta: { auth: true },
   children: [
     {
-      path: '/admin',
-      redirect: { name: 'site.index' },
-      component: () => import('@@/views/site/index.vue'),
-    },
-    {
       name: 'site.index',
       path: '',
       component: () => import('@@/views/site/index.vue'),

@@ -1,6 +1,5 @@
 import { siteFind } from '@@/apis/site'
 import useSite from '@@/composables/useSite'
-import router from '@@/router'
 import errorStore from '@@/store/errorStore'
 import { access } from '@@/utils/helper'
 import { App } from 'vue'
