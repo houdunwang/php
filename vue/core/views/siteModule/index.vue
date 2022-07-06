@@ -4,13 +4,13 @@ import { isSuperAdmin, access } from '@@/utils/helper'
 const { sid } = defineProps<{ sid: any }>()
 
 const { loadModuleList, addModule, setDefaultModule, delModule, modules } = useSiteModule()
-const { getBySid, site } = useSite()
-await getBySid()
+const { current, site } = useSite()
+await current()
 await loadModuleList(sid)
 
 const defaultModule = async (module: ModuleModel) => {
   await setDefaultModule(sid, module)
-  getBySid()
+  current()
 }
 
 //跳转到模块后台

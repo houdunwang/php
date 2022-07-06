@@ -2,9 +2,9 @@
 import { roleForm } from '@@/config/form'
 import TabVue from './tab.vue'
 
-const { site, getBySid } = useSite()
+const { site, currentSite } = useSite()
 const { add } = useRole()
-await getBySid()
+await currentSite()
 </script>
 
 <template>

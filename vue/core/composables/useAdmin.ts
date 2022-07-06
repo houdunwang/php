@@ -6,6 +6,7 @@ export default () => {
   const admins = ref<ResponsePageResult<UserModel>>()
   const admin = ref<UserModel>()
   const sid = router.currentRoute.value.params.sid as unknown as number
+  const id = router.currentRoute.value.params.id as any
 
   const load = async (page: number = 1, params: any = {}) => {
     admins.value = await api.getAdminList(sid, page, params)
@@ -30,6 +31,8 @@ export default () => {
     await api.syncAdminRole(sid, id, roles)
     router.push({ name: 'site.admin.index', params: { sid } })
   }
-
-  return { admins, admin, load, del, add, setRole, find }
+  const current = async () => {
+     await find(id)
+  }
+  return { admins, admin, load, del, add, current, setRole, find }
 }

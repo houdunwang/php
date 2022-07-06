@@ -2,9 +2,9 @@
 import { roleForm } from '@@/config/form'
 import TabVue from './tab.vue'
 
-const { site, getBySid } = useSite()
-const { find, role, update } = useRole()
-await Promise.all([find(useRoute().params.id), getBySid()])
+const { site, currentSite } = useSite()
+const { current, role, update } = useRole()
+await Promise.all([current(), currentSite()])
 </script>
 
 <template>

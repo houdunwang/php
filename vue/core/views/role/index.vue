@@ -4,10 +4,10 @@ import router from '@@/router'
 import tab from './tab.vue'
 
 const { sid } = defineProps<{ sid: any }>()
-const { site, getBySid } = useSite()
+const { site, currentSite } = useSite()
 const { del, roles, load } = useRole()
 
-await Promise.all([load(), getBySid()])
+await Promise.all([load(), currentSite()])
 
 const buttons = [
   {
@@ -17,6 +17,11 @@ const buttons = [
     action: (model: RoleModel) => router.push({ name: `role.edit`, params: { sid, id: model.id } }),
   },
   { title: '删除', type: 'danger', permission: 'role-del', action: (model: RoleModel) => del(model) },
+  {
+    title: '权限设置',
+    type: 'primary',
+    action: (model: RoleModel) => router.push({ name: `site.role.permission`, params: { sid, id: model.id } }),
+  },
 ] as TableButton[]
 </script>
 

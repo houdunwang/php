@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import TabVue from './tab.vue'
 
-const siteService = useSite()
-const { admin, find, setRole } = useAdmin()
-const roleService = useRole()
-await Promise.all([siteService.getBySid(), find(useRoute().params.id), roleService.load()])
+const { site, sid, currentSite } = useSite()
+const { admin, setRole, current: currentAdmin } = useAdmin()
+const { roles: systemRoles, load: loadRole } = useRole()
+await Promise.all([currentSite(), currentAdmin(), loadRole()])
 
 const roles = $ref(admin.value?.roles.map((r) => r.id) ?? [])
 </script>
 
 <template>
-  <TabVue :site="siteService.site.value!" :admin="admin" />
-  <template v-if="roleService.roles.value?.meta.total">
+  <TabVue :site="site!" :admin="admin" />
+  <template v-if="systemRoles?.meta.total">
     <section>
-      <label v-for="r of roleService.roles.value?.data" class="m-2 text-gray-700 text-sm inline-flex items-center">
+      <label v-for="r of systemRoles?.data" class="m-2 text-gray-700 text-sm inline-flex items-center">
         <input type="checkbox" class="mr-1" v-model="roles" :value="r.id" />
         {{ r.name }}
       </label>
@@ -22,10 +22,7 @@ const roles = $ref(admin.value?.roles.map((r) => r.id) ?? [])
   </template>
   <section class="flex flex-col justify-center items-center text-sm font-bold text-gray-600 !py-5" v-else>
     <span class="mb-2">站点还没有设置角色</span>
-    <el-button
-      type="primary"
-      size="default"
-      @click="$router.push({ name: 'role.index', params: { sid: siteService.sid } })">
+    <el-button type="primary" size="default" @click="$router.push({ name: 'role.index', params: { sid } })">
       设置角色
     </el-button>
   </section>

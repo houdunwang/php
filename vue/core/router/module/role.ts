@@ -21,5 +21,10 @@ export default {
       path: 'edit/:id',
       component: () => import('@@/views/role/edit.vue'),
     },
+    {
+      name: 'site.role.permission',
+      path: ':id/permission',
+      component: () => import('@@/views/role/permission.vue'),
+    },
   ],
 } as RouteRecordRaw

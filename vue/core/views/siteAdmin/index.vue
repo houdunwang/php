@@ -6,7 +6,7 @@ const router = useRouter()
 const adminService = useAdmin()
 const siteService = useSite()
 
-await Promise.all([siteService.getBySid(), adminService.load()])
+await Promise.all([siteService.currentSite(), adminService.load()])
 
 const buttons = [
   {
@@ -26,7 +26,8 @@ const buttons = [
 
 <template>
   <TabVue :site="siteService.site.value!" />
-  <CoreUserSelectUser @select="adminService.add" class="mb-2" v-access:admin-add="siteService.site.value" />
+  <CoreUserGet @select="adminService.add" class="mb-2" v-access:admin-add="siteService.site.value" />
+
   <CoreHdTableComponent
     :data="adminService.admins.value?.data"
     :columns="adminTableColumns"

@@ -2,8 +2,8 @@
 import { siteForm } from '@@/config/form'
 import Tab from './components/tab.vue'
 
-const { update, site, getBySid } = useSite()
-await getBySid()
+const { update, site, currentSite } = useSite()
+await currentSite()
 </script>
 
 <template>

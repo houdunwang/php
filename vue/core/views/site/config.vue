@@ -1,15 +1,8 @@
 <script setup lang="ts">
 import { siteForm } from '@@/config/form'
-import { request } from '@@/utils/helper'
-import router from '@@/router'
 
-const { getBySid, site, update } = useSite()
-await getBySid()
-
-const onSubmit = request(async () => {
-  await update(site.value!)
-  router.push({ name: 'site.index' })
-})
+const { currentSite, site, update } = useSite()
+await currentSite()
 
 const tabsite = ref('aliyun')
 </script>
@@ -23,7 +16,7 @@ const tabsite = ref('aliyun')
 
   <el-tabs v-model="tabsite" tab-position="top" class="tabs">
     <el-tab-pane label="阿里云" name="aliyun">
-      <CoreFormFieldList :site="site?.config.aliyun" :fields="siteForm.aliyun" @submit="onSubmit" />
+      <CoreFormFieldList :site="site?.config.aliyun" :fields="siteForm.aliyun" @submit="update(site)" />
     </el-tab-pane>
   </el-tabs>
 </template>

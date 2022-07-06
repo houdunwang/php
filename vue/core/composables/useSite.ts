@@ -11,7 +11,7 @@ export default () => {
   }
 
   //根据参数获取站点
-  const getBySid = async () => {
+  const currentSite = async () => {
     const sid = router.currentRoute.value.params.sid
     site.value = await siteFind(sid)
   }
@@ -32,5 +32,5 @@ export default () => {
     router.push({ name: 'site.index' })
   }
 
-  return { sid, sites, site, getBySid, del, load, add, update }
+  return { sid, sites, site, currentSite, del, load, add, update }
 }

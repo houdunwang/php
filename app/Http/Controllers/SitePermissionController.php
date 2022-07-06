@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Site;
 
-//权限
+//站点权限
 class SitePermissionController extends Controller
 {
     public function __construct()
