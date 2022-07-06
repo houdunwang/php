@@ -5,7 +5,7 @@ export default {
   path: '/admin',
   redirect: '/admin/index',
   component: () => import('@@/layouts/admin.vue'),
-  meta: { auth: true, menu: { title: 'Dashboard', icon: shallowRef(DashboardOne) } },
+  meta: { auth: true, menu: { title: 'Dashboard', icon: DashboardOne } },
   children: [
     {
       name: 'admin.index',

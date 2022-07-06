@@ -12,19 +12,18 @@ const route = useRoute()
 
 await Promise.all([userStore().getUserInfo(), systemStore().load()])
 const storeSystem = systemStore()
-watch(
-  route,
-  () => {
-    menu.addHistoryMenu(route)
-  },
-  { immediate: true },
-)
+// watch(
+//   route,
+//   () => {
+//     menu.addHistoryMenu(route)
+//   },
+//   { immediate: true },
+// )
 </script>
 
 <template>
   <div class="admin h-screen w-screen grid md:grid-cols-[auto_1fr]">
     <MenuComponet />
-
     <div class="content bg-gray-100 grid grid-rows-[auto_1fr]">
       <div>
         <Navbar />

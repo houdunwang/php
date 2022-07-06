@@ -5,7 +5,7 @@ import { IIconProps } from '@icon-park/vue-next/es/runtime'
 
 export type RouteMenu = {
   title?: string
-  icon?: ShallowRef<DefineComponent<IIconProps>>
+  icon?: DefineComponent<IIconProps>
   isClick?: boolean
   route?: string
   children?: { title?: string; icon?: IconType; isClick?: boolean; route?: string }[]

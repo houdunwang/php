@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import menuService from '@@/composables/useMenu'
+const { show } = useMenu()
+watch(show, () => {
+  console.log(show.value)
+})
 </script>
 
 <template>
   <div class="bg-white relative shadow-sm z-50 p-2 border-b-1 px-5 flex justify-between items-center">
     <div class="flex items-center">
-      <div @click="menuService.toggleState" class="mr-2">
-        <icon-menu-fold-one
-          theme="filled"
-          size="24"
-          fill="#10ad57"
-          v-if="menuService.close.value"
-          class="cursor-pointer" />
-        <icon-menu-unfold-one theme="filled" size="24" fill="#10ad57" v-else class="cursor-pointer" />
+      <div class="mr-2" @click.stop="show = !show">
+        <icon-menu-unfold-one theme="filled" size="24" fill="#10ad57" class="cursor-pointer duration-300" v-if="show" />
+        <icon-menu-fold-one theme="filled" size="24" fill="#10ad57" class="cursor-pointer duration-300" v-else />
       </div>
       <CoreHdBreadcrumb class="hidden md:block" />
     </div>

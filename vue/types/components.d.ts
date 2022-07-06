@@ -40,7 +40,6 @@ declare module '@vue/runtime-core' {
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElTag: typeof import('element-plus/es')['ElTag']
-    IconCloseOne: typeof import('@icon-park/vue-next')['CloseOne']
     IconFullScreenOne: typeof import('@icon-park/vue-next')['FullScreenOne']
     IconHome: typeof import('@icon-park/vue-next')['Home']
     IconLog: typeof import('@icon-park/vue-next')['Log']
@@ -48,7 +47,6 @@ declare module '@vue/runtime-core' {
     IconMenuFoldOne: typeof import('@icon-park/vue-next')['MenuFoldOne']
     IconMenuUnfoldOne: typeof import('@icon-park/vue-next')['MenuUnfoldOne']
     IconOffScreen: typeof import('@icon-park/vue-next')['OffScreen']
-    IconUp: typeof import('@icon-park/vue-next')['Up']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
