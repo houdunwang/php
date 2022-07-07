@@ -108,10 +108,10 @@ $ npm run dev
 
 向军大叔会在每晚八点进行直播，与大家交流技术与生活。
 
-<img src="./core/assets/xj.jpg" alt="image-20210216220804022" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/houdunwang/vue/master/core/assets/xj.jpg" alt="image-20210216220804022" style="zoom:50%;" />
 
 请扫描下方二维码进入直播间，我们一起交流成长。
 
-| 抖音                                                 | Bilibili                                              |
-| ---------------------------------------------------- | ----------------------------------------------------- |
-| ![image-20210216220804022](./core/assets/douyin.jpg) | ![image-20210216220804022](./core/assets/bilibli.jpg) |
+| 抖音 | Bilibili |
+| --- | --- |
+| ![image-20210216220804022](https://raw.githubusercontent.com/houdunwang/vue/master/core/assets/douyin.jpg) | ![image-20210216220804022](https://raw.githubusercontent.com/houdunwang/vue/master/core/assets/bilibli.jpg) |
