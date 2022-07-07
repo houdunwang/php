@@ -1,11 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "vue"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "vue"
+    },
+    {
+      "path": "addons/Blog"
+    }
+  ],
+  "settings": {}
 }
