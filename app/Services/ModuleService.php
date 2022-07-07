@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Module as ModelsModule;
+use Artisan;
 use Nwidart\Modules\Facades\Module;
 
 /**
@@ -27,5 +28,22 @@ class ModuleService
                 $config
             );
         });
+    }
+
+    /**
+     * 初始模块数据
+     *
+     * @param [type] $name 模块名
+     * @param [type] $config 配置
+     */
+    public function initModuleData($name, $config)
+    {
+        $configFile = base_path('addons/' . $name . '/Config/config.php');
+        Artisan::call("module:make " . $name);
+        file_put_contents($configFile, "<?php return " . var_export($config, true) . ";");
+
+        copy(public_path('static/preview.jpeg'), base_path('addons/' . $name . '/preview.jpeg'));
+        copy(base_path('data/module/permissions.php'), base_path('addons/' . $name . '/Config/permissions.php'));
+        app('module')->syncLocalAllModule();
     }
 }

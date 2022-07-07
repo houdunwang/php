@@ -58,13 +58,12 @@ class SiteController extends Controller
     }
 
     //更新站点初始数据
-    public function updateAllSiteInitData()
-    {
-        //同步本地模块到数据表
-        app('module')->syncLocalAllModule();
-
-        //更新所有站点权限
-        app('permission')->syncAllSitePermissions();
-        return $this->success('所有站点初始数据更新成功');
-    }
+    // public function updateAllSiteInitData()
+    // {
+    //     //同步本地模块到数据表
+    //     app('module')->syncLocalAllModule();
+    //     //更新所有站点权限
+    //     app('permission')->syncAllSitePermissions();
+    //     return $this->success('所有站点初始数据更新成功');
+    // }
 }

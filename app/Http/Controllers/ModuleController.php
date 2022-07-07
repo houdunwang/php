@@ -28,15 +28,8 @@ class ModuleController extends Controller
     //设计模块
     public function store(StoreModuleRequest $request)
     {
-        $configFile = base_path('addons/' . $request->name . '/Config/config.php');
         $config =  ['name' => ucfirst($request->name), "version" => "1.0"] + $request->input();
-
-        Artisan::call("module:make " . $request->name);
-        file_put_contents($configFile, "<?php return " . var_export($config, true) . ";");
-
-        copy(public_path('static/preview.jpeg'), base_path('addons/' . $request->name . '/preview.jpeg'));
-        copy(base_path('data/module/permissions.php'), base_path('addons/' . $request->name . '/Config/permissions.php'));
-        app('module')->syncLocalAllModule();
+        app('module')->initModuleData($config['name'], $config);
 
         return $this->success('模块创建成功', data: Module::latest()->first());
     }

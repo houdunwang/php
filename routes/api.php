@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\CoreController;
 use App\Http\Controllers\FansController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ForgetPasswordController;
@@ -46,12 +47,15 @@ Route::get('follower/{user}', [FollowerController::class, 'index']);
 Route::get('follower/toggle/{user}', [FollowerController::class, 'toggle']);
 Route::get('fans/{user}', [FansController::class, 'index']);
 
+//核心
+Route::get('core/update', [CoreController::class, 'update']);
+
 //模块管理
 Route::apiResource('module', ModuleController::class);
 
 //站点
 Route::apiResource('site', SiteController::class);
-Route::get('update_all_site_data', [SiteController::class, 'updateAllSiteInitData']);
+// Route::get('update_all_site_data', [SiteController::class, 'updateAllSiteInitData']);
 
 //站点模块
 Route::apiResource("site.module", SiteModuleController::class);

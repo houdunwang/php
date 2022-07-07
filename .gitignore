@@ -15,9 +15,10 @@ yarn-error.log
 /.vscode
 node_modules
 worker.log
-/addons
+/addons/*
+!/addons/Blog
 /config.php
-!/addons/.gitkeep
+# !/addons/.gitkeep
 /public/core
 /public/images
 /public/storage
@@ -25,3 +26,6 @@ worker.log
 /vue/dist
 /vue/node_modules
 /vue/stats.html
+
+.DS_Store
+Thumbs.db
