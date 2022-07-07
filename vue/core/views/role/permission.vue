@@ -3,10 +3,11 @@ import TabVue from './tab.vue'
 
 const { site, currentSite } = useSite()
 const { role, current, id } = useRole()
-const { update: updateRolePermission } = useRolePermission()
+const { update } = useRolePermission()
 const { getPermission, permissions: sitePermissons } = useSitePermission()
 await Promise.all([await currentSite(), current(), getPermission()])
-const permissions = ref(role.value?.permissions.map((p) => p.name))
+const permissions = ref(role.value?.permissions.map((p) => p.name) ?? [])
+console.log(sitePermissons.value.data)
 </script>
 
 <template>
@@ -33,7 +34,7 @@ const permissions = ref(role.value?.permissions.map((p) => p.name))
       </dl>
     </el-card>
 
-    <el-button type="primary" size="default" @click="updateRolePermission(id, permissions)">保存提交</el-button>
+    <el-button type="primary" size="default" @click="update(id, permissions)">保存提交</el-button>
   </div>
 </template>
 

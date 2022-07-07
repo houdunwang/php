@@ -16,8 +16,7 @@ class SitePermissionController extends Controller
     public function index(Site $site)
     {
         return $this->success(
-            data: [app('permission')->addSystemPermission($site)]
-                + app('permission')->addModulePermission($site)
+            data: [app('permission')->addSystemPermission($site), ...app('permission')->addModulePermission($site)]
         );
     }
 }

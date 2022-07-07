@@ -23,9 +23,9 @@ export default (app: App) => {
       } else if (typeof binding.value === 'number') {
         site = await siteFind(binding.value)
       } else {
-        const { site: siteModel, TableButton } = useSite()
-        await TableButton()
-        site = siteModel.value
+        const { site: siteModel, currentSite } = useSite()
+        await currentSite()
+        site = siteModel.value!
       }
 
       const state = access(binding.arg as string, site)
