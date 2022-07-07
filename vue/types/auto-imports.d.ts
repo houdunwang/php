@@ -51,6 +51,7 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useMenu: typeof import('../core/composables/useMenu')['default']
+  const useModule: typeof import('../core/composables/useModule')['default']
   const useRole: typeof import('../core/composables/useRole')['default']
   const useRolePermission: typeof import('../core/composables/useRolePermission')['default']
   const useRoute: typeof import('vue-router')['useRoute']

@@ -11,6 +11,8 @@ class SiteFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
+            'email' => $this->faker->email(),
+            'tel' => $this->faker->phoneNumber(),
             'config' => config('site'),
             'user_id' => User::pluck('id')->random(),
         ];

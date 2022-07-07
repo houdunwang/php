@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     CoreHdBreadcrumb: typeof import('./../core/components/core/hd/breadcrumb.vue')['default']
     CoreHdCaptcha: typeof import('./../core/components/core/hd/captcha.vue')['default']
     CoreHdFullscreen: typeof import('./../core/components/core/hd/fullscreen.vue')['default']
+    CoreHdPagination: typeof import('./../core/components/core/hd/pagination.vue')['default']
     CoreHdRenderComponent: typeof import('./../core/components/core/hd/renderComponent.vue')['default']
     CoreHdTab: typeof import('./../core/components/core/hd/tab.vue')['default']
     CoreHdTableComponent: typeof import('./../core/components/core/hd/tableComponent.vue')['default']

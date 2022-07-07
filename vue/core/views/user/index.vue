@@ -16,4 +16,5 @@ const tabs = [
       <CoreUserInfo :user="model" />
     </template>
   </CoreHdTableComponent>
+  <CoreHdPagination :total="users?.meta.total" :size="users?.meta.per_page" @change="load" />
 </template>

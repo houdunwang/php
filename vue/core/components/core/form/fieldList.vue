@@ -61,10 +61,9 @@ const emit = defineEmits<{
           <CoreFormError :name="f.error_name || f.name" />
         </template>
       </el-form-item>
-      <el-form-item v-if="$slots.button">
-        <slot name="button">
-          <el-button type="primary" @click="emit('submit', model)">保存提交</el-button>
-        </slot>
+      <el-form-item>
+        <slot name="button" v-if="$slots.button" />
+        <el-button type="primary" @click="emit('submit', model)" v-else>保存提交</el-button>
       </el-form-item>
     </el-form>
   </el-card>

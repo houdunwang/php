@@ -6,8 +6,8 @@ export default () => {
   const user = ref<UserModel>()
   const sid = router.currentRoute.value.params.sid as any
 
-  const load = async () => {
-    users.value = await api.getUserList()
+  const load = async (page = 1, params: Record<any, any> = {}) => {
+    users.value = await api.getUserList(page, params)
   }
 
   const find = async (id: any) => {

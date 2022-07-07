@@ -27,8 +27,8 @@ export default () => {
     router.push({ name: 'site.index' })
   }
 
-  const update = async (model: SiteModel) => {
-    site.value = await updateSite(model)
+  const update = async () => {
+    site.value = await updateSite(site.value!)
     router.push({ name: 'site.index' })
   }
 

@@ -23,8 +23,8 @@ export default () => {
     router.push({ name: 'role.index' })
   }
 
-  const update = async (model: RoleModel) => {
-    await api.updateRole(sid, model)
+  const update = async () => {
+    await api.updateRole(sid, role.value!)
     router.push({ name: 'role.index' })
   }
 

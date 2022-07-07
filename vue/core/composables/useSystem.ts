@@ -7,8 +7,8 @@ export default () => {
     system.value = await getSystem()
   }
 
-  const update = async (model: SystemModel) => {
-    await updateSystem(model)
+  const update = async () => {
+    await updateSystem(system.value!)
   }
 
   return { system, find, update }

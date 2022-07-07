@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory(2)->has(Site::factory()->has(Role::factory()))->create();
+        User::factory(50)->create();
 
         $user  = User::first();
         $user->name = '向军大叔';
@@ -21,7 +22,6 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user  = User::find(2);
-        $user->name = '后盾人';
         $user->email = 'houdunren@qq.com';
         $user->save();
     }

@@ -10,7 +10,7 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->sentence(),
+            'name' => $this->faker->words(3, true),
             'description' => $this->faker->sentence(),
             'site_id' => Site::inRandomOrder()->first()->id,
             'guard_name' => 'sanctum'

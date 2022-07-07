@@ -16,22 +16,21 @@ const tab = ref('base')
   <div class="tabs">
     <el-tabs v-model="tab">
       <el-tab-pane label="网站信息" name="base">
-        <CoreFormFieldList :model="system" :fields="systemForm.base" :showButton="false" />
+        <CoreFormFieldList :model="system" :fields="systemForm.base" @submit="update" />
       </el-tab-pane>
       <el-tab-pane label="验证码" name="code">
-        <CoreFormFieldList :model="system?.config.code" :fields="systemForm.code" :showButton="false" />
+        <CoreFormFieldList :model="system?.config.code" :fields="systemForm.code" @submit="update" />
       </el-tab-pane>
       <el-tab-pane label="阿里云" name="aliyun">
-        <CoreFormFieldList :model="system?.config.aliyun" :fields="systemForm.aliyun" :showButton="false" />
+        <CoreFormFieldList :model="system?.config.aliyun" :fields="systemForm.aliyun" @submit="update" />
       </el-tab-pane>
       <el-tab-pane label="用户头像" name="avatar">
-        <CoreFormFieldList :model="system?.config.avatar" :fields="systemForm.avatar" :showButton="false" />
+        <CoreFormFieldList :model="system?.config.avatar" :fields="systemForm.avatar" @submit="update" />
       </el-tab-pane>
       <el-tab-pane label="文件上传" name="upload">
-        <CoreFormFieldList :model="system?.config.upload" :fields="systemForm.upload" :showButton="false" />
+        <CoreFormFieldList :model="system?.config.upload" :fields="systemForm.upload" @submit="update" />
       </el-tab-pane>
     </el-tabs>
-    <el-button type="primary" size="default" @click="update(system!)" class="mt-3">保存提交</el-button>
   </div>
 </template>
 

@@ -10,6 +10,7 @@ class UserResource extends JsonResource
     {
         return  [
             'avatar' => $this->avatar ?: url('static/avatar.jpeg'),
+            'mobile' => $this->when(true, $this->mobile),
         ] + parent::toArray($request);
     }
 }

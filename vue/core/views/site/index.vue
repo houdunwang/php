@@ -15,6 +15,7 @@ await load()
   >
   <div v-if="sites">
     <CoreSiteItem v-for="site in sites.data" class="mb-3" :site="site" @del="del(site.id)" />
+    <CoreHdPagination :total="sites?.meta.total" :size="sites?.meta.per_page" @change="load" />
   </div>
   <div class="no-site" v-else>
     <icon-info theme="outline" class="mr-2" />
