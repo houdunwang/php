@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 export default {
-  name: 'base',
-  path: '/base',
+  name: 'admin',
+  path: '/blog',
   component: () => import('@/App.vue'),
   children: [
     {

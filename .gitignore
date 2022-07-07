@@ -19,7 +19,6 @@ worker.log
 !/addons/Blog
 /config.php
 # !/addons/.gitkeep
-/public/core
 /public/images
 /public/storage
 /public/addons
