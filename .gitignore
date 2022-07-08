@@ -26,3 +26,5 @@ worker.log
 /vue/stats.html
 .DS_Store
 Thumbs.db
+dist
+/dist
