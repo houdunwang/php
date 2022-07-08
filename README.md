@@ -1,8 +1,10 @@
-## 项目介绍 
+## 项目介绍
 
 基于 Laravel 9 框架构建的 PC、WAP、微信公众号、微信小程序多平台应用系统。
 
 100% 免费使用于任何项目，包括企业商业用途，希望大家为本项目加个 Star，也是对我们小小的鼓励。
+
+> 希望大家为本项目加个 Star，这样我们会更有动力，谢谢你。
 
 ### 产品特点
 
@@ -12,25 +14,19 @@
 
 项目支持多模块、多站点的平台，下面对特点进行简单描述
 
-* 多站点多模块
-* 微信、支付宝支付
-* 微信扫码登录
-* 独立安装界面
-* 使用laravel+vue3构建，社区完善
-
-
+- 多站点多模块
+- 微信、支付宝支付
+- 微信扫码登录
+- 独立安装界面
+- 使用 laravel+vue3 构建，社区完善
 
 ### 项目作者
 
 开发者 [向军大叔](https://www.houdunren.com) 从事编程多年的老程序员，晚 8 点在抖音与 B 站直播，欢迎光临。
 
-
-
 ### 在线文档
 
 我们提供了完善的帮助手册，便于开发者进行二次开发 [查看手册](https://doc.houdunren.com)，你也可以访问 [http://www.houdunren.com](http://www.houdunren.com/) 通过视频教程来学习使用。
-
-
 
 ## 安装方式
 
@@ -48,9 +44,7 @@ composer create-project houdunwang/php:dev-master
 
 你也可以直接从 [github](https://github.com/houdunwang/php) 或 [gitee](https://gitee.com/houdunren/php) 下载项目
 
-
-
-##  项目截图
+## 项目截图
 
 ![image-20220424180043074](./assets/image-20220424180043074-5991418.png)
 
@@ -68,8 +62,6 @@ composer create-project houdunwang/php:dev-master
 
 ![image-20220622001232854](./assets/image-20220622001232854.png)
 
-
-
 ## 每晚直播
 
 向军大叔会在每晚八点进行直播，与大家交流技术与生活。
@@ -78,7 +70,6 @@ composer create-project houdunwang/php:dev-master
 
 请扫描下方二维码进入直播间，我们一起交流成长。
 
-| 抖音                                                         | Bilibili                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 抖音 | Bilibili |
+| --- | --- |
 | ![image-20220709002736957](./assets/image-20220709002736957.png) | ![image-20220709002750369](./assets/image-20220709002750369.png) |
-
