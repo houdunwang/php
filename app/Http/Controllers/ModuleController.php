@@ -43,6 +43,9 @@ class ModuleController extends Controller
         }
 
         $module->delete();
+        dd(3);
+        app('module')->syncLocalAllModule();
+        app('permission')->syncAllSitePermissions();
 
         return $this->success('模块删除成功');
     }
