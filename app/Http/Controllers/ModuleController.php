@@ -37,15 +37,7 @@ class ModuleController extends Controller
     //删除模块
     public function destroy(Module $module)
     {
-        if (is_dir(base_path('addons/' . $module->name))) {
-            Artisan::call("module:migrate-reset " . $module->name);
-            Storage::disk('addons')->deleteDirectory($module->name);
-        }
-
-        $module->delete();
-        dd(3);
-        app('module')->syncLocalAllModule();
-        app('permission')->syncAllSitePermissions();
+        app('module')->delete($module);
 
         return $this->success('模块删除成功');
     }
