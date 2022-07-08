@@ -36,7 +36,7 @@
 
 ### composer
 
-目前是测试版本，所要以指定`:dev-master` 版本
+目前是测试版本，所以需要指定`:dev-master` 版本
 
 ```
 composer create-project houdunwang/php:dev-master
