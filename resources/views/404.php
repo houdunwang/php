@@ -32,9 +32,7 @@
     <script>
         const App = {
             setup() {
-                return {
-                    message: 'naive'
-                }
+                return {}
             }
         }
         const app = Vue.createApp(App)

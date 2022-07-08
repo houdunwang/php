@@ -5,6 +5,9 @@
     },
     {
       "path": "addons/Blog"
+    },
+    {
+      "path": "vue"
     }
   ],
   "settings": {}

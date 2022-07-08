@@ -8,6 +8,7 @@ use App\Http\Resources\SiteResource;
 use App\Models\Site;
 use Illuminate\Support\Facades\Auth;
 
+//站点
 class SiteController extends Controller
 {
     public function __construct()
