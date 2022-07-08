@@ -15,10 +15,9 @@ yarn-error.log
 /.vscode
 node_modules
 worker.log
-/addons/*
-!/addons/Blog
 /config.php
-# !/addons/.gitkeep
+/addons/*
+!/addons/.gitkeep
 /public/images
 /public/storage
 /public/addons
