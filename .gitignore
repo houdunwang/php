@@ -24,6 +24,6 @@ worker.log
 /vue/dist
 /vue/node_modules
 /vue/stats.html
-
+/public/vendor
 .DS_Store
 Thumbs.db
