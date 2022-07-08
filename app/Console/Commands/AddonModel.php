@@ -34,6 +34,7 @@ class AddonModel extends Command
         $snakeName = Str::snake($this->argument('name'));
 
         Artisan::call("module:make-model {$name} {$module}");
+        Artisan::call("module:make-controller {$name}Controller {$module}");
         Artisan::call("module:make-factory {$name} {$module}");
         Artisan::call("module:make-migration create_{$snakeName}_table {$module}");
         Artisan::call("module:make-seed {$snakeName} {$module}");
