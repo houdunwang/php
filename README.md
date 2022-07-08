@@ -52,21 +52,21 @@ composer create-project houdunwang/php:dev-master
 
 ##  项目截图
 
-![image-20220424180043074](../doc/docs/houdunren-php/assets/image-20220424180043074-5991418.png)
+![image-20220424180043074](./assets/image-20220424180043074-5991418.png)
 
-![image-20220424180204449](../doc/docs/houdunren-php/assets/image-20220424180204449.png)
+![image-20220424180204449](./assets/image-20220424180204449.png)
 
-![image-20220622000908020](../doc/docs/houdunren-php/assets/image-20220622000908020.png)
+![image-20220622000908020](./assets/image-20220622000908020.png)
 
-![image-20220622000936212](../doc/docs/houdunren-php/assets/image-20220622000936212.png)
+![image-20220622000936212](./assets/image-20220622000936212.png)
 
-![image-20220622001112329](../doc/docs/houdunren-php/assets/image-20220622001112329.png)
+![image-20220622001112329](./assets/image-20220622001112329.png)
 
-![image-20220622001142245](../doc/docs/houdunren-php/assets/image-20220622001142245.png)
+![image-20220622001142245](./assets/image-20220622001142245.png)
 
-![image-20220622001219309](../doc/docs/houdunren-php/assets/image-20220622001219309.png)
+![image-20220622001219309](./assets/image-20220622001219309.png)
 
-![image-20220622001232854](../doc/docs/houdunren-php/assets/image-20220622001232854.png)
+![image-20220622001232854](./assets/image-20220622001232854.png)
 
 
 
@@ -74,7 +74,7 @@ composer create-project houdunwang/php:dev-master
 
 向军大叔会在每晚八点进行直播，与大家交流技术与生活。
 
-![image-20220709002800811](../doc/docs/houdunren-php/assets/image-20220709002800811.png)
+![image-20220709002800811](./assets/image-20220709002800811.png)
 
 请扫描下方二维码进入直播间，我们一起交流成长。
 
