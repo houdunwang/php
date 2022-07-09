@@ -29,3 +29,5 @@ Thumbs.db
 dist
 /dist
 /addons
+/modules_statuses.json
+/.pnpm-debug.log
