@@ -28,3 +28,4 @@ worker.log
 Thumbs.db
 dist
 /dist
+/addons
