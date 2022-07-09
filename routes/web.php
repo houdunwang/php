@@ -4,13 +4,12 @@ use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/a', function () {
-    dd(\Module::scan());
-});
 Route::get('/', function (Request $request) {
     $site = Site::where('url', $request->fullUrl())->firstOrFail();
-    $moduleHtml = public_path("addons/{$site->module->name}/dist/index.html");
 
+    if (!$site->module) return view('404');
+
+    $moduleHtml = public_path("addons/{$site->module->name}/dist/index.html");
     return file_get_contents(is_file($moduleHtml) ? $moduleHtml : public_path('core/index.html'));
 });
 

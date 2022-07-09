@@ -46,7 +46,7 @@ class SiteModuleController extends Controller
     public function setDefaultModule(Site $site, Module $module)
     {
         $this->authorize('update', SiteModule::class);
-        $site->module_id = $module->id;
+        $site->module_id = $site->module_id == $module->id ? null : $module->id;
         $site->save();
 
         return $this->success('默认模块设置成功');
