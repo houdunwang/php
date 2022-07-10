@@ -20,6 +20,8 @@ class Site extends Model
         'config' => 'array',
     ];
 
+    protected $hidden = ['config'];
+
     protected $withs = ['module'];
 
     //站长

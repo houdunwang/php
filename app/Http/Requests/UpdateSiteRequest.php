@@ -11,7 +11,6 @@ class UpdateSiteRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:100', 'min:2', Rule::unique('sites')->ignore(request('id'))],
-            'url' => ['nullable', 'url'],
         ];
     }
 

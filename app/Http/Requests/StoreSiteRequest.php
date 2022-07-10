@@ -16,7 +16,6 @@ class StoreSiteRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:100', 'min:2', 'unique:sites'],
-            'url' => ['nullable', 'url'],
         ];
     }
 

@@ -49,13 +49,13 @@ Route::get('fans/{user}', [FansController::class, 'index']);
 
 //核心
 Route::get('core/update', [CoreController::class, 'update']);
+Route::get('core/current_site', [CoreController::class, 'currentSite']);
 
 //模块管理
 Route::apiResource('module', ModuleController::class);
 
 //站点
 Route::apiResource('site', SiteController::class);
-// Route::get('update_all_site_data', [SiteController::class, 'updateAllSiteInitData']);
 
 //站点模块
 Route::apiResource("site.module", SiteModuleController::class);

@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (Request $request) {
-    $site = Site::where('url', $request->fullUrl())->first();
+    $site = Site::where('url', $request->host())->first();
 
     if (!$site || !$site->module) return view('404', ['message' => '域名没有绑定站点，或站点没有设置默认模块']);
 
