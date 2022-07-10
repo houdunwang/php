@@ -14,8 +14,8 @@ return new class extends Migration
             $table->string('name')->comment('模块标识');
             $table->string('version')->comment('模块标识');
             $table->string('author')->comment('模块标识');
-            $table->string('preview')->comment('模块标识');
-            $table->boolean('install')->default(false)->comment('是否安装');
+            $table->string('preview')->nullable()->comment('模块标识');
+            $table->boolean('admin')->default(true)->comment('管理后台');
             $table->timestamps();
         });
     }

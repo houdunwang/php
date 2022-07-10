@@ -6,27 +6,12 @@ use Artisan;
 use Illuminate\Console\Command;
 use Str;
 
-class AddonModel extends Command
+class AddonModelCreate extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'addon-model {name} {module}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = '一次创建模块模型、控制器、迁移等文件';
+    protected $description = '同时创建模型、控制器、迁移等。例:addon-model article Blog 说明:article:模型名 Blog模块名';
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
         $module = ucfirst($this->argument('module'));

@@ -20,7 +20,7 @@ class ModuleService
         collect(Module::scan())->map(function ($module) {
             $config = (include $module->getPath() . "/Config/config.php") + [
                 'preview' => url('addons/' . $module->getName() . '/preview.jpeg'),
-                'install' => false
+                'admin' => true
             ];
 
             ModelsModule::updateOrCreate(
@@ -32,19 +32,16 @@ class ModuleService
         $this->updateModuleStatusFile();
     }
 
+    //更新modules_statuses.json
     public function updateModuleStatusFile()
     {
-        //更新modules_statuses.json文件
         $moduleStatusFile = base_path('modules_statuses.json');
-        if (is_file($moduleStatusFile)) {
-            $json = collect(Module::scan())->map(fn ($module) => true);
-            file_put_contents($moduleStatusFile, $json);
-        }
+        $json = collect(Module::scan())->map(fn ($module) => true);
+        file_put_contents($moduleStatusFile, $json);
     }
 
     /**
      * 初始模块数据
-     *
      * @param [type] $name 模块名
      * @param [type] $config 配置
      */
