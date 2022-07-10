@@ -39,7 +39,7 @@ class SiteController extends Controller
 
     public function show(Site $site)
     {
-        return $this->success(data: new SiteResource($site));
+        return $this->success(data: new SiteResource($site->makeVisible('config')));
     }
 
     public function update(UpdateSiteRequest $request, Site $site)
@@ -47,7 +47,7 @@ class SiteController extends Controller
         $this->authorize("update", $site);
         $site->fill($request->input())->save();
 
-        return $this->success('站点更新成功', data: $site->refresh());
+        return $this->success('站点更新成功', data: $site->refresh()->makeVisible(['config']));
     }
 
     public function destroy(Site $site)
