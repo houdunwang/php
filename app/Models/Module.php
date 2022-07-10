@@ -10,16 +10,11 @@ class Module extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'name', 'version', 'author',  'preview', 'admin'];
+    protected $fillable = ['title', 'name', 'version', 'author',  'preview', 'admin', 'front'];
 
-    protected $casts = ['admin' => 'boolean'];
+    protected $casts = ['admin' => 'boolean', 'front' => 'boolean'];
 
     protected $appends = ['permission', 'config'];
-
-    // public function getPreviewAttribute()
-    // {
-    //     return url('addons/' . $this->name . '/preview.jpeg');
-    // }
 
     public function getPermissionAttribute()
     {

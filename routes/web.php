@@ -13,8 +13,6 @@ Route::get('/', function (Request $request) {
     return file_get_contents(is_file($moduleHtml) ? $moduleHtml : public_path('core/index.html'));
 });
 
-
-
 Route::fallback(function ($path = 'core') {
     $pathinfo = explode('/', $path);
     $dirname = $pathinfo[0] == 'core' ? 'core' : "addons/$pathinfo[0]/dist";

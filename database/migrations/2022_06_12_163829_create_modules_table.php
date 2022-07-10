@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('author')->comment('模块标识');
             $table->string('preview')->nullable()->comment('模块标识');
             $table->boolean('admin')->default(true)->comment('管理后台');
+            $table->boolean('front')->default(true)->comment('前台访问');
             $table->timestamps();
         });
     }
