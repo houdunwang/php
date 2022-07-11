@@ -20,7 +20,7 @@ class SystemMiddleware
 
     protected function config()
     {
-        if (!public_path('index.html')) {
+        if (base_path('install_lock.html')) {
             $system = System::find(1);
             foreach (config('system') as $name => $value) {
                 foreach ($value as $key => $item) {

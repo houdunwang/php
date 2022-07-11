@@ -9,7 +9,7 @@ class InstallController extends Controller
 {
     public function __construct()
     {
-        if (is_file(public_path('install_lock.html'))) {
+        if (is_file(base_path('install_lock.html'))) {
             abort(403, '请删除install_lock.html后再安装');
         }
     }
@@ -35,7 +35,7 @@ class InstallController extends Controller
     public function migrate()
     {
         Artisan::call(' migrate:refresh --seed');
-        file_put_contents(public_path('install_lock.html'), 'install lock');
+        file_put_contents(base_path('install_lock.html'), 'install lock');
         return $this->success('数据导入成功');
     }
 }
