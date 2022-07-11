@@ -50,12 +50,12 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         //安装检测
-        // if(isset($_SERVER['REQUEST_URI'])){
-        //     $installRoute = preg_match('/install|api/i',$_SERVER['REQUEST_URI']);
-        //     if(is_file(public_path('index.html')) && !$installRoute){
-        //         // header('location:/install');
-        //         // die;
-        //     }
-        // }
+        if (isset($_SERVER['REQUEST_URI'])) {
+            $installRoute = preg_match('/install|api/i', $_SERVER['REQUEST_URI']);
+            if (!is_file(public_path('install_lock.html')) && !$installRoute) {
+                header('location:/install');
+                die;
+            }
+        }
     }
 }

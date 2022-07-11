@@ -24,6 +24,7 @@ worker.log
 /public/core
 /vue/node_modules
 /vue/stats.html
+/public/.DS_Store
 .DS_Store
 Thumbs.db
 /modules_statuses.json
