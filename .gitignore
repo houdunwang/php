@@ -33,3 +33,5 @@ Thumbs.db
 !/addons/AddonController.php
 !/addons/AddonModel.php
 
+/public/install_lock.html
+
