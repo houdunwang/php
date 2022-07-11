@@ -21,6 +21,7 @@ worker.log
 /public/images
 /public/storage
 /public/addons
+/public/core
 /vue/dist
 /vue/node_modules
 /vue/stats.html
