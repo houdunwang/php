@@ -1,6 +1,6 @@
 <?php
 
-namespace Addons;
+namespace App\Addons;
 
 use App\Models\Scopes\SiteScope;
 use App\Models\Site;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Addons;
+namespace App\Addons;
 
 use App\Http\Controllers\Controller;
 

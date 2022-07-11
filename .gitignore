@@ -30,10 +30,7 @@ Thumbs.db
 /modules_statuses.json
 /.pnpm-debug.log
 /php.code-workspace
-/addons/*
-!/addons/AddonController.php
-!/addons/AddonModel.php
-
+/addons
 /install_lock.html
 /public/index.html
 
