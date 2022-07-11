@@ -7,6 +7,7 @@ use App\Http\Controllers\CoreController;
 use App\Http\Controllers\FansController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\InstallController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ModuleController;
@@ -71,3 +72,7 @@ Route::apiResource('site.role.permission', RolePermissionController::class);
 //站点管理员
 Route::apiResource('site.admin', AdminController::class);
 Route::post('site/{site}/admin/{admin}/role', [AdminController::class, 'syncAdminRole']);
+
+//安装
+Route::post('install/test', [InstallController::class,'testLink']);
+Route::get('install/migrate', [InstallController::class,'migrate']);

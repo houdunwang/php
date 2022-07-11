@@ -20,9 +20,13 @@ class SystemMiddleware
 
     protected function config()
     {
-        $system = System::find(1);
-        foreach (config('system') as $name => $value)
-            foreach ($value as $key => $item)
-                config(["system.{$name}.{$key}" => $system['config'][$name][$key] ?? $item]);
+        if (!public_path('index.html')) {
+            $system = System::find(1);
+            foreach (config('system') as $name => $value) {
+                foreach ($value as $key => $item) {
+                    config(["system.{$name}.{$key}" => $system['config'][$name][$key] ?? $item]);
+                }
+            }
+        }
     }
 }
