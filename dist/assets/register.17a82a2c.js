@@ -1,0 +1,1 @@
+import{_ as r}from"./plugin-vue_export-helper.21dcd24c.js";import{a0 as o,o as t,G as s}from"./@vue.ac3c99c7.js";const c={};function n(a,_){const e=o("AuthRegister");return t(),s(e)}var m=r(c,[["render",n]]);export{m as default};

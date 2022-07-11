@@ -22,13 +22,10 @@ worker.log
 /public/storage
 /public/addons
 /public/core
-/vue/dist
 /vue/node_modules
 /vue/stats.html
 .DS_Store
 Thumbs.db
-dist
-/dist
 /modules_statuses.json
 /.pnpm-debug.log
 /php.code-workspace
