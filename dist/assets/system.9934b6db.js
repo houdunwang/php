@@ -1,1 +1,0 @@
-import{h as e}from"./index.79763af7.js";async function r(){const{data:t}=await e.request({url:"system"});return t}function u(t){return e.request({url:"system/1",method:"PUT",data:t})}export{r as g,u};
