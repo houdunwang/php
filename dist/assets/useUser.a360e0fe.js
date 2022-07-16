@@ -1,1 +1,0 @@
-import{r as o,j as u,k as n}from"./index.9fddb2f0.js";import{d as a}from"./@vue.ac3c99c7.js";var m=()=>{const r=a(),e=a();return{sid:o.currentRoute.value.query.sid,users:r,user:e,load:async(s=1,t={})=>{r.value=await u(s,t)},find:async s=>{e.value=await n(s)}}};export{m as u};
