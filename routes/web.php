@@ -15,6 +15,7 @@ Route::get('/', function (Request $request) {
     return redirect('/core');
 });
 
+
 Route::fallback(function ($path = 'core') {
     $pathinfo = explode('/', $path);
     if (!preg_match('/core|install/i', $pathinfo[0])) {

@@ -13,6 +13,7 @@ class InstallController extends Controller
             abort(403, '请删除install_lock.html后再安装');
         }
     }
+
     public function testLink(Request $request)
     {
         $config = $request->input('database') + [
@@ -34,7 +35,7 @@ class InstallController extends Controller
 
     public function migrate()
     {
-        Artisan::call(' migrate:refresh --seed');
+        Artisan::call('migrate:refresh --seed');
         file_put_contents(base_path('install_lock.html'), 'install lock');
         return $this->success('数据导入成功');
     }

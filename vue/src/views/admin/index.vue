@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
+import * as echarts from 'echarts'
 import { echart1, echart2, echart3, echart4 } from './echart'
 
 interface ICard {
@@ -44,8 +45,6 @@ const cards = ref<ICard[]>([
     totalTitle: '总评论',
   },
 ])
-
-const echarts = window.echarts
 
 nextTick(() => {
   echarts.init(document.getElementById('echart1') as HTMLDivElement).setOption(echart1)
